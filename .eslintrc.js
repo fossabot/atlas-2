@@ -26,8 +26,6 @@ module.exports = {
     // Too restrictive, writing ugly code to defend against a very unlikely scenario: https://eslint.org/docs/rules/no-prototype-builtins
     "no-prototype-builtins": "off",
     // https://basarat.gitbooks.io/typescript/docs/tips/defaultIsBad.html
-    "import/prefer-default-export": "off",
-    "import/no-default-export": "error",
     // Use function hoisting to improve code readability
     "no-use-before-define": [
       "error",

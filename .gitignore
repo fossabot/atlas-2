@@ -5,3 +5,5 @@
 /node_modules
 .cache/
 yarn-error.log
+/__tests__/cypress/screenshots
+/__tests__/cypress/videos

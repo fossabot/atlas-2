@@ -8,7 +8,11 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
   devServer: {
-    contentBase: "./dist",
+    compress: true,
+    overlay: true,
+    port: 3000,
+    open: false,
+    stats: "normal",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
@@ -19,6 +23,10 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loader: "awesome-typescript-loader",
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
