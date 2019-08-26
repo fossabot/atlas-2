@@ -14,17 +14,17 @@ import { includes } from "./util"
  * Handles clustering of locations
  */
 export default class ClusterLayer implements IClusterLayer {
-  displayedLocations: ILocation[]
-  distance: number
-  clusterSource: OLCluster
-  animatedCluster: OLEXTAnimatedCluster
-  ui: IUI
+  private displayedLocations: ILocation[]
+  private distance: number
+  private clusterSource: OLCluster
+  private animatedCluster: OLEXTAnimatedCluster
+  private ui: UI
   /**
    *Creates an instance of ClusterLayer.
    * @param [distance=40]
    * @memberof ClusterLayer
    */
-  constructor(distance: number = 40, ui: IUI) {
+  public constructor(distance: number = 40, ui: UI) {
     // sets up an empty cluster layer
     this.displayedLocations = []
     this.distance = distance

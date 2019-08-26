@@ -50,7 +50,7 @@ export default class Nominatim {
    * @memberof Nominatim
    */
   cleanJson(jsonData: {
-    [key: string]: string | number
+    [key: string]: string | number,
   }): { [key: string]: string | number } {
     if (jsonData.length >= 1) {
       const cleanedJson = {}

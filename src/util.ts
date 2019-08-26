@@ -1,4 +1,4 @@
-import { ILocation } from "./types/custom_types"
+import { Location } from "./types/custom_types"
 
 /**
  * Removes all entries in list1 from list2 and return list2.
@@ -8,7 +8,7 @@ import { ILocation } from "./types/custom_types"
  * @param list2
  * @returns {array} The Difference list2 - list1
  */
-export function removeFrom(list1: any[], list2: any[]) {
+export function removeFrom(list1: any[], list2: any[]): any[] {
   for (const entry of list1) {
     if (includes(list2, entry)) {
       const pos: number = list2.indexOf(entry)
@@ -23,7 +23,7 @@ export function removeFrom(list1: any[], list2: any[]) {
  * @param container an array of X
  * @param value X
  */
-export function includes(container: ILocation[], value: ILocation): boolean {
+export function includes(container: Location[], value: Location): boolean {
   const pos = container.indexOf(value)
   if (pos >= 0) {
     return true

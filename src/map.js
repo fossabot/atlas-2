@@ -1,4 +1,4 @@
-// @flow
+// @ts-nocheck
 
 import { Map as OLMap } from "ol"
 import Bar from "ol-ext/control/Bar"
@@ -13,25 +13,22 @@ import FullScreen from "ol/control/FullScreen"
 import { platformModifierKeyOnly } from "ol/events/condition.js"
 import Feature from "ol/Feature"
 import GeoJSON from "ol/format/GeoJSON"
-import MVT from "ol/format/MVT"
 import { fromCircle } from "ol/geom/Polygon"
 import { Draw, Modify } from "ol/interaction"
 import Select from "ol/interaction/Select"
 import TileLayer from "ol/layer/Tile"
 import VectorLayer from "ol/layer/Vector"
-import VectorTileLayer from "ol/layer/VectorTile.js"
 import { fromLonLat } from "ol/proj"
 import OSM from "ol/source/OSM"
 import VectorSource from "ol/source/Vector"
-import VectorTileSource from "ol/source/VectorTile.js"
 import { Fill, Stroke, Style } from "ol/style.js"
 import View from "ol/View"
 
 import ClusterLayer from "./clusterLayer"
 import { log } from "./logger"
 import PolygonStyle from "./styles/polygon"
-import { vectorStyle } from "./styles/vector"
 import UI from "./ui"
+import { OLLayer } from "./types/ol_types";
 
 /**
  * OpenLayers Map
@@ -42,14 +39,14 @@ import UI from "./ui"
  * @param [mapID='map-container'] The id of the `<div>` element where the map will be placed.
  * @class Map
  */
-export default class Map implements IMap {
-  jobs: IJob[]
+export default class Map {
+  jobs: Job[]
   mapID: string
-  markerLayer: IClusterLayer
+  markerLayer: ClusterLayer
   notification: OLNotification
   olmap: OLMap
   select: OLSelect
-  ui: IUI
+  ui: UI
 
   /**
    *Creates an instance of Map.
@@ -271,7 +268,7 @@ export default class Map implements IMap {
    * @returns
    * @memberof Map
    */
-  getRadius(circle: Feature): number {
+  private getRadius(circle: Feature): number {
     return circle.values_.geometry.getRadius()
   }
 
@@ -281,7 +278,7 @@ export default class Map implements IMap {
    * @returns
    * @memberof Map
    */
-  featureLayerFromGeoJson(geojson) {
+  private featureLayerFromGeoJson(geojson) {
     const layer = new VectorLayer({
       name: "geojson",
       source: new VectorSource({
@@ -303,7 +300,7 @@ export default class Map implements IMap {
    * @returns
    * @memberof Map
    */
-  makeFeatureFromCircle(circleFeature: Feature): Feature {
+  private makeFeatureFromCircle(circleFeature: Feature): Feature {
     return new Feature({
       geometry: fromCircle(circleFeature.get("geometry")),
       //  TODO the following style seems to have no effect
@@ -326,7 +323,7 @@ export default class Map implements IMap {
    * @returns
    * @memberof Map
    */
-  getLayerByName(name: string): VectorLayer {
+  private getLayerByName(name: string): VectorLayer {
     const layers = this.olmap.getLayers()
     for (const layer: VectorLayer of layers.array_) {
       if (layer.get("name") === name) {
@@ -343,7 +340,7 @@ export default class Map implements IMap {
    * @returns
    * @memberof Map
    */
-  getOrCreateLayer(name: string, opts: Record<string, any>) {
+  private getOrCreateLayer(name: string, opts: Record<string, any>): OLLayer {
     let layer = this.getLayerByName(name)
     if (typeof layer === "undefined") {
       layer = new TileLayer(opts)
@@ -359,7 +356,7 @@ export default class Map implements IMap {
    * @param feature
    * @memberof Map
    */
-  crop(feature: OLFeature): void {
+  private crop(feature: OLFeature): void {
     const crop = new Crop({
       feature: feature,
       inner: true,
@@ -414,7 +411,7 @@ export default class Map implements IMap {
    *
    * @memberof Map
    */
-  buildMap(): OLMap {
+  private buildMap(): OLMap {
     /**
      *
      *
@@ -432,24 +429,13 @@ export default class Map implements IMap {
         }),
       ]),
       layers: [
-        /* new TileLayer({
+         new TileLayer({
           title: "OSM",
           baseLayer: true,
           source: new OSM({
             wrapX: true,
           }),
         }),
-        new TileLayer({
-          title: "OSM DE",
-
-          source: new XYZ({
-            url:
-              "https://{a-d}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png",
-            attributions:
-              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-          }),
-        }),
-        */
         /*
         new TileLayer({
           title: "OpenRailwayMap",
@@ -462,14 +448,14 @@ export default class Map implements IMap {
           }),
         }),
         */
-        new VectorTileLayer({
-          source: new VectorTileSource({
-            format: new MVT(),
-            url:
-              "http://jbs-osm.informatik.fh-nuernberg.de:18000/maps/osm/{z}/{x}/{y}.pbf",
-          }),
-          style: vectorStyle,
-        }),
+        // new VectorTileLayer({
+        //   source: new VectorTileSource({
+        //     format: new MVT(),
+        //     url:
+        //       "http://jbs-osm.informatik.fh-nuernberg.de:18000/maps/osm/{z}/{x}/{y}.pbf",
+        //   }),
+        //   style: vectorStyle,
+        // }),
       ],
       view: new View({
         center: fromLonLat([0, 45]),
@@ -483,7 +469,7 @@ export default class Map implements IMap {
    *
    * @memberof Map
    */
-  buildMarkerLayer() {
+  private buildMarkerLayer() {
     this.markerLayer = new ClusterLayer(60, this.ui)
     this.olmap.addLayer(this.markerLayer.animatedCluster)
   }
@@ -502,7 +488,7 @@ export default class Map implements IMap {
    * will get called and the locations will get rendered immediately.
    * @memberof Map
    */
-  setLocations(locations: ILocation[], draw: boolean = false) {
+  setLocations(locations: Location[], draw: boolean = false) {
     this.ui.updateFromLocations(locations)
 
     this.markerLayer.addLocations(locations)

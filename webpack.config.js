@@ -25,6 +25,10 @@ module.exports = {
         loader: "awesome-typescript-loader",
       },
       {
+        test: /\.js$/,
+        loader: "babel-loader",
+      },
+      {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },

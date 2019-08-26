@@ -5,16 +5,9 @@ import Fill from "ol/style/Fill"
 import RegularShape from "ol/style/RegularShape"
 
 import { log } from "../logger"
-import { OLFeature } from "../types/ol_types"
+import { OLFeature, OLStyle } from "../types/ol_types"
 import { bound } from "../util"
-
-// import score1 from "../../static/img/marker/score1.png"
-// import score2 from "../../static/img/marker/score2.png"
-// import score3 from "../../static/img/marker/score3.png"
-// import score4 from "../../static/img/marker/score4.png"
-// import score5 from "../../static/img/marker/score5.png"
-
-// const scoreImages = [score1, score2, score3, score4, score5]
+import { Location } from "../types/custom_types"
 
 /**
  * Handles definition of a style for clusters.
@@ -105,7 +98,7 @@ export default class ClusterStyle {
   private maxScore(features: OLFeature[]): number {
     let maxScore = 0
     for (const feature of features) {
-      const location: ILocation = feature.get("location")
+      const location: Location = feature.get("location")
       const score: number = location.score
       maxScore = Math.max(maxScore, score)
     }
@@ -120,7 +113,7 @@ export default class ClusterStyle {
    * @returns {OLSytyle}
    * @memberof ClusterStyle
    */
-  polygonStyle(score: number, scale: number, size: number): OLSytyle {
+  private polygonStyle(score: number, scale: number, size: number): OLStyle {
     const radius = bound(15, size, 25)
     return new Style({
       image: new RegularShape({
@@ -148,33 +141,6 @@ export default class ClusterStyle {
   }
 
   /**
-   * Return an image style according to score, scale and size
-   *
-   * @param score
-   * @param  scale
-   * @param  size
-   * @returns
-   * @memberof ClusterStyle
-   */
-  imageStyle(score: number, scale: number, size: number): OLStyle {
-    return new Style({
-      image: new Icon({
-        anchor: [0.5, 0.5],
-        anchorXUnits: "fraction",
-        anchorYUnits: "fraction",
-        scale,
-        src: this.pictureByScore(score),
-      }),
-      text: new Text({
-        fill: new Fill({
-          color: "#000",
-        }),
-        text: size.toString() + " Jobs",
-      }),
-    })
-  }
-
-  /**
    * Return a ol.Style for clusters
    *
    * @param cluster
@@ -182,7 +148,7 @@ export default class ClusterStyle {
    * This is necessary because OL expects an array.
    * @memberof ClusterStyle
    */
-  style(cluster: OLFeature): OLStyle[] {
+  public style(cluster: OLFeature): OLStyle[] {
     const features: OLFeature[] = cluster.get("features")
     const size = features.length
     if (size === 1) {
@@ -203,7 +169,7 @@ export default class ClusterStyle {
    * @returns
    * @memberof ClusterStyle
    */
-  getScore(feature: OLFeature): number {
+  private getScore(feature: OLFeature): number {
     /*
      * We need to unpack the feature by taking the `features` value.
      * This returns an array of features and we can take the first element
@@ -212,7 +178,7 @@ export default class ClusterStyle {
     const subfeatures: OLFeature[] = feature.get("features")
 
     if (subfeatures && subfeatures.length === 1) {
-      const location: ILocation = subfeatures[0].get("location")
+      const location: Location = subfeatures[0].get("location")
       return location.score
     }
 
@@ -226,30 +192,12 @@ export default class ClusterStyle {
    * @returns
    * @memberof ClusterStyle
    */
-  selectedStyle(cluster: OLFeature) {
+  private selectedStyle(cluster: OLFeature): OLStyle[] {
     const size = 1
     const score = this.getScore(cluster)
     // Scale is within [0.2, 0.4]
     const scale = Math.min(0.4, Math.max(size * 0.03, 0.2))
     const style = this.polygonStyle(score, scale, size)
     return [style]
-  }
-
-  /**
-   * Select a picture to be displayed according to a score.
-   *
-   * @param  score
-   * @param [minScore=0.5]
-   * @returns
-   * @memberof ClusterStyle
-   */
-  pictureByScore(score: number, minScore: number = 0.5) {
-    if (score < 0 || score > 1) {
-      throw new RangeError("score must be between 0 and 1, including 0 and 1.")
-    }
-
-    const step = (1 - minScore) / scoreImages.length
-    const index = Math.floor(Math.max(0, (score - minScore) / step))
-    return scoreImages[index]
   }
 }

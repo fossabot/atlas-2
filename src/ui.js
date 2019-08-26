@@ -1,10 +1,9 @@
-// @flow
-/* eslint-env browser */
+// @ts-nocheck
 
 import { log } from "./logger"
 import Nominatim from "./nominatim"
-import { IMap, IUI } from "./types/custom_interfaces"
-import { IElements, ILocation } from "./types/custom_types"
+import { Map, UserInterface } from "./types/custom_interfaces"
+import { Elements, Location } from "./types/custom_types"
 import { OLFeature } from "./types/ol_types"
 import { keyCount } from "./util"
 
@@ -14,15 +13,15 @@ import { keyCount } from "./util"
  * @export
  * @class UI
  */
-export default class UI implements IUI {
+export default class UI implements UserInterface {
   private wantedElements: string[]
-  private elements: IElements
-  private map: IMap
+  private elements: Elements
+  private map: Map
   /**
    *Creates an instance of UI.
-   * @memberof UI
+   * @memberof UserInterface
    */
-  private constructor(map: IMap) {
+  private constructor(map: Map) {
     this.map = map
     this.wantedElements = [
       "corporationsCounter",
@@ -44,10 +43,10 @@ export default class UI implements IUI {
    */
   private loadElements(
     wantedElements: string[] = this.wantedElements,
-  ): IElements {
+  ): Elements {
     const elements = {}
     for (const id of wantedElements) {
-      elements[id] = document.getElementById(id)
+      elements[id] = document.getElementById(id) as HTMLElement
       log.debug(`Found element: ${id}`, { element: elements[id] })
     }
     return elements
@@ -63,7 +62,9 @@ export default class UI implements IUI {
    */
   private updateUI(element: string, inner: string): void {
     log.debug(`updated ${element}`, { inner })
+    // @ts-ignore
     if (this.elements[element] instanceof HTMLElement) {
+      // @ts-ignore
       this.elements[element].innerHTML = inner
     }
   }
@@ -115,7 +116,7 @@ export default class UI implements IUI {
    * @param {location} locations
    * @memberof UI
    */
-  private updateFromLocations(locations: ILocation[]) {
+  private updateFromLocations(locations: Location[]) {
     this.updateCorporations(keyCount(locations, "corp"))
     this.updateAllJobs(locations.length)
   }

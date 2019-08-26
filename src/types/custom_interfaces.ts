@@ -1,4 +1,4 @@
-import { IElements, IJob, ILocation } from "./custom_types"
+import { Elements, Job, Location } from "./custom_types"
 import {
   OLCluster,
   OLFeature,
@@ -9,40 +9,39 @@ import {
 } from "./ol_types"
 import { OLEXTAnimatedCluster } from "./ol-ext_types"
 
-export declare interface IMap {
+export declare interface Map {
   mapID: string
-  ui: IUI
-  jobs: IJob[]
+  ui: UserInterface
+  jobs: Job[]
   olmap: OLMap
   select: OLSelect
   notification: OLNotification
 
-  zoomToLayer(layer: VectorLayer): void
+  zoomToLayer(layer: OLLayer): void
   featureLayerFromGeoJson(geojson: any): void
 }
 
-export declare interface IUI {
-  map: IMap
+export declare interface UserInterface {
+  map: Map
   wantedElements: string[]
-  elements: IElements
+  elements: Elements
 
-  loadElements(wantedElements: string[]): IElements
+  loadElements(wantedElements: string[]): Elements
   updateUI(element: string, inner: string): void
   updateCorporations(count: number): void
   updateAllJobs(count: number): void
   updateActiveJobs(count: number): void
-  updateJobList(feature: OLFeature): void
-  updateFromLocations(locations: ILocation[]): void
+  updateFromLocations(locations: Location[]): void
 }
 
-export declare interface ISample {
-  jobs(): Promise<IJob[]>
+export declare interface Sample {
+  jobs(): Promise<Job[]>
 }
 
-export declare interface IClusterLayer {
-  addLocations(locations: ILocation[], draw?: boolean): void
+export declare interface ClusterLayer {
+  addLocations(locations: Location[], draw?: boolean): void
   drawLocations(): void
-  displayedLocations: ILocation[]
+  displayedLocations: Location[]
   distance: number
   clusterSource: OLCluster
   animatedCluster: OLEXTAnimatedCluster

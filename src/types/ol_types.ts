@@ -1,20 +1,20 @@
 import BaseLayer from "ol/layer/Base"
 
 export declare class OLNotification {
-  show(text: string): void
+  private show(text: string): void
 }
 
 export declare class OLControl {}
 export declare class OLInteraction {}
 
 export declare class OLMap {
-  addControl(control: OLControl | OLNotification): void
-  addInteraction(interaction: any): void
-  getView(): any
-  addLayer(layer: BaseLayer): void
-  removeLayer(layer: BaseLayer): void
-  getLayers(): { array_: BaseLayer[] }
-  getSize(): number[]
+  private addControl(control: OLControl | OLNotification): void
+  private addInteraction(interaction: any): void
+  private getView(): any
+  private addLayer(layer: BaseLayer): void
+  private removeLayer(layer: BaseLayer): void
+  private getLayers(): { array_: BaseLayer[] }
+  private getSize(): number[]
 }
 
 export declare class OLFeature {
@@ -24,14 +24,16 @@ export declare class OLFeature {
 export declare class OLStyle {}
 
 export declare class OLVectorSource {
-  addFeatures(features: OLFeature[]): void
-  clear(): void
+  private addFeatures(features: OLFeature[]): void
+  private clear(): void
 }
 
 export declare class OLCluster {
-  getSource(): OLVectorSource
+  private getSource(): OLVectorSource
 }
 
 export declare class OLSelect {}
 
-export declare class OLLayer {}
+export declare class OLLayer {
+  public addFilter(mask: any): void
+}

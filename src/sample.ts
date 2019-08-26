@@ -3,7 +3,7 @@
 import axios from "axios"
 
 import { log } from "./logger"
-
+import { Job } from "./types/custom_types"
 /**
  * Random sample generator
  *
@@ -16,7 +16,7 @@ export default class Sample {
    * @returns {Promise<IJob[]>}
    * @memberof Sample
    */
-  jobs(count: number): Promise<IJob[]> {
+  public jobs(count: number): Promise<Job[]> {
     const startTime = new Date()
     return axios
       .get("../data/cities.json")
@@ -39,9 +39,8 @@ export default class Sample {
             url: "fake.domain.com",
           })
         }
-        log.info(
-          `Generating ${jobs.length} jobs took ${new Date() - startTime} ms.`,
-        )
+        const elapsedTime = Number(new Date()) - Number(startTime)
+        log.info(`Generating ${jobs.length} jobs took ${elapsedTime} ms.`)
         return jobs
       })
   }
@@ -52,7 +51,7 @@ export default class Sample {
    * @returns
    * @memberof Sample
    */
-  generateString(length: number = 4) {
+  private generateString(length: number = 4): string {
     let result = ""
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     for (let i = 0; i < length; i++) {

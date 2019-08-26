@@ -1,5 +1,3 @@
-// @flow
-
 // ESLint exception rule for NodeList
 /* global NodeList:true */
 
@@ -22,7 +20,7 @@ export default class Pantheon {
    *Creates an instance of Pantheon.
    * @memberof Pantheon
    */
-  constructor() {
+  private constructor() {
     this.polyfillForEach()
   }
 
@@ -34,9 +32,11 @@ export default class Pantheon {
    *
    * @memberof Pantheon
    */
-  polyfillForEach(): void {
+  private polyfillForEach(): void {
+    // @ts-ignore
     if (window.NodeList && !NodeList.prototype.forEach) {
       log.info("Polyfilling `forEach`")
+      // @ts-ignore
       NodeList.prototype.forEach = Array.prototype.forEach
     }
   }
@@ -44,14 +44,14 @@ export default class Pantheon {
   /**
    * Creates a map object to handle everything.
    */
-  initMap(mapID: string): Map {
+  public initMap(mapID: string): Map {
     return new Map(mapID)
   }
 
   /**
    * Inits sample
    */
-  initSample(): Sample {
+  public initSample(): Sample {
     const sample: Sample = new Sample()
     return sample
   }

@@ -1,6 +1,5 @@
-// @flow
-
 /* eslint-disable no-console */
+import { LogObject } from "./types/custom_types"
 
 /**
  * @description Custom logger
@@ -12,7 +11,7 @@ class Logger {
    *Creates an instance of Logger.
    * @memberof Logger
    */
-  constructor() {
+  public constructor() {
     switch (process.env.NODE_ENV) {
       case "production":
         this.disableConsole(["log", "debug", "info"])
@@ -32,14 +31,11 @@ class Logger {
    * @param {string[]} [methods=["log", "debug", "info", "warn", "error"]]
    * @memberof Atlas
    */
-  disableConsole(
+  private disableConsole(
     methods: string[] = ["log", "debug", "info", "warn", "error"],
-  ) {
-    if (!window.console) {
-      window.console = {}
-    }
+  ): void {
     for (const method of methods) {
-      // eslint-disable-next-line
+      // @ts-ignore
       console[method] = function() {}
     }
   }
@@ -52,10 +48,10 @@ class Logger {
    * @param {object} payload
    * @memberof Logger
    */
-  log(level: string, text: string, payload: ILogObject) {
+  private buildPayload(level: string, payload: LogObject): LogObject {
     payload.timestamp = new Date()
     payload.level = level
-    console[level](text, payload)
+    return payload
   }
 
   /**
@@ -64,8 +60,9 @@ class Logger {
    * @param {object} payload
    * @memberof Logger
    */
-  debug(text: string, payload: ILogObject = {}) {
-    this.log("debug", text, payload)
+  public debug(text: string, payload: LogObject = {}): void {
+    payload = this.buildPayload("debug", payload)
+    console.debug(text, payload)
   }
 
   /**
@@ -74,8 +71,9 @@ class Logger {
    * @param {object} payload
    * @memberof Logger
    */
-  info(text: string, payload: ILogObject = {}) {
-    this.log("info", text, payload)
+  public info(text: string, payload: LogObject = {}): void {
+    payload = this.buildPayload("info", payload)
+    console.log(text, payload)
   }
 
   /**
@@ -84,8 +82,9 @@ class Logger {
    * @param {object} payload
    * @memberof Logger
    */
-  warn(text: string, payload: ILogObject = {}) {
-    this.log("warn", text, payload)
+  public warn(text: string, payload: LogObject = {}): void {
+    payload = this.buildPayload("warn", payload)
+    console.warn(text, payload)
   }
 
   /**
@@ -94,8 +93,9 @@ class Logger {
    * @param {object} payload
    * @memberof Logger
    */
-  error(text: string, payload: ILogObject = {}) {
-    this.log("error", text, payload)
+  public error(text: string, payload: LogObject = {}): void {
+    payload = this.buildPayload("error", payload)
+    console.error(text, payload)
   }
 }
 

@@ -1,6 +1,7 @@
 import { Fill, Stroke, Style } from "ol/style.js"
 
 import { log } from "../logger"
+import { OLFeature } from "../types/ol_types"
 
 export const defaultStyle = new Style({
   fill: new Fill({
@@ -36,10 +37,9 @@ export const buildingStyle = new Style({
  *
  * @export
  * @param {*} feature
- * @param {*} resolution
  * @returns
  */
-export function vectorStyle(feature, resolution) {
+export function vectorStyle(feature: OLFeature): Style[] | null {
   log.info(feature.get("layer"))
   if (
     feature.get("layer") === "populated_places" ||
