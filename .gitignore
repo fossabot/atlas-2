@@ -1,0 +1,7 @@
+/.env
+/.eslintcache
+/coverage
+/dist
+/node_modules
+.cache/
+yarn-error.log

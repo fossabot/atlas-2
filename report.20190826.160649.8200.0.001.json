@@ -1,0 +1,536 @@
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20190826.160649.8200.0.001.json",
+    "dumpEventTime": "2019-08-26T16:06:49Z",
+    "dumpEventTimeStamp": "1566828409822",
+    "processId": 8200,
+    "cwd": "C:\\Users\\athomas\\Desktop\\code\\pantheon",
+    "commandLine": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\athomas\\Desktop\\code\\pantheon\\node_modules\\.bin\\\\..\\prettier\\bin-prettier.js",
+      "--write",
+      "./**/*.{js,ts,json}"
+    ],
+    "nodejsVersion": "v12.9.0",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.9.0",
+      "v8": "7.6.303.29-node.15",
+      "uv": "1.31.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.39.2",
+      "napi": "4",
+      "llhttp": "1.1.4",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1c",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019a",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v12.9.0/node-v12.9.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.9.0/node-v12.9.0.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.9.0/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.17763",
+    "osVersion": "Windows 10 Home",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz",
+        "speed": 3192,
+        "user": 4417984,
+        "nice": 0,
+        "sys": 6765796,
+        "idle": 11176234,
+        "irq": 144000
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz",
+        "speed": 3192,
+        "user": 4435984,
+        "nice": 0,
+        "sys": 6829734,
+        "idle": 11094062,
+        "irq": 19937
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz",
+        "speed": 3192,
+        "user": 4475343,
+        "nice": 0,
+        "sys": 8147640,
+        "idle": 9736796,
+        "irq": 15500
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz",
+        "speed": 3192,
+        "user": 4828937,
+        "nice": 0,
+        "sys": 9948828,
+        "idle": 7582015,
+        "irq": 10875
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "Ethernet",
+        "internal": false,
+        "mac": "90:1b:0e:8b:c9:a5",
+        "address": "2001:638:a04:c001:d1ef:4e4d:98c7:65cd",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Ethernet",
+        "internal": false,
+        "mac": "90:1b:0e:8b:c9:a5",
+        "address": "2001:638:a04:c001:487c:2b96:8866:c485",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Ethernet",
+        "internal": false,
+        "mac": "90:1b:0e:8b:c9:a5",
+        "address": "2001:638:a04:c001:c4b1:8fd6:e747:30d0",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Ethernet",
+        "internal": false,
+        "mac": "90:1b:0e:8b:c9:a5",
+        "address": "fe80::d1ef:4e4d:98c7:65cd",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 3
+      },
+      {
+        "name": "Ethernet",
+        "internal": false,
+        "mac": "90:1b:0e:8b:c9:a5",
+        "address": "141.75.152.218",
+        "netmask": "255.255.254.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Ethernet 3",
+        "internal": false,
+        "mac": "0a:00:27:00:00:08",
+        "address": "fe80::d0cc:d660:63cf:f66e",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 8
+      },
+      {
+        "name": "Ethernet 3",
+        "internal": false,
+        "mac": "0a:00:27:00:00:08",
+        "address": "192.168.56.1",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      }
+    ],
+    "host": "DESKTOP-URBKKLO"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": ["Unavailable."]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff6d5aa6ed9",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+10873"
+    },
+    {
+      "pc": "0x00007ff6d5aab26c",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+28172"
+    },
+    {
+      "pc": "0x00007ff6d5aaa218",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+23992"
+    },
+    {
+      "pc": "0x00007ff6d5b95e5b",
+      "symbol": "v8::base::CPU::has_sse+37691"
+    },
+    {
+      "pc": "0x00007ff6d638899e",
+      "symbol": "v8::Isolate::ReportExternalAllocationLimitReached+94"
+    },
+    {
+      "pc": "0x00007ff6d6370941",
+      "symbol": "v8::SharedArrayBuffer::Externalize+833"
+    },
+    {
+      "pc": "0x00007ff6d623ec7c",
+      "symbol": "v8::internal::Heap::EphemeronKeyWriteBarrierFromCode+1436"
+    },
+    {
+      "pc": "0x00007ff6d624811f",
+      "symbol": "v8::internal::Heap::ProtectUnprotectedMemoryChunks+1279"
+    },
+    {
+      "pc": "0x00007ff6d6246604",
+      "symbol": "v8::internal::Heap::PageFlagsAreConsistent+3204"
+    },
+    {
+      "pc": "0x00007ff6d623c253",
+      "symbol": "v8::internal::Heap::CollectGarbage+1235"
+    },
+    {
+      "pc": "0x00007ff6d623aaf4",
+      "symbol": "v8::internal::Heap::AddRetainedMap+2356"
+    },
+    {
+      "pc": "0x00007ff6d625a305",
+      "symbol": "v8::internal::Factory::NewFillerObject+53"
+    },
+    {
+      "pc": "0x00007ff6d5fc8f9d",
+      "symbol": "v8::internal::interpreter::JumpTableTargetOffsets::iterator::operator=+3981"
+    },
+    {
+      "pc": "0x00007ff6d67a223d",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+575565"
+    },
+    {
+      "pc": "0x00007ff6d67ec350",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+878944"
+    },
+    {
+      "pc": "0x00007ff6d671fcec",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+41724"
+    },
+    {
+      "pc": "0x000002690fb02198",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2154299392,
+    "totalCommittedMemory": 2154299392,
+    "usedMemory": 2145520488,
+    "availableMemory": 47866088,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 261832,
+        "used": 31432,
+        "available": 230400
+      },
+      "new_space": {
+        "memorySize": 4194304,
+        "committedMemory": 4194304,
+        "capacity": 2094656,
+        "used": 168504,
+        "available": 1926152
+      },
+      "old_space": {
+        "memorySize": 2053746688,
+        "committedMemory": 2053746688,
+        "capacity": 2050205408,
+        "used": 2050106432,
+        "available": 98976
+      },
+      "code_space": {
+        "memorySize": 688128,
+        "committedMemory": 688128,
+        "capacity": 570464,
+        "used": 570464,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 1314816,
+        "committedMemory": 1314816,
+        "capacity": 631120,
+        "used": 631120,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 94044160,
+        "committedMemory": 94044160,
+        "capacity": 94009080,
+        "used": 94009080,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 49152,
+        "committedMemory": 49152,
+        "capacity": 3456,
+        "used": 3456,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 2094656,
+        "used": 0,
+        "available": 2094656
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 74.296,
+    "kernelCpuSeconds": 1.734,
+    "cpuConsumptionPercent": 217.229,
+    "maxRss": 2238345216,
+    "pageFaults": {
+      "IORequired": 839934,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 20,
+      "writes": 11
+    }
+  },
+  "libuv": [],
+  "environmentVariables": {
+    "": "C:=C:\\Users\\athomas\\Desktop\\code\\pantheon",
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "APPDATA": "C:\\Users\\athomas\\AppData\\Roaming",
+    "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
+    "ChocolateyLastPathUpdate": "132112861856088907",
+    "COLORTERM": "truecolor",
+    "COMMONPROGRAMFILES": "C:\\Program Files\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "DESKTOP-URBKKLO",
+    "COMSPEC": "C:\\WINDOWS\\system32\\cmd.exe",
+    "configsetroot": "C:\\WINDOWS\\ConfigSetRoot",
+    "DokanLibrary1": "C:\\Program Files\\Dokan\\DokanLibrary-1.0.2\\",
+    "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "EXEPATH": "C:\\Users\\athomas\\AppData\\Local\\Programs\\Git\\bin",
+    "HOME": "C:\\Users\\athomas",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\athomas",
+    "INIT_CWD": "C:\\Users\\athomas\\Desktop\\code\\pantheon",
+    "LANG": "de_DE.UTF-8",
+    "LOCALAPPDATA": "C:\\Users\\athomas\\AppData\\Local",
+    "LOGONSERVER": "\\\\DESKTOP-URBKKLO",
+    "MSYSTEM": "MINGW64",
+    "NODE": "C:\\Program Files\\nodejs\\node.exe",
+    "npm_config_argv": "{\"remain\":[],\"cooked\":[\"run\",\"format\"],\"original\":[\"format\"]}",
+    "npm_config_bin_links": "true",
+    "npm_config_ignore_optional": "",
+    "npm_config_ignore_scripts": "",
+    "npm_config_init_license": "MIT",
+    "npm_config_init_version": "1.0.0",
+    "npm_config_registry": "https://registry.yarnpkg.com",
+    "npm_config_save_prefix": "^",
+    "npm_config_strict_ssl": "true",
+    "npm_config_user_agent": "yarn/1.17.3 npm/? node/v12.9.0 win32 x64",
+    "npm_config_version_commit_hooks": "true",
+    "npm_config_version_git_message": "v%s",
+    "npm_config_version_git_sign": "",
+    "npm_config_version_git_tag": "true",
+    "npm_config_version_tag_prefix": "v",
+    "npm_config_wrap_output": "",
+    "npm_execpath": "C:\\Program Files (x86)\\Yarn\\bin\\yarn.js",
+    "npm_lifecycle_event": "format-prettier",
+    "npm_lifecycle_script": "prettier --write ./**/*.{js,ts,json}",
+    "npm_node_execpath": "C:\\Program Files\\nodejs\\node.exe",
+    "npm_package_author_email": "andreas.thomas@th-nuernberg.de",
+    "npm_package_author_name": "Andreas Thomas",
+    "npm_package_bugs_url": "https://github.com/chronark/pantheon/issues",
+    "npm_package_dependencies_awesome_typescript_loader": "^5.2.1",
+    "npm_package_dependencies_cypress": "^3.4.1",
+    "npm_package_dependencies_dotenv": "^7.0.0",
+    "npm_package_dependencies_eslint_config_standard": "^14.0.1",
+    "npm_package_dependencies_eslint_plugin_cypress": "^2.6.1",
+    "npm_package_dependencies_eslint_plugin_node": "^9.1.0",
+    "npm_package_dependencies_eslint_plugin_prettier": "^3.1.0",
+    "npm_package_dependencies_eslint_plugin_react": "^7.14.3",
+    "npm_package_dependencies_eslint_plugin_standard": "^4.0.1",
+    "npm_package_dependencies_html_webpack_plugin": "^3.2.0",
+    "npm_package_dependencies_ts_jest": "^24.0.2",
+    "npm_package_dependencies_webpack": "^4.39.2",
+    "npm_package_dependencies_webpack_cli": "^3.3.7",
+    "npm_package_dependencies_webpack_dev_server": "^3.8.0",
+    "npm_package_dependencies__typescript_eslint_parser": "^2.0.0",
+    "npm_package_description": "Mapping library for jobs",
+    "npm_package_devDependencies_browserslist": "^4.5.4",
+    "npm_package_devDependencies_eslint": "^5.16.0",
+    "npm_package_devDependencies_eslint_config_airbnb_typescript": "^1.1.0",
+    "npm_package_devDependencies_eslint_config_prettier": "^4.1.0",
+    "npm_package_devDependencies_eslint_formatter_pretty": "^2.1.1",
+    "npm_package_devDependencies_eslint_plugin_eslint_comments": "^3.1.1",
+    "npm_package_devDependencies_eslint_plugin_import": "^2.16.0",
+    "npm_package_devDependencies_eslint_plugin_jest": "^22.4.1",
+    "npm_package_devDependencies_eslint_plugin_jsx_a11y": "^6.2.0",
+    "npm_package_devDependencies_eslint_plugin_promise": "^4.1.1",
+    "npm_package_devDependencies_eslint_plugin_unicorn": "^8.0.1",
+    "npm_package_devDependencies_husky": "^1.3.1",
+    "npm_package_devDependencies_import_sort_cli": "^6.0.0",
+    "npm_package_devDependencies_import_sort_parser_babylon": "^6.0.0",
+    "npm_package_devDependencies_import_sort_parser_typescript": "^6.0.0",
+    "npm_package_devDependencies_import_sort_style_module": "^6.0.0",
+    "npm_package_devDependencies_jest": "^24.7.0",
+    "npm_package_devDependencies_lint_staged": "^8.1.5",
+    "npm_package_devDependencies_npm_run_all": "^4.1.5",
+    "npm_package_devDependencies_prettier": "^1.16.2",
+    "npm_package_devDependencies_sort_package_json": "^1.22.1",
+    "npm_package_devDependencies_typescript": "^3.4.1",
+    "npm_package_devDependencies__babel_cli": "^7.4.3",
+    "npm_package_devDependencies__babel_core": "^7.4.3",
+    "npm_package_devDependencies__babel_node": "^7.2.2",
+    "npm_package_devDependencies__babel_plugin_proposal_class_properties": "^7.4.0",
+    "npm_package_devDependencies__babel_plugin_proposal_object_rest_spread": "^7.4.3",
+    "npm_package_devDependencies__babel_preset_env": "^7.4.3",
+    "npm_package_devDependencies__babel_preset_typescript": "^7.3.3",
+    "npm_package_devDependencies__typescript_eslint_eslint_plugin": "^1.6.0",
+    "npm_package_devDependencies__types_jest": "^24.0.18",
+    "npm_package_homepage": "https://github.com/chronark/pantheon",
+    "npm_package_husky_hooks_pre_commit": "lint-staged",
+    "npm_package_license": "MIT",
+    "npm_package_main": "dist/pantheon.js",
+    "npm_package_name": "pantheon",
+    "npm_package_readmeFilename": "README.md",
+    "npm_package_repository_type": "git",
+    "npm_package_repository_url": "https://github.com/chronark/pantheon.git",
+    "npm_package_scripts_build": "rm -rf ./dist/ && run-p --print-label build-src build-dts",
+    "npm_package_scripts_build_dts": "tsc --emitDeclarationOnly",
+    "npm_package_scripts_build_dts__watch": "npm run build-dts -- --watch --preserveWatchOutput",
+    "npm_package_scripts_build_src": "babel src --out-dir dist --extensions .js,.jsx,.ts,.tsx --source-maps",
+    "npm_package_scripts_build_src__watch": "npm run build-src -- --watch 'src/**/*' --verbose",
+    "npm_package_scripts_build__watch": "onchange 'src/**/*' --initial --kill --delay 1000  -- npm run build",
+    "npm_package_scripts_dev": "NODE_ENV=development npm run start-src--watch",
+    "npm_package_scripts_dev__debug": "DEBUG=pantheon npm run dev",
+    "npm_package_scripts_display_browser_support": "browserslist --stats && echo '' && browserslist --coverage && echo '' && echo 'See more at https://browserl.ist/'",
+    "npm_package_scripts_format": "run-s format-package-json format-prettier format-eslint",
+    "npm_package_scripts_format_eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx --fix ./ >/dev/null 2>&1 || true",
+    "npm_package_scripts_format_package_json": "sort-package-json",
+    "npm_package_scripts_format_prettier": "prettier --write ./**/*.{js,ts,json}",
+    "npm_package_scripts_lint": "run-p lint-eslint",
+    "npm_package_scripts_lint_eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./",
+    "npm_package_scripts_lint__watch": "onchange 'src/**/*' --initial --kill --delay 1000  -- npm run lint",
+    "npm_package_scripts_start": "webpack-dev-server --open",
+    "npm_package_scripts_start_src": "babel-node --extensions .js,.jsx,.ts,.tsx --require node_modules/dotenv/config src/pantheon.ts",
+    "npm_package_scripts_start_src__watch": "nodemon --ext js,jsx,ts,tsx --delay 1 --exec npm run start-src",
+    "npm_package_scripts_start__dev": "NODE_ENV=development npm run start",
+    "npm_package_scripts_test": "jest",
+    "npm_package_scripts_test_e2e": "cypress open",
+    "npm_package_scripts_test_e2e_ci": "cypress run",
+    "npm_package_scripts_test__coverage": "npm run test -- --coverage",
+    "npm_package_scripts_test__watch": "npm run test -- --watch",
+    "npm_package_scripts_typecheck": "tsc --noEmit",
+    "npm_package_scripts_typecheck__watch": "npm run typecheck -- --watch",
+    "npm_package_scripts_validate": "run-p --print-label lint typecheck test build",
+    "npm_package_scripts_webpack": "webpack --mode=development",
+    "npm_package_version": "0.0.0-development",
+    "NUMBER_OF_PROCESSORS": "4",
+    "OLDPWD": "/c/Users/athomas",
+    "OneDrive": "C:\\Users\\athomas\\OneDrive",
+    "OS": "Windows_NT",
+    "PATH": "C:\\Users\\athomas\\AppData\\Local\\Temp\\yarn--1566828374592-0.1844109931928224;C:\\Users\\athomas\\Desktop\\code\\pantheon\\node_modules\\.bin;C:\\Users\\athomas\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;C:\\Program Files\\libexec\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Users\\athomas\\AppData\\Local\\Temp\\yarn--1566828373546-0.13125678914471006;C:\\Users\\athomas\\Desktop\\code\\pantheon\\node_modules\\.bin;C:\\Users\\athomas\\AppData\\Local\\Yarn\\Data\\link\\node_modules\\.bin;C:\\Program Files\\libexec\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\lib\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\node-gyp-bin;C:\\Users\\athomas\\AppData\\Local\\Programs\\Git\\mingw64\\bin;C:\\Users\\athomas\\AppData\\Local\\Programs\\Git\\usr\\bin;C:\\Users\\athomas\\bin;C:\\Python27;C:\\Python27\\Scripts;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Intel\\iCLS Client;C:\\Program Files\\Intel\\iCLS Client;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\PuTTY;C:\\wamp64\\bin\\php\\php5.6.25;C:\\ProgramData\\ComposerSetup\\bin;C:\\WINDOWS\\System32\\OpenSSH;C:\\Program Files\\dotnet;C:\\HashiCorp\\Vagrant\\bin;C:\\Program Files\\Microsoft VS Code\\bin;C:\\Program Files\\nodejs;C:\\ProgramData\\chocolatey\\bin;C:\\Users\\athomas\\AppData\\Local\\Programs\\Git\\cmd;C:\\Program Files (x86)\\Yarn\\bin;C:\\Ruby26-x64\\bin;C:\\Users\\athomas\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\athomas\\AppData\\Local\\Programs\\Git\\cmd;C:\\Users\\athomas\\AppData\\Local\\hyper\\app-3.0.2\\resources\\bin;C:\\Users\\athomas\\AppData\\Roaming\\npm;C:\\Users\\athomas\\AppData\\Local\\Yarn\\bin",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC;.RB;.RBW",
+    "PLINK_PROTOCOL": "ssh",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 94 Stepping 3, GenuineIntel",
+    "PROCESSOR_LEVEL": "6",
+    "PROCESSOR_REVISION": "5e03",
+    "ProgramData": "C:\\ProgramData",
+    "PROGRAMFILES": "C:\\Program Files",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PROMPT": "$P$G",
+    "PSModulePath": "C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules",
+    "PUBLIC": "C:\\Users\\Public",
+    "PWD": "/c/Users/athomas/Desktop/code/pantheon",
+    "SESSIONNAME": "Console",
+    "SHLVL": "2",
+    "SYSTEMDRIVE": "C:",
+    "SYSTEMROOT": "C:\\WINDOWS",
+    "TEMP": "C:\\Users\\athomas\\AppData\\Local\\Temp",
+    "TERM_PROGRAM": "Hyper",
+    "TERM_PROGRAM_VERSION": "3.0.2",
+    "TMP": "C:\\Users\\athomas\\AppData\\Local\\Temp",
+    "USERDOMAIN": "DESKTOP-URBKKLO",
+    "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-URBKKLO",
+    "USERNAME": "athomas",
+    "USERPROFILE": "C:\\Users\\athomas",
+    "VBOX_MSI_INSTALL_PATH": "C:\\Program Files\\Oracle\\VirtualBox\\",
+    "WINDIR": "C:\\WINDOWS",
+    "YARN_WRAP_OUTPUT": "false",
+    "_": "/usr/bin/winpty"
+  },
+  "sharedObjects": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\System32\\MSASN1.dll",
+    "C:\\WINDOWS\\System32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\System32\\profapi.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\SYSTEM32\\winmmbase.dll",
+    "C:\\WINDOWS\\System32\\cfgmgr32.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\System32\\powrprof.dll",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\System32\\bcryptPrimitives.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\System32\\kernel.appcore.dll",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\system32\\wshbth.dll"
+  ]
+}
