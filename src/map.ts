@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { Map as OLMap } from "ol"
 import Bar from "ol-ext/control/Bar"
 import Button from "ol-ext/control/Button"
@@ -23,13 +21,12 @@ import OSM from "ol/source/OSM"
 import VectorSource from "ol/source/Vector"
 import { Fill, Stroke, Style } from "ol/style.js"
 import View from "ol/View"
-
 import ClusterLayer from "./clusterLayer"
 import { log } from "./logger"
 import PolygonStyle from "./styles/polygon"
 import UI from "./ui"
-import { OLLayer } from "./types/ol_types";
-
+import { OLLayer, OLSelect, OLNotification,OLFeature } from "./types/ol_types"
+import {Job} from "./types/custom_types"
 /**
  * OpenLayers Map
  *
@@ -53,7 +50,7 @@ export default class Map {
    * @param [mapID="map-container"]
    * @memberof Map
    */
-  constructor(mapID: string = "map-container"): void {
+  public constructor(mapID: string = "map-container") {
     log.debug("Initializing map", { mapID })
     this.mapID = mapID
     this.ui = new UI(this)
@@ -74,7 +71,7 @@ export default class Map {
    * @returns
    * @memberof Map
    */
-  addNotifications(): OLNotification {
+  private addNotifications(): OLNotification {
     const notification: OLNotification = new Notification()
     this.olmap.addControl(notification)
     return notification
@@ -86,7 +83,7 @@ export default class Map {
    * @param text - Can be anything but a string probably makes the most sense.
    * @memberof Map
    */
-  notify(text: string): void {
+  private notify(text: string): void {
     this.notification.show(text)
   }
 
@@ -97,7 +94,7 @@ export default class Map {
    * @returns
    * @memberof Map
    */
-  addControls(): Bar {
+  private addControls(): Bar {
     var mainbar = new Bar()
     mainbar.setPosition("left-top")
 
@@ -113,7 +110,7 @@ export default class Map {
    * @returns
    * @memberof Map
    */
-  selectRemoveButton() {
+  private selectRemoveButton(): void {
     return new Button({
       html: "R",
       className: "",
@@ -128,7 +125,7 @@ export default class Map {
    * @description Removes the greyout and selectLayer from the map
    * @memberof Map
    */
-  removeCrop() {
+  private removeCrop(): void {
     this.removeLayerByName("greyout")
     for (const layerName of ["draw", "geojson"]) {
       this.clearSource(layerName)
@@ -140,10 +137,11 @@ export default class Map {
    * @param {string} layerName
    * @memberof Map
    */
-  clearSource(layerName: string) {
-    this.getLayerByName(layerName)
-      .getSource()
-      .clear()
+  private clearSource(layerName: string): void {
+    const layer = this.getLayerByName(layerName)
+    if (typeof layer !== "undefined") {
+      layer.getSource().clear()
+    }
   }
 
   /**
@@ -151,8 +149,12 @@ export default class Map {
    * @param {string} name
    * @memberof Map
    */
-  removeLayerByName(name: string) {
-    this.olmap.removeLayer(this.getLayerByName(name))
+  private removeLayerByName(name: string): void {
+    const layer = this.getLayerByName(name)
+    if (typeof layer != "undefined") {
+
+      this.olmap.removeLayer(layer)
+    }
   }
 
   /**
@@ -162,13 +164,13 @@ export default class Map {
    * @returns
    * @memberof Map
    */
-  featureSearch(): SearchFeature {
+  private featureSearch(): SearchFeature {
     const search = new SearchFeature({
       source: this.markerLayer.clusterSource.getSource(),
       property: "search",
     })
 
-    search.on("select", e => {
+    search.on("select", (e: any) => {
       const center = e.search.getGeometry().getFirstCoordinate()
       this.zoomTo(center)
     })
@@ -183,7 +185,7 @@ export default class Map {
    * @param {*} [zoom=-1]
    * @memberof Map
    */
-  zoomTo(center: number[], zoom: number = 16): void {
+  private zoomTo(center: number[], zoom: number = 16): void {
     log.debug("Zooming", { center, zoom })
     this.olmap.getView().animate({
       center: center,
@@ -196,9 +198,8 @@ export default class Map {
    *
    * @memberof Map
    */
-  addCircleSelect(): void {
+  private addCircleSelect(): void {
     const drawLayer = new VectorLayer({
-      name: "draw",
       source: new VectorSource(),
     })
     // drawLayer = this.olmap.layers
@@ -207,10 +208,10 @@ export default class Map {
       source: drawLayer.getSource(),
     })
     this.olmap.addInteraction(modify)
-    let draw: Draw
-    draw = new Draw({
+    const draw: Draw = new Draw({
       source: drawLayer.getSource(),
-      type: "Circle",
+      // @ts-ignore
+      type: "CIRCLE",
       wrapX: true,
       style: new Style({
         fill: new Fill({
@@ -227,16 +228,22 @@ export default class Map {
 
     draw.on("drawstart", e => {
       drawLayer.getSource().clear()
-      this.olmap.removeLayer(this.getLayerByName("greyout"))
+      const layer = this.getLayerByName("greyout")
+      if (typeof layer !== "undefined") {
+        this.olmap.removeLayer(layer)
+      }
     })
 
     modify.on("modifystart", e => {
-      this.olmap.removeLayer(this.getLayerByName("greyout"))
+      const layer = this.getLayerByName("greyout")
+      if (typeof layer !== "undefined") {
+        this.olmap.removeLayer(layer)
+      }
     })
 
     modify.on("modifyend", e => {
-      if (e.features.array_[0]) {
-        this.handleDrawEnd(e.features.array_[0])
+      if (e.features.get("array_")[0]) {
+        this.handleDrawEnd(e.features.get("array_")[0])
       }
     })
 
@@ -253,7 +260,7 @@ export default class Map {
    * @param {*} circle
    * @memberof Map
    */
-  handleDrawEnd(circle: Feature): void {
+  private handleDrawEnd(circle: Feature): void {
     // TODO Radius calculation. Needs to use projection
     // https://stackoverflow.com/questions/32202944/openlayers-3-circle-radius-in-meters
     this.notify("Radius: ~" + this.getRadius(circle).toFixed(0) + " m")
@@ -269,7 +276,7 @@ export default class Map {
    * @memberof Map
    */
   private getRadius(circle: Feature): number {
-    return circle.values_.geometry.getRadius()
+    return circle.get("values_").geometry.getRadius()
   }
 
   /**
@@ -278,9 +285,8 @@ export default class Map {
    * @returns
    * @memberof Map
    */
-  private featureLayerFromGeoJson(geojson) {
+  private featureLayerFromGeoJson(geojson: JSON): VectorLayer {
     const layer = new VectorLayer({
-      name: "geojson",
       source: new VectorSource({
         features: new GeoJSON().readFeatures(geojson, {
           featureProjection: "EPSG:3857",
@@ -323,13 +329,14 @@ export default class Map {
    * @returns
    * @memberof Map
    */
-  private getLayerByName(name: string): VectorLayer {
+  private getLayerByName(name: string): OLLayer|undefined {
     const layers = this.olmap.getLayers()
-    for (const layer: VectorLayer of layers.array_) {
+    for (const layer of layers.get("array_")) {
       if (layer.get("name") === name) {
         return layer
       }
     }
+    return undefined
   }
 
   /**
@@ -343,7 +350,8 @@ export default class Map {
   private getOrCreateLayer(name: string, opts: Record<string, any>): OLLayer {
     let layer = this.getLayerByName(name)
     if (typeof layer === "undefined") {
-      layer = new TileLayer(opts)
+      const newLayer = new TileLayer(opts)
+      layer = newLayer as unknown as OLLayer
       this.olmap.addLayer(layer)
     }
     return layer
@@ -385,7 +393,7 @@ export default class Map {
    * @returns
    * @memberof Map
    */
-  addSelect() {
+  private addSelect(): OLSelect {
     const select = new Select({
       condition: platformModifierKeyOnly,
     })
@@ -429,9 +437,7 @@ export default class Map {
         }),
       ]),
       layers: [
-         new TileLayer({
-          title: "OSM",
-          baseLayer: true,
+        new TileLayer({
           source: new OSM({
             wrapX: true,
           }),
@@ -469,7 +475,7 @@ export default class Map {
    *
    * @memberof Map
    */
-  private buildMarkerLayer() {
+  private buildMarkerLayer(): void {
     this.markerLayer = new ClusterLayer(60, this.ui)
     this.olmap.addLayer(this.markerLayer.animatedCluster)
   }
@@ -488,7 +494,7 @@ export default class Map {
    * will get called and the locations will get rendered immediately.
    * @memberof Map
    */
-  setLocations(locations: Location[], draw: boolean = false) {
+  private setLocations(locations: Location[], draw: boolean = false): void {
     this.ui.updateFromLocations(locations)
 
     this.markerLayer.addLocations(locations)
@@ -506,7 +512,7 @@ export default class Map {
    * Bigger values equal zooming in.
    * @memberof Map
    */
-  setView(lon: number, lat: number, zoom: number) {
+  private setView(lon: number, lat: number, zoom: number): void {
     this.olmap.getView().setCenter([lat, lon])
     this.olmap.getView().setZoom(zoom)
   }
@@ -519,7 +525,7 @@ export default class Map {
    * @param layer The VectorLayer you want to view.
    * @memberof Map
    */
-  zoomToLayer(layer: VectorLayer): void {
+  private zoomToLayer(layer: VectorLayer): void {
     const extent = layer.getSource().getExtent()
     this.olmap.getView().fit(extent, { duration: 1000 })
   }

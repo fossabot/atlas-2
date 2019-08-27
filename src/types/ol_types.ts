@@ -1,7 +1,8 @@
 import BaseLayer from "ol/layer/Base"
-
-export declare class OLNotification {
-  private show(text: string): void
+import VectorLayer from "ol/layer/Vector"
+import { Control } from "ol/control";
+export declare class OLNotification extends Control {
+  public show(text: string): void
 }
 
 export declare class OLControl {}
@@ -34,6 +35,6 @@ export declare class OLCluster {
 
 export declare class OLSelect {}
 
-export declare class OLLayer {
+export declare class OLLayer extends VectorLayer {
   public addFilter(mask: any): void
 }
