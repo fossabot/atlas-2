@@ -1,7 +1,7 @@
-describe("Basic Map tests", function() {
-  it("finds the map element", function() {
+describe("Basic Map tests", () => {
+  it("finds the root element", () => {
     cy.visit("http://localhost:5000")
 
-    cy.contains("map")
+    cy.contains("root")
   })
 })

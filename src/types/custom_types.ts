@@ -1,7 +1,7 @@
 export interface Location {
   corp: string
   date: string
-  ids: string
+  ids?: string
   lat: number
   logo: string
   lon: number

@@ -4,7 +4,7 @@ const path = require("path") // eslint-disable-line @typescript-eslint/no-var-re
 
 module.exports = {
   entry: {
-    index: "./src/index.js",
+    index: "./src/index.tsx",
   },
   output: {
     filename: "pantheon.js",

@@ -499,7 +499,7 @@ export default class Map implements MapInterface {
    * @memberof Map
    */
 
-  private setLocations(locations: Location[], draw: boolean = false): void {
+  public setLocations(locations: Location[], draw: boolean = false): void {
     // this.ui.updateFromLocations(locations)
 
     this.markerLayer.addLocations(locations)
