@@ -13,7 +13,7 @@
   "license": "MIT",
   "author": "Andreas Thomas <andreas.thomas@th-nuernberg.de>",
   "scripts": {
-    "build": "rm -rf ./dist/ && webpack --mode=production",
+    "build": "rm -rf ./dist && webpack --mode=production",
     "buildandserve": "yarn build && yarn serve",
     "dev": "webpack-dev-server",
     "display-browser-support": "browserslist --stats && echo '' && browserslist --coverage && echo '' && echo 'See more at https://browserl.ist/'",

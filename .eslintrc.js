@@ -2,10 +2,12 @@ module.exports = {
   plugins: ["@typescript-eslint", "jest", "promise", "cypress"],
   extends: [
     "standard",
+    "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:cypress/recommended",
     "plugin:jest/recommended",
     "plugin:prettier/recommended",
+    "plugin:react/recommended",
     "prettier/@typescript-eslint",
   ],
   env: {

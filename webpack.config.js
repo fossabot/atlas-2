@@ -3,9 +3,12 @@ const HtmlPlugin = require("html-webpack-plugin") // eslint-disable-line @typesc
 const path = require("path") // eslint-disable-line @typescript-eslint/no-var-requires
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    index: "./src/index.js",
+  },
   output: {
     filename: "pantheon.js",
+    chunkFilename: "[name].pantheon.js",
     library: "Pantheon",
     libraryExport: "default",
     // libraryTarget: "window",
@@ -26,7 +29,6 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
-  devtool: "source-map",
   module: {
     rules: [
       {
