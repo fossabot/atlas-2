@@ -1441,13 +1441,6 @@ acorn@^6.0.1, acorn@^6.0.7, acorn@^6.2.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.3.0.tgz#0087509119ffa4fc0a0041d1e93a417e68cb856e"
   integrity sha512-/czfa8BwS88b9gWQVhc8eknunSA2DoJpJyTQkhheIf5E48u1N0R4q/YxxsAeqRrmK9TQ/uYfgLDfZo91UlANIA==
 
-ajax@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/ajax/-/ajax-0.0.4.tgz#b6f4ce8bd590f5f4ba2dcfde11de789f209f2423"
-  integrity sha1-tvTOi9WQ9fS6Lc/eEd54nyCfJCM=
-  dependencies:
-    underscore ""
-
 ajv-errors@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ajv-errors/-/ajv-errors-1.0.1.tgz#f35986aceb91afadec4102fbd85014950cefa64d"
@@ -6851,15 +6844,12 @@ obuf@^1.0.0, obuf@^1.1.2:
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
   integrity sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==
 
-ol-ext@^3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/ol-ext/-/ol-ext-3.1.5.tgz#d90f0e7a91d73d07fa5f27e76ceea26ac08fcb28"
-  integrity sha512-fOOpPGF1iAuJ+z11bsD95qU+Yp+8UuXnRNoTfXJUnlADEpIrx8aFZ5mu4c3oCYGOn3X2YJ7ru/Zgbmcq8pwYmw==
-  dependencies:
-    ajax "0.0.4"
-    ol "^5.3.0"
+ol-ext@^3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/ol-ext/-/ol-ext-3.1.6.tgz#75cbf154a9c60c627c19c14784c813097845abb2"
+  integrity sha512-H6LbVNSk09nQwMPbbfWUsLrVCemFZz/0xQjps97bLFrLbe3Afd+GfA7nS3nsQpsNwhEPwXngbEPFP5QmbwlQNg==
 
-ol@^5.3.0, ol@^5.3.3:
+ol@^5.3.3:
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/ol/-/ol-5.3.3.tgz#ad39b7b485fdbae4b3e1535a0a07cc5d88b0b9b5"
   integrity sha512-7eU4x8YMduNcED1D5wI+AMWDRe7/1HmGfsbV+kFFROI9RNABU/6n4osj6Q3trZbxxKnK2DSRIjIRGwRHT/Z+Ww==
@@ -9067,11 +9057,6 @@ uglify-js@^3.1.4:
   dependencies:
     commander "~2.20.0"
     source-map "~0.6.1"
-
-underscore@:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.1.tgz#06dce34a0e68a7babc29b365b8e74b8925203961"
-  integrity sha512-5/4etnCkd9c8gwgowi5/om/mYO5ajCaOgdzj/oW+0eQV9WxKBDZw5+ycmKmeaTXjInS/W0BzpGLo2xR2aBwZdg==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
