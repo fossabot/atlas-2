@@ -14,7 +14,7 @@
   "author": "Andreas Thomas <andreas.thomas@th-nuernberg.de>",
   "scripts": {
     "build": "rm -rf ./dist/ && webpack --mode=production",
-    "buildandserve": "run-s --print-label build serve",
+    "buildandserve": "yarn build && yarn serve",
     "dev": "webpack-dev-server",
     "display-browser-support": "browserslist --stats && echo '' && browserslist --coverage && echo '' && echo 'See more at https://browserl.ist/'",
     "e2e": "cypress open",
@@ -26,13 +26,14 @@
     "serve": "serve ./dist",
     "test:all": "yarn test:unit && yarn test:e2e:ci",
     "test:coverage": "npm run test -- --coverage",
+    "test:dev": "start-server-and-test webpack http://localhost:5000 e2e:ci",
     "test:e2e": "start-server-and-test buildandserve http://localhost:5000 e2e",
     "test:e2e:ci": "start-server-and-test buildandserve http://localhost:5000 e2e:ci",
     "test:unit": "jest",
     "test:watch": "npm run test -- --watch",
     "tsc": "tsc --noEmit",
     "validate": "run-p --print-label format tsc build",
-    "webpack": "webpack --mode=development"
+    "webpack": "rm -rf ./dist && webpack --mode=development && yarn serve"
   },
   "husky": {
     "hooks": {

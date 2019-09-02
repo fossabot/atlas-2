@@ -8,10 +8,14 @@ module.exports = {
     filename: "pantheon.js",
     library: "Pantheon",
     libraryExport: "default",
-    libraryTarget: "window",
+    // libraryTarget: "window",
     path: path.resolve(__dirname, "dist"),
   },
-
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
+  },
   devServer: {
     compress: true,
     overlay: true,
