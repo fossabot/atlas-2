@@ -3,7 +3,7 @@ const HtmlPlugin = require("html-webpack-plugin") // eslint-disable-line @typesc
 const path = require("path") // eslint-disable-line @typescript-eslint/no-var-requires
 
 module.exports = {
-  entry: "./src/pantheon.ts",
+  entry: "./src/index.js",
   output: {
     filename: "pantheon.js",
     library: "Pantheon",

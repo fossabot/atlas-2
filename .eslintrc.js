@@ -35,7 +35,7 @@ module.exports = {
     ],
     "no-console": "error",
     "require-jsdoc": [
-      "warn",
+      "off",
       {
         require: {
           FunctionDeclaration: true,

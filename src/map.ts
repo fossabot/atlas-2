@@ -56,7 +56,7 @@ export default class Map implements MapInterface {
   public constructor(mapID: string = "map-container") {
     log.debug("Initializing map", { mapID })
     this.mapID = mapID
-    this.ui = new UI(this)
+    // this.ui = new UI(this)
 
     this.jobs = []
     this.olmap = this.buildMap()
@@ -498,8 +498,9 @@ export default class Map implements MapInterface {
    * will get called and the locations will get rendered immediately.
    * @memberof Map
    */
+
   private setLocations(locations: Location[], draw: boolean = false): void {
-    this.ui.updateFromLocations(locations)
+    // this.ui.updateFromLocations(locations)
 
     this.markerLayer.addLocations(locations)
     if (draw) {

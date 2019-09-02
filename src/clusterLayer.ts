@@ -43,7 +43,7 @@ export default class ClusterLayer implements ClusterLayer {
       },
     })
     this.animatedCluster.setZIndex(100)
-    this.ui = ui
+    // this.ui = ui
   }
 
   /**
@@ -64,7 +64,7 @@ export default class ClusterLayer implements ClusterLayer {
     }
     this.clusterSource.getSource().addFeatures(features)
 
-    this.ui.updateActiveJobs(displayedLocations.length)
+    // this.ui.updateActiveJobs(displayedLocations.length)
   }
 
   /**
