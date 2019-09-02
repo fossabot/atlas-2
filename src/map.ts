@@ -21,12 +21,15 @@ import OSM from "ol/source/OSM"
 import VectorSource from "ol/source/Vector"
 import { Fill, Stroke, Style } from "ol/style.js"
 import View from "ol/View"
+
 import ClusterLayer from "./clusterLayer"
 import { log } from "./logger"
 import PolygonStyle from "./styles/polygon"
+import { MapInterface } from "./types/custom_interfaces"
+import { Job, Location } from "./types/custom_types"
+import { OLFeature, OLLayer, OLNotification, OLSelect } from "./types/ol_types"
 import UI from "./ui"
-import { OLLayer, OLSelect, OLNotification,OLFeature } from "./types/ol_types"
-import {Job} from "./types/custom_types"
+
 /**
  * OpenLayers Map
  *
@@ -36,14 +39,14 @@ import {Job} from "./types/custom_types"
  * @param [mapID='map-container'] The id of the `<div>` element where the map will be placed.
  * @class Map
  */
-export default class Map {
-  jobs: Job[]
-  mapID: string
-  markerLayer: ClusterLayer
-  notification: OLNotification
-  olmap: OLMap
-  select: OLSelect
-  ui: UI
+export default class Map implements MapInterface {
+  public jobs: Job[]
+  private mapID: string
+  private markerLayer: ClusterLayer
+  public notification: OLNotification
+  public olmap: OLMap
+  private select: OLSelect
+  public ui: UI
 
   /**
    *Creates an instance of Map.
@@ -94,8 +97,8 @@ export default class Map {
    * @returns
    * @memberof Map
    */
-  private addControls(): Bar {
-    var mainbar = new Bar()
+  private addControls(): any {
+    const mainbar = new Bar()
     mainbar.setPosition("left-top")
 
     mainbar.addControl(this.featureSearch())
@@ -151,8 +154,7 @@ export default class Map {
    */
   private removeLayerByName(name: string): void {
     const layer = this.getLayerByName(name)
-    if (typeof layer != "undefined") {
-
+    if (typeof layer !== "undefined") {
       this.olmap.removeLayer(layer)
     }
   }
@@ -164,7 +166,7 @@ export default class Map {
    * @returns
    * @memberof Map
    */
-  private featureSearch(): SearchFeature {
+  private featureSearch(): OLFeature {
     const search = new SearchFeature({
       source: this.markerLayer.clusterSource.getSource(),
       property: "search",
@@ -226,7 +228,7 @@ export default class Map {
     })
     this.olmap.addInteraction(draw)
 
-    draw.on("drawstart", e => {
+    draw.on("drawstart", () => {
       drawLayer.getSource().clear()
       const layer = this.getLayerByName("greyout")
       if (typeof layer !== "undefined") {
@@ -234,7 +236,7 @@ export default class Map {
       }
     })
 
-    modify.on("modifystart", e => {
+    modify.on("modifystart", () => {
       const layer = this.getLayerByName("greyout")
       if (typeof layer !== "undefined") {
         this.olmap.removeLayer(layer)
@@ -285,7 +287,7 @@ export default class Map {
    * @returns
    * @memberof Map
    */
-  private featureLayerFromGeoJson(geojson: JSON): VectorLayer {
+  public featureLayerFromGeoJson(geojson: JSON): VectorLayer {
     const layer = new VectorLayer({
       source: new VectorSource({
         features: new GeoJSON().readFeatures(geojson, {
@@ -329,7 +331,7 @@ export default class Map {
    * @returns
    * @memberof Map
    */
-  private getLayerByName(name: string): OLLayer|undefined {
+  private getLayerByName(name: string): OLLayer | undefined {
     const layers = this.olmap.getLayers()
     for (const layer of layers.get("array_")) {
       if (layer.get("name") === name) {
@@ -351,7 +353,7 @@ export default class Map {
     let layer = this.getLayerByName(name)
     if (typeof layer === "undefined") {
       const newLayer = new TileLayer(opts)
-      layer = newLayer as unknown as OLLayer
+      layer = (newLayer as unknown) as OLLayer
       this.olmap.addLayer(layer)
     }
     return layer
@@ -399,14 +401,16 @@ export default class Map {
     })
     this.olmap.addInteraction(select)
 
+    /*
+    TODO: rework UI
     select.on("select", e => {
       const c = e.selected
       if (c.length === 1) {
         const feature = c[0]
-        this.ui.updateJobList(feature)
+        this.ui.updateJobList(feature) 
       }
     })
-
+*/
     return select
   }
 
@@ -525,7 +529,7 @@ export default class Map {
    * @param layer The VectorLayer you want to view.
    * @memberof Map
    */
-  private zoomToLayer(layer: VectorLayer): void {
+  public zoomToLayer(layer: VectorLayer): void {
     const extent = layer.getSource().getExtent()
     this.olmap.getView().fit(extent, { duration: 1000 })
   }

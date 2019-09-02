@@ -1,20 +1,14 @@
-import { Elements, Job, Location } from "./custom_types"
-import {
-  OLCluster,
-  OLFeature,
-  OLLayer,
-  OLMap,
-  OLNotification,
-  OLSelect,
-} from "./ol_types"
-import { OLEXTAnimatedCluster } from "./ol-ext_types"
+import { Map as OLMap } from "ol"
+import BaseLayer from "ol/layer/Base"
 
-export declare interface Map {
-  mapID: string
+import Map from "../map"
+import { Elements, Job, Location } from "./custom_types"
+import { OLCluster, OLLayer, OLNotification } from "./ol_types"
+
+export declare interface MapInterface {
   ui: UserInterface
   jobs: Job[]
   olmap: OLMap
-  select: OLSelect
   notification: OLNotification
 
   zoomToLayer(layer: OLLayer): void
@@ -26,7 +20,6 @@ export declare interface UserInterface {
   wantedElements: string[]
   elements: Elements
 
-  loadElements(wantedElements: string[]): Elements
   updateUI(element: string, inner: string): void
   updateCorporations(count: number): void
   updateAllJobs(count: number): void
@@ -44,5 +37,5 @@ export declare interface ClusterLayer {
   displayedLocations: Location[]
   distance: number
   clusterSource: OLCluster
-  animatedCluster: OLEXTAnimatedCluster
+  animatedCluster: BaseLayer
 }

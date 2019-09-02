@@ -13,13 +13,13 @@ import Style from "ol/style/Style"
  * @class PolygonStyle
  */
 export default class PolygonStyle {
-  selected: boolean
+  public selected: boolean
   /**
    *Creates an instance of PolygonStyle.
    * @param selected Whether the polygon is currently selected or not.
    * @memberof PolygonStyle
    */
-  constructor(selected: boolean = false) {
+  public constructor(selected: boolean = false) {
     this.selected = selected
   }
 
@@ -29,7 +29,7 @@ export default class PolygonStyle {
    * @returns {Style}
    * @memberof ClusterStyle
    */
-  style() {
+  public style(): Style {
     if (this.selected) {
       return new Style({
         fill: new Fill({

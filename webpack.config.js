@@ -1,3 +1,4 @@
+const CopyPlugin = require("copy-webpack-plugin") // eslint-disable-line @typescript-eslint/no-var-requires
 const HtmlPlugin = require("html-webpack-plugin") // eslint-disable-line @typescript-eslint/no-var-requires
 const path = require("path") // eslint-disable-line @typescript-eslint/no-var-requires
 
@@ -5,8 +6,12 @@ module.exports = {
   entry: "./src/pantheon.ts",
   output: {
     filename: "pantheon.js",
+    library: "Pantheon",
+    libraryExport: "default",
+    libraryTarget: "window",
     path: path.resolve(__dirname, "dist"),
   },
+
   devServer: {
     compress: true,
     overlay: true,
@@ -35,6 +40,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new CopyPlugin([{ from: "data", to: "data" }]),
     new HtmlPlugin({
       template: "./src/index.html",
     }),

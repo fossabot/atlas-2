@@ -9,6 +9,6 @@ module.exports = {
   testURL: "http://localhost",
   testPathIgnorePatterns: ["/dist/", "/node_modules/"],
   transform: {
-    "^.+\\.ts$": "babel-jest",
+    "^.+\\.(t|j)s$": "babel-jest",
   },
 }

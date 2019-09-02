@@ -1,6 +1,7 @@
+import { Control } from "ol/control"
 import BaseLayer from "ol/layer/Base"
 import VectorLayer from "ol/layer/Vector"
-import { Control } from "ol/control";
+
 export declare class OLNotification extends Control {
   public show(text: string): void
 }
@@ -19,9 +20,8 @@ export declare class OLMap {
 }
 
 export declare class OLFeature {
-  get(key: string): any
+  public get(key: string): any
 }
-
 export declare class OLStyle {}
 
 export declare class OLVectorSource {
@@ -30,7 +30,7 @@ export declare class OLVectorSource {
 }
 
 export declare class OLCluster {
-  private getSource(): OLVectorSource
+  public getSource(): OLVectorSource
 }
 
 export declare class OLSelect {}

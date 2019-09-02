@@ -99,15 +99,14 @@
         </template>
       </div>
     </div>
+    <script type="module">
+      let pantheon = new Pantheon()
+      let sample = pantheon.initSample()
+
+      sample.jobs(1000).then(function(jobs) {
+        let map = pantheon.initMap()
+        map.setLocations(jobs, true)
+      })
+    </script>
   </body>
-
-  <script>
-    let atlas = new Atlas()
-    let sample = atlas.initSample()
-
-    sample.jobs(1000).then(function(jobs) {
-      let map = atlas.initMap()
-      map.setLocations(jobs, true)
-    })
-  </script>
 </html>

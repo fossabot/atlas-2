@@ -1,13 +1,13 @@
 // @flow
 
-import { Icon, Stroke, Style, Text } from "ol/style.js"
+import { Stroke, Style, Text } from "ol/style.js"
 import Fill from "ol/style/Fill"
 import RegularShape from "ol/style/RegularShape"
 
 import { log } from "../logger"
+import { Location } from "../types/custom_types"
 import { OLFeature, OLStyle } from "../types/ol_types"
 import { bound } from "../util"
-import { Location } from "../types/custom_types"
 
 /**
  * Handles definition of a style for clusters.
@@ -28,7 +28,7 @@ export default class ClusterStyle {
    *     ]]
    * @memberof ClusterStyle
    */
-  private constructor(
+  public constructor(
     colorGradient: string[] = [
       "rgb(252,251,253)",
       "rgb(239,237,245)",

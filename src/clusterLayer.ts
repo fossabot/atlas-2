@@ -3,28 +3,31 @@
 import AnimatedCluster from "ol-ext/layer/AnimatedCluster"
 import Feature from "ol/Feature"
 import Point from "ol/geom/Point"
+import BaseLayer from "ol/layer/Base"
 import { fromLonLat } from "ol/proj.js"
 import Cluster from "ol/source/Cluster"
 import VectorSource from "ol/source/Vector"
 
 import ClusterStyle from "./styles/cluster"
+import { UserInterface } from "./types/custom_interfaces"
+import { Location } from "./types/custom_types"
 import { includes } from "./util"
 
 /**
  * Handles clustering of locations
  */
-export default class ClusterLayer implements IClusterLayer {
-  private displayedLocations: ILocation[]
+export default class ClusterLayer implements ClusterLayer {
+  private displayedLocations: Location[]
   private distance: number
-  private clusterSource: OLCluster
-  private animatedCluster: OLEXTAnimatedCluster
-  private ui: UI
+  public clusterSource: Cluster
+  public animatedCluster: BaseLayer
+  private ui: UserInterface
   /**
    *Creates an instance of ClusterLayer.
    * @param [distance=40]
    * @memberof ClusterLayer
    */
-  public constructor(distance: number = 40, ui: UI) {
+  public constructor(distance: number = 40, ui: UserInterface) {
     // sets up an empty cluster layer
     this.displayedLocations = []
     this.distance = distance
@@ -35,7 +38,7 @@ export default class ClusterLayer implements IClusterLayer {
     this.animatedCluster = new AnimatedCluster({
       name: "Jobs",
       source: this.clusterSource,
-      style(cluster) {
+      style(cluster: Cluster) {
         return new ClusterStyle().style(cluster)
       },
     })
@@ -46,7 +49,9 @@ export default class ClusterLayer implements IClusterLayer {
   /**
    * Pushes all locations in 'this.displayedLocations' into the clusterSource and renders them.
    */
-  drawLocations(displayedLocations: ILocation[] = this.displayedLocations) {
+  public drawLocations(
+    displayedLocations: Location[] = this.displayedLocations,
+  ): void {
     const features = []
     for (const location of displayedLocations) {
       const newFeature = new Feature({
@@ -66,8 +71,8 @@ export default class ClusterLayer implements IClusterLayer {
    * Adds more locations. Call @link drawLocations to render them immediately.
    * @param locations
    */
-  addLocations(locations: ILocation[]): void {
-    for (const location: ILocation of locations) {
+  public addLocations(locations: Location[]): void {
+    for (const location of locations) {
       this.displayedLocations.push(location)
     }
   }
@@ -75,7 +80,7 @@ export default class ClusterLayer implements IClusterLayer {
   /**
    * Removes all elements of the clusterSource
    */
-  clear(): void {
+  public clear(): void {
     if (this.clusterSource.getSource()) {
       this.clusterSource.getSource().clear()
     }
@@ -85,7 +90,7 @@ export default class ClusterLayer implements IClusterLayer {
    * Remove all supplied locations from the displayedLocations
    * @param locations
    */
-  removeLocations(locations: ILocation[] = []) {
+  public removeLocations(locations: Location[] = []): void {
     const difference = this.displayedLocations.filter(
       job => !includes(locations, job),
     )

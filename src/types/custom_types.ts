@@ -1,63 +1,64 @@
 export interface Location {
-  title: string
   corp: string
-  type: string
-  logo: string
-  url: string
-  score: number
-  lat: number
-  lon: number
   date: string
+  ids: string
+  lat: number
+  logo: string
+  lon: number
+  score: number
+  title: string
+  type: string
+  url: string
 }
 
 export interface Elements {
-  corporationsCounter: HTMLElement
-  allJobsCounter: HTMLElement
-  activeJobsCounter: HTMLElement
-  jobList: HTMLElement
-  jobTemplate: HTMLTemplateElement
-  locationSearchText: HTMLElement
-  locationSearchSubmit: HTMLElement
+  activeJobsCounter?: HTMLElement
+  allJobsCounter?: HTMLElement
+  corporationsCounter?: HTMLElement
+  jobList?: HTMLElement
+  jobTemplate?: HTMLTemplateElement
+  locationSearchSubmit?: HTMLElement
+  locationSearchText?: HTMLElement
 }
 
 export interface RawJob {
-  ID: string
   datum: string
-  titel: string
+  extern: string
+  firma: string
+  ID: string
   lat: string
   lng: string
-  typ: string
-  extern: string
   logo: string
-  firma: string
+  titel: string
+  typ: string
   url: string
 }
 
 export interface RawLocation {
   IDs: string
+  jobs: number[]
   lat: string
   lng: string
   titel: string
-  jobs: number[]
   weight: number
 }
 
 export interface RawSearch {
-  orte: RawLocation[]
   jobs: RawJob[]
+  orte: RawLocation[]
 }
 
 export interface Job {
-  id: number
-  lon: number
-  lat: number
-  score: number
-  title: string
-  date: string
-  type: string
-  logo: string
-  url: string
   corp: string
+  date: string
+  id: number
+  lat: number
+  logo: string
+  lon: number
+  score?: number
+  title: string
+  type: string
+  url: string
 }
 
 export interface LogObject {

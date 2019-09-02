@@ -1,5 +1,3 @@
-// @flow
-
 import axios from "axios"
 
 import { log } from "./logger"
@@ -10,19 +8,19 @@ import { log } from "./logger"
  * @class Nominatim
  */
 export default class Nominatim {
-  apiURLBase: string
-  apiURLQueryParameters: { [key: string]: string }
+  private apiURLBase: string
+  private apiURLQueryParameters: string[]
   /**
    *Creates an instance of Nominatim.
    * @memberof Nominatim
    */
-  constructor() {
+  public constructor() {
     this.apiURLBase = "https://nominatim.openstreetmap.org/search?q="
-    this.apiURLQueryParameters = {
-      format: "jsonv2",
-      polygon_geojson: "1",
-      limit: "1",
-    }
+    this.apiURLQueryParameters = [
+      "format=jsonv2",
+      "polygon_geojson=1",
+      "limit=1",
+    ]
   }
 
   /**
@@ -31,7 +29,7 @@ export default class Nominatim {
    * @returns {string}
    * @memberof Nominatim
    */
-  buildURL(address: string): string {
+  private buildURL(address: string): string {
     const url = "".concat(
       this.apiURLBase,
       address,
@@ -49,15 +47,15 @@ export default class Nominatim {
    * @returns {({ [key: string]: string | number })}
    * @memberof Nominatim
    */
-  cleanJson(jsonData: {
-    [key: string]: string | number,
-  }): { [key: string]: string | number } {
+  private cleanJson(jsonData: Record<string, any>): Record<string, any> {
     if (jsonData.length >= 1) {
-      const cleanedJson = {}
+      const cleanedJson: Record<string, any> = {}
       cleanedJson.lat = Number(jsonData[0].lat)
       cleanedJson.lon = Number(jsonData[0].lon)
       cleanedJson.geojson = jsonData[0].geojson
       return cleanedJson
+    } else {
+      return {}
     }
   }
 
@@ -67,14 +65,10 @@ export default class Nominatim {
    * @returns
    * @memberof Nominatim
    */
-  flattenParameters(
-    parameters: { [key: string]: string } = this.apiURLQueryParameters,
+  private flattenParameters(
+    parameters: string[] = this.apiURLQueryParameters,
   ): string {
-    const parts: string[] = []
-    for (const key in parameters) {
-      parts.push(key + "=" + parameters[key])
-    }
-    return parts.join("&")
+    return parameters.join("&")
   }
 
   /**
@@ -83,7 +77,9 @@ export default class Nominatim {
    * @returns
    * @memberof Nominatim
    */
-  forwardSearch(address: string) {
+  public forwardSearch(
+    address: string,
+  ): Promise<{ [key: string]: string | number } | JSON> {
     const url = this.buildURL(address)
     return axios
       .get(url)

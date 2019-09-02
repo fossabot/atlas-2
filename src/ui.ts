@@ -1,10 +1,10 @@
 // @ts-nocheck
 
 import { log } from "./logger"
+import Map from "./map"
 import Nominatim from "./nominatim"
-import { Map, UserInterface } from "./types/custom_interfaces"
+import { UserInterface } from "./types/custom_interfaces"
 import { Elements, Location } from "./types/custom_types"
-import { OLFeature } from "./types/ol_types"
 import { keyCount } from "./util"
 
 /**
@@ -14,14 +14,14 @@ import { keyCount } from "./util"
  * @class UI
  */
 export default class UI implements UserInterface {
-  private wantedElements: string[]
-  private elements: Elements
-  private map: Map
+  public wantedElements: string[]
+  public elements: Elements
+  public map: Map
   /**
    *Creates an instance of UI.
    * @memberof UserInterface
    */
-  private constructor(map: Map) {
+  public constructor(map: Map) {
     this.map = map
     this.wantedElements = [
       "corporationsCounter",
@@ -46,7 +46,9 @@ export default class UI implements UserInterface {
   ): Elements {
     const elements = {}
     for (const id of wantedElements) {
+      // @ts-ignore
       elements[id] = document.getElementById(id) as HTMLElement
+      // @ts-ignore
       log.debug(`Found element: ${id}`, { element: elements[id] })
     }
     return elements
@@ -60,7 +62,7 @@ export default class UI implements UserInterface {
    *
    * @memberof UI
    */
-  private updateUI(element: string, inner: string): void {
+  public updateUI(element: string, inner: string): void {
     log.debug(`updated ${element}`, { inner })
     // @ts-ignore
     if (this.elements[element] instanceof HTMLElement) {
@@ -74,7 +76,7 @@ export default class UI implements UserInterface {
    *
    * @memberof UI
    */
-  private updateCorporations(count: number): void {
+  public updateCorporations(count: number): void {
     this.updateUI("corporationsCounter", count.toString())
   }
 
@@ -84,7 +86,7 @@ export default class UI implements UserInterface {
    * @param {number} count
    * @memberof UI
    */
-  updateAllJobs(count: number) {
+  public updateAllJobs(count: number): void {
     this.updateUI("allJobsCounter", count.toString())
   }
 
@@ -94,7 +96,7 @@ export default class UI implements UserInterface {
    * @param {number} count
    * @memberof UI
    */
-  updateActiveJobs(count: number) {
+  public updateActiveJobs(count: number): void {
     this.updateUI("activeJobsCounter", count.toString())
   }
 
@@ -103,10 +105,12 @@ export default class UI implements UserInterface {
    *
    * @memberof UI
    */
-  clearJobList() {
+  public clearJobList(): void {
     const node = this.elements.jobList
-    while (node.firstChild) {
-      node.removeChild(node.firstChild)
+    if (typeof node !== "undefined") {
+      while (node.firstChild) {
+        node.removeChild(node.firstChild)
+      }
     }
   }
 
@@ -116,7 +120,7 @@ export default class UI implements UserInterface {
    * @param {location} locations
    * @memberof UI
    */
-  private updateFromLocations(locations: Location[]) {
+  public updateFromLocations(locations: Location[]): void {
     this.updateCorporations(keyCount(locations, "corp"))
     this.updateAllJobs(locations.length)
   }
@@ -125,19 +129,22 @@ export default class UI implements UserInterface {
    * @description Adds an eventlistener to the location search form.
    * @memberof UI
    */
-  private addAddressSearch(): void {
-    this.elements.locationSearchSubmit.addEventListener("click", () => {
-      const element = document.getElementById("locationSearchText")
-      // Type casting because a generic HTMLElement might not have a value attribute
-      const address = (<HTMLInputElement>element).value
+  public addAddressSearch(): void {
+    if (typeof this.elements.locationSearchSubmit !== "undefined") {
+      this.elements.locationSearchSubmit.addEventListener("click", () => {
+        const element = document.getElementById("locationSearchText")
+        // Type casting because a generic HTMLElement might not have a value attribute
+        const address = (element as HTMLInputElement).value
 
-      const nominatim = new Nominatim()
-      nominatim.forwardSearch(address).then((search: any) => {
-        const geojson = search.geojson
+        const nominatim = new Nominatim()
+        nominatim.forwardSearch(address).then((search: any) => {
+          const geojson = search.geojson
 
-        const layer = this.map.featureLayerFromGeoJson(geojson)
-        this.map.zoomToLayer(layer)
+          const layer = this.map.featureLayerFromGeoJson(geojson)
+          // @ts-ignore For some reason it thinks that layer is void.
+          this.map.zoomToLayer(layer)
+        })
       })
-    })
+    }
   }
 }

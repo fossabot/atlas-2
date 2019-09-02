@@ -1,17 +1,9 @@
 module.exports = {
-  plugins: [
-    "@typescript-eslint",
-    "eslint-comments",
-    "jest",
-    "promise",
-    "unicorn",
-    "cypress",
-  ],
+  plugins: ["@typescript-eslint", "jest", "promise", "cypress"],
   extends: [
     "standard",
     "plugin:@typescript-eslint/recommended",
     "plugin:cypress/recommended",
-    "plugin:eslint-comments/recommended",
     "plugin:jest/recommended",
     "plugin:prettier/recommended",
     "prettier/@typescript-eslint",
@@ -22,6 +14,7 @@ module.exports = {
     jest: true,
   },
   rules: {
+    "@typescript-eslint/no-explicit-any": "off",
     "prettier/prettier": "error",
     // Too restrictive, writing ugly code to defend against a very unlikely scenario: https://eslint.org/docs/rules/no-prototype-builtins
     "no-prototype-builtins": "off",
@@ -40,7 +33,18 @@ module.exports = {
       "error",
       { functions: false, classes: true, variables: true, typedefs: true },
     ],
-    // Common abbreviations are known and readable
-    "unicorn/prevent-abbreviations": "off",
+    "no-console": "error",
+    "require-jsdoc": [
+      "warn",
+      {
+        require: {
+          FunctionDeclaration: true,
+          MethodDefinition: true,
+          ClassDeclaration: true,
+          ArrowFunctionExpression: false,
+          FunctionExpression: false,
+        },
+      },
+    ],
   },
 }
