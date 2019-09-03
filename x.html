@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='ISO-8859-8'>
+    <title></title>
+    <link rel="stylesheet" href="https://jobboerse.th-nuernberg.de/jq/shariff/shariff.complete.css" type="text/css"
+        media="screen" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/suche/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300|Open+Sans:600|Cutive+Mono|Cousine"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/jq/smoothness-jquery-ui.css">
+    <script src="/jq/jquery-latest.js"></script>
+    <script src="/jq/jquery-ui-latest.js"></script>
+    <script type="text/javascript"
+        src="https://maps.google.com/maps/api/js?key=AIzaSyAJ84DzGq70t86aaDm2VMhJWd-4AIEew9U&libraries=geometry"></script>
+    <script type="text/javascript" src="https://jobboerse.th-nuernberg.de/suche/Fluster/Fluster2.js"></script>
+    <script type="text/javascript" src="https://jobboerse.th-nuernberg.de/suche/Fluster/Fluster2Cluster.js"></script>
+    <script type="text/javascript"
+        src="https://jobboerse.th-nuernberg.de/suche/Fluster/Fluster2ClusterMarker.js"></script>
+    <script type="text/javascript"
+        src="https://jobboerse.th-nuernberg.de/suche/Fluster/Fluster2ProjectionOverlay.js"></script>
+    <script type="text/javascript" src="https://jobboerse.th-nuernberg.de/suche/Fluster/JobboerseMarker.js"></script>
+    <script type="text/javascript" src="https://jobboerse.th-nuernberg.de/suche/Fluster/GoMatchMarker.js"></script>
+    <script type="text/javascript" src="/suche/scripts.js"></script>
+    <link rel="stylesheet" type="text/css" href="/suche/ausland.css" />
+    <script type="text/javascript" src="/suche/script_util.js"></script>
+    <script type="text/javascript" src="https://jobboerse.th-nuernberg.de/abroad/script/curtain.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://jobboerse.th-nuernberg.de/abroad/css/survey.css" />
+    <script type="text/javascript" src="https://jobboerse.th-nuernberg.de/abroad/script/student.js"></script>
+    <script type="text/javascript" src="https://jobboerse.th-nuernberg.de/abroad/script/survey/survey.js"></script>
+    <script type="text/javascript" src="https://jobboerse.th-nuernberg.de/abroad/script/survey/weight.js"></script>
+    <script type="text/javascript"
+        src="https://jobboerse.th-nuernberg.de/abroad/script/survey/filterIndustries/student.js"></script>
+    <script type="text/javascript"
+        src="https://jobboerse.th-nuernberg.de/abroad/script/survey/filterDisciplines.js"></script>
+    <link rel="stylesheet" type="text/css" href="/suche/ie11.css" />
+    <script type="text/javascript" src="https://jobboerse.th-nuernberg.de/abroad/script/ie.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://jobboerse.th-nuernberg.de/kunden.hochschuljobboerse.de/css/jtable.css" />
+    <script type="text/javascript"
+        src="https://jobboerse.th-nuernberg.de/kunden.hochschuljobboerse.de/js//jtable/jquery.jtable.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/suche/score.css" />
+    <link rel="stylesheet" type="text/css" href="https://jobboerse.th-nuernberg.de/abroad/css/visual.css" />
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" />
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript" src="https://jobboerse.th-nuernberg.de/abroad/script/visual/student.js"></script>
+    <script type="text/javascript" src="https://jobboerse.th-nuernberg.de/abroad/script/visual/visual.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        //Testen, ob JQuery bereits da ist, socialQuery beinhaltet eine Version von jQuery >= 1.7
+        var socialQuery;
+        if (typeof jQuery == "undefined") {
+            //alert("jqeruy laden");
+            // jQuery laden
+            document.write("<scr" + "ipt type=\"text/javascript\" src=\"https://jobboerse.th-nuernberg.de/jq/jquery-latest.js\"></scr" + "ipt>");
+        }
+        else {
+            var vernums = jQuery().jquery.split(".");
+            //alert(vernums[0]+"+"+vernums[1]+"+"+vernums[2]);
+            if (parseInt(vernums[0]) < 2 && parseInt(vernums[1]) < 7) {
+                document.write("<scr" + "ipt type=\"text/javascript\" src=\"https://jobboerse.th-nuernberg.de/jq/jquery-latest.js\"></scr" + "ipt>");
+            }
+
+        }
+
+
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml"
+        href="https://jobboerse.th-nuernberg.de/index.php/API/OpenSearch?description"
+        title="https://jobboerse.th-nuernberg.de" />
+</head>
+
+<body>
+    <div id="popup" class="popup">
+        <div class="popup_inhalt">
+
+
+            <div id="stelle_einzeln">
+                <img src="" alt="" />
+                <p>xxxx</p>
+            </div>
+            <a class="popup_schliessen" href="#" destination="#popup">x</a>
+            <div id="icons_popup">
+                <a class="icon_popup"><img src="/suche/icons/download-schwarz.png" alt="" /></a>
+                <a class="icon_popup"><img src="/suche/icons/drucken-schwarz.png" alt="" /></a>
+                <a class="icon_popup"><img id="/suche/popup_favorit" onclick="favorisieren(this.id)"
+                        src="/suche/icons/favorit-schwarz.png" alt="" /></a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="vollbild" id="vollbild"></div>
+
+
+    <div class="vollbild_mobil" id="vollbild_mobil" onclick="fullscreen_zeigen()"></div>
+
+
+    <div class="minimieren" id="minimieren">
+
+        <div class="hintergrund" id="hintergrund">
+            <div id="trefferanzeige">
+                <div id="karte" class="trefferanzeige"></div>
+
+
+                <div id="grid" class="trefferanzeige">
+
+                    <div style="display:none;">
+                        <table>
+                            <tr>
+                                <td class="logo" rowspan="3"><img src=""></td>
+                                <td class="datum">xxx</td>
+                                <td class="funktion">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="funktionTitel" colspan="2">
+                                    <a class="titel" href="#">xxx</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="firma" colspan="2">xxx</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="stellen_liste" class="trefferanzeige">
+                    <table id="tabelle_stellen" class="tabelle_stellen">
+                        <tbody>
+                            <tr style="display:none;">
+                                <td class="datum">xxx</td>
+                                <td class="firma">xxx</td>
+                                <td class="funktionTitel">
+                                    <a class="titel" href="#">xxx</a>
+                                </td>
+                                <td class="funktion">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="matching_list" class="matching_list trefferanzeige">
+                    <div class="listContainer">
+                        <div id="matchList" class="matchingList active">
+                            <div id="tableMatches"></div>
+                            <script type="text/javascript">
+                                $('#tableMatches').jtable({
+                                    saveUserPreferences: false,
+                                    columnResizable: false,
+                                    columnSelectable: false,
+                                    gotoPageArea: 'none',
+                                    sorting: true,
+                                    selecting: true,
+                                    multiselect: false,
+                                    selectingCheckboxes: false,
+                                    openChildAsAccordion: true
+                                    ,
+                                    fields: {
+                                        id: {
+                                            title: 'Job ID',
+                                            width: '5%',
+                                            key: true,
+                                            visibility: 'hidden',
+                                            sorting: false
+                                        },
+                                        score: {
+                                            title: 'Score',
+                                            width: '5%',
+                                            sorting: true,
+                                            display: function (data) { return AbroadElements.MatchingTable.getScoreCircle(data); }
+                                        },
+                                        title: {
+                                            title: 'Jobtitel',
+                                            width: '70%',
+                                            sorting: true,
+                                            display: function (data) { return AbroadElements.MatchingTable.decorateTitle(data); }
+                                        },
+                                        actions: {
+                                            title: '',
+                                            sorting: false,
+                                            display: function (data) { return getOptionsForMatches(data); }
+                                        },
+                                    },
+                                    actions: {
+
+                                        listAction: 'https://jobboerse.th-nuernberg.de/abroad/api.php?action=matches'
+                                    },
+                                    messages: {
+                                        noDataAvailable: 'Derzeit haben wir leider keine passenden Praktika für dich. Schaue doch später noch einmal vorbei!',
+                                    }
+                                    ,
+                                    selectionChanged: onSelectMatches,
+                                    recordsLoaded: onLoadMatches
+                                });
+                            </script>
+                        </div>
+                        <div id="likedList" class="matchingList">
+                            <div id="tableLikes"></div>
+                            <script type="text/javascript">
+                                $('#tableLikes').jtable({
+                                    saveUserPreferences: false,
+                                    columnResizable: false,
+                                    columnSelectable: false,
+                                    gotoPageArea: 'none',
+                                    sorting: true,
+                                    selecting: true,
+                                    multiselect: false,
+                                    selectingCheckboxes: false,
+                                    openChildAsAccordion: true
+                                    ,
+                                    fields: {
+                                        id: {
+                                            title: 'Job ID',
+                                            width: '5%',
+                                            key: true,
+                                            visibility: 'hidden',
+                                            sorting: false
+                                        },
+                                        score: {
+                                            title: 'Score',
+                                            width: '5%',
+                                            sorting: true,
+                                            display: function (data) { return AbroadElements.MatchingTable.getScoreCircle(data); }
+                                        },
+                                        title: {
+                                            title: 'Jobtitel',
+                                            width: '70%',
+                                            sorting: true,
+                                            display: function (data) { return AbroadElements.MatchingTable.decorateTitle(data); }
+                                        },
+                                        actions: {
+                                            title: '',
+                                            sorting: false,
+                                            display: function (data) { return getOptionsForLikes(data); }
+                                        },
+                                    },
+                                    actions: {
+
+                                        listAction: 'https://jobboerse.th-nuernberg.de/abroad/api.php?action=likes'
+                                    },
+                                    messages: {
+                                        noDataAvailable: 'Du hast noch keine Praktika auf deiner Merkliste. Wenn du dir Praktika merkst, werden sie in dieser Liste auftauchen',
+                                    }
+                                    ,
+                                    selectionChanged: onSelectLikes,
+                                    recordsLoaded: onLoadLikes
+                                });
+                            </script>
+                        </div>
+                        <div id="pokedList" class="matchingList">
+                            <div id="tablePokes"></div>
+                            <script type="text/javascript">
+                                $('#tablePokes').jtable({
+                                    saveUserPreferences: false,
+                                    columnResizable: false,
+                                    columnSelectable: false,
+                                    gotoPageArea: 'none',
+                                    sorting: true,
+                                    selecting: true,
+                                    multiselect: false,
+                                    selectingCheckboxes: false,
+                                    openChildAsAccordion: true
+                                    ,
+                                    fields: {
+                                        id: {
+                                            title: 'Job ID',
+                                            width: '5%',
+                                            key: true,
+                                            visibility: 'hidden',
+                                            sorting: false
+                                        },
+                                        score: {
+                                            title: 'Score',
+                                            width: '5%',
+                                            sorting: true,
+                                            display: function (data) { return AbroadElements.MatchingTable.getScoreCircle(data); }
+                                        },
+                                        title: {
+                                            title: 'Angebotstitel',
+                                            width: '70%',
+                                            sorting: true
+                                        },
+                                        actions: {
+                                            title: '',
+                                            sorting: false,
+                                            display: function (data) { return getOptionsForPokes(data); }
+                                        },
+                                    },
+                                    actions: {
+
+                                        listAction: 'https://jobboerse.th-nuernberg.de/abroad/api.php?action=pokes'
+                                    },
+                                    messages: {
+                                        noDataAvailable: 'Du wurdest noch nicht von Firmen angestupst. Wir senden dir eine E-Mail, wenn sich eine Firma für dich interessiert',
+                                    }
+                                    ,
+                                    selectionChanged: onSelectPokes,
+                                    recordsLoaded: onLoadPokes
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="menuContainer">
+                        <div class="infoIconContainer">
+                            <img class="infoIcon" style="" src="/suche/icons/icon_info_black.png" alt="Info"
+                                onclick="$('#matchesPopupHelp').toggleClass('expanded'); $('#matching_list .listContainer').toggleClass('expanded')" />
+                        </div>
+                        <div id="matchesPopupHelp" class="matchHelpContainer visualHelp">
+                            <div class="matchHelp">
+                                <div class="helpItem">
+                                    Ein Klick auf das Stellenangebot öffnet eine Detailansicht des
+                                    Matching-Ergebnisses.<br>
+                                    Hier siehst du, wie gut deine Wünsche zum angebotenen Praktikum passen und bei
+                                    welchen Themen es unterschiedliche Vorstellungen gibt. <br>
+                                </div>
+                                <div class="helpItem">
+                                    <i class="far fa-square"></i>
+                                    Gewichtete Fragen sind mit einem Rahmen gekennzeichnet. </div>
+                                <div class="helpItem">
+                                    <i class="fas fa-dot-circle"></i>
+                                    Übereinstimmung gesamt </div>
+                                <div class="helpItem">
+                                    <span class="match">
+                                        gewählte Antwort übereinstimmend </span>
+                                </div>
+                                <div class="helpItem">
+                                    <span class="onlyStudent">
+                                        gewählte Antwort Studierende </span>
+                                </div>
+                                <div class="helpItem">
+                                    <span class="onlyCompany">
+                                        gewählte Antwort Firma </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="matchCategories" class="matchCategories">
+                            <div id="pokedListOption">
+                                Anstupser
+                            </div>
+                            <div id="likedListOption">
+                                Merkliste
+                            </div>
+                            <div id="matchListOption" class="active">
+                                Matches
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="kartenpopup" class="popup">
+                    <div class="popup_inhalt">
+                        <div class="popup_header">
+                            <a>
+                                <img id="karte_close" destination="#kartenpopup"
+                                    src="/suche/icons/icon_schliessen.png" />
+                            </a>
+                        </div>
+                        <div id="kartenpopup_grid" class="trefferanzeige popup_content">
+                            <div style="display:none;">
+                                <table>
+                                    <tr>
+                                        <td class="logo" rowspan="3"><img src=""></td>
+                                        <td class="datum">xxx</td>
+                                        <td class="funktion">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="funktionTitel" colspan="2">
+                                            <a class="titel" href="#">xxx</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="firma" colspan="2">xxx</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="surveypopup" class="hidden">
+                    <div id="blur" class="blur"
+                        style="display: none; position: absolute; top: 0; left:0; width: 100%; height: 100%"></div>
+                    <div class="popup_inhalt">
+                        <div class="popup_header">
+                            <div id="surveypopup_headercontent">
+
+                            </div>
+                            <a>
+                                <img id="survey_close" src="/suche/icons/icon_schliessen.png" />
+                            </a>
+                        </div>
+                        <div id="surveypopup_content" class="trefferanzeige">
+
+                        </div>
+                        <div id="surveypopup_gomatchcontent" class="trefferanzeige" style="display: none">
+                            <div class="goMatchPopupHelpContainer">
+                                <div class="iconContainer" style="height: 60px">
+                                    <img class="icon" style="" src="/suche/icons/icon_info.png" alt="Info"
+                                        onclick="$('#goMatchPopupHelp').slideToggle();" />
+                                </div>
+                                <div id="goMatchPopupHelp" class="matchPopupHelp visualHelp">
+                                    <div class="helpItem">
+                                        Ein Klick auf das Stellenangebot öffnet eine Detailansicht des
+                                        Matching-Ergebnisses.<br>
+                                        Hier siehst du, wie gut deine Wünsche zum angebotenen Praktikum passen und bei
+                                        welchen Themen es unterschiedliche Vorstellungen gibt. <br>
+                                    </div>
+                                    <div class="helpItem">
+                                        <i class="far fa-square"></i>
+                                        Gewichtete Fragen sind mit einem Rahmen gekennzeichnet. </div>
+                                    <div class="helpItem">
+                                        <i class="fas fa-dot-circle"></i>
+                                        Übereinstimmung gesamt </div>
+                                    <div class="helpItem">
+                                        <span class="match">
+                                            gewählte Antwort übereinstimmend </span>
+                                    </div>
+                                    <div class="helpItem">
+                                        <span class="onlyStudent">
+                                            gewählte Antwort Studierende </span>
+                                    </div>
+                                    <div class="helpItem">
+                                        <span class="onlyCompany">
+                                            gewählte Antwort Firma </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="selectedMatchesTable"></div>
+                            <script type="text/javascript">
+                                $('#selectedMatchesTable').jtable({
+                                    saveUserPreferences: false,
+                                    columnResizable: false,
+                                    columnSelectable: false,
+                                    gotoPageArea: 'none',
+                                    sorting: true,
+                                    selecting: true,
+                                    multiselect: false,
+                                    selectingCheckboxes: false,
+                                    openChildAsAccordion: true
+                                    ,
+                                    fields: {
+                                        id: {
+                                            title: 'JobID',
+                                            width: '5%',
+                                            key: true,
+                                            visibility: 'hidden',
+                                            sorting: false
+                                        },
+                                        score: {
+                                            title: 'Score',
+                                            width: '5%',
+                                            sorting: false,
+                                            display: function (data) { return AbroadElements.MatchingTable.getScoreCircle(data); }
+                                        },
+                                        title: {
+                                            title: 'Score',
+                                            width: '70%',
+                                            sorting: false,
+                                            display: function (data) { return AbroadElements.MatchingTable.getDisplayTitle(data); }
+                                        },
+                                        actions: {
+                                            title: '',
+                                            sorting: false,
+                                            display: function (data) { return getOptionsForPopup(data); }
+                                        },
+                                    },
+                                    actions: {
+
+                                        listAction: function (postData, jtParams) {
+                                            return getSelectedMatches(postData, jtParams);
+                                        }
+                                    },
+                                    messages: {
+                                        noDataAvailable: 'Ein unbekannter Fehler ist aufgetreten. Bitte versuche es später noch einmal.',
+                                    }
+                                    ,
+                                    selectionChanged: onSelectDetails,
+                                    recordsLoaded: onLoadDetails
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="hintergrund_links" id="hintergrund_links"></div>
+                <div class="hintergrund_rechts" id="hintergrund_rechts"></div>
+            </div>
+
+
+            <div class="vorhang" id="vorhang">
+
+
+                <div class="inhalt_vorhang" id="inhalt_vorhang">
+
+
+                    <div class="menu_suche" id="menu_suche">
+                        <a style="display: block;" class="login" id="login_button" action="swap">
+                            <div class="menuContainer">
+                                <span><b>GO</b>|MATCH</span>
+                            </div>
+                        </a>
+                        <a style="display: none;" class="logout" id="logout_button" action="logout">
+                            <div class="menuContainer">
+                                <span>LOGOUT </span>
+                                <img class="menu_icon menu_icon_logout" src="/suche/icons/login.png" />
+                            </div>
+                        </a>
+                        <a style="display: none;" class="zurueck" id="zurueck_button" action="swap">
+                            <div class="menuContainer">
+                                <span>ZURÜCK&nbsp;</span>
+                                <img class="menu_icon swapButton" src="/suche/icons/zurueck.png">
+                            </div>
+                        </a>
+                        <a style="display: none;" class="vorwaerts" id="vorwaerts_button" action="swap">
+                            <div class="menuContainer">
+                                <span><b>GO</b>|MATCH </span>
+                                <img class="menu_icon swapButton" src="/suche/icons/pfeil.png" />
+                            </div>
+                        </a>
+                        <a style="display: block;" class="menu_info" id="info_button" action="info">
+                            <div class="menuContainer">
+                                <span>INFO </span>
+                                <img class="menu_icon" src="/suche/icons/icon_info.png">
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="vorhang_oben" id="vorhang_oben">
+                        <div id="kategorie_suche">
+                            <p id="zusammenfassung"></p>
+                            <p id="zusammenfassung_mobil"></p>
+                        </div>
+                        <br /><br />
+                        <h1 class="stellen stellen_desktop" id="stellen_desktop">
+                            <span class="zaehler zaehler_zehntausend">-</span>
+                            <span class="zaehler zaehler_tausend">-</span>
+                            <span class="punkt">.</span>
+                            <span class="zaehler zaehler_hundert">-</span>
+                            <span class="zaehler zaehler_zehner">-</span>
+                            <span class="zaehler zaehler_einer">-</span>
+                            <span class="stellenanzeige">STELLEN</span>
+                            <span class="stellenumkreis"> IM UMKREIS</span>
+                        </h1>
+                    </div>
+
+
+                    <div id="container_suche" class="container show fadeIn">
+                        <table class="center" id="suchmaske">
+                            <tbody>
+                                <tr>
+                                    <td id="was">
+                                        <p class="h2">WAS?</p>
+                                        <span class="icon"><select name="Jobtyp_ID" id="Jobtyp_ID" class="suchparameter"
+                                                onchange="input_change('Jobtyp_ID')">
+                                                <option value="">Kategorie</option>
+                                                <option value="9">Praktikum im Studium</option>
+                                                <option value="7">Bachelor- oder Masterarbeit</option>
+                                                <option value="15">Stellen f&uuml;r Doktoranden und Doktorandinnen
+                                                </option>
+                                                <option value="20">Stellen f&uuml;r Duales Studium</option>
+                                                <option value="10">Werkstudentent&auml;tigkeit</option>
+                                                <option value="6">Studentenjob</option>
+                                                <option value="3">Stelle f&uuml;r Absolventen und Absolventinnen
+                                                </option>
+                                                <option value="11">Traineeprogramm</option>
+                                                <option value="12">Stelle, die erste Berufserfahrung voraussetzt
+                                                </option>
+                                                <option value="19">Stellen f&uuml;r Studienabbrecher</option>
+                                            </select></span><span class="icon"><select name="FB_ID" id="FB_ID"
+                                                class="suchparameter" onchange="input_change('FB_ID')">
+                                                <option value="">Fakult&auml;t</option>
+                                                <option value="10">Angewandte Chemie</option>
+                                                <option value="37">Angewandte Mathematik, Physik und
+                                                    Allgemeinwissenschaften</option>
+                                                <option value="5">Architektur</option>
+                                                <option value="6">Bauingenieurwesen</option>
+                                                <option value="7">Betriebswirtschaft</option>
+                                                <option value="8">Design</option>
+                                                <option value="2">Elektrotechnik Feinwerktechnik Informationstechnik
+                                                </option>
+                                                <option value="1">Informatik</option>
+                                                <option value="4">Maschinenbau und Versorgungstechnik</option>
+                                                <option value="9">Sozialwissenschaften</option>
+                                                <option value="11">Verfahrenstechnik</option>
+                                                <option value="12">Werkstofftechnik</option>
+                                            </select></span>
+                                        <div id="KT_1__">
+                                            <input type="button" name="KT_1" id="KT_1_button"
+                                                onclick="list_visible('KT_1')" value=" Branche" placeholder=" Branche"
+                                                class="suchparameter">
+                                            <div class="checkbox_auswahl" id="KT_1_list">
+                                                <input type="checkbox" class="checkboxes" id="KT_1_1" value="1"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_1"
+                                                    id="KT_1_1_label">&nbsp;Abfallwirtschaft</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_2" value="2" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_2"
+                                                    id="KT_1_2_label">&nbsp;Anlagen- und Maschinenbau</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_141" value="141"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_141"
+                                                    id="KT_1_141_label">&nbsp;Automatisierungstechnik</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_140" value="140"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_140"
+                                                    id="KT_1_140_label">&nbsp;Automobilbau</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_3" value="3" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_3"
+                                                    id="KT_1_3_label">&nbsp;Banken, Versicherung, Immobilien,
+                                                    Finanzdienstleistung</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_1_4" value="4" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_4"
+                                                    id="KT_1_4_label">&nbsp;Bauwesen, Architektur</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_5" value="5" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_5"
+                                                    id="KT_1_5_label">&nbsp;Bergbau</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_1_6" value="6" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_6"
+                                                    id="KT_1_6_label">&nbsp;Bildung&amp;Training</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_7" value="7" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_7"
+                                                    id="KT_1_7_label">&nbsp;Biotechnik, Pharmazie</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_8" value="8" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_8"
+                                                    id="KT_1_8_label">&nbsp;Chemie- und erd&ouml;lverarbeitende
+                                                    Industrie</label><br><input type="checkbox" class="checkboxes"
+                                                    id="KT_1_9" value="9" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_9"
+                                                    id="KT_1_9_label">&nbsp;Druck, Papier und
+                                                    Verpackungsindustrie</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_1_11" value="11" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_11"
+                                                    id="KT_1_11_label">&nbsp;Einzel-, Gro&szlig;- und
+                                                    Au&szlig;enhandel</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_1_10" value="10" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_10"
+                                                    id="KT_1_10_label">&nbsp;Elektrotechnik, Feinmechanik,
+                                                    Optik</label><br><input type="checkbox" class="checkboxes"
+                                                    id="KT_1_12" value="12" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_12"
+                                                    id="KT_1_12_label">&nbsp;Energie-/Wasserversorgung</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_13" value="13"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_13"
+                                                    id="KT_1_13_label">&nbsp;Fahrzeugbau/-zulieferer</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_14" value="14"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_14"
+                                                    id="KT_1_14_label">&nbsp;Gastronomie, Touristik</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_15" value="15"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_15"
+                                                    id="KT_1_15_label">&nbsp;Gesundheit, Soziale
+                                                    Dienste</label><br><input type="checkbox" class="checkboxes"
+                                                    id="KT_1_16" value="16" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_16"
+                                                    id="KT_1_16_label">&nbsp;Glas, Keramik</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_17" value="17"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_17"
+                                                    id="KT_1_17_label">&nbsp;Holz- und
+                                                    M&ouml;belindustrie</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_1_18" value="18" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_18"
+                                                    id="KT_1_18_label">&nbsp;Ingenieurdienstleistung</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_19" value="19"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_19"
+                                                    id="KT_1_19_label">&nbsp;Internet</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_1_20" value="20" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_20"
+                                                    id="KT_1_20_label">&nbsp;IT-Dienstleistung,
+                                                    EDV-Schulung</label><br><input type="checkbox" class="checkboxes"
+                                                    id="KT_1_21" value="21" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_21"
+                                                    id="KT_1_21_label">&nbsp;IT-Hardware – Programmierung und
+                                                    Design</label><br><input type="checkbox" class="checkboxes"
+                                                    id="KT_1_22" value="22" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_22"
+                                                    id="KT_1_22_label">&nbsp;IT-Softwareentwicklung</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_23" value="23"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_23"
+                                                    id="KT_1_23_label">&nbsp;Konsumg&uuml;ter</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_24" value="24"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_24"
+                                                    id="KT_1_24_label">&nbsp;Kunst, Kultur</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_143" value="143"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_143"
+                                                    id="KT_1_143_label">&nbsp;Kunststoffindustrie,
+                                                    -verarbeitung</label><br><input type="checkbox" class="checkboxes"
+                                                    id="KT_1_26" value="26" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_26"
+                                                    id="KT_1_26_label">&nbsp;Land-, Forst-,
+                                                    Fischwirtschaft</label><br><input type="checkbox" class="checkboxes"
+                                                    id="KT_1_27" value="27" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_27"
+                                                    id="KT_1_27_label">&nbsp;Luft- und Raumfahrt</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_28" value="28"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_28"
+                                                    id="KT_1_28_label">&nbsp;Management, Beratung</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_29" value="29"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_29"
+                                                    id="KT_1_29_label">&nbsp;Marketing, Werbung &amp;
+                                                    PR</label><br><input type="checkbox" class="checkboxes"
+                                                    id="KT_1_144" value="144" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_144"
+                                                    id="KT_1_144_label">&nbsp;Marktforschung</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_30" value="30"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_30"
+                                                    id="KT_1_30_label">&nbsp;Medien</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_1_31" value="31" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_31"
+                                                    id="KT_1_31_label">&nbsp;Medizintechnik</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_25" value="25"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_25"
+                                                    id="KT_1_25_label">&nbsp;Metall</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_1_32" value="32" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_32"
+                                                    id="KT_1_32_label">&nbsp;Nahrungs- und
+                                                    Genussmittel</label><br><input type="checkbox" class="checkboxes"
+                                                    id="KT_1_33" value="33" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_33"
+                                                    id="KT_1_33_label">&nbsp;&Ouml;ffentlicher Dienst und
+                                                    Verb&auml;nde</label><br><input type="checkbox" class="checkboxes"
+                                                    id="KT_1_34" value="34" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_34"
+                                                    id="KT_1_34_label">&nbsp;Personaldienstleistung</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_142" value="142"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_142"
+                                                    id="KT_1_142_label">&nbsp;Petrochemie</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_35" value="35"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_35"
+                                                    id="KT_1_35_label">&nbsp;Recht, Steuern, Finanzen,
+                                                    Controlling</label><br><input type="checkbox" class="checkboxes"
+                                                    id="KT_1_37" value="37" name="KT_1"
+                                                    onchange="list_change('KT_1')" /><label for="KT_1_37"
+                                                    id="KT_1_37_label">&nbsp;Sonstige Branche</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_36" value="36"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_36"
+                                                    id="KT_1_36_label">&nbsp;Sonstige Dienstleistung</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_38" value="38"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_38"
+                                                    id="KT_1_38_label">&nbsp;Telekommunikation</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_39" value="39"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_39"
+                                                    id="KT_1_39_label">&nbsp;Textil, Leder, Bekleidung</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_40" value="40"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_40"
+                                                    id="KT_1_40_label">&nbsp;Verkehr, Lager, Logistik</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_1_41" value="41"
+                                                    name="KT_1" onchange="list_change('KT_1')" /><label for="KT_1_41"
+                                                    id="KT_1_41_label">&nbsp;Wissenschaft, Forschung &amp; Entwicklung
+                                                </label><br></div>
+                                        </div> <input type="text" id="Volltext" name="Volltext" placeholder="Stichworte"
+                                            onchange="input_change('Volltext')" class="suchparameter" />
+                                    </td>
+                                    <td id="wo">
+                                        <p class="h2">Wo?</p>
+                                        <input type="text" id="Arbeitsort" name="Arbeitsort"
+                                            placeholder="Ort oder Adresse" onchange="input_change_location()" />
+                                        <label for="areaRadius">Und im Umkreis von </label>
+                                        <input type="text" id="areaRadius" class="areaRadiusInput" value="100"
+                                            maxlength="3" onchange="input_change_location()"> km
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="verfeinern">
+                                        <a id="button_auswahl_mehr" class="button_auswahl_mehr"
+                                            onclick="auswahl_verfeinern()"><img class="pfeile_button"
+                                                src="/suche/icons/pfeil_mehr.png" alt="" />Auswahl verfeinern</a>
+                                        <span id="ausgewaehlt"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" id="ueberschrift_ausserdem">
+                                        <p class="h2">UND AUSSERDEM...</p>
+                                    </th>
+                                </tr>
+                                <tr id="inhalt_ausserdem">
+                                    <td id="ausserdem_links">
+                                        <div id="KT_3__">
+                                            <input type="button" name="KT_3" id="KT_3_button"
+                                                onclick="list_visible('KT_3')" value=" Vertragsart"
+                                                placeholder=" Vertragsart" class="suchparameter">
+                                            <div class="checkbox_auswahl" id="KT_3_list">
+                                                <input type="checkbox" class="checkboxes" id="KT_3_132" value="132"
+                                                    name="KT_3" onchange="list_change('KT_3')" /><label for="KT_3_132"
+                                                    id="KT_3_132_label">&nbsp;Befristet</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_3_131" value="131"
+                                                    name="KT_3" onchange="list_change('KT_3')" /><label for="KT_3_131"
+                                                    id="KT_3_131_label">&nbsp;Festanstellung</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_3_133" value="133"
+                                                    name="KT_3" onchange="list_change('KT_3')" /><label for="KT_3_133"
+                                                    id="KT_3_133_label">&nbsp;Freie Mitarbeit</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_3_139" value="139"
+                                                    name="KT_3" onchange="list_change('KT_3')" /><label for="KT_3_139"
+                                                    id="KT_3_139_label">&nbsp;Projektarbeit</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_3_130" value="130"
+                                                    name="KT_3" onchange="list_change('KT_3')" /><label for="KT_3_130"
+                                                    id="KT_3_130_label">&nbsp;Teilzeit</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_3_129" value="129" name="KT_3"
+                                                    onchange="list_change('KT_3')" /><label for="KT_3_129"
+                                                    id="KT_3_129_label">&nbsp;Vollzeit</label><br></div>
+                                        </div>
+                                        <div id="KT_5__">
+                                            <input type="button" name="KT_5" id="KT_5_button"
+                                                onclick="list_visible('KT_5')" value=" Notwendige Sprachkenntnisse"
+                                                placeholder=" Notwendige Sprachkenntnisse" class="suchparameter">
+                                            <div class="checkbox_auswahl" id="KT_5_list">
+                                                <input type="checkbox" class="checkboxes" id="KT_5_128" value="128"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_128"
+                                                    id="KT_5_128_label">&nbsp;Deutsch</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_57" value="57" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_57"
+                                                    id="KT_5_57_label">&nbsp;Deutscher Dialekt
+                                                    (Schweizerdeutsch)</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_58" value="58" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_58"
+                                                    id="KT_5_58_label">&nbsp;Englisch</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_59" value="59" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_59"
+                                                    id="KT_5_59_label">&nbsp;Englisch (Technisches Englisch)
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_5_60"
+                                                    value="60" name="KT_5" onchange="list_change('KT_5')" /><label
+                                                    for="KT_5_60" id="KT_5_60_label">&nbsp;Englisch (Wirtschafts- oder
+                                                    Businessenglisch) </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_110" value="110" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_110"
+                                                    id="KT_5_110_label">&nbsp;Spanisch</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_62" value="62" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_62"
+                                                    id="KT_5_62_label">&nbsp;Franz&ouml;sisch</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_42" value="42"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_42"
+                                                    id="KT_5_42_label">&nbsp;Afrikaans </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_43" value="43"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_43"
+                                                    id="KT_5_43_label">&nbsp;Akan/Twi (Westafrika) </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_44" value="44"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_44"
+                                                    id="KT_5_44_label">&nbsp;Albanisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_45" value="45"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_45"
+                                                    id="KT_5_45_label">&nbsp;Amharisch (&Auml;thiopien)
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_5_46"
+                                                    value="46" name="KT_5" onchange="list_change('KT_5')" /><label
+                                                    for="KT_5_46" id="KT_5_46_label">&nbsp;Arabisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_47" value="47"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_47"
+                                                    id="KT_5_47_label">&nbsp;Aram&auml;isch/Syrisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_48" value="48"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_48"
+                                                    id="KT_5_48_label">&nbsp;Armenisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_49" value="49"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_49"
+                                                    id="KT_5_49_label">&nbsp;Aserbaidschanisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_50" value="50"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_50"
+                                                    id="KT_5_50_label">&nbsp;Bambara (Westafrika, Mali)
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_5_51"
+                                                    value="51" name="KT_5" onchange="list_change('KT_5')" /><label
+                                                    for="KT_5_51" id="KT_5_51_label">&nbsp;Bengali </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_52" value="52"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_52"
+                                                    id="KT_5_52_label">&nbsp;Birmanisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_53" value="53"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_53"
+                                                    id="KT_5_53_label">&nbsp;Bosnisch </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_54" value="54" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_54"
+                                                    id="KT_5_54_label">&nbsp;Bulgarisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_55" value="55"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_55"
+                                                    id="KT_5_55_label">&nbsp;Chinesisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_56" value="56"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_56"
+                                                    id="KT_5_56_label">&nbsp;D&auml;nisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_61" value="61"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_61"
+                                                    id="KT_5_61_label">&nbsp;Estnisch </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_63" value="63" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_63"
+                                                    id="KT_5_63_label">&nbsp;Filipino (Tagalog) </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_64" value="64"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_64"
+                                                    id="KT_5_64_label">&nbsp;Finnisch </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_65" value="65" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_65"
+                                                    id="KT_5_65_label">&nbsp;Georgisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_66" value="66"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_66"
+                                                    id="KT_5_66_label">&nbsp;Griechisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_67" value="67"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_67"
+                                                    id="KT_5_67_label">&nbsp;Gujarati </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_68" value="68" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_68"
+                                                    id="KT_5_68_label">&nbsp;Hausa (Westafrika)</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_69" value="69"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_69"
+                                                    id="KT_5_69_label">&nbsp;Hebr&auml;isch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_70" value="70"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_70"
+                                                    id="KT_5_70_label">&nbsp;Hindi </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_71" value="71" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_71"
+                                                    id="KT_5_71_label">&nbsp;Indonesisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_72" value="72"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_72"
+                                                    id="KT_5_72_label">&nbsp;Isl&auml;ndisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_73" value="73"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_73"
+                                                    id="KT_5_73_label">&nbsp;Italienisch</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_74" value="74"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_74"
+                                                    id="KT_5_74_label">&nbsp;Jamaika-Kreolisch (Patois)
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_5_75"
+                                                    value="75" name="KT_5" onchange="list_change('KT_5')" /><label
+                                                    for="KT_5_75" id="KT_5_75_label">&nbsp;Japanisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_76" value="76"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_76"
+                                                    id="KT_5_76_label">&nbsp;Kambodschanisch (Khmer) </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_77" value="77"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_77"
+                                                    id="KT_5_77_label">&nbsp;Kasachisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_78" value="78"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_78"
+                                                    id="KT_5_78_label">&nbsp;Kirgisisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_79" value="79"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_79"
+                                                    id="KT_5_79_label">&nbsp;Koreanisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_80" value="80"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_80"
+                                                    id="KT_5_80_label">&nbsp;Kroatisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_81" value="81"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_81"
+                                                    id="KT_5_81_label">&nbsp;Kurdisch </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_82" value="82" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_82"
+                                                    id="KT_5_82_label">&nbsp;Laotisch </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_84" value="84" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_84"
+                                                    id="KT_5_84_label">&nbsp;Lettisch </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_85" value="85" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_85"
+                                                    id="KT_5_85_label">&nbsp;Letzeburgisch (Luxemburg)
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_5_86"
+                                                    value="86" name="KT_5" onchange="list_change('KT_5')" /><label
+                                                    for="KT_5_86" id="KT_5_86_label">&nbsp;Litauisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_87" value="87"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_87"
+                                                    id="KT_5_87_label">&nbsp;Malayalam </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_88" value="88"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_88"
+                                                    id="KT_5_88_label">&nbsp;Marathi </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_89" value="89" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_89"
+                                                    id="KT_5_89_label">&nbsp;Mazedonisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_90" value="90"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_90"
+                                                    id="KT_5_90_label">&nbsp;Mongolisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_91" value="91"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_91"
+                                                    id="KT_5_91_label">&nbsp;Nepalesisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_92" value="92"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_92"
+                                                    id="KT_5_92_label">&nbsp;Niederl&auml;ndisch/Fl&auml;misch
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_5_93"
+                                                    value="93" name="KT_5" onchange="list_change('KT_5')" /><label
+                                                    for="KT_5_93" id="KT_5_93_label">&nbsp;Norwegisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_94" value="94"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_94"
+                                                    id="KT_5_94_label">&nbsp;Pakistanisch/Urdu </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_95" value="95"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_95"
+                                                    id="KT_5_95_label">&nbsp;Paschtu/Paschto/Pashto (Afghanistan)
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_5_96"
+                                                    value="96" name="KT_5" onchange="list_change('KT_5')" /><label
+                                                    for="KT_5_96" id="KT_5_96_label">&nbsp;Persisch/Dari/Farsi
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_5_97"
+                                                    value="97" name="KT_5" onchange="list_change('KT_5')" /><label
+                                                    for="KT_5_97" id="KT_5_97_label">&nbsp;Polnisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_98" value="98"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_98"
+                                                    id="KT_5_98_label">&nbsp;Portugiesisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_99" value="99"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_99"
+                                                    id="KT_5_99_label">&nbsp;Punjabi </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_100" value="100" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_100"
+                                                    id="KT_5_100_label">&nbsp;Romani </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_101" value="101" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_101"
+                                                    id="KT_5_101_label">&nbsp;Rum&auml;nisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_102" value="102"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_102"
+                                                    id="KT_5_102_label">&nbsp;Russisch</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_103" value="103" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_103"
+                                                    id="KT_5_103_label">&nbsp;Schwedisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_104" value="104"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_104"
+                                                    id="KT_5_104_label">&nbsp;Serbisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_105" value="105"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_105"
+                                                    id="KT_5_105_label">&nbsp;Singhalesisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_106" value="106"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_106"
+                                                    id="KT_5_106_label">&nbsp;Slowakisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_107" value="107"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_107"
+                                                    id="KT_5_107_label">&nbsp;Slowenisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_108" value="108"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_108"
+                                                    id="KT_5_108_label">&nbsp;Somali </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_109" value="109" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_109"
+                                                    id="KT_5_109_label">&nbsp;Sorbisch/Wendisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_111" value="111"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_111"
+                                                    id="KT_5_111_label">&nbsp;Suaheli (Ostafrika) </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_112" value="112"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_112"
+                                                    id="KT_5_112_label">&nbsp;Taiwanisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_113" value="113"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_113"
+                                                    id="KT_5_113_label">&nbsp;Tamil </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_114" value="114" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_114"
+                                                    id="KT_5_114_label">&nbsp;Telugu </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_115" value="115" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_115"
+                                                    id="KT_5_115_label">&nbsp;Thai </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_5_116" value="116" name="KT_5"
+                                                    onchange="list_change('KT_5')" /><label for="KT_5_116"
+                                                    id="KT_5_116_label">&nbsp;Tibetisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_117" value="117"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_117"
+                                                    id="KT_5_117_label">&nbsp;Tigrinja (Eritrea) </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_118" value="118"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_118"
+                                                    id="KT_5_118_label">&nbsp;Tschechisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_119" value="119"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_119"
+                                                    id="KT_5_119_label">&nbsp;Tschetschenisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_120" value="120"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_120"
+                                                    id="KT_5_120_label">&nbsp;T&uuml;rkisch</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_121" value="121"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_121"
+                                                    id="KT_5_121_label">&nbsp;Uigurisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_122" value="122"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_122"
+                                                    id="KT_5_122_label">&nbsp;Ukrainisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_123" value="123"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_123"
+                                                    id="KT_5_123_label">&nbsp;Ungarisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_124" value="124"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_124"
+                                                    id="KT_5_124_label">&nbsp;Usbekisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_125" value="125"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_125"
+                                                    id="KT_5_125_label">&nbsp;Vietnamesisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_126" value="126"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_126"
+                                                    id="KT_5_126_label">&nbsp;Wei&szlig;russisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_5_127" value="127"
+                                                    name="KT_5" onchange="list_change('KT_5')" /><label for="KT_5_127"
+                                                    id="KT_5_127_label">&nbsp;Yoruba (Westafrika) </label><br></div>
+                                        </div>
+                                    </td>
+                                    <td id="ausserdem_rechts">
+                                        <div id="KT_6__">
+                                            <input type="button" name="KT_6" id="KT_6_button"
+                                                onclick="list_visible('KT_6')" value=" Bewerbung in"
+                                                placeholder=" Bewerbung in" class="suchparameter">
+                                            <div class="checkbox_auswahl" id="KT_6_list">
+                                                <input type="checkbox" class="checkboxes" id="KT_6_232" value="232"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_232"
+                                                    id="KT_6_232_label">&nbsp;Deutsch</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_6_162" value="162" name="KT_6"
+                                                    onchange="list_change('KT_6')" /><label for="KT_6_162"
+                                                    id="KT_6_162_label">&nbsp;Englisch</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_6_214" value="214" name="KT_6"
+                                                    onchange="list_change('KT_6')" /><label for="KT_6_214"
+                                                    id="KT_6_214_label">&nbsp;Spanisch</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_6_166" value="166" name="KT_6"
+                                                    onchange="list_change('KT_6')" /><label for="KT_6_166"
+                                                    id="KT_6_166_label">&nbsp;Franz&ouml;sisch</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_146" value="146"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_146"
+                                                    id="KT_6_146_label">&nbsp;Afrikaans </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_147" value="147"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_147"
+                                                    id="KT_6_147_label">&nbsp;Akan/Twi (Westafrika) </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_148" value="148"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_148"
+                                                    id="KT_6_148_label">&nbsp;Albanisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_149" value="149"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_149"
+                                                    id="KT_6_149_label">&nbsp;Amharisch (&Auml;thiopien)
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_6_150"
+                                                    value="150" name="KT_6" onchange="list_change('KT_6')" /><label
+                                                    for="KT_6_150" id="KT_6_150_label">&nbsp;Arabisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_151" value="151"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_151"
+                                                    id="KT_6_151_label">&nbsp;Aram&auml;isch/Syrisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_152" value="152"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_152"
+                                                    id="KT_6_152_label">&nbsp;Armenisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_153" value="153"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_153"
+                                                    id="KT_6_153_label">&nbsp;Aserbaidschanisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_154" value="154"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_154"
+                                                    id="KT_6_154_label">&nbsp;Bambara (Westafrika, Mali)
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_6_155"
+                                                    value="155" name="KT_6" onchange="list_change('KT_6')" /><label
+                                                    for="KT_6_155" id="KT_6_155_label">&nbsp;Bengali </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_156" value="156"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_156"
+                                                    id="KT_6_156_label">&nbsp;Birmanisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_157" value="157"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_157"
+                                                    id="KT_6_157_label">&nbsp;Bosnisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_158" value="158"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_158"
+                                                    id="KT_6_158_label">&nbsp;Bulgarisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_159" value="159"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_159"
+                                                    id="KT_6_159_label">&nbsp;Chinesisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_160" value="160"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_160"
+                                                    id="KT_6_160_label">&nbsp;D&auml;nisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_165" value="165"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_165"
+                                                    id="KT_6_165_label">&nbsp;Estnisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_167" value="167"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_167"
+                                                    id="KT_6_167_label">&nbsp;Filipino (Tagalog) </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_168" value="168"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_168"
+                                                    id="KT_6_168_label">&nbsp;Finnisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_169" value="169"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_169"
+                                                    id="KT_6_169_label">&nbsp;Georgisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_170" value="170"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_170"
+                                                    id="KT_6_170_label">&nbsp;Griechisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_171" value="171"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_171"
+                                                    id="KT_6_171_label">&nbsp;Gujarati </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_172" value="172"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_172"
+                                                    id="KT_6_172_label">&nbsp;Hausa (Westafrika)</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_173" value="173"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_173"
+                                                    id="KT_6_173_label">&nbsp;Hebr&auml;isch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_174" value="174"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_174"
+                                                    id="KT_6_174_label">&nbsp;Hindi </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_6_175" value="175" name="KT_6"
+                                                    onchange="list_change('KT_6')" /><label for="KT_6_175"
+                                                    id="KT_6_175_label">&nbsp;Indonesisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_176" value="176"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_176"
+                                                    id="KT_6_176_label">&nbsp;Isl&auml;ndisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_177" value="177"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_177"
+                                                    id="KT_6_177_label">&nbsp;Italienisch</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_178" value="178"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_178"
+                                                    id="KT_6_178_label">&nbsp;Jamaika-Kreolisch (Patois)
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_6_179"
+                                                    value="179" name="KT_6" onchange="list_change('KT_6')" /><label
+                                                    for="KT_6_179" id="KT_6_179_label">&nbsp;Japanisch
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_6_180"
+                                                    value="180" name="KT_6" onchange="list_change('KT_6')" /><label
+                                                    for="KT_6_180" id="KT_6_180_label">&nbsp;Kambodschanisch (Khmer)
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_6_181"
+                                                    value="181" name="KT_6" onchange="list_change('KT_6')" /><label
+                                                    for="KT_6_181" id="KT_6_181_label">&nbsp;Kasachisch
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_6_182"
+                                                    value="182" name="KT_6" onchange="list_change('KT_6')" /><label
+                                                    for="KT_6_182" id="KT_6_182_label">&nbsp;Kirgisisch
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_6_183"
+                                                    value="183" name="KT_6" onchange="list_change('KT_6')" /><label
+                                                    for="KT_6_183" id="KT_6_183_label">&nbsp;Koreanisch
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_6_184"
+                                                    value="184" name="KT_6" onchange="list_change('KT_6')" /><label
+                                                    for="KT_6_184" id="KT_6_184_label">&nbsp;Kroatisch
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_6_185"
+                                                    value="185" name="KT_6" onchange="list_change('KT_6')" /><label
+                                                    for="KT_6_185" id="KT_6_185_label">&nbsp;Kurdisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_186" value="186"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_186"
+                                                    id="KT_6_186_label">&nbsp;Laotisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_188" value="188"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_188"
+                                                    id="KT_6_188_label">&nbsp;Lettisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_189" value="189"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_189"
+                                                    id="KT_6_189_label">&nbsp;Letzeburgisch (Luxemburg)
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_6_190"
+                                                    value="190" name="KT_6" onchange="list_change('KT_6')" /><label
+                                                    for="KT_6_190" id="KT_6_190_label">&nbsp;Litauisch
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_6_191"
+                                                    value="191" name="KT_6" onchange="list_change('KT_6')" /><label
+                                                    for="KT_6_191" id="KT_6_191_label">&nbsp;Malayalam
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_6_192"
+                                                    value="192" name="KT_6" onchange="list_change('KT_6')" /><label
+                                                    for="KT_6_192" id="KT_6_192_label">&nbsp;Marathi </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_193" value="193"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_193"
+                                                    id="KT_6_193_label">&nbsp;Mazedonisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_194" value="194"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_194"
+                                                    id="KT_6_194_label">&nbsp;Mongolisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_195" value="195"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_195"
+                                                    id="KT_6_195_label">&nbsp;Nepalesisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_196" value="196"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_196"
+                                                    id="KT_6_196_label">&nbsp;Niederl&auml;ndisch/Fl&auml;misch
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_6_197"
+                                                    value="197" name="KT_6" onchange="list_change('KT_6')" /><label
+                                                    for="KT_6_197" id="KT_6_197_label">&nbsp;Norwegisch
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_6_198"
+                                                    value="198" name="KT_6" onchange="list_change('KT_6')" /><label
+                                                    for="KT_6_198" id="KT_6_198_label">&nbsp;Pakistanisch/Urdu
+                                                </label><br><input type="checkbox" class="checkboxes" id="KT_6_199"
+                                                    value="199" name="KT_6" onchange="list_change('KT_6')" /><label
+                                                    for="KT_6_199" id="KT_6_199_label">&nbsp;Paschtu/Paschto/Pashto
+                                                    (Afghanistan) </label><br><input type="checkbox" class="checkboxes"
+                                                    id="KT_6_200" value="200" name="KT_6"
+                                                    onchange="list_change('KT_6')" /><label for="KT_6_200"
+                                                    id="KT_6_200_label">&nbsp;Persisch/Dari/Farsi </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_201" value="201"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_201"
+                                                    id="KT_6_201_label">&nbsp;Polnisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_202" value="202"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_202"
+                                                    id="KT_6_202_label">&nbsp;Portugiesisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_203" value="203"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_203"
+                                                    id="KT_6_203_label">&nbsp;Punjabi </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_6_204" value="204" name="KT_6"
+                                                    onchange="list_change('KT_6')" /><label for="KT_6_204"
+                                                    id="KT_6_204_label">&nbsp;Romani </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_6_205" value="205" name="KT_6"
+                                                    onchange="list_change('KT_6')" /><label for="KT_6_205"
+                                                    id="KT_6_205_label">&nbsp;Rum&auml;nisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_206" value="206"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_206"
+                                                    id="KT_6_206_label">&nbsp;Russisch</label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_6_207" value="207" name="KT_6"
+                                                    onchange="list_change('KT_6')" /><label for="KT_6_207"
+                                                    id="KT_6_207_label">&nbsp;Schwedisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_208" value="208"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_208"
+                                                    id="KT_6_208_label">&nbsp;Serbisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_209" value="209"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_209"
+                                                    id="KT_6_209_label">&nbsp;Singhalesisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_210" value="210"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_210"
+                                                    id="KT_6_210_label">&nbsp;Slowakisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_211" value="211"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_211"
+                                                    id="KT_6_211_label">&nbsp;Slowenisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_212" value="212"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_212"
+                                                    id="KT_6_212_label">&nbsp;Somali </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_6_213" value="213" name="KT_6"
+                                                    onchange="list_change('KT_6')" /><label for="KT_6_213"
+                                                    id="KT_6_213_label">&nbsp;Sorbisch/Wendisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_215" value="215"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_215"
+                                                    id="KT_6_215_label">&nbsp;Suaheli (Ostafrika) </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_216" value="216"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_216"
+                                                    id="KT_6_216_label">&nbsp;Taiwanisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_217" value="217"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_217"
+                                                    id="KT_6_217_label">&nbsp;Tamil </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_6_218" value="218" name="KT_6"
+                                                    onchange="list_change('KT_6')" /><label for="KT_6_218"
+                                                    id="KT_6_218_label">&nbsp;Telugu </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_6_219" value="219" name="KT_6"
+                                                    onchange="list_change('KT_6')" /><label for="KT_6_219"
+                                                    id="KT_6_219_label">&nbsp;Thai </label><br><input type="checkbox"
+                                                    class="checkboxes" id="KT_6_220" value="220" name="KT_6"
+                                                    onchange="list_change('KT_6')" /><label for="KT_6_220"
+                                                    id="KT_6_220_label">&nbsp;Tibetisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_221" value="221"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_221"
+                                                    id="KT_6_221_label">&nbsp;Tigrinja (Eritrea) </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_222" value="222"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_222"
+                                                    id="KT_6_222_label">&nbsp;Tschechisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_223" value="223"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_223"
+                                                    id="KT_6_223_label">&nbsp;Tschetschenisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_224" value="224"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_224"
+                                                    id="KT_6_224_label">&nbsp;T&uuml;rkisch</label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_225" value="225"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_225"
+                                                    id="KT_6_225_label">&nbsp;Uigurisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_226" value="226"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_226"
+                                                    id="KT_6_226_label">&nbsp;Ukrainisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_227" value="227"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_227"
+                                                    id="KT_6_227_label">&nbsp;Ungarisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_228" value="228"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_228"
+                                                    id="KT_6_228_label">&nbsp;Usbekisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_229" value="229"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_229"
+                                                    id="KT_6_229_label">&nbsp;Vietnamesisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_230" value="230"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_230"
+                                                    id="KT_6_230_label">&nbsp;Wei&szlig;russisch </label><br><input
+                                                    type="checkbox" class="checkboxes" id="KT_6_231" value="231"
+                                                    name="KT_6" onchange="list_change('KT_6')" /><label for="KT_6_231"
+                                                    id="KT_6_231_label">&nbsp;Yoruba (Westafrika) </label><br></div>
+                                        </div> <input type="text" id="AntiText" name="AntiText"
+                                            placeholder="Ohne diese Stichworte" onchange="input_change('AntiText')"
+                                            class="suchparameter" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="weniger">
+                                        <a id="button_auswahl_weniger" class="button_auswahl_weniger"
+                                            onclick="weniger_Auswahl()"><img class="pfeile_button"
+                                                src="/suche/icons/pfeil_weniger.png" alt="" />weniger Auswahl</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="container_login" class="container hide">
+                        <table id="login_table" class="center">
+                            <tbody>
+                                <tr>
+                                    <td id="login">
+                                        <p class="h2">LOGIN</p>
+                                        <div id="login_error"></div>
+                                        <div id="login_verify" style="display: none;">
+                                            <a class="button_senden">
+                                                JETZT BESTÄTIGEN <img class="pfeile_button"
+                                                    src="/suche/icons/pfeil.png" />
+                                            </a>
+                                        </div>
+                                        <form>
+                                            <input type="text" id="name" name="name" accesskey="p"
+                                                placeholder="E-Mail Adresse">
+                                            <input type="password" id="kennwort" name="kennwort" accesskey="p"
+                                                placeholder="Kennwort">
+                                            <br>
+                                            <input id="login_submit" class="button_login" type="submit" value="LOGIN" />
+                                            <label for="login_submit"><img class="pfeile_button"
+                                                    src="/suche/icons/pfeil.png" /></label>
+                                        </form>
+                                    </td>
+                                    <td id="register">
+                                        <p class="h2">PASSWORT VERGESSEN?</p>
+                                        <div id="forgot_error"></div>
+                                        <p>Gib bitte die E-Mail-Adresse ein, die du bei der Registrierung angegeben
+                                            hast:</p>
+                                        <form>
+                                            <input type="text" id="mail" name="mail" accesskey="p"
+                                                placeholder="E-Mail Adresse">
+                                            <br />
+                                            <input id="forgot_submit" class="button_forgot" type="submit"
+                                                value="SENDEN" />
+                                            <label for="forgot_submit" class="button_login"><img class="pfeile_button"
+                                                    src="/suche/icons/pfeil.png" /></label>
+                                        </form>
+                                        <p class="h2">REGISTRIEREN</p>
+                                        <p class="margin_acht">Noch nicht registriert?</p>
+                                        <a id="button_register" class="button_registrieren">
+                                            HIER REGISTRIEREN<img class="pfeile_button" src="/suche/icons/pfeil.png">
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="container_register" class="container hide">
+                        <table id="register_table" class="center">
+                            <tbody>
+                                <tr>
+                                    <td id="register">
+                                        <p class="h2" style="margin-bottom: 2px; width: 100%">REGISTRIEREN</p>
+                                        <div id="register_error"></div>
+                                        <form>
+                                            <input type="text" id="register_name" name="name" accesskey="p"
+                                                placeholder="Name" />
+                                            <input type="text" id="register_mail" name="mail" accesskey="p"
+                                                placeholder="E-Mail Adresse" />
+                                            <input type="password" id="register_pass" name="pass" accesskey="p"
+                                                placeholder="Kennwort" />
+                                            <input type="password" id="register_pass_confirm" name="passconfirm"
+                                                accesskey="p" placeholder="Kennwort wiederholen" />
+                                            <span class="checkbox_container">
+                                                <input type="checkbox" id="register_agb" name="agb" />
+                                                <label for="register_agb" class="fill">
+                                                    Ich bin mit den <a
+                                                        href="https://www.hochschuljobboerse.de/unternehmen/agb/"
+                                                        target="_blank">AGB</a> einverstanden. </label>
+                                            </span>
+                                            <span class="checkbox_container">
+                                                <input type="checkbox" id="register_datenschutz" name="datenschutz" />
+                                                <label for="register_datenschutz" class="fill">
+                                                    Ich habe die Datenschutzerklärung gelesen. </label>
+                                            </span>
+                                            <input type="submit" class="button_login" id="register_submit"
+                                                class="button_login" value="REGISTRIEREN" />
+                                            <label for="register_submit">
+                                                <img class="pfeile_button" src="/suche/icons/pfeil.png" />
+                                            </label>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="container_reset" class="container hide">
+                        <table id="reset_table" class="center">
+                            <tbody>
+                                <td id="reset">
+                                    <p class="h2">KENNWORT ZURÜCKSETZEN</p>
+                                    <div id="reset_error"></div>
+                                    <form>
+                                        <input type="password" id="reset_pass" name="pass" accesskey="p"
+                                            placeholder="Neues Kennwort" />
+                                        <input type="password" id="reset_pass_confirm" name="passconfirm" accesskey="p"
+                                            placeholder="Kennwort wiederholen" />
+                                        <br />
+                                        <input type="submit" class="button_login" id="reset_submit" class="button_login"
+                                            value="SENDEN" />
+                                        <label for="reset_submit" class="button_login">
+                                            <img class="pfeile_button" src="/suche/icons/pfeil.png" />
+                                        </label>
+                                    </form>
+                                </td>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="container_home" class="container hide">
+                        <table id="home_table" class="center">
+                            <tbody>
+                                <td id="home_survey">
+                                    <p class="h2">WILLKOMMEN</p>
+                                    <p>Äußere in einem Fragebogen deine
+                                        Wünsche und Anforderungen an das Praktikum, dann werden dir im Rahmen
+                                        eines Scorings passende Praktikumsstellen im In- und Ausland vorgeschlagen.</p>
+                                    <a class="button_login">
+                                        FRAGEBOGEN JETZT AUSFÜLLEN <img class="pfeile_button"
+                                            src="/suche/icons/pfeil.png" />
+                                    </a>
+                                    <p></p>
+                                </td>
+                                <td id="home_account">
+                                    <div id="home_survey">
+                                        <p class="h2" style="margin-bottom: 2px;">WÜNSCHE UND ANFORDERUNGEN AN DAS
+                                            PRAKTIKUM</p>
+                                        <p>Hier kannst du deine Antworten einsehen.</p>
+                                        <a id="button_home_survey" class="button_login button_home">
+                                            ANFORDERUNGEN BEARBEITEN <img class="pfeile_button"
+                                                src="/suche/icons/pfeil.png" />
+                                        </a>
+                                    </div>
+                                    <div id="home_disable">
+                                        <p class="h2" style="margin-bottom: 2px;">ACCOUNT DEAKTIVIEREN</p>
+                                        <p>Wenn du deinen Account deaktivierst, nimmst du nicht mehr am Matching teil.
+                                        </p>
+                                        <span class="button_wrapper">
+                                            <a id="button_home_disable" class="button_login button_home">
+                                                ACCOUNT DEAKTIVIEREN <img class="pfeile_button"
+                                                    src="/suche/icons/pfeil.png" />
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div id="home_updatepass">
+                                        <p class="h2">KENNWORT ÄNDERN</p>
+                                        <div id="updatepass_error"></div>
+                                        <form>
+                                            <input type="password" id="home_pass" name="pass"
+                                                placeholder="Neues Kennwort" />
+                                            <input type="password" id="home_pass_confirm" name="pass_confirm"
+                                                placeholder="Kennwort wiederholen" />
+                                            <input type="submit" class="button_login" id="updatepass_submit"
+                                                value="SENDEN" />
+                                            <label for="updatepass_submit">
+                                                <img class="pfeile_button" src="/suche/icons/pfeil.png" />
+                                            </label>
+                                            <!--
+                                            value=""/>
+                                            <label for="updatepass_submit" class="button_login">
+
+                                            </label>
+                                            -->
+                                        </form>
+                                    </div>
+                                </td>
+                                <td id="home_disabled">
+                                    <p class="h2">ACCOUNT DEAKTIVIERT</p>
+                                    <p>Du hast deinen Account deaktiviert und nimmst deshalb derzeit nicht an GO MATCH
+                                        teil.</p>
+                                    <a class="button_login button_home">
+                                        ACCOUNT WIEDER AKTIVIEREN <img class="pfeile_button"
+                                            src="/suche/icons/pfeil.png" />
+                                    </a>
+                                </td>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <button class="go container show fadeIn" id="go" onclick="onclick_go()" type="submit" name="action"
+                        value="0"></button>
+
+
+                    <div id="rechteck" onclick="vorhang_aendern(this.id)" class="rechteck"></div>
+
+                </div>
+
+
+
+
+            </div>
+            <footer class="footer_desktop">
+
+                <div class="footer_links" id="footer_links">
+                </div>
+                <div class="footer_rechts" id="footer_rechts">
+                    <a><img class="icon_footer" id="kartenansicht" onclick="zeige_kartenansicht()"
+                            src="/suche/icons/kartenansicht-schwarz.png" alt="Kartenansicht"
+                            title="Kartenansicht" /></a>
+                    <a><img class="icon_footer footer_search" id="listenansicht" onclick="zeige_listenansicht()"
+                            src="/suche/icons/listenansicht-schwarz.png" alt="Listenansicht"
+                            title="Listenansicht" /></a>
+                    <a><img class="icon_footer footer_search" id="gridansicht" onclick="zeige_gridansicht()"
+                            src="/suche/icons/gridansicht-schwarz.png" alt="Kachelansicht" title="Kachelansicht" /></a>
+                    <a><img class="icon_footer footer_abroad" id="matches_desktop"
+                            src="/suche/icons/listenansicht-schwarz.png" alt="Listenansicht"
+                            title="Listenansicht" /></a>
+                    <a><img class="icon_footer" id="kein_fullscreen" onclick="fullscreen_zeigen(this)"
+                            src="/suche/icons/fullscreen-schwarz.png" alt="Vollbild" title="Vollbild" /></a>
+                    <a><img class="icon_footer" id="fullscreen" onclick="fullscreen_zeigen(this)"
+                            src="/suche/icons/fullscreen-schwarz-back.png" alt="Vollbild schließen"
+                            title="Vollbild schließen" /></a>
+                    <a href="https://jobboerse.th-nuernberg.de/index.php"><img class="icon_footer" id="iframe"
+                            src="/suche/icons/fullscreen-schwarz-back.png" alt="Vollbild schließen"
+                            title="Vollbild schließen" /></a>
+                </div>
+            </footer>
+
+
+            <footer class="footer_mobil">
+
+                <div class="footer_mobil_links" id="footer_mobil_links">
+                    <a><img class="icon_footer" id="favoritenliste_mobil" onclick="favoriten_liste()"
+                            src="/suche/icons/favoriten-liste.png" alt="" /></a>
+                    <a><img class="icon_footer" id="geloescht_mobil" onclick="geloescht_liste()"
+                            src="/suche/icons/geloescht-liste.png" alt="" /></a>
+                </div>
+
+                <div class="stellen stellen_mobil" id="stellen_mobil">
+                    <span class="zaehler zaehler_zehntausend">-</span>
+                    <span class="zaehler zaehler_tausend">-</span>
+                    <span class="punkt">.</span>
+                    <span class="zaehler zaehler_hundert">-</span>
+                    <span class="zaehler zaehler_zehner">-</span>
+                    <span class="zaehler zaehler_einer">-</span>
+                    <span class="stellenanzeige">STELLEN</span>
+                    <span class="stellenumkreis"> IM UMKREIS</span>
+                </div>
+                <div class="footer_mobil_rechts" id="footer_mobil_rechts">
+                    <a><img class="icon_footer" id="kartenansicht_mobil" onclick="zeige_kartenansicht()"
+                            src="/suche/icons/kartenansicht.png" alt="Kartenansicht" title="Kartenansicht" /></a>
+                    <a><img class="icon_footer footer_search" id="listenansicht_mobil" onclick="zeige_listenansicht()"
+                            src="/suche/icons/listenansicht.png" alt="Listenansicht" title="Listenansicht" /></a>
+                    <a><img class="icon_footer footer_search" id="gridansicht_mobil" onclick="zeige_gridansicht()"
+                            src="/suche/icons/gridansicht.png" alt="Kachelansicht" title="Kachelansicht" /></a>
+                    <a><img class="icon_footer footer_abroad" id="matches_mobile" src="/suche/icons/listenansicht.png"
+                            alt="Listenansicht" title="Listenansicht" /></a>
+                    <a><img class="icon_footer" id="kein_fullscreen_mobil" onclick="fullscreen_zeigen(this)"
+                            src="/suche/icons/fullscreen.png" alt="Vollbild" title="Vollbild" /></a>
+                    <a><img class="icon_footer" id="fullscreen_mobil" onclick="fullscreen_zeigen(this)"
+                            src="/suche/icons/fullscreen-back.png" alt="Vollbild schließen"
+                            title="Vollbild schließen" /></a>
+                    <a href="https://jobboerse.th-nuernberg.de/index.php"><img class="icon_footer" id="iframe_mobil"
+                            src="/suche/icons/fullscreen-back.png" alt="Vollbild schließen"
+                            title="Vollbild schließen" /></a>
+                </div>
+            </footer>
+
+        </div>
+        <!-- Ladebalken, Fahne -->
+        <div id="overload" class="overload">
+            <div class="picOverload"><img src="/suche/preloader.gif"></div>
+        </div>
+        <div id="info_popup" class="info_popup flownAway">
+            <p id="popup_text"></p>
+        </div>
+        <div id="matching_popup" class="container">
+            <img class="invert" src="/suche/icons/icon_schliessen.png">
+        </div>
+        <div id="results_popup" class="container">
+            <img class="invert" src="/suche/" icons />icon_schliessen.png">
+        </div>
+        <div id="matching_popup_content">
+            <p>
+                <span class="bold">Du suchst ein Praktikum?</span>
+                <br>
+                Dann nimm am Service GO MATCH teil. Äußere in einem Fragebogen deine
+                Wünsche und Anforderungen an das Praktikum, dann werden dir im Rahmen
+                eines Scorings passende Praktikumsstellen im In- und Ausland vorgeschlagen.<br>
+                Bitte beachte, dass es einige Zeit dauern wird, bis du passende
+                Praktikumsstellen vorgeschlagen bekommst, da auch die "andere Seite"
+                dieses Matching-Services, also die Anzahl der teilnehmenden Firmen,
+                wachsen muss. Du wirst dann zeitnah per E-Mail über passende
+                Matching-Ergebnisse informiert. </p>
+        </div>
+        <div id="indicator_map" onclick="gotoMarkerCircle()">
+            <div id="indicator_icon">
+                <img src="/suche/icons/focus.png">
+            </div>
+        </div>
+        <script>
+            function getURL() {
+                return '/srv.php/Suche';
+            }
+            var ajaxTimeoutText = "Ein unbekannter Fehler ist aufgetreten. Bitte versuche es später noch einmal.";
+            var likedText = '[Nicht mehr merken]';
+            var likeText = '[Merken]';
+            var showText = '[Anzeigen]';
+            var pokedText = 'Du wurdest von dieser Stelle angestupst';
+
+            var auslandSession = {
+                active: false,
+                surveyCompleted: false,
+                deactivated: false
+            };
+            var maxAnswers = [];
+            var groupStatus = [];
+            var maxImportant = -1;
+
+            var pageAction = (parent && parent.pageAction) ? parent.pageAction : null;
+
+            var hash = (parent && parent.hash) ? parent.hash : null;
+
+            Abroad.init(auslandSession);
+        </script>
+        <!-- Piwik -->
+        <script type="text/javascript">
+            var _paq = _paq || [];
+            _paq.push(["setCustomVariable", 1, "Host", "jobboerse.th-nuernberg.de", "page"]);
+            _paq.push(["trackPageView"]);
+            _paq.push(["enableLinkTracking"]);
+
+            (function () {
+                var u = "https://stat.hochschuljobboerse.de/";
+                _paq.push(["setTrackerUrl", u + "piwik.php"]);
+                _paq.push(["setSiteId", "1"]);
+                var d = document, g = d.createElement("script"), s = d.getElementsByTagName("script")[0]; g.type = "text/javascript";
+                g.defer = true; g.async = true; g.src = u + "piwik.js"; s.parentNode.insertBefore(g, s);
+            })();
+        </script>
+        <noscript><img src="https://stat.hochschuljobboerse.de/piwik.php?idsite=1&amp;rec=1" style="border:0"
+                alt="" /></noscript>
+        <!-- End Piwik Code -->
+</body>
+
+</html>
