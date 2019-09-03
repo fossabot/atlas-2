@@ -1,7 +1,10 @@
-const CopyPlugin = require("copy-webpack-plugin") // eslint-disable-line @typescript-eslint/no-var-requires
-const HtmlPlugin = require("html-webpack-plugin") // eslint-disable-line @typescript-eslint/no-var-requires
-const path = require("path") // eslint-disable-line @typescript-eslint/no-var-requires
-//const PurgecssPlugin = require("purgecss-webpack-plugin") // eslint-disable-line @typescript-eslint/no-var-requires
+/* eslint @typescript-eslint/no-var-requires: "off" */
+
+const CopyPlugin = require("copy-webpack-plugin")
+const HtmlPlugin = require("html-webpack-plugin")
+const path = require("path")
+const PurgecssPlugin = require("purgecss-webpack-plugin")
+const glob = require("glob")
 
 module.exports = {
   entry: {
@@ -60,6 +63,11 @@ module.exports = {
     new CopyPlugin([{ from: "data", to: "data" }]),
     new HtmlPlugin({
       template: "./src/index.html",
+    }),
+    new PurgecssPlugin({
+      paths: glob.sync(`${path.join(__dirname, "static/css")}/**/*`, {
+        nodir: true,
+      }),
     }),
   ],
 }
