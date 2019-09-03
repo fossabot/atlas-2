@@ -5,6 +5,7 @@ import React from "react"
 import Map from "../map"
 import Sample from "../sample"
 import { Location } from "../types/custom_types"
+import Form from "./Form"
 
 function initMap(mapID: string): Map {
   return new Map(mapID)
@@ -25,7 +26,12 @@ function start(): void {
 
 const Pantheon: React.FunctionComponent = () => {
   start()
-  return <div id="map-container"></div>
+  return (
+    <div>
+      <Form></Form>
+      <div id="map-container"></div>
+    </div>
+  )
 }
 
 export default Pantheon

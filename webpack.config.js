@@ -1,6 +1,7 @@
 const CopyPlugin = require("copy-webpack-plugin") // eslint-disable-line @typescript-eslint/no-var-requires
 const HtmlPlugin = require("html-webpack-plugin") // eslint-disable-line @typescript-eslint/no-var-requires
 const path = require("path") // eslint-disable-line @typescript-eslint/no-var-requires
+//const PurgecssPlugin = require("purgecss-webpack-plugin") // eslint-disable-line @typescript-eslint/no-var-requires
 
 module.exports = {
   entry: {
@@ -41,7 +42,17 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: "postcss",
+              plugins: [require("tailwindcss"), require("autoprefixer")],
+            },
+          },
+        ],
       },
     ],
   },

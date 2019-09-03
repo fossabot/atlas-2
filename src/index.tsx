@@ -2,6 +2,7 @@
 
 import "../static/css/ol-ext.css"
 import "../static/css/ol.css"
+import "../static/css/tailwind.css"
 
 import React from "react"
 import ReactDOM from "react-dom"
