@@ -43,7 +43,7 @@ const Pantheon: React.FunctionComponent = () => {
       <div id="map-container"></div>
       {isShowing ? (
         <Modal show={isShowing} setShowing={setShowing}>
-          {<Form></Form>}
+          <Form></Form>
         </Modal>
       ) : null}
     </div>

@@ -180,7 +180,7 @@ export function createSelectOptions(options: string[]): JSX.Element[] {
 
 const Form: React.FunctionComponent = () => {
   return (
-    <form className="mx-3">
+    <form>
       <div className="lg:flex lg:flex-wrap">
         <div className="w-full lg:w-1/2 px-3">
           <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold">
@@ -197,14 +197,39 @@ const Form: React.FunctionComponent = () => {
           </label>
           <TextInput label="Ort oder Adresse"></TextInput>
           <div className="flex w-full mt-2">
-            <span className="flex w-1/3 items-center bg-gray-100 rounded-l border border-r-0 border-grey-light px-3 text-grey-dark text-sm whitespace-no-wrap">
+            <span
+              className="
+            flex
+            w-full
+            items-center
+            bg-gray-100
+            rounded-l
+            border
+            border-r-0
+            border-grey-light
+            px-3
+            text-grey-dark
+            text-sm
+            whitespace-no-wrap
+            "
+            >
               Umkreissuche mit
             </span>
-
             <input
               type="number"
               defaultValue="100"
-              className="flex-1 text-right flex leading-normal border h-8 border-grey-light px-3 relative focus:border-blue focus:shadow"
+              className="
+              overflow-x-hidden
+              text-right
+              leading-normal
+              border
+              h-8
+              border-grey-light
+              px-3
+              focus:border-indigo-500
+              focus:outline-none
+              hover:bg-gray-200
+              "
             ></input>
             <span className="flex flex-shrink items-center leading-normal bg-gray-100 rounded rounded-l-none border border-l-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
               km Radius
@@ -213,14 +238,14 @@ const Form: React.FunctionComponent = () => {
         </div>
       </div>
       <div>
-        <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mt-8">
+        <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mt-8 ml-3">
           Und Ausserdem...
         </label>
         <div className="flex flex-wrap">
           <div className="w-full lg:w-1/2 px-3">
             <Dropdown label="Vertragsart" options={contractOptions}></Dropdown>
             <Dropdown
-              label="Notwendige Sprachkenntnisse"
+              label="Sprachkenntnisse"
               options={languageOptions}
             ></Dropdown>
           </div>
@@ -229,6 +254,29 @@ const Form: React.FunctionComponent = () => {
             <TextInput label="Ohne diese Stichworte"></TextInput>
           </div>
         </div>
+      </div>
+      <div className="mx-3 flex justify-end">
+        <button
+          type="submit"
+          className="
+          block 
+          w-full
+          bg-gray-200
+          border-b-2
+          border-indigo-500
+          hover:bg-indigo-200
+          text-gray-900
+          font-bold
+          py-2
+          px-8
+          mt-8
+          rounded
+          lg:w-auto
+          
+          "
+        >
+          Search
+        </button>
       </div>
     </form>
   )
