@@ -1,11 +1,12 @@
 // ESLint exception rule for NodeList
 
-import React from "react"
+import React, { useState } from "react"
 
 import Map from "../map"
 import Sample from "../sample"
 import { Location } from "../types/custom_types"
 import Form from "./Form"
+import Modal from "./Modal"
 
 function initMap(mapID: string): Map {
   return new Map(mapID)
@@ -25,11 +26,26 @@ function start(): void {
 }
 
 const Pantheon: React.FunctionComponent = () => {
+  let [isShowing, setShowing] = useState(true)
+
+  const openModalHandler = (): void => {
+    setShowing(true)
+  }
   start()
   return (
     <div>
-      <Form></Form>
+      <button
+        onClick={openModalHandler}
+        className="m-2 bg-grey-lighter flex-1 border-b-2 md:flex-none border-grey ml-2 hover:bg-grey-lightest text-grey-darkest font-bold py-4 px-6 rounded"
+      >
+        Open Modal
+      </button>
       <div id="map-container"></div>
+      {isShowing ? (
+        <Modal show={isShowing} setShowing={setShowing}>
+          {<Form></Form>}
+        </Modal>
+      ) : null}
     </div>
   )
 }

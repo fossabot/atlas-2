@@ -1,5 +1,7 @@
 import React from "react"
-import { create } from "ol/transform"
+
+import Dropdown from "./Dropdown"
+import TextInput from "./TextInput"
 
 const whatOptions = [
   "Praktikum im Studium",
@@ -178,154 +180,57 @@ export function createSelectOptions(options: string[]): JSX.Element[] {
 
 const Form: React.FunctionComponent = () => {
   return (
-    <form>
-      <div className="flex flex-wrap -mx-3 mb-6">
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+    <form className="mx-3">
+      <div className="lg:flex lg:flex-wrap">
+        <div className="w-full lg:w-1/2 px-3">
+          <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold">
             Was?
           </label>
-          <select
-            className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-state"
-          >
-            {createSelectOptions(whatOptions)}
-          </select>
-          <select
-            className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-state"
-          >
-            {createSelectOptions(facultyOptions)}
-          </select>
-          <select
-            className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-state"
-          >
-            {createSelectOptions(branchOptions)}
-          </select>
-          <input
-            className="w-full"
-            type="text"
-            placeholder="Stichworte"
-          ></input>
+          <Dropdown label="Praktikumsart" options={whatOptions}></Dropdown>
+          <Dropdown label="Faukultät" options={facultyOptions}></Dropdown>
+          <Dropdown label="Branche" options={branchOptions}></Dropdown>
+          <TextInput label="Stichworte"></TextInput>
         </div>
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+        <div className="w-full lg:w-1/2 px-3">
+          <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mt-8 lg:mt-0">
             Wo?
           </label>
-          <input
-            className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-            type="text"
-            placeholder="Ort oder Adresse"
-          ></input>
-          Umkreissuche mit <input type="number" value="10"></input>km Radius.
+          <TextInput label="Ort oder Adresse"></TextInput>
+          <div className="flex w-full mt-2">
+            <span className="flex w-1/3 items-center bg-gray-100 rounded-l border border-r-0 border-grey-light px-3 text-grey-dark text-sm whitespace-no-wrap">
+              Umkreissuche mit
+            </span>
+
+            <input
+              type="number"
+              defaultValue="100"
+              className="flex-1 text-right flex leading-normal border h-8 border-grey-light px-3 relative focus:border-blue focus:shadow"
+            ></input>
+            <span className="flex flex-shrink items-center leading-normal bg-gray-100 rounded rounded-l-none border border-l-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+              km Radius
+            </span>
+          </div>
         </div>
       </div>
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-        Und Ausserdem...
-      </label>
-      <div className="flex flex-wrap">
-        <select
-          className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="grid-state"
-          placeholder="Vertragsart"
-        >
-          {createSelectOptions(contractOptions)}
-        </select>
-        <select
-          className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="grid-state"
-        >
-          {createSelectOptions(languageOptions)}
-        </select>
-        <select
-          className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-          id="grid-state"
-        >
-          {createSelectOptions(languageOptions)}
-        </select>
-        <input
-          className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-          type="text"
-          placeholder="Ohne diese Stichworte"
-        ></input>
+      <div>
+        <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mt-8">
+          Und Ausserdem...
+        </label>
+        <div className="flex flex-wrap">
+          <div className="w-full lg:w-1/2 px-3">
+            <Dropdown label="Vertragsart" options={contractOptions}></Dropdown>
+            <Dropdown
+              label="Notwendige Sprachkenntnisse"
+              options={languageOptions}
+            ></Dropdown>
+          </div>
+          <div className="w-full lg:w-1/2 px-3">
+            <Dropdown label="Bewerbung in" options={languageOptions}></Dropdown>
+            <TextInput label="Ohne diese Stichworte"></TextInput>
+          </div>
+        </div>
       </div>
     </form>
-    /*
-     <form className="w-full max-w-xl">
-       <div className="flex flex-wrap -mx-3 mb-6">
-         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-           <label
-             className="block
-         uppercase
-         tracking-wide
-         text-gray-800
-         text-xs
-         font-bold
-         mb-2"
-             htmlFor="grid-name"
-           >
-             Name
-           </label>
-           <input
-             className="block
-         w-full
-         bg-transparent
-         text-gray-800
-         border
-         border-gray-400
-         py-3
-         px-4
-         leading-tight focus:outline-none focus:bg-gray-100 focus:border-orange-500"
-             id="grid-name"
-             type="text"
-             placeholder="Your Name"
-           ></input>
-         </div>
-         <div className="w-full md:w-1/2 px-3">
-           <label
-             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-             htmlFor="grid-email"
-           >
-             Email
-           </label>
-           <input
-             className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state"
-             id="grid-email"
-             type="email"
-             placeholder="Your Email"
-           ></input>
-         </div>
-       </div>
-       <div className="flex flex-wrap -mx-3 mb-6">
-         <div className="w-full px-3">
-           <label
-             className="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-             htmlFor="grid-message"
-           >
-             Message
-           </label>
-         </div>
-       </div>
-       <div className="flex justify-end">
-         <button
-           className="
-           bg-transparent
-           border
-           border-gray-500
-           font-semibold
-           hover:bg-gray-200
-           hover:text-gray-900
-           px-4
-           py-2
-           text-gray-800
-           hover:border-transparent
- "
-         >
-           Submit
-         </button>
-       </div>
-     </form>
-     */
   )
 }
 
