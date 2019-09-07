@@ -20,4 +20,7 @@ function polyfillForEach(): void {
 }
 
 polyfillForEach()
-ReactDOM.render(React.createElement(Pantheon), document.getElementById("root"))
+ReactDOM.render(
+  React.createElement(Pantheon),
+  document.getElementById("map-container"),
+)

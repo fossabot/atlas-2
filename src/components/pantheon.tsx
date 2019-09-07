@@ -19,7 +19,7 @@ function initSample(): Sample {
 function start(): void {
   const sample = initSample()
   sample.jobs(1000).then(jobs => {
-    const map = initMap("map-container")
+    const map = initMap("map")
     map.setLocations(jobs as Location[], true)
   })
 }
@@ -29,7 +29,7 @@ const Pantheon: React.FunctionComponent = () => {
   return (
     <div>
       <Form></Form>
-      <div id="map-container"></div>
+      <div id="map"></div>
     </div>
   )
 }

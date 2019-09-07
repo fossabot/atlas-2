@@ -36,7 +36,7 @@ import UI from "./ui"
  * This class handles everything to display a map.
  *
  * @export
- * @param [mapID='map-container'] The id of the `<div>` element where the map will be placed.
+ * @param [mapID='map'] The id of the `<div>` element where the map will be placed.
  * @class Map
  */
 export default class Map implements MapInterface {
@@ -50,10 +50,10 @@ export default class Map implements MapInterface {
 
   /**
    *Creates an instance of Map.
-   * @param [mapID="map-container"]
+   * @param [mapID="map"]
    * @memberof Map
    */
-  public constructor(mapID: string = "map-container") {
+  public constructor(mapID: string = "map") {
     log.debug("Initializing map", { mapID })
     this.mapID = mapID
     // this.ui = new UI(this)
