@@ -480,7 +480,7 @@ export default class Map implements MapInterface {
    * @memberof Map
    */
   private buildMarkerLayer(): void {
-    this.markerLayer = new ClusterLayer(60, this.ui)
+    this.markerLayer = new ClusterLayer(60)
     this.olmap.addLayer(this.markerLayer.animatedCluster)
   }
 

@@ -1,20 +1,55 @@
-import { buildOptions } from "../../../src/components/Form"
+import React from "react"
+import renderer from "react-test-renderer"
+
+import Form, { createSelectOptions } from "../../../src/components/Form"
 
 describe("Form", () => {
-  describe("buildOptions()", () => {
-    it("should return the correct options", () => {
+  describe("Snapshot", () => {
+    it("should render correctly", () => {
+      const component = renderer.create(<Form />)
+      expect(component.toJSON()).toMatchSnapshot()
+    })
+  })
+
+  describe("createSelectOptions()", () => {
+    it("should return the correct options for more than 1 option", () => {
       const testCases = [
         {
-          in: [
-            "Automobilbau",
-            "Banken, Versicherung, Immobilien,",
-            "Finanzdienstleistung",
-            "Bauwesen, Architektur",
-            "Bergbau",
-            "Bildung&amp;Training",
-          ],
-          out:
-            "<option>Automobilbau</option><option>Banken, Versicherung, Immobilien,</option><option>Finanzdienstleistung</option><option>Bauwesen, Architektur</option><option>Bergbau</option><option>Bildung&amp;Training</option>",
+          in: ["AAAA", "BBBB", "CCCC", "DDDD", "EEEE", "FFFF"],
+          snapshot: `
+          Array [
+            <option
+              value="AAAA"
+            >
+              AAAA
+            </option>,
+            <option
+              value="BBBB"
+            >
+              BBBB
+            </option>,
+            <option
+              value="CCCC"
+            >
+              CCCC
+            </option>,
+            <option
+              value="DDDD"
+            >
+              DDDD
+            </option>,
+            <option
+              value="EEEE"
+            >
+              EEEE
+            </option>,
+            <option
+              value="FFFF"
+            >
+              FFFF
+            </option>,
+          ]
+          `,
         },
         {
           in: [
@@ -22,16 +57,52 @@ describe("Form", () => {
             "Architektur",
             "Bauingenieurwesen",
           ],
-          out:
-            "<option>Angewandte Mathematik, Physik und Allgemeinwissenschaften</option><option>Architektur</option><option>Bauingenieurwesen</option>",
+          snapshot: `
+          Array [
+            <option
+              value="Angewandte Mathematik, Physik und Allgemeinwissenschaften"
+            >
+              Angewandte Mathematik, Physik und Allgemeinwissenschaften
+            </option>,
+            <option
+              value="Architektur"
+            >
+              Architektur
+            </option>,
+            <option
+              value="Bauingenieurwesen"
+            >
+              Bauingenieurwesen
+            </option>,
+          ]
+          `,
         },
       ]
       testCases.forEach(tc => {
-        expect(buildOptions(tc.in)).toEqual(tc.out)
+        expect(createSelectOptions(tc.in)).toMatchInlineSnapshot(tc.snapshot)
       })
     })
+
+    it("should return the correct options for 1 option", () => {
+      const testCase = {
+        in: ["AAAA"],
+        snapshot: `
+          Array [
+            <option
+              value="AAAA"
+            >
+              AAAA
+            </option>,
+          ]
+          `,
+      }
+      expect(createSelectOptions(testCase.in)).toMatchInlineSnapshot(
+        testCase.snapshot,
+      )
+    })
+
     it("should return an empty string if no options are provided", () => {
-      expect(buildOptions([])).toEqual("")
+      expect(createSelectOptions([])).toEqual([])
     })
   })
 })

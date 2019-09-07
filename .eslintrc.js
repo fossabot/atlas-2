@@ -35,6 +35,7 @@ module.exports = {
       "error",
       { functions: false, classes: true, variables: true, typedefs: true },
     ],
+    "react/prop-types": "off",
     "no-console": "error",
     "require-jsdoc": [
       "off",
