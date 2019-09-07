@@ -2,14 +2,11 @@ import React from "react"
 
 interface ModalProps {
   show: boolean
-  setShowing(show: boolean): void
+  toggle(): void
   children?: React.ReactNode
 }
 
 const Modal: React.FunctionComponent<ModalProps> = props => {
-  const close = (): void => {
-    props.setShowing(false)
-  }
   return (
     <div
       className="
@@ -21,6 +18,7 @@ const Modal: React.FunctionComponent<ModalProps> = props => {
     fadeIn
     flex
     top-0
+    left-0
     z-50
     "
     >
@@ -46,7 +44,7 @@ const Modal: React.FunctionComponent<ModalProps> = props => {
         "
       >
         {props.children}
-        <span onClick={close} className="absolute top-0 right-0 p-4">
+        <span onClick={props.toggle} className="absolute top-0 right-0 p-4">
           <svg
             className="
     h-6
