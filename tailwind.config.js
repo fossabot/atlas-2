@@ -1,7 +1,15 @@
 module.exports = {
   theme: {
     extend: {
+      opacity: {
+        "40": ".4",
+      },
       colors: {
+        jb: {
+          primary: "#0046a0",
+          secondary: "#003ca0",
+          gray: "#E5EAF0",
+        },
         smoke: {
           darkest: "rgba(0, 0, 0, 0.9)",
           darker: "rgba(0, 0, 0, 0.75)",
