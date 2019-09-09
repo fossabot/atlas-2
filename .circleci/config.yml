@@ -1,16 +1,78 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
 version: 2
 jobs:
-  build:
+  install:
     docker:
-      - image: "circleci/node:latest"
+      - image: circleci/node:latest
+    steps:
+      - checkout
+
+      - run:
+          name: Install dependencies
+          comman: yarn install
+  unittest:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+
+      - run:
+          name: Run unit tests
+          command: yarn test:unit
+  integrationtest:
+    docker:
+      - image: circleci/node:latest
     steps:
       - checkout
       - run:
-          name: install
-          command: npm ci
+          name: Run integration tests
+          command: yarn test:e2e:ci
+  lint:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
       - run:
-          name: validate
-          command: npm run validate
+          name: Lint files
+          command: yarn format
+  build:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
       - run:
-          name: release
-          command: echo installing semantic-release && npx -p semantic-release@15 -c 'echo running semantic-release && semantic-release'
+          name: Build
+          command: yarn build
+  typecheck:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run:
+          name: Typecheck
+          command: yarn tsc --noEmit
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - install
+      - lint:
+          requires:
+            - install
+      - typecheck:
+          requires:
+            - install
+      - build:
+          requires:
+            - lint
+            - typecheck
+      - unittest:
+          requires:
+            - build
+      - integrationtest:
+          requires:
+            - build
