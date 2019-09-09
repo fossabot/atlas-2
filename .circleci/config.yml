@@ -3,6 +3,8 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
+orbs:
+  cypress: cypress-io/cypress@1.1.0
 jobs:
   install:
     docker:
@@ -39,8 +41,8 @@ jobs:
           name: Run unit tests
           command: yarn test:unit
   integrationtest:
-    docker:
-      - image: circleci/node:latest
+    orbs:
+      - cypress: cypress-io/cypress@latest
     steps:
       - checkout
       - attach_workspace:
@@ -117,6 +119,6 @@ workflows:
       - unittest:
           requires:
             - typecheck
-      - integrationtest:
+      - cypress/run:
           requires:
             - build
