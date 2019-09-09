@@ -36,7 +36,7 @@ jobs:
 
       - run:
           name: Run unit tests
-          command: yarn test:unit
+          command: ls -al node_modules/.bin/ && yarn test:unit
   integrationtest:
     docker:
       - image: circleci/node:latest
@@ -76,7 +76,7 @@ jobs:
           at: node_modules
       - run:
           name: Typecheck
-          command: yarn tsc
+          command: yarn global add typecript && yarn tsc
   storybook:
     docker:
       - image: circleci/node:latest
@@ -86,7 +86,7 @@ jobs:
           at: node_modules/
       - run:
           name: Build storybook
-          command: yarn build:storybook
+          command: yarn storybook
 
 workflows:
   version: 2
@@ -103,12 +103,12 @@ workflows:
           requires:
             - install
             - lint
-
+            - typecheck
       - storybook:
           requires:
             - install
             - lint
-
+            - typecheck
       - unittest:
           requires:
             - install
