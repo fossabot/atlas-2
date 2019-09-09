@@ -33,7 +33,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: node_modules
+          at: .
 
       - run:
           name: Run unit tests
@@ -44,7 +44,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: node_modules
+          at: .
       - run:
           name: Run integration tests
           command: yarn test:e2e:ci
@@ -64,7 +64,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: node_modules
+          at: .
       - run:
           name: Build
           command: yarn build
@@ -74,7 +74,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: node_modules
+          at: .
       - run:
           name: Typecheck
           command: ls -al && node_modules/.bin/ && yarn tsc
@@ -84,7 +84,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: node_modules/
+          at: .
       - run:
           name: Build storybook
           command: yarn storybook
