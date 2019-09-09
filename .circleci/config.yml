@@ -47,7 +47,7 @@ jobs:
           at: .
       - run:
           name: Run integration tests
-          command: start-server-and-test serve http://localhost:5000 e2e:ci
+          command: yarn test:e2e:ci
   lint:
     docker:
       - image: circleci/node:latest
@@ -81,7 +81,7 @@ jobs:
           at: .
       - run:
           name: Typecheck
-          command: ls -al node_modules/.bin/ && yarn tsc
+          command: yarn tsc
   storybook:
     docker:
       - image: circleci/node:latest
