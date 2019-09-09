@@ -48,7 +48,7 @@ jobs:
       - run:
           name: Run integration tests
           command: |
-            cypress install
+            ./node_modules/.bin/cypress install
             yarn test:e2e:ci
   lint:
     docker:
