@@ -47,7 +47,7 @@ jobs:
           at: .
       - run:
           name: Run integration tests
-          command: yarn test:e2e:ci
+          command: start-server-and-test serve http://localhost:5000 e2e:ci
   lint:
     docker:
       - image: circleci/node:latest
@@ -68,6 +68,10 @@ jobs:
       - run:
           name: Build
           command: yarn build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist
   typecheck:
     docker:
       - image: circleci/node:latest
@@ -111,7 +115,6 @@ workflows:
       - unittest:
           requires:
             - install
-            - build
       - integrationtest:
           requires:
             - install
