@@ -23,9 +23,9 @@ jobs:
           paths:
             - ~/.cache/yarn
       - persist_to_workspace:
-          root: .
+          root: ~/pantheon
           paths:
-            - ~/pantheon/node_modules
+            - ./node_modules
   unittest:
     docker:
       - image: circleci/node:latest
