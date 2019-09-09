@@ -24,10 +24,10 @@ jobs:
           paths:
             - ~/.cache/yarn
       - persist_to_workspace:
-          root: .
+          root: ..
           paths:
-            - ../.cache
-            - node_modules
+            - .cache
+            - ./pantheon/node_modules
   unittest:
     <<: *defaults
     steps:
