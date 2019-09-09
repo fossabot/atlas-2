@@ -54,7 +54,7 @@ jobs:
           at: ~/pantheon/node_modules/
       - run:
           name: Lint files
-          command: yarn format
+          command: ls -al && yarn format
   build:
     docker:
       - image: circleci/node:latest
