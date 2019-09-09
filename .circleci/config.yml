@@ -23,7 +23,7 @@ jobs:
           paths:
             - ~/.cache/yarn
       - persist_to_workspace:
-          root: ~/pantheon
+          root: .
           paths:
             - node_modules
   unittest:
@@ -32,7 +32,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/pantheon
+          at: node_modules
 
       - run:
           name: Run unit tests
@@ -43,7 +43,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/pantheon
+          at: node_modules
       - run:
           name: Run integration tests
           command: yarn test:e2e:ci
@@ -53,7 +53,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/pantheon/node_modules
+          at: node_modules
       - run:
           name: Lint files
           command: ls -al && yarn format
@@ -63,7 +63,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/pantheon
+          at: node_modules
       - run:
           name: Build
           command: yarn build
@@ -73,7 +73,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/pantheon
+          at: node_modules
       - run:
           name: Typecheck
           command: yarn tsc
@@ -83,7 +83,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/pantheon/
+          at: node_modules/
       - run:
           name: Build storybook
           command: yarn build:storybook
