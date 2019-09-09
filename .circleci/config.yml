@@ -25,7 +25,7 @@ jobs:
       - persist_to_workspace:
           root: ~/pantheon
           paths:
-            - ./node_modules
+            - node_modules
   unittest:
     docker:
       - image: circleci/node:latest
@@ -49,6 +49,7 @@ jobs:
     docker:
       - image: circleci/node:latest
     steps:
+      - checkout
       - attach_workspace:
           at: ~/pantheon/node_modules/
       - run:
