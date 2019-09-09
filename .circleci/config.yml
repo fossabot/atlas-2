@@ -16,7 +16,7 @@ jobs:
             - yarn-packages-{{ checksum "package.json" }}
       - run:
           name: Install dependencies
-          command: yarn install && ls -al
+          command: yarn install && ls -al ./node_modules
       - save_cache:
           name: Save Yarn Package Cache
           key: yarn-packages-{{ checksum "package.json" }}
@@ -56,7 +56,7 @@ jobs:
           at: node_modules
       - run:
           name: Lint files
-          command: ls -al && yarn format
+          command: ls -al ./node_modules && yarn format
   build:
     docker:
       - image: circleci/node:latest
