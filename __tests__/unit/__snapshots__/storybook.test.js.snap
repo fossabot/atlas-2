@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Dropwndown default 1`] = `
+<div
+  className="
+    flex 
+    w-full 
+    mt-2
+    "
+>
+  <span
+    className="
+      flex
+      w-1/2
+      lg:w-1/3
+      items-center
+      bg-gray-100
+      rounded-l
+      border
+      border-r-0
+      border-grey-light
+      px-3
+      text-grey-dark
+      text-sm
+      whitespace-no-wrap
+      "
+  >
+    Test Label
+  </span>
+  <select
+    className="
+      flex-shrink
+      flex-grow
+      flex-auto
+      text-right
+      leading-normal
+      w-px
+      flex-1
+      border
+      h-8
+      border-grey-light
+      rounded
+      rounded-l-none
+      px-3
+      relative
+      focus:border-indigo-500
+      focus:outline-none
+      hover:bg-gray-200
+      "
+  >
+    <option
+      value="Option 1"
+    >
+      Option 1
+    </option>
+    <option
+      value="Option 2"
+    >
+      Option 2
+    </option>
+  </select>
+</div>
+`;
