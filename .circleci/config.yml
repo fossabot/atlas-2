@@ -8,6 +8,7 @@ jobs:
     docker:
       - image: circleci/node:latest
     working_directory: ~/pantheon
+    parallelism: 4
     steps:
       - checkout
       - restore_cache:
