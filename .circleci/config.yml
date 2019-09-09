@@ -50,7 +50,7 @@ jobs:
       - image: circleci/node:latest
     steps:
       - attach_workspace:
-          at: node_modules
+          at: ~/pantheon
       - run:
           name: Lint files
           command: ls -al && yarn format
