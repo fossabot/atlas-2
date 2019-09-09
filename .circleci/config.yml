@@ -53,7 +53,7 @@ jobs:
       - checkout
       - run:
           name: Typecheck
-          command: yarn tsc --noEmit
+          command: yarn tsc
   storybook:
     docker:
       - image: circleci/node:latest

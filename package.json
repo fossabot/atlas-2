@@ -34,7 +34,7 @@
     "test:unit": "jest",
     "test:watch": "npm run test -- --watch",
     "tsc": "tsc --noEmit",
-    "validate": "run-p --print-label format tsc build",
+    "validate": "yarn format && yarn tsc && yarn build",
     "webpack": "rm -rf ./dist && webpack --mode=development && yarn serve"
   },
   "husky": {
@@ -121,6 +121,7 @@
     "tailwindcss": "^1.1.2",
     "tailwindcss-transitions": "^2.1.0",
     "ts-jest": "^24.0.2",
+    "tsc": "^1.20150623.0",
     "typescript": "^3.4.1",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
