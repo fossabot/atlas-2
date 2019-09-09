@@ -6,9 +6,11 @@ import "../static/css/tailwind.css"
 
 import React from "react"
 import ReactDOM from "react-dom"
+import { Provider } from "react-redux"
 
 import Pantheon from "./components/pantheon"
 import { log } from "./logger"
+import store from "./redux/store"
 
 function polyfillForEach(): void {
   // @ts-ignore
@@ -20,7 +22,10 @@ function polyfillForEach(): void {
 }
 
 polyfillForEach()
+
 ReactDOM.render(
-  React.createElement(Pantheon),
+  <Provider store={store}>
+    <Pantheon />
+  </Provider>,
   document.getElementById("map-container"),
 )
