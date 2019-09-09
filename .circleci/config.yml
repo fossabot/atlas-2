@@ -26,6 +26,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
+            - ../.cache
             - node_modules
   unittest:
     <<: *defaults
