@@ -41,8 +41,8 @@ jobs:
           name: Run unit tests
           command: yarn test:unit
   integrationtest:
-    orbs:
-      - cypress: cypress-io/cypress@latest
+    docker:
+      - image: circleci/node:latest
     steps:
       - checkout
       - attach_workspace:
