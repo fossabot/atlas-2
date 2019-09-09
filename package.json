@@ -15,27 +15,27 @@
   "scripts": {
     "build": "rm -rf ./dist && yarn install && webpack --mode=production",
     "build-storybook": "build-storybook",
-    "build:css": "yarn tailwind build ./static/css/tailwind.src.css -o ./static/css/tailwind.css",
-    "buildandserve": "yarn build && yarn serve",
+    "build:css": "yarn run tailwind build ./static/css/tailwind.src.css -o ./static/css/tailwind.css",
+    "buildandserve": "yarn run build && yarn run serve",
     "dev": "webpack-dev-server --color",
     "display-browser-support": "browserslist --stats && echo '' && browserslist --coverage && echo '' && echo 'See more at https://browserl.ist/'",
     "e2e": "cypress open",
     "e2e:ci": "cypress run",
-    "format": "yarn format-package-json && yarn format-prettier && yarn lint",
+    "format": "yarn run format-package-json && yarn run format-prettier && yarn run lint",
     "format-package-json": "sort-package-json",
     "format-prettier": "prettier --write ./**/*.{js,jsx,ts,tsx,json}",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ./",
     "serve": "serve ./dist",
     "storybook": "start-storybook -p 6006",
-    "test:all": "yarn test:unit && yarn test:e2e:ci",
+    "test:all": "yarn run test:unit && yarn run test:e2e:ci",
     "test:dev": "start-server-and-test webpack http://localhost:5000 e2e:ci",
     "test:e2e": "start-server-and-test buildandserve http://localhost:5000 e2e",
     "test:e2e:ci": "start-server-and-test buildandserve http://localhost:5000 e2e:ci",
     "test:unit": "jest",
     "test:watch": "npm run test -- --watch",
     "tsc": "tsc --noEmit",
-    "validate": "yarn format && yarn tsc && yarn build",
-    "webpack": "rm -rf ./dist && webpack --mode=development && yarn serve"
+    "validate": "yarn run format && yarn run tsc && yarn run build",
+    "webpack": "rm -rf ./dist && webpack --mode=development && yarn run serve"
   },
   "husky": {
     "hooks": {

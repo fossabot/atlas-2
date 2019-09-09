@@ -12,7 +12,7 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: yarn install && yarn global add typescript
+          command: yarn install
   unittest:
     docker:
       - image: circleci/node:latest
