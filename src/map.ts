@@ -62,7 +62,7 @@ export default class Map implements MapInterface {
     this.olmap = this.buildMap()
     this.buildMarkerLayer()
     this.addControls()
-    this.addCircleSelect()
+    // this.addCircleSelect()
     this.select = this.addSelect()
     this.notification = this.addNotifications()
   }
