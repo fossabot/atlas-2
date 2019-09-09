@@ -2,7 +2,7 @@ import React from "react"
 
 import { createSelectOptions } from "./Form"
 
-interface DropdownProps {
+export interface DropdownProps {
   label: string
   options: string[]
 }

@@ -6,6 +6,7 @@ module.exports = {
     "@babel/typescript",
   ],
   plugins: [
+    "macros",
     // class { handleThing = () => { } }
     "@babel/proposal-class-properties",
     // { ...spread }
