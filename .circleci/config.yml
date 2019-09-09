@@ -24,20 +24,20 @@ jobs:
           paths:
             - ~/.cache/yarn
       - persist_to_workspace:
-          root: ~/
+          root: .
           paths:
-            - .cache/Cypress
-            - ./pantheon/node_modules
+            - node_modules
   unittest:
     <<: *defaults
     steps:
       - checkout
       - attach_workspace:
-          at: ~/
+          at: .
 
       - run:
           name: Run unit tests
           command: yarn test:unit
+
   integrationtest:
     docker:
       - image: cypress/base:10
@@ -46,25 +46,29 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/
+          at: .
       - run:
           name: Run integration tests
-          command: yarn test:e2e:ci
+          command: |
+            ./node_modules/.bin/cypress install
+            yarn test:e2e:ci
+
   lint:
     <<: *defaults
     steps:
       - checkout
       - attach_workspace:
-          at: ~/
+          at: .
       - run:
           name: Lint files
           command: yarn format
+
   build:
     <<: *defaults
     steps:
       - checkout
       - attach_workspace:
-          at: ~/
+          at: .
       - run:
           name: Build
           command: yarn build
@@ -72,21 +76,23 @@ jobs:
           root: .
           paths:
             - dist
+
   typecheck:
     <<: *defaults
     steps:
       - checkout
       - attach_workspace:
-          at: ~/
+          at: .
       - run:
           name: Typecheck
           command: yarn tsc
+
   storybook:
     <<: *defaults
     steps:
       - checkout
       - attach_workspace:
-          at: ~/
+          at: .
       - run:
           name: Build storybook
           command: yarn build:storybook
