@@ -36,7 +36,7 @@ import UI from "./ui"
  * This class handles everything to display a map.
  *
  * @export
- * @param [mapID='map-container'] The id of the `<div>` element where the map will be placed.
+ * @param [mapID='map'] The id of the `<div>` element where the map will be placed.
  * @class Map
  */
 export default class Map implements MapInterface {
@@ -50,19 +50,19 @@ export default class Map implements MapInterface {
 
   /**
    *Creates an instance of Map.
-   * @param [mapID="map-container"]
+   * @param [mapID="map"]
    * @memberof Map
    */
-  public constructor(mapID: string = "map-container") {
+  public constructor(mapID: string = "map") {
     log.debug("Initializing map", { mapID })
     this.mapID = mapID
-    this.ui = new UI(this)
+    // this.ui = new UI(this)
 
     this.jobs = []
     this.olmap = this.buildMap()
     this.buildMarkerLayer()
     this.addControls()
-    this.addCircleSelect()
+    // this.addCircleSelect()
     this.select = this.addSelect()
     this.notification = this.addNotifications()
   }
@@ -480,7 +480,7 @@ export default class Map implements MapInterface {
    * @memberof Map
    */
   private buildMarkerLayer(): void {
-    this.markerLayer = new ClusterLayer(60, this.ui)
+    this.markerLayer = new ClusterLayer(60)
     this.olmap.addLayer(this.markerLayer.animatedCluster)
   }
 
@@ -498,8 +498,9 @@ export default class Map implements MapInterface {
    * will get called and the locations will get rendered immediately.
    * @memberof Map
    */
-  private setLocations(locations: Location[], draw: boolean = false): void {
-    this.ui.updateFromLocations(locations)
+
+  public setLocations(locations: Location[], draw: boolean = false): void {
+    // this.ui.updateFromLocations(locations)
 
     this.markerLayer.addLocations(locations)
     if (draw) {

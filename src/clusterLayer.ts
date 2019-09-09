@@ -9,7 +9,6 @@ import Cluster from "ol/source/Cluster"
 import VectorSource from "ol/source/Vector"
 
 import ClusterStyle from "./styles/cluster"
-import { UserInterface } from "./types/custom_interfaces"
 import { Location } from "./types/custom_types"
 import { includes } from "./util"
 
@@ -21,13 +20,12 @@ export default class ClusterLayer implements ClusterLayer {
   private distance: number
   public clusterSource: Cluster
   public animatedCluster: BaseLayer
-  private ui: UserInterface
   /**
    *Creates an instance of ClusterLayer.
    * @param [distance=40]
    * @memberof ClusterLayer
    */
-  public constructor(distance: number = 40, ui: UserInterface) {
+  public constructor(distance: number = 40) {
     // sets up an empty cluster layer
     this.displayedLocations = []
     this.distance = distance
@@ -43,7 +41,7 @@ export default class ClusterLayer implements ClusterLayer {
       },
     })
     this.animatedCluster.setZIndex(100)
-    this.ui = ui
+    // this.ui = ui
   }
 
   /**
@@ -64,7 +62,7 @@ export default class ClusterLayer implements ClusterLayer {
     }
     this.clusterSource.getSource().addFeatures(features)
 
-    this.ui.updateActiveJobs(displayedLocations.length)
+    // this.ui.updateActiveJobs(displayedLocations.length)
   }
 
   /**

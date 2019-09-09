@@ -2,111 +2,183 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Auslandspraktika</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
+    <title>Hochschuljobbörse</title>
   </head>
 
-  <body>
-    <nav class="level">
-      <div class="level-item has-text-centered">
-        <div>
-          <p class="heading">Unternehmen</p>
-          <p class="title" id="corporationsCounter">0</p>
-        </div>
-      </div>
-      <div class="level-item has-text-centered">
-        <div>
-          <p class="heading">Alle Jobs</p>
-          <p class="title" id="allJobsCounter">0</p>
-        </div>
-      </div>
-      <div class="level-item has-text-centered">
-        <div>
-          <p class="heading">Aktive Jobs</p>
-          <p class="title" id="activeJobsCounter">0</p>
+  <body class="bg-gray-100">
+    <nav class="max-w-6xl w-full mx-auto p-6">
+      <div class="w-full flex items-center justify-between">
+        <a href="#">
+          <img src="static/img/TH_Nuernberg.jpg" />
+        </a>
+
+        <div class="flex w-1/2 justify-end content-center">
+          <a class="inline-bloc mx-4" href="#">
+            zur Hochschule
+          </a>
+          <a class="inline-block mx-4" href="#">
+            DE
+          </a>
         </div>
       </div>
     </nav>
-    <nav class="level">
-      <div class="level-item">
-        <div class="field has-addons">
-          <div class=" control has-icons-left">
-            <input
-              id="locationSearchText"
-              class="input"
-              type="text"
-              placeholder="Location Search"
-              value="Nürnberg"
-            />
-            <span class="icon is-small is-left">
-              <i class="fas fa-search"></i>
-            </span>
+    <div class="w-full h-8 bg-jb-primary"></div>
+    <div class="w-full h-32 bg-jb-gray flex justify-center items-center"></div>
+    <div class="max-w-6xl flex mx-auto">
+      <div class="-mt-24">
+        <div class="text-white bg-jb-secondary opacity-40 rounded">
+          <div class="px-4 py-1 flex justify-center">
+            <p>Duales Studium</p>
           </div>
-          <div class="control">
-            <input
-              type="submit"
-              id="locationSearchSubmit"
-              class="button is-info"
-              value="Search"
+          <div class="border-white border-t p-4">
+            <img
+              class="flex justify-center"
+              src="static/img/hs-dual-logo_white.png"
             />
+            <span class="flex justify-center mt-2">Aus Bayern in die Welt</span>
+          </div>
+          <div class="border-white border-t flex justify-center p-4">
+            <img src="static/img/logo-study_white.png" />
           </div>
         </div>
       </div>
-    </nav>
-    <div class="columns">
-      <div class="column  is-three-quarters">
-        <div
-          id="map-container"
-          style="width=100%;background-color:#1C79B5;"
-        ></div>
-      </div>
-      <div class="column" id="jobList">
-        <template id="jobTemplate">
-          <article class="media">
-            <figure class="media-left">
-              <p class="image is-64x64">
-                <img
-                  id="logo"
-                  src="https://jobs.study-work-international.de/up/fa5f2062c449c8f1c9ad8af9125387f9.2013 8324911.jpeg"
-                />
-              </p>
-            </figure>
-            <div class="media-content">
-              <div class="content">
-                <strong id="title"></strong>
-                <br />
-                <small id="corp"></small>
-                <br />
-                <small id="type"></small>
+      <div class="w-3/4 px-8">
+        <h1 class="absolute -mt-20 text-jb-primary text-4xl">
+          Hochschuljobbörse
+        </h1>
+        <div>
+          <img src="static/img/Header_TH_Nuernberg_big.jpg" />
+          <div class="bg-black flex justify-between px-16 text-thin h-10">
+            <div class="flex items-center">
+              <div>
+                <span
+                  class="bg-white border border-gray-500 tracking-widest text-lg"
+                  >8</span
+                >
+                <span
+                  class="bg-white border border-gray-500 tracking-widest text-lg -ml-1"
+                  >3</span
+                >
+                <span
+                  class="bg-white border border-gray-500 tracking-widest text-lg -ml-1"
+                  >7</span
+                >
               </div>
-              <nav class="level">
-                <div class="level-left">
-                  <a class="level-item is-small" id="webpage">www</a>
-                  <span class="level-item is-small" id="score">hello</span>
-                </div>
-              </nav>
+              <span class="uppercase text-white ml-2">Unternehmen</span>
             </div>
-          </article>
-        </template>
+            <div class="flex items-center">
+              <div>
+                <span
+                  class="bg-white border border-gray-500 tracking-widest text-lg"
+                  >5</span
+                >
+                <span class="text-white font-bold text-xl">.</span>
+                <span
+                  class="bg-white border border-gray-500 tracking-widest text-lg -ml-1"
+                  >6</span
+                >
+                <span
+                  class="bg-white border border-gray-500 tracking-widest text-lg -ml-1"
+                  >8</span
+                >
+                <span
+                  class="bg-white border border-gray-500 tracking-widest text-lg -ml-1"
+                  >8</span
+                >
+              </div>
+              <span class="uppercase text-white ml-2">Stellenanzeigen</span>
+            </div>
+            <div class="flex items-center">
+              <div>
+                <span
+                  class="bg-white border border-gray-500 tracking-widest text-lg"
+                  >4</span
+                >
+                <span
+                  class="bg-white border border-gray-500 tracking-widest text-lg -ml-1"
+                  >8</span
+                >
+                <span
+                  class="bg-white border border-gray-500 tracking-widest text-lg -ml-1"
+                  >8</span
+                >
+              </div>
+              <span class="uppercase text-white ml-2">Neue Stellen</span>
+            </div>
+          </div>
+          <h1 class="text-jb-primary text-2xl py-4">
+            Finde hier Deinen neuen Job!
+          </h1>
+          <div
+            id="map-container"
+            class="shadow-xl border border-gray-100 rounded overflow-hidden"
+          ></div>
+
+          <div
+            class="flex  border rounded border-jb-primary text-jb-primary mt-8"
+          >
+            <div class="w-1/4">
+              <div class="text-xl px-2 py-3 justify-center">
+                Career Service
+              </div>
+              <img src="static/img/career_service.jpg" />
+              <p class="font-thin p-2">
+                Alle Infos rund um Berwerbung, Vorstellungsgespräch und
+                Assessmentcenter.
+              </p>
+            </div>
+            <div class="w-1/4 border-l border-jb-primary">
+              <div class="text-xl px-2 py-3 justify-center">
+                Recruiting Events
+              </div>
+              <img class="-p-2" src="static/img/events.jpg" />
+              <p class="font-thin p-2">
+                Hier finden Sie Veranstaltungen, um mit Arbeitgebern in Kontakt
+                zu treten.
+              </p>
+            </div>
+            <div class="w-1/4 border-l border-jb-primary">
+              <div class="text-xl px-2 py-3 justify-center">
+                Unsere Partner
+              </div>
+              <img class="-p-2" src="static/img/partner.jpg" />
+              <p class="font-thin p-2">
+                Das Kooperationsmodell für Hochschulen und Universitäten.
+              </p>
+            </div>
+            <div class="w-1/4 border-l border-jb-primary">
+              <div class="text-xl px-2 py-3 justify-center">
+                Für Unternehmen
+              </div>
+              <img class="-p-2" src="static/img/unternehmen.jpg" />
+              <p class="font-thin p-2">
+                Veröffentlichen Sie Ihre Stellenanzeigen und erreichen Sie so
+                Ihre Zielgruppe.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <script type="module">
-      let pantheon = new Pantheon()
-      let sample = pantheon.initSample()
-
-      sample.jobs(1000).then(function(jobs) {
-        let map = pantheon.initMap()
-        map.setLocations(jobs, true)
-      })
-    </script>
+    <footer class="bg-jb-primary pt-2 pb-12 mt-2">
+      <div class="max-w-6xl w-full mx-auto p-6">
+        <div class="w-full flex items-center justify-between font-thin text-sm">
+          <a href="#">
+            <img class="h-12" src="static/img/TH_Nuernberg_negativ.png" />
+          </a>
+          <div class="flex w-1/2 justify-end content-center text-white">
+            <a class="inline-bloc mx-4" href="#">
+              Über uns
+            </a>
+            <a class="inline-bloc mx-4" href="#">
+              Impressum
+            </a>
+            <a class="inline-bloc mx-4" href="#">
+              Datenschutz
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

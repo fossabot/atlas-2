@@ -2,10 +2,12 @@ module.exports = {
   plugins: ["@typescript-eslint", "jest", "promise", "cypress"],
   extends: [
     "standard",
+    "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:cypress/recommended",
     "plugin:jest/recommended",
     "plugin:prettier/recommended",
+    "plugin:react/recommended",
     "prettier/@typescript-eslint",
   ],
   env: {
@@ -33,9 +35,10 @@ module.exports = {
       "error",
       { functions: false, classes: true, variables: true, typedefs: true },
     ],
+    "react/prop-types": "off",
     "no-console": "error",
     "require-jsdoc": [
-      "warn",
+      "off",
       {
         require: {
           FunctionDeclaration: true,
