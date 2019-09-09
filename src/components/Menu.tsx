@@ -1,12 +1,12 @@
 import React from "react"
 
-interface Props {
+export interface MenuProps {
   isFullscreen: boolean
   toggleModal(): void
   toggleFullscreen(): void
 }
 
-const Menu: React.FunctionComponent<Props> = props => {
+const Menu: React.FunctionComponent<MenuProps> = props => {
   return (
     <nav id="header" className="w-full bg-white border-b border-gray-400">
       <div className="w-full flex flex-no-wrap items-center justify-between mt-0 py-4">
