@@ -22,7 +22,7 @@
     "e2e": "cypress open",
     "e2e:ci": "cypress run",
     "format": "yarn format-package-json && yarn format-prettier && yarn lint",
-    "format-package-json": "sort-package-json",
+    "format-package-json": "./node_modules/.bin/sort-package-json",
     "format-prettier": "prettier --write ./**/*.{js,jsx,ts,tsx,json}",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ./",
     "serve": "serve ./dist",
