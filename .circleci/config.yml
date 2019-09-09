@@ -47,7 +47,9 @@ jobs:
           at: .
       - run:
           name: Run integration tests
-          command: yarn test:e2e:ci
+          command: |
+            cypress install
+            yarn test:e2e:ci
   lint:
     docker:
       - image: circleci/node:latest
