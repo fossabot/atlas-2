@@ -23,16 +23,16 @@ jobs:
           paths:
             - ~/.cache/yarn
       - persist_to_workspace:
-          root: ~/pantheon
+          root: ~/
           paths:
-            - node_modules
+            - pantheon
   unittest:
     docker:
       - image: circleci/node:latest
     steps:
       - checkout
       - attach_workspace:
-          at: ~/pantheon/node_modules/
+          at: ~/pantheon
 
       - run:
           name: Run unit tests
@@ -43,7 +43,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/pantheon/node_modules/
+          at: ~/pantheon
       - run:
           name: Run integration tests
           command: yarn test:e2e:ci
@@ -63,7 +63,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/pantheon/node_modules/
+          at: ~/pantheon
       - run:
           name: Build
           command: yarn build
@@ -73,7 +73,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/pantheon/node_modules/
+          at: ~/pantheon
       - run:
           name: Typecheck
           command: yarn tsc
@@ -83,7 +83,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/pantheon/node_modules/
+          at: ~/pantheon/
       - run:
           name: Build storybook
           command: yarn build:storybook
