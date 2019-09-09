@@ -33,7 +33,7 @@
     "test:e2e:ci": "start-server-and-test buildandserve http://localhost:5000 e2e:ci",
     "test:unit": "jest",
     "test:watch": "npm run test -- --watch",
-    "tsc": "tsc --noEmit",
+    "tsc": "./node_modules/.bin/tsc --noEmit",
     "validate": "yarn format && yarn tsc && yarn build",
     "webpack": "rm -rf ./dist && webpack --mode=development && yarn serve"
   },
