@@ -108,16 +108,15 @@ workflows:
             - install
       - build:
           requires:
-            - install
             - lint
+            - typecheck
       - storybook:
           requires:
-            - install
             - lint
+            - typecheck
       - unittest:
           requires:
-            - install
+            - typecheck
       - integrationtest:
           requires:
-            - install
             - build
