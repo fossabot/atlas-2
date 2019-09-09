@@ -9,12 +9,11 @@ jobs:
       - image: circleci/node:latest
     steps:
       - checkout
-
       - run:
           name: Install dependencies
           command: yarn install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: .
           paths:
             - node_modules
   unittest:
