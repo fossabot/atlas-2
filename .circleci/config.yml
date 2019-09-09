@@ -1,7 +1,3 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 
 defaults: &defaults
@@ -21,7 +17,7 @@ jobs:
             - yarn-packages-{{ checksum "package.json" }}
       - run:
           name: Install dependencies
-          command: yarn install --ignore-optional --frozen-lockfile
+          command: ls -al ..&& yarn install --ignore-optional --frozen-lockfile
       - save_cache:
           name: Save Yarn Package Cache
           key: yarn-packages-{{ checksum "package.json" }}
