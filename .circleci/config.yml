@@ -54,6 +54,14 @@ jobs:
       - run:
           name: Typecheck
           command: yarn tsc --noEmit
+  storybook:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run:
+          name: Build storybook
+          command: yarn build:storybook
 
 workflows:
   version: 2
@@ -67,6 +75,10 @@ workflows:
           requires:
             - install
       - build:
+          requires:
+            - lint
+            - typecheck
+      - storybook:
           requires:
             - lint
             - typecheck
