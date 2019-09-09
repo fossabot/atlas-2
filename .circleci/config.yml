@@ -51,7 +51,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/pantheon/node_modules/
+          at: node_modules
       - run:
           name: Lint files
           command: ls -al && yarn format
