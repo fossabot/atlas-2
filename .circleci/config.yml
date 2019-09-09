@@ -16,16 +16,16 @@ jobs:
             - yarn-packages-{{ checksum "package.json" }}
       - run:
           name: Install dependencies
-          command: npm install && ls -al
+          command: yarn install && ls -al
       - save_cache:
           name: Save Yarn Package Cache
           key: yarn-packages-{{ checksum "package.json" }}
           paths:
             - ~/.cache/yarn
       - persist_to_workspace:
-          root: ~/
+          root: ~/pantheon
           paths:
-            - pantheon
+            - node_modules
   unittest:
     docker:
       - image: circleci/node:latest
