@@ -37,7 +37,7 @@ jobs:
 
       - run:
           name: Run unit tests
-          command: ls -al node_modules/.bin/ && yarn test:unit
+          command: yarn test:unit
   integrationtest:
     docker:
       - image: circleci/node:latest
@@ -81,7 +81,7 @@ jobs:
           at: .
       - run:
           name: Typecheck
-          command: ls -al && node_modules/.bin/ && yarn tsc
+          command: ls -al node_modules/.bin/ && yarn tsc
   storybook:
     docker:
       - image: circleci/node:latest
@@ -91,7 +91,7 @@ jobs:
           at: .
       - run:
           name: Build storybook
-          command: yarn storybook
+          command: yarn build:storybook
 
 workflows:
   version: 2

@@ -16,6 +16,7 @@
     "build": "webpack --mode=production",
     "build-storybook": "build-storybook",
     "build:css": "yarn tailwind build ./static/css/tailwind.src.css -o ./static/css/tailwind.css",
+    "build:storybook": "build-storybook -c .storybook -o .out",
     "buildandserve": "yarn build && yarn serve",
     "dev": "webpack-dev-server --color",
     "display-browser-support": "browserslist --stats && echo '' && browserslist --coverage && echo '' && echo 'See more at https://browserl.ist/'",
