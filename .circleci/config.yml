@@ -104,12 +104,10 @@ workflows:
           requires:
             - install
             - lint
-            - typecheck
       - storybook:
           requires:
             - install
             - lint
-            - typecheck
       - unittest:
           requires:
             - install
