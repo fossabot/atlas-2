@@ -76,7 +76,7 @@ jobs:
           at: node_modules
       - run:
           name: Typecheck
-          command: yarn global add typecript && yarn tsc
+          command: yarn global add typescript && yarn tsc
   storybook:
     docker:
       - image: circleci/node:latest
