@@ -3,7 +3,8 @@
 import axios from "axios"
 
 import { log } from "./logger"
-import { Job } from "./types/custom_types"
+import { Job } from "./redux/jobs/types"
+
 /**
  * Random sample generator
  *

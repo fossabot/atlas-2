@@ -2,11 +2,11 @@ import { applyMiddleware, createStore } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension"
 import thunk from "redux-thunk"
 
-import rootReducer from "./reducers"
-import { User } from "./user/types"
+import { Job } from "./jobs/types"
+import rootReducer from "."
 
 export interface State {
-  users: User[]
+  allJobs: Job[]
 }
 const initialState = {}
 

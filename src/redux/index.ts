@@ -1,9 +1,9 @@
 import { combineReducers } from "redux"
 
-import userReducer from "../user/reducer"
+import jobsReducer from "./jobs/reducer"
 
 const rootReducer = combineReducers({
-  users: userReducer,
+  jobs: jobsReducer,
 })
 
 export type State = ReturnType<typeof rootReducer>

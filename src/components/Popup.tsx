@@ -1,6 +1,6 @@
 import React from "react"
 
-const Popup: React.FunctionComponent = props => {
+const Popup: React.FunctionComponent = () => {
   return (
     <div className="relative rounded-lg block flex items-center bg-gray-100 shadow-xl">
       <div className="relative w-2/5 h-full overflow-hidden rounded-t-lg rounded-t-none rounded-l-lg">
