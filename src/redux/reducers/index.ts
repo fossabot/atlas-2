@@ -1,7 +1,10 @@
 import { combineReducers } from "redux"
 
-import userReducer from "./userReducer"
+import userReducer from "../user/reducer"
 
-export default combineReducers({
+const rootReducer = combineReducers({
   users: userReducer,
 })
+
+export type State = ReturnType<typeof rootReducer>
+export default rootReducer

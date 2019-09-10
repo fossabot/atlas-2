@@ -1,8 +1,6 @@
 import React from "react"
 
-export interface PopupProps {}
-
-const Popup: React.FunctionComponent<PopupProps> = props => {
+const Popup: React.FunctionComponent = props => {
   return (
     <div className="relative rounded-lg block flex items-center bg-gray-100 shadow-xl">
       <div className="relative w-2/5 h-full overflow-hidden rounded-t-lg rounded-t-none rounded-l-lg">

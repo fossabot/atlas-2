@@ -1,53 +1,59 @@
 import Proptypes from "prop-types"
-import React, { useEffect } from "react"
+import React, { useLayoutEffect } from "react"
 import { connect } from "react-redux"
+import { Dispatch } from "redux"
 
 import MapClass from "../map"
-import { fetchUsers } from "../redux/actions/userActions"
+import { fetchUsers } from "../redux/user/actions"
+import { User } from "../redux/user/types"
 import Sample from "../sample"
 import { Location } from "../types/custom_types"
 
-interface MapProps {
+interface DispatchProps {
   fetchUsers: () => void
-  users?: any
 }
 
-const Map: React.FunctionComponent<MapProps> = props => {
+interface StateProps {
+  users: User[]
+}
+interface OwnProps {}
+type Props = StateProps & DispatchProps
+
+const Map: React.FunctionComponent<Props> = props => {
   // Wrapping it in useEffect will only render it once and not on every update.
-  useEffect(() => {
+  useLayoutEffect(() => {
     const sample = new Sample()
 
     sample.jobs(1000).then(jobs => {
       const map = new MapClass("map")
       map.setLocations(jobs as Location[], true)
     })
-
     props.fetchUsers()
   }, [])
-
+  console.log(props.users)
   return (
     <div>
-      {// @ts-ignore
-      props.users.map(user => (
-        <div key={user.id}>
-          <h3>{user.name}</h3>
-        </div>
-      ))}
+      <h1>HELLO {JSON.stringify(props.users)}</h1>
+      {props.users.length > 0 &&
+        props.users.map(user => (
+          <div key={user.id}>
+            <h3>{user.name}</h3>
+          </div>
+        ))}
       <div id="map"></div>
     </div>
   )
 }
 
-Map.propTypes = {
-  fetchUsers: Proptypes.func.isRequired,
-  users: Proptypes.array.isRequired,
-}
+const mapStateToProps = (state: StateProps): StateProps => ({
+  users: state.users,
+})
 
-const mapStateToProps: any = (state: any) => ({
-  users: state.users.items,
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+  fetchUsers: () => dispatch(fetchUsers()),
 })
 
 export default connect(
   mapStateToProps,
-  { fetchUsers },
+  mapDispatchToProps,
 )(Map)
