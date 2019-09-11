@@ -2134,6 +2134,37 @@ exports[`Storyshots Modal with Form 1`] = `
 </div>
 `;
 
+exports[`Storyshots Notification default 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <li
+    className="w-full p-4 m-4 bg-gray-400"
+  >
+    <span
+      className="text-lg font-bold pb-4"
+    >
+      SOMETHING_ELSE
+    </span>
+    <p
+      className="leading-tight"
+    >
+      My Placeholder
+    </p>
+    <button
+      className="p-4 bg-red-600"
+      onClick={[Function]}
+    >
+      x
+    </button>
+  </li>
+</div>
+`;
+
 exports[`Storyshots Notification error 1`] = `
 <div
   style={
@@ -2142,8 +2173,8 @@ exports[`Storyshots Notification error 1`] = `
     }
   }
 >
-  <div
-    className="w-full p-4 m-4 shadow-lg bg-red-400"
+  <li
+    className="w-full p-4 m-4 bg-red-400"
   >
     <span
       className="text-lg font-bold pb-4"
@@ -2153,9 +2184,15 @@ exports[`Storyshots Notification error 1`] = `
     <p
       className="leading-tight"
     >
-      Some short content
+      My Placeholder
     </p>
-  </div>
+    <button
+      className="p-4 bg-red-600"
+      onClick={[Function]}
+    >
+      x
+    </button>
+  </li>
 </div>
 `;
 
@@ -2167,8 +2204,8 @@ exports[`Storyshots Notification info 1`] = `
     }
   }
 >
-  <div
-    className="w-full p-4 m-4 shadow-lg bg-blue-400"
+  <li
+    className="w-full p-4 m-4 bg-blue-400"
   >
     <span
       className="text-lg font-bold pb-4"
@@ -2178,9 +2215,15 @@ exports[`Storyshots Notification info 1`] = `
     <p
       className="leading-tight"
     >
-      Some short content
+      My Placeholder
     </p>
-  </div>
+    <button
+      className="p-4 bg-red-600"
+      onClick={[Function]}
+    >
+      x
+    </button>
+  </li>
 </div>
 `;
 
@@ -2192,8 +2235,8 @@ exports[`Storyshots Notification success 1`] = `
     }
   }
 >
-  <div
-    className="w-full p-4 m-4 shadow-lg bg-green-400"
+  <li
+    className="w-full p-4 m-4 bg-green-400"
   >
     <span
       className="text-lg font-bold pb-4"
@@ -2203,9 +2246,15 @@ exports[`Storyshots Notification success 1`] = `
     <p
       className="leading-tight"
     >
-      Some short content
+      My Placeholder
     </p>
-  </div>
+    <button
+      className="p-4 bg-red-600"
+      onClick={[Function]}
+    >
+      x
+    </button>
+  </li>
 </div>
 `;
 
@@ -2217,8 +2266,8 @@ exports[`Storyshots Notification warn 1`] = `
     }
   }
 >
-  <div
-    className="w-full p-4 m-4 shadow-lg bg-orange-400"
+  <li
+    className="w-full p-4 m-4 bg-orange-400"
   >
     <span
       className="text-lg font-bold pb-4"
@@ -2228,9 +2277,15 @@ exports[`Storyshots Notification warn 1`] = `
     <p
       className="leading-tight"
     >
-      Some short content
+      My Placeholder
     </p>
-  </div>
+    <button
+      className="p-4 bg-red-600"
+      onClick={[Function]}
+    >
+      x
+    </button>
+  </li>
 </div>
 `;
 
