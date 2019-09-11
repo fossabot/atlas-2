@@ -2134,6 +2134,106 @@ exports[`Storyshots Modal with Form 1`] = `
 </div>
 `;
 
+exports[`Storyshots Notification error 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="w-full p-4 m-4 shadow-lg bg-red-400"
+  >
+    <span
+      className="text-lg font-bold pb-4"
+    >
+      ERROR
+    </span>
+    <p
+      className="leading-tight"
+    >
+      Some short content
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Notification info 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="w-full p-4 m-4 shadow-lg bg-blue-400"
+  >
+    <span
+      className="text-lg font-bold pb-4"
+    >
+      INFO
+    </span>
+    <p
+      className="leading-tight"
+    >
+      Some short content
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Notification success 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="w-full p-4 m-4 shadow-lg bg-green-400"
+  >
+    <span
+      className="text-lg font-bold pb-4"
+    >
+      SUCCESS
+    </span>
+    <p
+      className="leading-tight"
+    >
+      Some short content
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Notification warn 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="w-full p-4 m-4 shadow-lg bg-orange-400"
+  >
+    <span
+      className="text-lg font-bold pb-4"
+    >
+      WARN
+    </span>
+    <p
+      className="leading-tight"
+    >
+      Some short content
+    </p>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Popup default 1`] = `
 <div
   style={

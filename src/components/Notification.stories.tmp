@@ -1,0 +1,26 @@
+import { storiesOf } from "@storybook/react"
+import React from "react"
+
+import Notification, { NotificationProps } from "./Notification"
+
+export const data: NotificationProps = {
+  level: "INFO",
+  content: "My Placeholder",
+}
+export const actions = {}
+
+storiesOf("Notification", module)
+  .addDecorator(story => <div style={{ padding: "3rem" }}>{story()}</div>)
+
+  .add("info", () => (
+    <Notification level="INFO" content="Some short content" {...actions} />
+  ))
+  .add("warn", () => (
+    <Notification level="WARN" content="Some short content" {...actions} />
+  ))
+  .add("error", () => (
+    <Notification level="ERROR" content="Some short content" {...actions} />
+  ))
+  .add("success", () => (
+    <Notification level="SUCCESS" content="Some short content" {...actions} />
+  ))

@@ -2,8 +2,6 @@ import { Map as OLMap } from "ol"
 import Bar from "ol-ext/control/Bar"
 import Button from "ol-ext/control/Button"
 import LayerPopup from "ol-ext/control/LayerPopup"
-import Notification from "ol-ext/control/Notification"
-import SearchFeature from "ol-ext/control/SearchFeature"
 import Crop from "ol-ext/filter/Crop"
 import Mask from "ol-ext/filter/Mask"
 import { Attribution, defaults } from "ol/control.js"
@@ -64,20 +62,6 @@ export default class Map implements MapInterface {
     this.addControls()
     // this.addCircleSelect()
     this.select = this.addSelect()
-    this.notification = this.addNotifications()
-  }
-
-  /**
-   * Adds the functionality to display notifications.
-   * Should be called in the constructor.
-   *
-   * @returns
-   * @memberof Map
-   */
-  private addNotifications(): OLNotification {
-    const notification: OLNotification = new Notification()
-    this.olmap.addControl(notification)
-    return notification
   }
 
   /**
@@ -87,7 +71,7 @@ export default class Map implements MapInterface {
    * @memberof Map
    */
   private notify(text: string): void {
-    this.notification.show(text)
+    //this.notification.show(text)
   }
 
   /**
@@ -101,7 +85,6 @@ export default class Map implements MapInterface {
     const mainbar = new Bar()
     mainbar.setPosition("left-top")
 
-    mainbar.addControl(this.featureSearch())
     this.olmap.addControl(new FullScreen())
     this.olmap.addControl(mainbar)
     mainbar.addControl(this.selectRemoveButton())
@@ -157,27 +140,6 @@ export default class Map implements MapInterface {
     if (typeof layer !== "undefined") {
       this.olmap.removeLayer(layer)
     }
-  }
-
-  /**
-   * Adds the feature search.
-   * The user can search the displayed markers and
-   *
-   * @returns
-   * @memberof Map
-   */
-  private featureSearch(): OLFeature {
-    const search = new SearchFeature({
-      source: this.markerLayer.clusterSource.getSource(),
-      property: "search",
-    })
-
-    search.on("select", (e: any) => {
-      const center = e.search.getGeometry().getFirstCoordinate()
-      this.zoomTo(center)
-    })
-
-    return search
   }
 
   /**
