@@ -1,9 +1,7 @@
 import { storiesOf } from "@storybook/react"
 import React from "react"
-import { Provider } from "react-redux"
 
 import { Notification as NotificationInterface } from "../redux/notifications/types"
-import store from "../redux/store"
 import Notification from "./Notification"
 
 export const data: Record<string, NotificationInterface> = {
@@ -36,7 +34,6 @@ export const data: Record<string, NotificationInterface> = {
 export const actions = {}
 
 storiesOf("Notification", module)
-  .addDecorator(story => <Provider store={store}>{story()}</Provider>)
   .addDecorator(story => <div style={{ padding: "3rem" }}>{story()}</div>)
   .add("default", () => (
     <Notification notification={data.default} {...actions} />
