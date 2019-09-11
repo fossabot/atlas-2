@@ -1,5 +1,14 @@
 module.exports = {
-  plugins: ["@typescript-eslint", "jest", "promise", "cypress"],
+  /*
+  settings configuration from here:
+  https://github.com/yannickcr/eslint-plugin-react#configura
+*/
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
+  plugins: ["@typescript-eslint", "jest", "promise", "cypress", "react"],
   extends: [
     "standard",
     "eslint:recommended",
