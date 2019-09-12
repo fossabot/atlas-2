@@ -15,9 +15,9 @@ export const data: Record<string, NotificationInterface> = {
     level: "INFO",
     content: "My Placeholder",
   },
-  warn: {
+  warning: {
     id: 0,
-    level: "WARN",
+    level: "WARNING",
     content: "My Placeholder",
   },
   error: {
@@ -39,7 +39,9 @@ storiesOf("Notification", module)
     <Notification notification={data.default} {...actions} />
   ))
   .add("info", () => <Notification notification={data.info} {...actions} />)
-  .add("warn", () => <Notification notification={data.warn} {...actions} />)
+  .add("warning", () => (
+    <Notification notification={data.warning} {...actions} />
+  ))
   .add("error", () => <Notification notification={data.error} {...actions} />)
   .add("success", () => (
     <Notification notification={data.success} {...actions} />

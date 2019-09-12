@@ -2143,24 +2143,35 @@ exports[`Storyshots Notification default 1`] = `
   }
 >
   <li
-    className="w-full p-4 m-4 bg-gray-400"
+    className="w-full p-4 m-4 list-none flex justify-between bg-gray-400"
   >
-    <span
-      className="text-lg font-bold pb-4"
-    >
-      SOMETHING_ELSE
-    </span>
-    <p
-      className="leading-tight"
-    >
-      My Placeholder
-    </p>
-    <button
-      className="p-4 bg-red-600"
+    <div>
+      <span
+        className="text-lg font-bold pb-4"
+      >
+        SOMETHING_ELSE
+      </span>
+      <p
+        className="leading-tight"
+      >
+        My Placeholder
+      </p>
+    </div>
+    <a
+      className="text-gray-900 no-underline hover:text-gray-400 "
+      href="#"
       onClick={[Function]}
     >
-      x
-    </button>
+      <svg
+        className="h-8 py-2 px-4"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"
+        />
+      </svg>
+    </a>
   </li>
 </div>
 `;
@@ -2174,24 +2185,35 @@ exports[`Storyshots Notification error 1`] = `
   }
 >
   <li
-    className="w-full p-4 m-4 bg-red-400"
+    className="w-full p-4 m-4 list-none flex justify-between bg-red-400"
   >
-    <span
-      className="text-lg font-bold pb-4"
-    >
-      ERROR
-    </span>
-    <p
-      className="leading-tight"
-    >
-      My Placeholder
-    </p>
-    <button
-      className="p-4 bg-red-600"
+    <div>
+      <span
+        className="text-lg font-bold pb-4"
+      >
+        ERROR
+      </span>
+      <p
+        className="leading-tight"
+      >
+        My Placeholder
+      </p>
+    </div>
+    <a
+      className="text-gray-900 no-underline hover:text-gray-400 "
+      href="#"
       onClick={[Function]}
     >
-      x
-    </button>
+      <svg
+        className="h-8 py-2 px-4"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"
+        />
+      </svg>
+    </a>
   </li>
 </div>
 `;
@@ -2205,24 +2227,35 @@ exports[`Storyshots Notification info 1`] = `
   }
 >
   <li
-    className="w-full p-4 m-4 bg-blue-400"
+    className="w-full p-4 m-4 list-none flex justify-between bg-blue-400"
   >
-    <span
-      className="text-lg font-bold pb-4"
-    >
-      INFO
-    </span>
-    <p
-      className="leading-tight"
-    >
-      My Placeholder
-    </p>
-    <button
-      className="p-4 bg-red-600"
+    <div>
+      <span
+        className="text-lg font-bold pb-4"
+      >
+        INFO
+      </span>
+      <p
+        className="leading-tight"
+      >
+        My Placeholder
+      </p>
+    </div>
+    <a
+      className="text-gray-900 no-underline hover:text-gray-400 "
+      href="#"
       onClick={[Function]}
     >
-      x
-    </button>
+      <svg
+        className="h-8 py-2 px-4"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"
+        />
+      </svg>
+    </a>
   </li>
 </div>
 `;
@@ -2236,29 +2269,40 @@ exports[`Storyshots Notification success 1`] = `
   }
 >
   <li
-    className="w-full p-4 m-4 bg-green-400"
+    className="w-full p-4 m-4 list-none flex justify-between bg-green-400"
   >
-    <span
-      className="text-lg font-bold pb-4"
-    >
-      SUCCESS
-    </span>
-    <p
-      className="leading-tight"
-    >
-      My Placeholder
-    </p>
-    <button
-      className="p-4 bg-red-600"
+    <div>
+      <span
+        className="text-lg font-bold pb-4"
+      >
+        SUCCESS
+      </span>
+      <p
+        className="leading-tight"
+      >
+        My Placeholder
+      </p>
+    </div>
+    <a
+      className="text-gray-900 no-underline hover:text-gray-400 "
+      href="#"
       onClick={[Function]}
     >
-      x
-    </button>
+      <svg
+        className="h-8 py-2 px-4"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"
+        />
+      </svg>
+    </a>
   </li>
 </div>
 `;
 
-exports[`Storyshots Notification warn 1`] = `
+exports[`Storyshots Notification warning 1`] = `
 <div
   style={
     Object {
@@ -2267,24 +2311,35 @@ exports[`Storyshots Notification warn 1`] = `
   }
 >
   <li
-    className="w-full p-4 m-4 bg-orange-400"
+    className="w-full p-4 m-4 list-none flex justify-between bg-orange-400"
   >
-    <span
-      className="text-lg font-bold pb-4"
-    >
-      WARN
-    </span>
-    <p
-      className="leading-tight"
-    >
-      My Placeholder
-    </p>
-    <button
-      className="p-4 bg-red-600"
+    <div>
+      <span
+        className="text-lg font-bold pb-4"
+      >
+        WARNING
+      </span>
+      <p
+        className="leading-tight"
+      >
+        My Placeholder
+      </p>
+    </div>
+    <a
+      className="text-gray-900 no-underline hover:text-gray-400 "
+      href="#"
       onClick={[Function]}
     >
-      x
-    </button>
+      <svg
+        className="h-8 py-2 px-4"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"
+        />
+      </svg>
+    </a>
   </li>
 </div>
 `;
