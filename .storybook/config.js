@@ -3,8 +3,10 @@ import "../static/css/ol.css"
 import "../static/css/tailwind.css"
 import "./storybook.css"
 
-import { configure } from "@storybook/react"
+import { addDecorator, configure } from "@storybook/react"
 import requireContext from "require-context.macro"
+
+import { withProvider } from "./decorators"
 
 const req = requireContext("../src", true, /\.stories.tsx$/)
 
@@ -13,3 +15,5 @@ function loadStories() {
 }
 
 configure(loadStories, module)
+
+addDecorator(withProvider)

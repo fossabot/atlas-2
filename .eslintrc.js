@@ -1,14 +1,23 @@
 module.exports = {
-  plugins: ["@typescript-eslint", "jest", "promise", "cypress"],
+  /*
+  settings configuration from here:
+  https://github.com/yannickcr/eslint-plugin-react#configura
+*/
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
+  plugins: ["@typescript-eslint", "jest", "promise", "react", "testcafe"],
   extends: [
     "standard",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:cypress/recommended",
     "plugin:jest/recommended",
     "plugin:prettier/recommended",
     "plugin:react/recommended",
     "prettier/@typescript-eslint",
+    "plugin:testcafe/recommended",
   ],
   env: {
     node: true,
@@ -16,6 +25,8 @@ module.exports = {
     jest: true,
   },
   rules: {
+    "@typescript-eslint/ban-ts-ignore": "warn",
+    "@typescript-eslint/no-empty-function": "warn",
     "@typescript-eslint/no-explicit-any": "off",
     "prettier/prettier": "error",
     // Too restrictive, writing ugly code to defend against a very unlikely scenario: https://eslint.org/docs/rules/no-prototype-builtins

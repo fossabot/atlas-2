@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
-import { LogObject } from "./types/custom_types"
+
+import { LogObject } from "../types/custom_types"
 
 /**
  * @description Custom logger
@@ -14,10 +15,10 @@ class Logger {
   public constructor() {
     switch (process.env.NODE_ENV) {
       case "production":
-        this.disableConsole(["log", "debug", "info"])
+        this.disableConsole()
         break
       case "test":
-        this.disableConsole(["debug"])
+        this.disableConsole()
         break
       default:
         this.info("Development mode detected, verbose-logging enabled.")
@@ -28,15 +29,14 @@ class Logger {
   /**
    * @description Disables all console output for production.
    * possible methods are: ["log", "debug", "info", "warn", error"]
-   * @param {string[]} [methods=["log", "debug", "info", "warn", "error"]]
    * @memberof Atlas
    */
-  private disableConsole(
-    methods: string[] = ["log", "debug", "info", "warn", "error"],
-  ): void {
-    for (const method of methods) {
-      // @ts-ignore
-      console[method] = function() {}
+  private disableConsole(): void {
+    if (window) {
+      window.console.log = () => {}
+      window.console.warn = () => {}
+      window.console.error = () => {}
+      window.console.debug = () => {}
     }
   }
 

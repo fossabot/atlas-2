@@ -2,8 +2,9 @@
 
 import axios from "axios"
 
+import { Job } from "../redux/jobs/types"
 import { log } from "./logger"
-import { Job } from "./types/custom_types"
+
 /**
  * Random sample generator
  *
@@ -40,7 +41,7 @@ export default class Sample {
           })
         }
         const elapsedTime = Number(new Date()) - Number(startTime)
-        log.info(`Generating ${jobs.length} jobs took ${elapsedTime} ms.`)
+        log.debug(`Generating ${jobs.length} jobs took ${elapsedTime} ms.`)
         return jobs
       })
   }
@@ -51,7 +52,7 @@ export default class Sample {
    * @returns
    * @memberof Sample
    */
-  private generateString(length: number = 4): string {
+  private generateString(length = 4): string {
     let result = ""
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     for (let i = 0; i < length; i++) {

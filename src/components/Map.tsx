@@ -1,21 +1,99 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
+import { connect } from "react-redux"
+import { ThunkDispatch } from "redux-thunk"
 
-import MapClass from "../map"
-import Sample from "../sample"
-import { Location } from "../types/custom_types"
+import { log } from "../lib/logger"
+import MapClass from "../lib/map"
+import Nominatim from "../lib/nominatim"
+import { fetchJobs } from "../redux/jobs/actions"
+import { Job } from "../redux/jobs/types"
 
-const Map: React.FunctionComponent = () => {
-  // Wrapping it in useEffect will only render it once and not on every update.
+interface DispatchProps {
+  fetchJobs: () => void
+}
+
+interface StateProps {
+  jobs: {
+    allJobs: Job[]
+  }
+  search: {
+    query: string
+  }
+}
+
+// interface OwnProps {}
+type Props = StateProps & DispatchProps
+
+const Map: React.FunctionComponent<Props> = props => {
+  const [isLoading, setLoading] = useState(false)
+  const [isRendered, setIsRendered] = useState(false)
+  const [map, setMap] = useState()
+  /*
+    Render map
+  */
   useEffect(() => {
-    const sample = new Sample()
-
-    sample.jobs(1000).then(jobs => {
-      const map = new MapClass("map")
-      map.setLocations(jobs as Location[], true)
-    })
+    setMap(new MapClass("map"))
+    setIsRendered(true)
   }, [])
+  /*
+    Fetching Nominatim data
+  */
+
+  useEffect(() => {
+    const fetchNominatim = async (): Promise<void> => {
+      if (props.search.query.length > 0) {
+        const nominatim = new Nominatim()
+
+        setLoading(true)
+        const { result, success } = await nominatim.forwardSearch(
+          props.search.query,
+        )
+        if (success && typeof result !== "undefined") {
+          if (isRendered) {
+            const layer = map.featureLayerFromGeoJson(result.geojson)
+            map.zoomToLayer(layer)
+          }
+        }
+        setLoading(false)
+      }
+    }
+    fetchNominatim()
+  }, [props.search.query])
+
+  /*
+    Fetching jobs
+  */
+  useEffect(() => {
+    props.fetchJobs()
+
+    return () => {}
+  }, [])
+
+  useEffect(() => {
+    const locations = props.jobs.allJobs
+    log.info("This is the map object", map)
+    if (locations.length > 0) {
+      log.debug("Settings locations", locations)
+      map.setLocations(locations, true)
+    } else {
+      log.warn("There are no jobs to be displayed", locations)
+    }
+  }, [props.jobs, isRendered])
 
   return <div id="map"></div>
 }
+const mapStateToProps = (state: StateProps): StateProps => ({
+  jobs: state.jobs,
+  search: state.search,
+})
 
-export default Map
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<{}, {}, any>,
+): DispatchProps => ({
+  fetchJobs: () => dispatch(fetchJobs()),
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Map)

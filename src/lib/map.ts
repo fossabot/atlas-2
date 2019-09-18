@@ -2,8 +2,6 @@ import { Map as OLMap } from "ol"
 import Bar from "ol-ext/control/Bar"
 import Button from "ol-ext/control/Button"
 import LayerPopup from "ol-ext/control/LayerPopup"
-import Notification from "ol-ext/control/Notification"
-import SearchFeature from "ol-ext/control/SearchFeature"
 import Crop from "ol-ext/filter/Crop"
 import Mask from "ol-ext/filter/Mask"
 import { Attribution, defaults } from "ol/control.js"
@@ -22,13 +20,12 @@ import VectorSource from "ol/source/Vector"
 import { Fill, Stroke, Style } from "ol/style.js"
 import View from "ol/View"
 
+import PolygonStyle from "../styles/polygon"
+import { MapInterface } from "../types/custom_interfaces"
+import { Job, Location } from "../types/custom_types"
+import { OLFeature, OLLayer, OLNotification, OLSelect } from "../types/ol_types"
 import ClusterLayer from "./clusterLayer"
 import { log } from "./logger"
-import PolygonStyle from "./styles/polygon"
-import { MapInterface } from "./types/custom_interfaces"
-import { Job, Location } from "./types/custom_types"
-import { OLFeature, OLLayer, OLNotification, OLSelect } from "./types/ol_types"
-import UI from "./ui"
 
 /**
  * OpenLayers Map
@@ -46,14 +43,13 @@ export default class Map implements MapInterface {
   public notification: OLNotification
   public olmap: OLMap
   private select: OLSelect
-  public ui: UI
 
   /**
    *Creates an instance of Map.
    * @param [mapID="map"]
    * @memberof Map
    */
-  public constructor(mapID: string = "map") {
+  public constructor(mapID = "map") {
     log.debug("Initializing map", { mapID })
     this.mapID = mapID
     // this.ui = new UI(this)
@@ -64,20 +60,6 @@ export default class Map implements MapInterface {
     this.addControls()
     // this.addCircleSelect()
     this.select = this.addSelect()
-    this.notification = this.addNotifications()
-  }
-
-  /**
-   * Adds the functionality to display notifications.
-   * Should be called in the constructor.
-   *
-   * @returns
-   * @memberof Map
-   */
-  private addNotifications(): OLNotification {
-    const notification: OLNotification = new Notification()
-    this.olmap.addControl(notification)
-    return notification
   }
 
   /**
@@ -87,7 +69,7 @@ export default class Map implements MapInterface {
    * @memberof Map
    */
   private notify(text: string): void {
-    this.notification.show(text)
+    // this.notification.show(text)
   }
 
   /**
@@ -101,7 +83,6 @@ export default class Map implements MapInterface {
     const mainbar = new Bar()
     mainbar.setPosition("left-top")
 
-    mainbar.addControl(this.featureSearch())
     this.olmap.addControl(new FullScreen())
     this.olmap.addControl(mainbar)
     mainbar.addControl(this.selectRemoveButton())
@@ -160,34 +141,13 @@ export default class Map implements MapInterface {
   }
 
   /**
-   * Adds the feature search.
-   * The user can search the displayed markers and
-   *
-   * @returns
-   * @memberof Map
-   */
-  private featureSearch(): OLFeature {
-    const search = new SearchFeature({
-      source: this.markerLayer.clusterSource.getSource(),
-      property: "search",
-    })
-
-    search.on("select", (e: any) => {
-      const center = e.search.getGeometry().getFirstCoordinate()
-      this.zoomTo(center)
-    })
-
-    return search
-  }
-
-  /**
    * Moves the map to the specified coordinates and sets the zoomlevel.
    *
    * @param {*} center
    * @param {*} [zoom=-1]
    * @memberof Map
    */
-  private zoomTo(center: number[], zoom: number = 16): void {
+  private zoomTo(center: number[], zoom = 16): void {
     log.debug("Zooming", { center, zoom })
     this.olmap.getView().animate({
       center: center,
@@ -287,7 +247,7 @@ export default class Map implements MapInterface {
    * @returns
    * @memberof Map
    */
-  public featureLayerFromGeoJson(geojson: JSON): VectorLayer {
+  public featureLayerFromGeoJson(geojson: any): VectorLayer {
     const layer = new VectorLayer({
       source: new VectorSource({
         features: new GeoJSON().readFeatures(geojson, {
@@ -333,11 +293,11 @@ export default class Map implements MapInterface {
    */
   private getLayerByName(name: string): OLLayer | undefined {
     const layers = this.olmap.getLayers()
-    for (const layer of layers.get("array_")) {
+    layers.forEach(layer => {
       if (layer.get("name") === name) {
         return layer
       }
-    }
+    })
     return undefined
   }
 
@@ -499,9 +459,9 @@ export default class Map implements MapInterface {
    * @memberof Map
    */
 
-  public setLocations(locations: Location[], draw: boolean = false): void {
+  public setLocations(locations: Location[], draw = false): void {
     // this.ui.updateFromLocations(locations)
-
+    log.info("Setting locations", locations)
     this.markerLayer.addLocations(locations)
     if (draw) {
       this.markerLayer.drawLocations()

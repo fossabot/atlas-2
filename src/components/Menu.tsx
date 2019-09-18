@@ -1,4 +1,7 @@
 import React from "react"
+import { connect } from "react-redux"
+
+import { setSearch } from "../redux/search/actions"
 
 export interface MenuProps {
   isFullscreen: boolean
@@ -6,7 +9,26 @@ export interface MenuProps {
   toggleFullscreen(): void
 }
 
-const Menu: React.FunctionComponent<MenuProps> = props => {
+interface DispatchProps {
+  search: (search: string) => void
+}
+
+interface StateProps {
+  search: string
+}
+// interface OwnProps {}
+type Props = StateProps & DispatchProps & MenuProps
+
+const Menu: React.FunctionComponent<Props> = props => {
+  const getSearchValue = (): string => {
+    const searchForm = document.getElementById("searchForm") as HTMLInputElement
+    if (searchForm) {
+      return searchForm.value
+    } else {
+      return ""
+    }
+  }
+
   return (
     <nav id="header" className="w-full bg-white border-b border-gray-400">
       <div className="w-full flex flex-no-wrap items-center justify-between mt-0 py-4">
@@ -24,10 +46,12 @@ const Menu: React.FunctionComponent<MenuProps> = props => {
         >
           <div className="flex-1 w-full mx-auto max-w-sm content-center py-4 lg:py-0">
             <div className="relative pull-right pl-4 pr-4 md:pr-0">
-              <input
-                type="search"
-                placeholder="Search"
-                className="w-full 
+              <div className="flex">
+                <input
+                  id="searchForm"
+                  type="search"
+                  defaultValue="Nürnberg"
+                  className="w-full 
                 flex-shrink
                 flex-grow
                 flex-auto
@@ -45,7 +69,15 @@ const Menu: React.FunctionComponent<MenuProps> = props => {
                 focus:outline-none
                 hover:bg-gray-200
                 "
-              ></input>
+                ></input>
+                <button
+                  onClick={() => {
+                    props.search(getSearchValue())
+                  }}
+                >
+                  Search
+                </button>
+              </div>
               <div
                 className="absolute search-icon"
                 style={{ top: "0.5rem", left: "1.5rem" }}
@@ -95,5 +127,15 @@ const Menu: React.FunctionComponent<MenuProps> = props => {
     </nav>
   )
 }
+const mapStateToProps = (state: StateProps): StateProps => ({
+  search: state.search,
+})
 
-export default Menu
+const mapDispatchToProps = (dispatch: any): DispatchProps => ({
+  search: (search: string) => dispatch(setSearch(search)),
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Menu)

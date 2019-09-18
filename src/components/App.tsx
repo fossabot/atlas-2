@@ -1,19 +1,33 @@
 // ESLint exception rule for NodeList
 
 import React, { useState } from "react"
+import { connect } from "react-redux"
 
+import { Job } from "../redux/jobs/types"
+import { addNotification } from "../redux/notifications/actions"
+import { NotificationActionTypes } from "../redux/notifications/types"
 import Form from "./Form"
 import Map from "./Map"
 import Menu from "./Menu"
 import Modal from "./Modal"
+import Notifications from "./Notifications"
 
 interface State {
   modal: { isShowing: boolean }
   isFullsceen: boolean
 }
 
-const Pantheon: React.FunctionComponent = () => {
-  let [state, setState] = useState({
+interface DispatchProps {
+  addNotification: (level: string, content: string) => NotificationActionTypes
+}
+interface StateProps {
+  jobs: Job[]
+}
+
+type Props = DispatchProps & StateProps
+
+const App: React.FunctionComponent<Props> = props => {
+  const [state, setState] = useState({
     modal: { isShowing: false },
     isFullscreen: false,
   })
@@ -31,6 +45,10 @@ const Pantheon: React.FunctionComponent = () => {
     }))
   }
 
+  function notify(): void {
+    props.addNotification("INFO", "Hello, World!")
+  }
+
   return (
     <div
       className={
@@ -40,6 +58,8 @@ const Pantheon: React.FunctionComponent = () => {
       }
     >
       <div>
+        <button onClick={notify}>Dispatch</button>
+        <Notifications></Notifications>
         <Menu
           isFullscreen={state.isFullscreen}
           toggleModal={toggleModal}
@@ -56,4 +76,16 @@ const Pantheon: React.FunctionComponent = () => {
   )
 }
 
-export default Pantheon
+const mapDispatchToProps = (dispatch: any): DispatchProps => ({
+  addNotification: (level: string, content: string) =>
+    dispatch(addNotification(level, content)),
+})
+
+const mapStateToProps = (state: StateProps): StateProps => ({
+  jobs: state.jobs,
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App)

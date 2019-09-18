@@ -4,10 +4,10 @@ import { Stroke, Style, Text } from "ol/style.js"
 import Fill from "ol/style/Fill"
 import RegularShape from "ol/style/RegularShape"
 
-import { log } from "../logger"
+import { log } from "../lib/logger"
+import { bound } from "../lib/util"
 import { Location } from "../types/custom_types"
 import { OLFeature, OLStyle } from "../types/ol_types"
-import { bound } from "../util"
 
 /**
  * Handles definition of a style for clusters.
@@ -62,7 +62,7 @@ export default class ClusterStyle {
    * colorByScore(0.75)
    * // returns '#881AC1'
    */
-  private colorByScore(score: number, minScore: number = 0.5): string {
+  private colorByScore(score: number, minScore = 0.5): string {
     log.debug("Calculating color by score")
     if (score < 0 || score > 1) {
       throw new RangeError("score must be between 0 and 1, including 0 and 1.")

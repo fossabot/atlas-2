@@ -1,6 +1,10 @@
 import axios from "axios"
 
-import { log } from "./logger"
+interface Result {
+  geojson: Record<string, any>
+  lat: number
+  lon: number
+}
 
 /**
  * @description Nominatim API
@@ -47,15 +51,17 @@ export default class Nominatim {
    * @returns {({ [key: string]: string | number })}
    * @memberof Nominatim
    */
-  private cleanJson(jsonData: Record<string, any>): Record<string, any> {
+  private cleanJson(jsonData: Record<string, any>): Result {
     if (jsonData.length >= 1) {
-      const cleanedJson: Record<string, any> = {}
-      cleanedJson.lat = Number(jsonData[0].lat)
-      cleanedJson.lon = Number(jsonData[0].lon)
-      cleanedJson.geojson = jsonData[0].geojson
-      return cleanedJson
+      return {
+        lat: Number(jsonData[0].lat),
+        lon: Number(jsonData[0].lon),
+        geojson: jsonData[0].geojson,
+      }
     } else {
-      return {}
+      throw new RangeError(
+        "Json data did not have enough enough elements, expecting at least 1.",
+      )
     }
   }
 
@@ -79,14 +85,23 @@ export default class Nominatim {
    */
   public forwardSearch(
     address: string,
-  ): Promise<{ [key: string]: string | number } | JSON> {
+  ): Promise<{ result: Result | undefined; success: boolean }> {
     const url = this.buildURL(address)
     return axios
       .get(url)
       .then(response => response.data)
       .then(json => {
-        log.debug(json)
-        return this.cleanJson(json)
+        try {
+          return {
+            result: this.cleanJson(json),
+            success: true,
+          }
+        } catch {
+          return {
+            result: undefined,
+            success: false,
+          }
+        }
       })
   }
 }

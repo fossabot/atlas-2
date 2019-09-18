@@ -1,4 +1,4 @@
-import { Location } from "./types/custom_types"
+import { Location } from "../types/custom_types"
 
 /**
  * Removes all entries in list1 from list2 and return list2.

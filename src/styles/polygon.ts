@@ -19,7 +19,7 @@ export default class PolygonStyle {
    * @param selected Whether the polygon is currently selected or not.
    * @memberof PolygonStyle
    */
-  public constructor(selected: boolean = false) {
+  public constructor(selected = false) {
     this.selected = selected
   }
 
