@@ -19,7 +19,7 @@ const Notification: React.FunctionComponent<NotificationProps> = props => {
     case "INFO":
       color = "blue"
       break
-    case "WARN":
+    case "WARNING":
       color = "orange"
       break
     case "ERROR":
@@ -34,15 +34,29 @@ const Notification: React.FunctionComponent<NotificationProps> = props => {
   const colorClass = "bg-" + color + "-400"
 
   return (
-    <li className={"w-full p-4 m-4 " + colorClass}>
-      <span className="text-lg font-bold pb-4">{props.notification.level}</span>
-      <p className="leading-tight">{props.notification.content}</p>
-      <button
-        className="p-4 bg-red-600"
+    <li
+      className={"w-full p-4 m-4 list-none flex justify-between " + colorClass}
+    >
+      <div>
+        <span className="text-lg font-bold pb-4">
+          {props.notification.level}
+        </span>
+        <p className="leading-tight">{props.notification.content}</p>
+      </div>
+
+      <a
         onClick={() => props.remove(props.notification.id)}
+        className="text-gray-900 no-underline hover:text-gray-400 "
+        href="#"
       >
-        x
-      </button>
+        <svg
+          className="h-8 py-2 px-4"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
+        </svg>
+      </a>
     </li>
   )
 }
