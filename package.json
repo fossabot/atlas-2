@@ -35,7 +35,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "test:all"
+      "pre-push": "yarn test:all"
     }
   },
   "dependencies": {
