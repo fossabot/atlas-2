@@ -19,7 +19,7 @@ export default function(
     case REMOVE_NOTIFICATION:
       return {
         notifications: state.notifications.filter(
-          notification => notification.id != action.payload,
+          notification => notification.id !== action.payload,
         ),
       }
     default:

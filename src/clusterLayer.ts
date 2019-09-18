@@ -25,7 +25,7 @@ export default class ClusterLayer implements ClusterLayer {
    * @param [distance=40]
    * @memberof ClusterLayer
    */
-  public constructor(distance: number = 40) {
+  public constructor(distance = 40) {
     // sets up an empty cluster layer
     this.displayedLocations = []
     this.distance = distance

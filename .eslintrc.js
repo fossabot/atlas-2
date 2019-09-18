@@ -25,6 +25,8 @@ module.exports = {
     jest: true,
   },
   rules: {
+    "@typescript-eslint/ban-ts-ignore": "warn",
+    "@typescript-eslint/no-empty-function": "warn",
     "@typescript-eslint/no-explicit-any": "off",
     "prettier/prettier": "error",
     // Too restrictive, writing ugly code to defend against a very unlikely scenario: https://eslint.org/docs/rules/no-prototype-builtins

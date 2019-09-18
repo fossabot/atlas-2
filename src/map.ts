@@ -51,7 +51,7 @@ export default class Map implements MapInterface {
    * @param [mapID="map"]
    * @memberof Map
    */
-  public constructor(mapID: string = "map") {
+  public constructor(mapID = "map") {
     log.debug("Initializing map", { mapID })
     this.mapID = mapID
     // this.ui = new UI(this)
@@ -71,7 +71,7 @@ export default class Map implements MapInterface {
    * @memberof Map
    */
   private notify(text: string): void {
-    //this.notification.show(text)
+    // this.notification.show(text)
   }
 
   /**
@@ -149,7 +149,7 @@ export default class Map implements MapInterface {
    * @param {*} [zoom=-1]
    * @memberof Map
    */
-  private zoomTo(center: number[], zoom: number = 16): void {
+  private zoomTo(center: number[], zoom = 16): void {
     log.debug("Zooming", { center, zoom })
     this.olmap.getView().animate({
       center: center,
@@ -461,7 +461,7 @@ export default class Map implements MapInterface {
    * @memberof Map
    */
 
-  public setLocations(locations: Location[], draw: boolean = false): void {
+  public setLocations(locations: Location[], draw = false): void {
     // this.ui.updateFromLocations(locations)
 
     this.markerLayer.addLocations(locations)

@@ -52,7 +52,7 @@ export default class Sample {
    * @returns
    * @memberof Sample
    */
-  private generateString(length: number = 4): string {
+  private generateString(length = 4): string {
     let result = ""
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     for (let i = 0; i < length; i++) {

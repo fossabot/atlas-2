@@ -16,7 +16,7 @@ interface StateProps {
     allJobs: Job[]
   }
 }
-//interface OwnProps {}
+// interface OwnProps {}
 type Props = StateProps & DispatchProps
 
 class Map extends React.Component<Props, {}> {
@@ -25,6 +25,7 @@ class Map extends React.Component<Props, {}> {
     this.props.fetchJobs()
     this.map = new MapClass("map")
   }
+
   public componentDidUpdate(): void {
     this.map.setLocations(this.props.jobs.allJobs, true)
   }

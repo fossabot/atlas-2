@@ -70,6 +70,291 @@ exports[`Storyshots Dropdown default 1`] = `
 </div>
 `;
 
+exports[`Storyshots JobDetail default 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="flex items-center bg-gray-100"
+  >
+    <div
+      className="w-1/6 lg:w1-4"
+    >
+      <img
+        src="https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg"
+      />
+    </div>
+    <div
+      className="m-4"
+    >
+      <div
+        className="uppercase text-xl font-bold"
+      >
+        System Engineer
+      </div>
+      <div
+        className="flex justify-between text-xs font-thin  text-gray-700"
+      >
+        <span>
+          Bosch
+        </span>
+        <span>
+          60
+          %
+        </span>
+      </div>
+      <div
+        className="flex justify-between"
+      >
+        <span
+          className="uppercase, text-xs"
+        >
+          Germany, Nürnberg
+        </span>
+        <a
+          className="ml-2 text-xs font-bold"
+          href="#"
+        >
+          Ansehen
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots JobDetail high score 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="flex items-center bg-gray-100"
+  >
+    <div
+      className="w-1/6 lg:w1-4"
+    >
+      <img
+        src="https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg"
+      />
+    </div>
+    <div
+      className="m-4"
+    >
+      <div
+        className="uppercase text-xl font-bold"
+      >
+        System Engineer
+      </div>
+      <div
+        className="flex justify-between text-xs font-thin  text-gray-700"
+      >
+        <span>
+          Bosch
+        </span>
+        <span>
+          90
+          %
+        </span>
+      </div>
+      <div
+        className="flex justify-between"
+      >
+        <span
+          className="uppercase, text-xs"
+        >
+          Germany, Nürnberg
+        </span>
+        <a
+          className="ml-2 text-xs font-bold"
+          href="#"
+        >
+          Ansehen
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots JobDetail low score 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="flex items-center bg-gray-100"
+  >
+    <div
+      className="w-1/6 lg:w1-4"
+    >
+      <img
+        src="https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg"
+      />
+    </div>
+    <div
+      className="m-4"
+    >
+      <div
+        className="uppercase text-xl font-bold"
+      >
+        System Engineer
+      </div>
+      <div
+        className="flex justify-between text-xs font-thin  text-gray-700"
+      >
+        <span>
+          Bosch
+        </span>
+        <span>
+          20
+          %
+        </span>
+      </div>
+      <div
+        className="flex justify-between"
+      >
+        <span
+          className="uppercase, text-xs"
+        >
+          Germany, Nürnberg
+        </span>
+        <a
+          className="ml-2 text-xs font-bold"
+          href="#"
+        >
+          Ansehen
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots JobDetail max score 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="flex items-center bg-gray-100"
+  >
+    <div
+      className="w-1/6 lg:w1-4"
+    >
+      <img
+        src="https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg"
+      />
+    </div>
+    <div
+      className="m-4"
+    >
+      <div
+        className="uppercase text-xl font-bold"
+      >
+        System Engineer
+      </div>
+      <div
+        className="flex justify-between text-xs font-thin  text-gray-700"
+      >
+        <span>
+          Bosch
+        </span>
+        <span>
+          100
+          %
+        </span>
+      </div>
+      <div
+        className="flex justify-between"
+      >
+        <span
+          className="uppercase, text-xs"
+        >
+          Germany, Nürnberg
+        </span>
+        <a
+          className="ml-2 text-xs font-bold"
+          href="#"
+        >
+          Ansehen
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots JobDetail zero score 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="flex items-center bg-gray-100"
+  >
+    <div
+      className="w-1/6 lg:w1-4"
+    >
+      <img
+        src="https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg"
+      />
+    </div>
+    <div
+      className="m-4"
+    >
+      <div
+        className="uppercase text-xl font-bold"
+      >
+        System Engineer
+      </div>
+      <div
+        className="flex justify-between text-xs font-thin  text-gray-700"
+      >
+        <span>
+          Bosch
+        </span>
+        <span>
+          0
+          %
+        </span>
+      </div>
+      <div
+        className="flex justify-between"
+      >
+        <span
+          className="uppercase, text-xs"
+        >
+          Germany, Nürnberg
+        </span>
+        <a
+          className="ml-2 text-xs font-bold"
+          href="#"
+        >
+          Ansehen
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Menu default 1`] = `
 <div
   style={

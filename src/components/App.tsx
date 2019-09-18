@@ -24,10 +24,10 @@ interface StateProps {
   jobs: Job[]
 }
 
-type PantheonProps = DispatchProps & StateProps
+type Props = DispatchProps & StateProps
 
-const Pantheon: React.FunctionComponent<PantheonProps> = props => {
-  let [state, setState] = useState({
+const App: React.FunctionComponent<Props> = props => {
+  const [state, setState] = useState({
     modal: { isShowing: false },
     isFullscreen: false,
   })
@@ -88,4 +88,4 @@ const mapStateToProps = (state: StateProps): StateProps => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Pantheon)
+)(App)
