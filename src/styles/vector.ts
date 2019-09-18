@@ -1,6 +1,6 @@
 import { Fill, Stroke, Style } from "ol/style.js"
 
-import { log } from "../logger"
+import { log } from "../lib/logger"
 import { OLFeature } from "../types/ol_types"
 
 export const defaultStyle = new Style({

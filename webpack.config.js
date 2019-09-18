@@ -8,7 +8,7 @@ const glob = require("glob")
 
 module.exports = {
   entry: {
-    index: "./src/index.tsx",
+    index: "./src/lib/index.tsx",
   },
   output: {
     filename: "pantheon.js",
@@ -60,9 +60,12 @@ module.exports = {
     ],
   },
   plugins: [
-    new CopyPlugin([{ from: "data", to: "data" }]),
+    new CopyPlugin([
+      { from: "data", to: "data" },
+      { from: "static", to: "static" },
+    ]),
     new HtmlPlugin({
-      template: "./src/index.html",
+      template: "./src/lib/index.html",
     }),
     new PurgecssPlugin({
       paths: glob.sync(`${path.join(__dirname, "static/css")}/**/*`, {

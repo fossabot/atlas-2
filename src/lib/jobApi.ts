@@ -1,6 +1,6 @@
 import axios from "axios"
 
-import { Job, RawJob, RawSearch } from "./types/custom_types"
+import { Job, RawJob, RawSearch } from "../types/custom_types"
 
 /**
  * Class to gather jobs from the api.

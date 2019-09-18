@@ -390,8 +390,11 @@ exports[`Storyshots Menu default 1`] = `
           <div
             className="relative pull-right pl-4 pr-4 md:pr-0"
           >
-            <input
-              className="w-full 
+            <div
+              className="flex"
+            >
+              <input
+                className="w-full 
                 flex-shrink
                 flex-grow
                 flex-auto
@@ -409,9 +412,16 @@ exports[`Storyshots Menu default 1`] = `
                 focus:outline-none
                 hover:bg-gray-200
                 "
-              placeholder="Search"
-              type="search"
-            />
+                defaultValue="Nürnberg"
+                id="searchForm"
+                type="search"
+              />
+              <button
+                onClick={[Function]}
+              >
+                Search
+              </button>
+            </div>
             <div
               className="absolute search-icon"
               style={
@@ -508,8 +518,11 @@ exports[`Storyshots Menu fullscreen 1`] = `
           <div
             className="relative pull-right pl-4 pr-4 md:pr-0"
           >
-            <input
-              className="w-full 
+            <div
+              className="flex"
+            >
+              <input
+                className="w-full 
                 flex-shrink
                 flex-grow
                 flex-auto
@@ -527,9 +540,16 @@ exports[`Storyshots Menu fullscreen 1`] = `
                 focus:outline-none
                 hover:bg-gray-200
                 "
-              placeholder="Search"
-              type="search"
-            />
+                defaultValue="Nürnberg"
+                id="searchForm"
+                type="search"
+              />
+              <button
+                onClick={[Function]}
+              >
+                Search
+              </button>
+            </div>
             <div
               className="absolute search-icon"
               style={

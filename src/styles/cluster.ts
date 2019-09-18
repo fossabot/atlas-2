@@ -4,10 +4,10 @@ import { Stroke, Style, Text } from "ol/style.js"
 import Fill from "ol/style/Fill"
 import RegularShape from "ol/style/RegularShape"
 
-import { log } from "../logger"
+import { log } from "../lib/logger"
+import { bound } from "../lib/util"
 import { Location } from "../types/custom_types"
 import { OLFeature, OLStyle } from "../types/ol_types"
-import { bound } from "../util"
 
 /**
  * Handles definition of a style for clusters.

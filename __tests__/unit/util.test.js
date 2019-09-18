@@ -1,4 +1,4 @@
-import { bound, keyCount, removeFrom, strip } from "../../src/util"
+import { bound, keyCount, removeFrom, strip } from "../../src/lib/util"
 
 describe("removeFrom()", () => {
   const testCases = [

@@ -2,8 +2,8 @@
 
 import axios from "axios"
 
+import { Job } from "../redux/jobs/types"
 import { log } from "./logger"
-import { Job } from "./redux/jobs/types"
 
 /**
  * Random sample generator
@@ -41,7 +41,7 @@ export default class Sample {
           })
         }
         const elapsedTime = Number(new Date()) - Number(startTime)
-        log.info(`Generating ${jobs.length} jobs took ${elapsedTime} ms.`)
+        log.debug(`Generating ${jobs.length} jobs took ${elapsedTime} ms.`)
         return jobs
       })
   }

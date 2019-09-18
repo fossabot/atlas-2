@@ -8,8 +8,8 @@ import { fromLonLat } from "ol/proj.js"
 import Cluster from "ol/source/Cluster"
 import VectorSource from "ol/source/Vector"
 
-import ClusterStyle from "./styles/cluster"
-import { Location } from "./types/custom_types"
+import ClusterStyle from "../styles/cluster"
+import { Location } from "../types/custom_types"
 import { includes } from "./util"
 
 /**

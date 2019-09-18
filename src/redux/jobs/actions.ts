@@ -1,7 +1,7 @@
 import { AnyAction } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
 
-import Sample from "../../sample"
+import Sample from "../../lib/sample"
 import { FETCH_JOBS, FetchJobsAction, Job } from "./types"
 
 export const set = (jobs: Job[]): FetchJobsAction => {

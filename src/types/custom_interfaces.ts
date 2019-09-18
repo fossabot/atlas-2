@@ -1,19 +1,19 @@
 import { Map as OLMap } from "ol"
 import BaseLayer from "ol/layer/Base"
+import VectorLayer from "ol/layer/Vector"
 
-import Map from "../map"
+import Map from "../lib/map"
 import { Elements, Job, Location } from "./custom_types"
 import { OLCluster, OLLayer, OLNotification } from "./ol_types"
 
 export declare interface MapInterface {
-  ui: UserInterface
   jobs: Job[]
   olmap: OLMap
   notification: OLNotification
   setLocations: (locations: Location[], draw: boolean) => void
 
   zoomToLayer(layer: OLLayer): void
-  featureLayerFromGeoJson(geojson: any): void
+  featureLayerFromGeoJson(geojson: any): VectorLayer
 }
 
 export declare interface UserInterface {

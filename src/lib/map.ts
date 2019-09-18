@@ -20,13 +20,12 @@ import VectorSource from "ol/source/Vector"
 import { Fill, Stroke, Style } from "ol/style.js"
 import View from "ol/View"
 
+import PolygonStyle from "../styles/polygon"
+import { MapInterface } from "../types/custom_interfaces"
+import { Job, Location } from "../types/custom_types"
+import { OLFeature, OLLayer, OLNotification, OLSelect } from "../types/ol_types"
 import ClusterLayer from "./clusterLayer"
 import { log } from "./logger"
-import PolygonStyle from "./styles/polygon"
-import { MapInterface } from "./types/custom_interfaces"
-import { Job, Location } from "./types/custom_types"
-import { OLFeature, OLLayer, OLNotification, OLSelect } from "./types/ol_types"
-import UI from "./ui"
 
 /**
  * OpenLayers Map
@@ -44,7 +43,6 @@ export default class Map implements MapInterface {
   public notification: OLNotification
   public olmap: OLMap
   private select: OLSelect
-  public ui: UI
 
   /**
    *Creates an instance of Map.
@@ -249,7 +247,7 @@ export default class Map implements MapInterface {
    * @returns
    * @memberof Map
    */
-  public featureLayerFromGeoJson(geojson: JSON): VectorLayer {
+  public featureLayerFromGeoJson(geojson: any): VectorLayer {
     const layer = new VectorLayer({
       source: new VectorSource({
         features: new GeoJSON().readFeatures(geojson, {
@@ -295,11 +293,11 @@ export default class Map implements MapInterface {
    */
   private getLayerByName(name: string): OLLayer | undefined {
     const layers = this.olmap.getLayers()
-    for (const layer of layers.get("array_")) {
+    layers.forEach(layer => {
       if (layer.get("name") === name) {
         return layer
       }
-    }
+    })
     return undefined
   }
 
@@ -463,7 +461,7 @@ export default class Map implements MapInterface {
 
   public setLocations(locations: Location[], draw = false): void {
     // this.ui.updateFromLocations(locations)
-
+    log.info("Setting locations", locations)
     this.markerLayer.addLocations(locations)
     if (draw) {
       this.markerLayer.drawLocations()

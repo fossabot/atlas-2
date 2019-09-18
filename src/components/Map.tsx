@@ -1,11 +1,12 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { ThunkDispatch } from "redux-thunk"
 
-import MapClass from "../map"
+import { log } from "../lib/logger"
+import MapClass from "../lib/map"
+import Nominatim from "../lib/nominatim"
 import { fetchJobs } from "../redux/jobs/actions"
 import { Job } from "../redux/jobs/types"
-import { MapInterface } from "../types/custom_interfaces"
 
 interface DispatchProps {
   fetchJobs: () => void
@@ -15,28 +16,75 @@ interface StateProps {
   jobs: {
     allJobs: Job[]
   }
+  search: {
+    query: string
+  }
 }
+
 // interface OwnProps {}
 type Props = StateProps & DispatchProps
 
-class Map extends React.Component<Props, {}> {
-  public map: MapInterface
-  public componentDidMount(): void {
-    this.props.fetchJobs()
-    this.map = new MapClass("map")
-  }
+const Map: React.FunctionComponent<Props> = props => {
+  const [isLoading, setLoading] = useState(false)
+  const [isRendered, setIsRendered] = useState(false)
+  const [map, setMap] = useState()
+  /*
+    Render map
+  */
+  useEffect(() => {
+    setMap(new MapClass("map"))
+    setIsRendered(true)
+  }, [])
+  /*
+    Fetching Nominatim data
+  */
 
-  public componentDidUpdate(): void {
-    this.map.setLocations(this.props.jobs.allJobs, true)
-  }
+  useEffect(() => {
+    const fetchNominatim = async (): Promise<void> => {
+      if (props.search.query.length > 0) {
+        const nominatim = new Nominatim()
 
-  public render(): React.ReactNode {
-    return <div id="map"></div>
-  }
+        setLoading(true)
+        const { result, success } = await nominatim.forwardSearch(
+          props.search.query,
+        )
+        if (success && typeof result !== "undefined") {
+          if (isRendered) {
+            const layer = map.featureLayerFromGeoJson(result.geojson)
+            map.zoomToLayer(layer)
+          }
+        }
+        setLoading(false)
+      }
+    }
+    fetchNominatim()
+  }, [props.search.query])
+
+  /*
+    Fetching jobs
+  */
+  useEffect(() => {
+    props.fetchJobs()
+
+    return () => {}
+  }, [])
+
+  useEffect(() => {
+    const locations = props.jobs.allJobs
+    log.info("This is the map object", map)
+    if (locations.length > 0) {
+      log.debug("Settings locations", locations)
+      map.setLocations(locations, true)
+    } else {
+      log.warn("There are no jobs to be displayed", locations)
+    }
+  }, [props.jobs, isRendered])
+
+  return <div id="map"></div>
 }
-
 const mapStateToProps = (state: StateProps): StateProps => ({
   jobs: state.jobs,
+  search: state.search,
 })
 
 const mapDispatchToProps = (
