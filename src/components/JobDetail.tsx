@@ -9,21 +9,36 @@ interface Props {
 const JobDetail: React.FunctionComponent<Props> = props => {
   const job = props.job
   return (
-    <div className="flex items-center bg-gray-100">
-      <div className="w-1/6 lg:w1-4">
-        <img src={job.logo}></img>
+    <div className="flex bg-gray-100 shadow-lg rounded-lg overflow-hidden">
+      <div className="h-full">
+        <img className="object-cover" src={job.logo}></img>
       </div>
-      <div className="m-4">
-        <div className="uppercase text-xl font-bold">{job.title}</div>
-        <div className="flex justify-between text-xs font-thin  text-gray-700">
-          <span>{job.corp}</span>
-          <span>{job.score * 100}%</span>
+      <div className="w-full">
+        <div className="p-4">
+          <div className="flex justify-between">
+            <p className="uppercase tracking-wide text-sm font-bold text-gray-700">
+              {job.corp}
+            </p>
+            <p>{job.score}</p>
+          </div>
+          <p className="text-3xl text-gray-900">{job.title}</p>
+          <p className="text-gray-700">{job.type}</p>
         </div>
-        <div className="flex justify-between">
-          <span className="uppercase, text-xs">Germany, Nürnberg</span>
-          <a className="ml-2 text-xs font-bold" href="#">
-            Ansehen
-          </a>
+        <div className="flex justify-between items-center p-4 border-t border-gray-300 text-gray-700">
+          <div className="">
+            <p>
+              {job.date}
+              <span className="text-gray-900 font-bold ml-2">Nürnberg</span>
+            </p>
+          </div>
+          <div className="">
+            <a
+              className="text-gray-900 font-bold hover:text-jb-primary"
+              href="#"
+            >
+              View
+            </a>
+          </div>
         </div>
       </div>
     </div>

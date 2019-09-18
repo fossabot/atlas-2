@@ -55,7 +55,6 @@ const Menu: React.FunctionComponent<Props> = props => {
                 flex-shrink
                 flex-grow
                 flex-auto
-                text-right
                 leading-normal
                 w-px
                 flex-1
@@ -70,26 +69,22 @@ const Menu: React.FunctionComponent<Props> = props => {
                 hover:bg-gray-200
                 "
                 ></input>
-                <button
-                  onClick={() => {
-                    props.search(getSearchValue())
-                  }}
-                >
-                  Search
-                </button>
               </div>
-              <div
-                className="absolute search-icon"
-                style={{ top: "0.5rem", left: "1.5rem" }}
+              <button
+                onClick={() => {
+                  props.search(getSearchValue())
+                }}
+                className="absolute "
+                style={{ top: "0.5rem", right: "1.5rem" }}
               >
                 <svg
-                  className="fill-current pointer-events-none text-gray-800 w-4 h-4"
+                  className="fill-current hover:text-red-800 text-gray-800 w-4 h-4"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                 >
                   <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>
                 </svg>
-              </div>
+              </button>
             </div>
           </div>
           <ul className="list-reset lg:flex justify-end items-center">
