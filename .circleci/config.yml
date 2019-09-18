@@ -38,7 +38,7 @@ jobs:
           name: Run unit tests
           command: yarn test:unit
 
-  integrationtest:
+  e2etests:
     docker:
       - image: circleci/node:10.14-browsers
         environment:
@@ -60,7 +60,7 @@ jobs:
           at: .
       - run:
           name: Lint files
-          command: yarn format
+          command: yarn lint
 
   build:
     <<: *defaults
@@ -118,6 +118,6 @@ workflows:
       - unittest:
           requires:
             - typecheck
-      - integrationtest:
+      - e2etests:
           requires:
             - build
