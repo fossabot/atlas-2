@@ -40,7 +40,7 @@ jobs:
 
   e2etests:
     docker:
-      - image: circleci/node:10.14-browsers
+      - image: circleci/node:12-browsers
         environment:
           TERM: xterm
     steps:
