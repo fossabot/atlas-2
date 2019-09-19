@@ -495,58 +495,51 @@ exports[`Storyshots Menu default 1`] = `
         id="nav-content"
       >
         <div
-          className="flex-1 w-full mx-auto max-w-sm content-center py-4 lg:py-0"
+          className=" w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative   "
         >
-          <div
-            className="relative pull-right pl-4 pr-4 md:pr-0"
-          >
-            <div
-              className="flex"
-            >
-              <input
-                className="w-full 
-                flex-shrink
-                flex-grow
-                flex-auto
-                leading-normal
-                w-px
-                flex-1
-                border
-                h-8
-                transition
-                border-grey-light
-                rounded
-                px-3
-                focus:border-indigo-500
-                focus:outline-none
-                hover:bg-gray-200
-                "
-                defaultValue="Nürnberg"
-                id="searchForm"
-                type="search"
-              />
-            </div>
-            <button
-              className="absolute "
-              onClick={[Function]}
-              style={
-                Object {
-                  "right": "1.5rem",
-                  "top": "0.5rem",
-                }
+          
+          <input
+            className="w-full 
+                  flex-shrink
+                  flex-grow
+                  flex-auto
+                  leading-normal
+                  w-px
+                  flex-1
+                  border
+                  h-8
+                  transition
+                  border-grey-light
+                  rounded
+                  px-3
+                  focus:border-indigo-500
+                  focus:outline-none
+                  hover:bg-gray-200
+                  "
+            defaultValue="Nürnberg"
+            id="searchForm"
+            type="search"
+          />
+          <button
+            className="absolute"
+            onClick={[Function]}
+            style={
+              Object {
+                "right": "1.5rem",
+                "top": "0.5rem",
               }
+            }
+          >
+            <svg
+              className="fill-current hover:text-red-800 text-gray-800 w-4 h-4"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                className="fill-current hover:text-red-800 text-gray-800 w-4 h-4"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+              />
+            </svg>
+          </button>
         </div>
         <ul
           className="list-reset lg:flex justify-end items-center"
@@ -618,58 +611,51 @@ exports[`Storyshots Menu fullscreen 1`] = `
         id="nav-content"
       >
         <div
-          className="flex-1 w-full mx-auto max-w-sm content-center py-4 lg:py-0"
+          className=" w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative   "
         >
-          <div
-            className="relative pull-right pl-4 pr-4 md:pr-0"
-          >
-            <div
-              className="flex"
-            >
-              <input
-                className="w-full 
-                flex-shrink
-                flex-grow
-                flex-auto
-                leading-normal
-                w-px
-                flex-1
-                border
-                h-8
-                transition
-                border-grey-light
-                rounded
-                px-3
-                focus:border-indigo-500
-                focus:outline-none
-                hover:bg-gray-200
-                "
-                defaultValue="Nürnberg"
-                id="searchForm"
-                type="search"
-              />
-            </div>
-            <button
-              className="absolute "
-              onClick={[Function]}
-              style={
-                Object {
-                  "right": "1.5rem",
-                  "top": "0.5rem",
-                }
+          
+          <input
+            className="w-full 
+                  flex-shrink
+                  flex-grow
+                  flex-auto
+                  leading-normal
+                  w-px
+                  flex-1
+                  border
+                  h-8
+                  transition
+                  border-grey-light
+                  rounded
+                  px-3
+                  focus:border-indigo-500
+                  focus:outline-none
+                  hover:bg-gray-200
+                  "
+            defaultValue="Nürnberg"
+            id="searchForm"
+            type="search"
+          />
+          <button
+            className="absolute"
+            onClick={[Function]}
+            style={
+              Object {
+                "right": "1.5rem",
+                "top": "0.5rem",
               }
+            }
+          >
+            <svg
+              className="fill-current hover:text-red-800 text-gray-800 w-4 h-4"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                className="fill-current hover:text-red-800 text-gray-800 w-4 h-4"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+              />
+            </svg>
+          </button>
         </div>
         <ul
           className="list-reset lg:flex justify-end items-center"
@@ -2821,6 +2807,122 @@ exports[`Storyshots Popup default 1`] = `
         </svg>
       </div>
     </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots SearchBar default 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className=" w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative   "
+  >
+    
+    <input
+      className="w-full 
+                  flex-shrink
+                  flex-grow
+                  flex-auto
+                  leading-normal
+                  w-px
+                  flex-1
+                  border
+                  h-8
+                  transition
+                  border-grey-light
+                  rounded
+                  px-3
+                  focus:border-indigo-500
+                  focus:outline-none
+                  hover:bg-gray-200
+                  "
+      defaultValue="Nürnberg"
+      id="searchForm"
+      type="search"
+    />
+    <button
+      className="absolute"
+      onClick={[Function]}
+      style={
+        Object {
+          "right": "1.5rem",
+          "top": "0.5rem",
+        }
+      }
+    >
+      <svg
+        className="fill-current hover:text-red-800 text-gray-800 w-4 h-4"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Storyshots SearchBar loading 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className=" w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative   "
+  >
+    
+    <input
+      className="w-full 
+                  flex-shrink
+                  flex-grow
+                  flex-auto
+                  leading-normal
+                  w-px
+                  flex-1
+                  border
+                  h-8
+                  transition
+                  border-grey-light
+                  rounded
+                  px-3
+                  focus:border-indigo-500
+                  focus:outline-none
+                  hover:bg-gray-200
+                  "
+      defaultValue="Deutschland"
+      id="searchForm"
+      type="search"
+    />
+    <button
+      className="absolute"
+      onClick={[Function]}
+      style={
+        Object {
+          "right": "1.5rem",
+          "top": "0.5rem",
+        }
+      }
+    >
+      <svg
+        className="fill-current hover:text-red-800 text-gray-800 w-4 h-4"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+        />
+      </svg>
+    </button>
   </div>
 </div>
 `;
