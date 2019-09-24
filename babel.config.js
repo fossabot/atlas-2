@@ -7,8 +7,7 @@ module.exports = {
       {
         modules: false,
         targets: {
-          chrome: "58",
-          ie: "11",
+          browsers: ["last 2 versions", "ie >= 11"],
         },
       },
     ],

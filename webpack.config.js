@@ -16,11 +16,13 @@ module.exports = {
     library: "pantheon",
     path: path.resolve(__dirname, "dist"),
   },
+  /*
   optimization: {
     splitChunks: {
       chunks: "all",
     },
   },
+  */
   devtool: "source-map",
   devServer: {
     compress: true,
@@ -35,18 +37,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        loader: "babel-loader",
-      },
-      {
-        test: /\.tsx?$/,
-        loader: "babel-loader",
-      },
-      {
-        test: /\.tsx?$/,
-        loader: "awesome-typescript-loader",
-      },
-      {
         test: /\.css$/,
         use: [
           "style-loader",
@@ -60,6 +50,8 @@ module.exports = {
           },
         ],
       },
+      { test: /\.tsx?$/, loader: "babel-loader" },
+      { test: /\.tsx?$/, loader: "ts-loader" },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
     ],
   },
