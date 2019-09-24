@@ -19,7 +19,7 @@
     "dev": "webpack-dev-server --color",
     "display-browser-support": "browserslist --stats && echo '' && browserslist --coverage && echo '' && echo 'See more at https://browserl.ist/'",
     "e2e": "testcafe",
-    "e2e:ci": "testcafe \"chrome:headless\"",
+    "e2e:ci": "testcafe chrome:headless",
     "format": "yarn format-package-json && yarn format-prettier && yarn lint",
     "format-package-json": "./node_modules/.bin/sort-package-json",
     "format-prettier": "prettier --write ./**/*.{js,jsx,ts,tsx,json}",
