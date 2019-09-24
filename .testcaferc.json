@@ -5,7 +5,7 @@
   "screenshotPath": "./__tests__/e2e/reports/screenshots/",
   "screenshotPathPattern": "${DATE}_${TIME}/test-${TEST_INDEX}/${USERAGENT}/${FILE_INDEX}.png",
   "stopOnFirstFail": false,
-  "concurrency": 4,
+  "concurrency": 1,
   "reporter": "list",
   "color": true,
   "skipJsErrors": false
