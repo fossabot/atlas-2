@@ -13,9 +13,7 @@ module.exports = {
   output: {
     filename: "pantheon.js",
     chunkFilename: "[name].pantheon.js",
-    library: "Pantheon",
-    libraryExport: "default",
-    // libraryTarget: "window",
+    library: "pantheon",
     path: path.resolve(__dirname, "dist"),
   },
   optimization: {
@@ -23,6 +21,7 @@ module.exports = {
       chunks: "all",
     },
   },
+  devtool: "source-map",
   devServer: {
     compress: true,
     overlay: true,
@@ -36,12 +35,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        loader: "awesome-typescript-loader",
-      },
-      {
         test: /\.js$/,
         loader: "babel-loader",
+      },
+      {
+        test: /\.tsx?$/,
+        loader: "babel-loader",
+      },
+      {
+        test: /\.tsx?$/,
+        loader: "awesome-typescript-loader",
       },
       {
         test: /\.css$/,
@@ -57,6 +60,7 @@ module.exports = {
           },
         ],
       },
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
     ],
   },
   plugins: [

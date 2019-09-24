@@ -1,15 +1,16 @@
 module.exports = {
   presets: [
-    // Compile to environments listed in .browserslistrc
-    "@babel/env",
-    "@babel/preset-react",
+    "@babel/react",
     "@babel/typescript",
-  ],
-  plugins: [
-    "macros",
-    // class { handleThing = () => { } }
-    "@babel/proposal-class-properties",
-    // { ...spread }
-    "@babel/proposal-object-rest-spread",
+    [
+      "@babel/env",
+      {
+        modules: false,
+        targets: {
+          chrome: "58",
+          ie: "11",
+        },
+      },
+    ],
   ],
 }
