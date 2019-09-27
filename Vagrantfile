@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
     config.vm.network "forwarded_port", guest: 5000, host: 55000
   
     config.vm.provider "virtualbox" do |vb|
-        vb.name = "pantheon_dev"
+        vb.name = "atlas_dev"
         vb.cpus = 2
         vb.memory = "4096"
     end

@@ -1,14 +1,14 @@
 {
-  "name": "pantheon",
+  "name": "atlas",
   "version": "0.0.0-development",
   "description": "Mapping library for jobs",
-  "homepage": "https://github.com/chronark/pantheon",
+  "homepage": "https://github.com/chronark/atlas",
   "bugs": {
-    "url": "https://github.com/chronark/pantheon/issues"
+    "url": "https://github.com/chronark/atlas/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/chronark/pantheon.git"
+    "url": "https://github.com/chronark/atlas.git"
   },
   "license": "MIT",
   "author": "Andreas Thomas <andreas.thomas@th-nuernberg.de>",
