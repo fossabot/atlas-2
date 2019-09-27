@@ -11,9 +11,9 @@ module.exports = {
     index: "./src/lib/index.tsx",
   },
   output: {
-    filename: "pantheon.js",
-    chunkFilename: "[name].pantheon.js",
-    library: "pantheon",
+    filename: "atlas.js",
+    chunkFilename: "[name].atlas.js",
+    library: "atlas",
     path: path.resolve(__dirname, "dist"),
   },
   /*
