@@ -79,48 +79,70 @@ exports[`Storyshots JobDetail default 1`] = `
   }
 >
   <div
-    className="flex items-center bg-gray-100"
+    className="flex bg-gray-100 shadow-lg rounded-lg overflow-hidden"
   >
     <div
-      className="w-1/6 lg:w1-4"
+      className="h-full"
     >
       <img
+        className="object-cover"
         src="https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg"
       />
     </div>
     <div
-      className="m-4"
+      className="w-full"
     >
       <div
-        className="uppercase text-xl font-bold"
+        className="p-4"
       >
-        System Engineer
+        <div
+          className="flex justify-between"
+        >
+          <p
+            className="uppercase tracking-wide text-sm font-bold text-gray-700"
+          >
+            Bosch
+          </p>
+          <p>
+            0.6
+          </p>
+        </div>
+        <p
+          className="text-3xl text-gray-900"
+        >
+          System Engineer
+        </p>
+        <p
+          className="text-gray-700"
+        >
+          Full Time
+        </p>
       </div>
       <div
-        className="flex justify-between text-xs font-thin  text-gray-700"
+        className="flex justify-between items-center p-4 border-t border-gray-300 text-gray-700"
       >
-        <span>
-          Bosch
-        </span>
-        <span>
-          60
-          %
-        </span>
-      </div>
-      <div
-        className="flex justify-between"
-      >
-        <span
-          className="uppercase, text-xs"
+        <div
+          className=""
         >
-          Germany, Nürnberg
-        </span>
-        <a
-          className="ml-2 text-xs font-bold"
-          href="#"
+          <p>
+            20.01.2019
+            <span
+              className="text-gray-900 font-bold ml-2"
+            >
+              Nürnberg
+            </span>
+          </p>
+        </div>
+        <div
+          className=""
         >
-          Ansehen
-        </a>
+          <a
+            className="text-gray-900 font-bold hover:text-jb-primary"
+            href="#"
+          >
+            View
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -136,48 +158,70 @@ exports[`Storyshots JobDetail high score 1`] = `
   }
 >
   <div
-    className="flex items-center bg-gray-100"
+    className="flex bg-gray-100 shadow-lg rounded-lg overflow-hidden"
   >
     <div
-      className="w-1/6 lg:w1-4"
+      className="h-full"
     >
       <img
+        className="object-cover"
         src="https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg"
       />
     </div>
     <div
-      className="m-4"
+      className="w-full"
     >
       <div
-        className="uppercase text-xl font-bold"
+        className="p-4"
       >
-        System Engineer
+        <div
+          className="flex justify-between"
+        >
+          <p
+            className="uppercase tracking-wide text-sm font-bold text-gray-700"
+          >
+            Bosch
+          </p>
+          <p>
+            0.9
+          </p>
+        </div>
+        <p
+          className="text-3xl text-gray-900"
+        >
+          System Engineer
+        </p>
+        <p
+          className="text-gray-700"
+        >
+          Full Time
+        </p>
       </div>
       <div
-        className="flex justify-between text-xs font-thin  text-gray-700"
+        className="flex justify-between items-center p-4 border-t border-gray-300 text-gray-700"
       >
-        <span>
-          Bosch
-        </span>
-        <span>
-          90
-          %
-        </span>
-      </div>
-      <div
-        className="flex justify-between"
-      >
-        <span
-          className="uppercase, text-xs"
+        <div
+          className=""
         >
-          Germany, Nürnberg
-        </span>
-        <a
-          className="ml-2 text-xs font-bold"
-          href="#"
+          <p>
+            20.01.2019
+            <span
+              className="text-gray-900 font-bold ml-2"
+            >
+              Nürnberg
+            </span>
+          </p>
+        </div>
+        <div
+          className=""
         >
-          Ansehen
-        </a>
+          <a
+            className="text-gray-900 font-bold hover:text-jb-primary"
+            href="#"
+          >
+            View
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -193,48 +237,70 @@ exports[`Storyshots JobDetail low score 1`] = `
   }
 >
   <div
-    className="flex items-center bg-gray-100"
+    className="flex bg-gray-100 shadow-lg rounded-lg overflow-hidden"
   >
     <div
-      className="w-1/6 lg:w1-4"
+      className="h-full"
     >
       <img
+        className="object-cover"
         src="https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg"
       />
     </div>
     <div
-      className="m-4"
+      className="w-full"
     >
       <div
-        className="uppercase text-xl font-bold"
+        className="p-4"
       >
-        System Engineer
+        <div
+          className="flex justify-between"
+        >
+          <p
+            className="uppercase tracking-wide text-sm font-bold text-gray-700"
+          >
+            Bosch
+          </p>
+          <p>
+            0.2
+          </p>
+        </div>
+        <p
+          className="text-3xl text-gray-900"
+        >
+          System Engineer
+        </p>
+        <p
+          className="text-gray-700"
+        >
+          Full Time
+        </p>
       </div>
       <div
-        className="flex justify-between text-xs font-thin  text-gray-700"
+        className="flex justify-between items-center p-4 border-t border-gray-300 text-gray-700"
       >
-        <span>
-          Bosch
-        </span>
-        <span>
-          20
-          %
-        </span>
-      </div>
-      <div
-        className="flex justify-between"
-      >
-        <span
-          className="uppercase, text-xs"
+        <div
+          className=""
         >
-          Germany, Nürnberg
-        </span>
-        <a
-          className="ml-2 text-xs font-bold"
-          href="#"
+          <p>
+            20.01.2019
+            <span
+              className="text-gray-900 font-bold ml-2"
+            >
+              Nürnberg
+            </span>
+          </p>
+        </div>
+        <div
+          className=""
         >
-          Ansehen
-        </a>
+          <a
+            className="text-gray-900 font-bold hover:text-jb-primary"
+            href="#"
+          >
+            View
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -250,48 +316,70 @@ exports[`Storyshots JobDetail max score 1`] = `
   }
 >
   <div
-    className="flex items-center bg-gray-100"
+    className="flex bg-gray-100 shadow-lg rounded-lg overflow-hidden"
   >
     <div
-      className="w-1/6 lg:w1-4"
+      className="h-full"
     >
       <img
+        className="object-cover"
         src="https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg"
       />
     </div>
     <div
-      className="m-4"
+      className="w-full"
     >
       <div
-        className="uppercase text-xl font-bold"
+        className="p-4"
       >
-        System Engineer
+        <div
+          className="flex justify-between"
+        >
+          <p
+            className="uppercase tracking-wide text-sm font-bold text-gray-700"
+          >
+            Bosch
+          </p>
+          <p>
+            1
+          </p>
+        </div>
+        <p
+          className="text-3xl text-gray-900"
+        >
+          System Engineer
+        </p>
+        <p
+          className="text-gray-700"
+        >
+          Full Time
+        </p>
       </div>
       <div
-        className="flex justify-between text-xs font-thin  text-gray-700"
+        className="flex justify-between items-center p-4 border-t border-gray-300 text-gray-700"
       >
-        <span>
-          Bosch
-        </span>
-        <span>
-          100
-          %
-        </span>
-      </div>
-      <div
-        className="flex justify-between"
-      >
-        <span
-          className="uppercase, text-xs"
+        <div
+          className=""
         >
-          Germany, Nürnberg
-        </span>
-        <a
-          className="ml-2 text-xs font-bold"
-          href="#"
+          <p>
+            20.01.2019
+            <span
+              className="text-gray-900 font-bold ml-2"
+            >
+              Nürnberg
+            </span>
+          </p>
+        </div>
+        <div
+          className=""
         >
-          Ansehen
-        </a>
+          <a
+            className="text-gray-900 font-bold hover:text-jb-primary"
+            href="#"
+          >
+            View
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -307,48 +395,70 @@ exports[`Storyshots JobDetail zero score 1`] = `
   }
 >
   <div
-    className="flex items-center bg-gray-100"
+    className="flex bg-gray-100 shadow-lg rounded-lg overflow-hidden"
   >
     <div
-      className="w-1/6 lg:w1-4"
+      className="h-full"
     >
       <img
+        className="object-cover"
         src="https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg"
       />
     </div>
     <div
-      className="m-4"
+      className="w-full"
     >
       <div
-        className="uppercase text-xl font-bold"
+        className="p-4"
       >
-        System Engineer
+        <div
+          className="flex justify-between"
+        >
+          <p
+            className="uppercase tracking-wide text-sm font-bold text-gray-700"
+          >
+            Bosch
+          </p>
+          <p>
+            0
+          </p>
+        </div>
+        <p
+          className="text-3xl text-gray-900"
+        >
+          System Engineer
+        </p>
+        <p
+          className="text-gray-700"
+        >
+          Full Time
+        </p>
       </div>
       <div
-        className="flex justify-between text-xs font-thin  text-gray-700"
+        className="flex justify-between items-center p-4 border-t border-gray-300 text-gray-700"
       >
-        <span>
-          Bosch
-        </span>
-        <span>
-          0
-          %
-        </span>
-      </div>
-      <div
-        className="flex justify-between"
-      >
-        <span
-          className="uppercase, text-xs"
+        <div
+          className=""
         >
-          Germany, Nürnberg
-        </span>
-        <a
-          className="ml-2 text-xs font-bold"
-          href="#"
+          <p>
+            20.01.2019
+            <span
+              className="text-gray-900 font-bold ml-2"
+            >
+              Nürnberg
+            </span>
+          </p>
+        </div>
+        <div
+          className=""
         >
-          Ansehen
-        </a>
+          <a
+            className="text-gray-900 font-bold hover:text-jb-primary"
+            href="#"
+          >
+            View
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -385,63 +495,51 @@ exports[`Storyshots Menu default 1`] = `
         id="nav-content"
       >
         <div
-          className="flex-1 w-full mx-auto max-w-sm content-center py-4 lg:py-0"
+          className=" w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative   "
         >
-          <div
-            className="relative pull-right pl-4 pr-4 md:pr-0"
-          >
-            <div
-              className="flex"
-            >
-              <input
-                className="w-full 
-                flex-shrink
-                flex-grow
-                flex-auto
-                text-right
-                leading-normal
-                w-px
-                flex-1
-                border
-                h-8
-                transition
-                border-grey-light
-                rounded
-                px-3
-                focus:border-indigo-500
-                focus:outline-none
-                hover:bg-gray-200
-                "
-                defaultValue="Nürnberg"
-                id="searchForm"
-                type="search"
-              />
-              <button
-                onClick={[Function]}
-              >
-                Search
-              </button>
-            </div>
-            <div
-              className="absolute search-icon"
-              style={
-                Object {
-                  "left": "1.5rem",
-                  "top": "0.5rem",
-                }
+          
+          <input
+            className="w-full 
+                  flex-shrink
+                  flex-grow
+                  flex-auto
+                  leading-normal
+                  w-px
+                  flex-1
+                  border
+                  h-8
+                  transition
+                  border-grey-light
+                  rounded
+                  px-3
+                  focus:border-indigo-500
+                  focus:outline-none
+                  hover:bg-gray-200
+                  "
+            defaultValue="Nürnberg"
+            id="searchForm"
+            type="search"
+          />
+          <button
+            className="absolute"
+            onClick={[Function]}
+            style={
+              Object {
+                "right": "1.5rem",
+                "top": "0.5rem",
               }
+            }
+          >
+            <svg
+              className="fill-current hover:text-red-800 text-gray-800 w-4 h-4"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                className="fill-current pointer-events-none text-gray-800 w-4 h-4"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
-                />
-              </svg>
-            </div>
-          </div>
+              <path
+                d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+              />
+            </svg>
+          </button>
         </div>
         <ul
           className="list-reset lg:flex justify-end items-center"
@@ -513,63 +611,51 @@ exports[`Storyshots Menu fullscreen 1`] = `
         id="nav-content"
       >
         <div
-          className="flex-1 w-full mx-auto max-w-sm content-center py-4 lg:py-0"
+          className=" w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative   "
         >
-          <div
-            className="relative pull-right pl-4 pr-4 md:pr-0"
-          >
-            <div
-              className="flex"
-            >
-              <input
-                className="w-full 
-                flex-shrink
-                flex-grow
-                flex-auto
-                text-right
-                leading-normal
-                w-px
-                flex-1
-                border
-                h-8
-                transition
-                border-grey-light
-                rounded
-                px-3
-                focus:border-indigo-500
-                focus:outline-none
-                hover:bg-gray-200
-                "
-                defaultValue="Nürnberg"
-                id="searchForm"
-                type="search"
-              />
-              <button
-                onClick={[Function]}
-              >
-                Search
-              </button>
-            </div>
-            <div
-              className="absolute search-icon"
-              style={
-                Object {
-                  "left": "1.5rem",
-                  "top": "0.5rem",
-                }
+          
+          <input
+            className="w-full 
+                  flex-shrink
+                  flex-grow
+                  flex-auto
+                  leading-normal
+                  w-px
+                  flex-1
+                  border
+                  h-8
+                  transition
+                  border-grey-light
+                  rounded
+                  px-3
+                  focus:border-indigo-500
+                  focus:outline-none
+                  hover:bg-gray-200
+                  "
+            defaultValue="Nürnberg"
+            id="searchForm"
+            type="search"
+          />
+          <button
+            className="absolute"
+            onClick={[Function]}
+            style={
+              Object {
+                "right": "1.5rem",
+                "top": "0.5rem",
               }
+            }
+          >
+            <svg
+              className="fill-current hover:text-red-800 text-gray-800 w-4 h-4"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                className="fill-current pointer-events-none text-gray-800 w-4 h-4"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
-                />
-              </svg>
-            </div>
-          </div>
+              <path
+                d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+              />
+            </svg>
+          </button>
         </div>
         <ul
           className="list-reset lg:flex justify-end items-center"
@@ -2721,6 +2807,122 @@ exports[`Storyshots Popup default 1`] = `
         </svg>
       </div>
     </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots SearchBar default 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className=" w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative   "
+  >
+    
+    <input
+      className="w-full 
+                  flex-shrink
+                  flex-grow
+                  flex-auto
+                  leading-normal
+                  w-px
+                  flex-1
+                  border
+                  h-8
+                  transition
+                  border-grey-light
+                  rounded
+                  px-3
+                  focus:border-indigo-500
+                  focus:outline-none
+                  hover:bg-gray-200
+                  "
+      defaultValue="Nürnberg"
+      id="searchForm"
+      type="search"
+    />
+    <button
+      className="absolute"
+      onClick={[Function]}
+      style={
+        Object {
+          "right": "1.5rem",
+          "top": "0.5rem",
+        }
+      }
+    >
+      <svg
+        className="fill-current hover:text-red-800 text-gray-800 w-4 h-4"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Storyshots SearchBar loading 1`] = `
+<div
+  style={
+    Object {
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className=" w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative   "
+  >
+    
+    <input
+      className="w-full 
+                  flex-shrink
+                  flex-grow
+                  flex-auto
+                  leading-normal
+                  w-px
+                  flex-1
+                  border
+                  h-8
+                  transition
+                  border-grey-light
+                  rounded
+                  px-3
+                  focus:border-indigo-500
+                  focus:outline-none
+                  hover:bg-gray-200
+                  "
+      defaultValue="Deutschland"
+      id="searchForm"
+      type="search"
+    />
+    <button
+      className="absolute"
+      onClick={[Function]}
+      style={
+        Object {
+          "right": "1.5rem",
+          "top": "0.5rem",
+        }
+      }
+    >
+      <svg
+        className="fill-current hover:text-red-800 text-gray-800 w-4 h-4"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+        />
+      </svg>
+    </button>
   </div>
 </div>
 `;

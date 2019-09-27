@@ -1,15 +1,21 @@
-module.exports = {
-  presets: [
-    // Compile to environments listed in .browserslistrc
-    "@babel/env",
-    "@babel/preset-react",
-    "@babel/typescript",
-  ],
-  plugins: [
-    "macros",
-    // class { handleThing = () => { } }
-    "@babel/proposal-class-properties",
-    // { ...spread }
-    "@babel/proposal-object-rest-spread",
-  ],
+module.exports = api => {
+  const isTest = api.env("test")
+  api.cache(true)
+  return {
+    presets: [
+      "@babel/react",
+      "@babel/typescript",
+      [
+        "@babel/env",
+        {
+          modules: isTest ? "commonjs" : false,
+          targets: {
+            browsers: ["last 2 versions", "ie >= 11"],
+            node: "current",
+          },
+        },
+      ],
+    ],
+    plugins: isTest ? ["macros"] : [],
+  }
 }

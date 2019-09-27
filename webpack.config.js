@@ -13,16 +13,17 @@ module.exports = {
   output: {
     filename: "atlas.js",
     chunkFilename: "[name].atlas.js",
-    library: "Atlas",
-    libraryExport: "default",
-    // libraryTarget: "window",
+    library: "atlas",
     path: path.resolve(__dirname, "dist"),
   },
+  /*
   optimization: {
     splitChunks: {
       chunks: "all",
     },
   },
+  */
+  devtool: "source-map",
   devServer: {
     compress: true,
     overlay: true,
@@ -35,14 +36,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.tsx?$/,
-        loader: "awesome-typescript-loader",
-      },
-      {
-        test: /\.js$/,
-        loader: "babel-loader",
-      },
       {
         test: /\.css$/,
         use: [
@@ -57,6 +50,9 @@ module.exports = {
           },
         ],
       },
+      { test: /\.tsx?$/, loader: "babel-loader" },
+      { test: /\.tsx?$/, loader: "ts-loader" },
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
     ],
   },
   plugins: [
