@@ -494,7 +494,7 @@ exports[`Storyshots Menu default 1`] = `
         className="flex-grow flex  items-center w-auto block"
         id="nav-content"
       >
-        <div
+        <form
           className=" w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative   "
         >
           
@@ -518,6 +518,7 @@ exports[`Storyshots Menu default 1`] = `
                   "
             defaultValue="Nürnberg"
             id="searchForm"
+            onKeyDown={[Function]}
             type="search"
           />
           <button
@@ -529,6 +530,7 @@ exports[`Storyshots Menu default 1`] = `
                 "top": "0.5rem",
               }
             }
+            type="button"
           >
             <svg
               className="fill-current hover:text-red-800 text-gray-800 w-4 h-4"
@@ -540,7 +542,7 @@ exports[`Storyshots Menu default 1`] = `
               />
             </svg>
           </button>
-        </div>
+        </form>
         <ul
           className="list-reset lg:flex justify-end items-center"
         >
@@ -610,7 +612,7 @@ exports[`Storyshots Menu fullscreen 1`] = `
         className="flex-grow flex  items-center w-auto block"
         id="nav-content"
       >
-        <div
+        <form
           className=" w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative   "
         >
           
@@ -634,6 +636,7 @@ exports[`Storyshots Menu fullscreen 1`] = `
                   "
             defaultValue="Nürnberg"
             id="searchForm"
+            onKeyDown={[Function]}
             type="search"
           />
           <button
@@ -645,6 +648,7 @@ exports[`Storyshots Menu fullscreen 1`] = `
                 "top": "0.5rem",
               }
             }
+            type="button"
           >
             <svg
               className="fill-current hover:text-red-800 text-gray-800 w-4 h-4"
@@ -656,7 +660,7 @@ exports[`Storyshots Menu fullscreen 1`] = `
               />
             </svg>
           </button>
-        </div>
+        </form>
         <ul
           className="list-reset lg:flex justify-end items-center"
         >
@@ -2819,7 +2823,7 @@ exports[`Storyshots SearchBar default 1`] = `
     }
   }
 >
-  <div
+  <form
     className=" w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative   "
   >
     
@@ -2843,6 +2847,7 @@ exports[`Storyshots SearchBar default 1`] = `
                   "
       defaultValue="Nürnberg"
       id="searchForm"
+      onKeyDown={[Function]}
       type="search"
     />
     <button
@@ -2854,6 +2859,7 @@ exports[`Storyshots SearchBar default 1`] = `
           "top": "0.5rem",
         }
       }
+      type="button"
     >
       <svg
         className="fill-current hover:text-red-800 text-gray-800 w-4 h-4"
@@ -2865,7 +2871,7 @@ exports[`Storyshots SearchBar default 1`] = `
         />
       </svg>
     </button>
-  </div>
+  </form>
 </div>
 `;
 
@@ -2877,7 +2883,7 @@ exports[`Storyshots SearchBar loading 1`] = `
     }
   }
 >
-  <div
+  <form
     className=" w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative   "
   >
     
@@ -2901,6 +2907,7 @@ exports[`Storyshots SearchBar loading 1`] = `
                   "
       defaultValue="Deutschland"
       id="searchForm"
+      onKeyDown={[Function]}
       type="search"
     />
     <button
@@ -2912,6 +2919,7 @@ exports[`Storyshots SearchBar loading 1`] = `
           "top": "0.5rem",
         }
       }
+      type="button"
     >
       <svg
         className="fill-current hover:text-red-800 text-gray-800 w-4 h-4"
@@ -2923,7 +2931,7 @@ exports[`Storyshots SearchBar loading 1`] = `
         />
       </svg>
     </button>
-  </div>
+  </form>
 </div>
 `;
 
