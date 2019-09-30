@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { ThunkDispatch } from "redux-thunk"
-
+import { Map as OLMap } from "ol"
 import { log } from "../lib/logger"
 import MapClass from "../lib/map"
 import Nominatim from "../lib/nominatim"
@@ -25,16 +25,33 @@ interface StateProps {
 type Props = StateProps & DispatchProps
 
 const Map: React.FunctionComponent<Props> = props => {
-  const [isLoading, setLoading] = useState(false)
-  const [isRendered, setIsRendered] = useState(false)
+  const [isLoading, setLoading] = useState<boolean>(false)
+  const [isRendered, setIsRendered] = useState<boolean>(false)
   const [map, setMap] = useState()
+  const [selectedCountries, setSelectedCountries] = useState<any[]>([])
   /*
     Render map
   */
   useEffect(() => {
-    setMap(new MapClass("map"))
-    setIsRendered(true)
+    /*
+     the state setter is running asynchronous, so there can be a racecondition 
+    where 'isRendered' could be set before 'map'
+    */
+    const init = async (): Promise<void> => {
+      const newMap = new MapClass("map")
+      newMap.addCountryLayer((features: any[]) =>
+        setSelectedCountries(features),
+      )
+      await setMap(newMap)
+      setIsRendered(true)
+    }
+    init()
   }, [])
+
+  useEffect(() => {
+    log.info("selectedCountries", selectedCountries)
+    log.info("length:", selectedCountries.length)
+  })
   /*
     Fetching Nominatim data
   */
@@ -71,7 +88,6 @@ const Map: React.FunctionComponent<Props> = props => {
 
   useEffect(() => {
     const locations = props.jobs.allJobs
-    log.info("This is the map object", map)
     if (locations.length > 0) {
       log.debug("Settings locations", locations)
       map.setLocations(locations, true)

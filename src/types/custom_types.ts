@@ -61,6 +61,4 @@ export interface Job {
   url: string
 }
 
-export interface LogObject {
-  [key: string]: any
-}
+export type LogObject = Record<string, any> | number

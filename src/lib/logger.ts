@@ -49,6 +49,9 @@ class Logger {
    * @memberof Logger
    */
   private buildPayload(level: string, payload: LogObject): LogObject {
+    if (typeof payload !== "object") {
+      payload = { payload }
+    }
     payload.timestamp = new Date()
     payload.level = level
     return payload

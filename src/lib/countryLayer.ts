@@ -3,28 +3,35 @@ import VectorLayer from "ol/layer/Vector"
 import VectorSource from "ol/source/Vector"
 import { countryLayerStyle } from "../styles/countryStyle"
 import { Map } from "ol"
+import { log } from "./logger"
 const countryLayer = new VectorLayer({
   source: new VectorSource({
-    url: "data/countries.json",
+    url:
+      "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json",
     format: new GeoJSON(),
   }),
+  style: countryLayerStyle(false),
 })
 
-const onClick = (olmap: Map): any[] => {
-  const selected: any[] = []
+const onClick = (olmap: Map, callback?: (features: any[]) => void): void => {
+  const selectedFeatures: any[] = []
   olmap.on("singleclick", e => {
     olmap.forEachFeatureAtPixel(e.pixel, (feature: any) => {
-      const selectedIndex = selected.indexOf(feature)
+      const selectedIndex = selectedFeatures.indexOf(feature)
+
       if (selectedIndex < 0) {
-        selected.push(feature)
+        selectedFeatures.push(feature)
         feature.setStyle(countryLayerStyle(true))
       } else {
-        selected.splice(selectedIndex, 1)
+        selectedFeatures.splice(selectedIndex, 1)
         feature.setStyle(countryLayerStyle(false))
+      }
+      if (callback) {
+        log.warn("Callback started", callback)
+        callback(selectedFeatures)
       }
     })
   })
-  return selected
 }
 
 export { onClick, countryLayer }

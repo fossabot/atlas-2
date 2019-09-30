@@ -45,7 +45,6 @@ export default class Map implements MapInterface {
   public notification: OLNotification
   public olmap: OLMap
   private select: OLSelect
-  public selectedCountries: any[]
 
   /**
    *Creates an instance of Map.
@@ -63,12 +62,12 @@ export default class Map implements MapInterface {
     this.addControls()
     // this.addCircleSelect()
     this.select = this.addSelect()
-    this.addCountryLayer()
   }
 
-  addCountryLayer(): void {
+  addCountryLayer(callback?: (features: any[]) => void): void {
     this.olmap.addLayer(countryLayer)
-    this.selectedCountries = countryOnClick(this.olmap)
+    log.info("Got here")
+    countryOnClick(this.olmap, callback)
   }
 
   /**
