@@ -24,15 +24,27 @@ const SearchBar: React.FunctionComponent<Props> = props => {
       return ""
     }
   }
+  const onSubmit = (): void => {
+    props.search(getSearchValue())
+  }
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
+    if (event.key === "Enter") {
+      event.preventDefault()
+      event.stopPropagation()
+      onSubmit()
+    }
+  }
 
   return (
-    <div
+    <form
       className={` w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative  ${
         loading ? "bg-gray-900" : ""
       } `}
     >
       {loading ? "HELLO WORLD" : ""}
       <input
+        onKeyDown={onKeyDown}
         id="searchForm"
         type="search"
         defaultValue={props.defaultValue}
@@ -55,9 +67,8 @@ const SearchBar: React.FunctionComponent<Props> = props => {
                   "
       ></input>
       <button
-        onClick={() => {
-          props.search(getSearchValue())
-        }}
+        type="button"
+        onClick={onSubmit}
         className="absolute"
         style={{ top: "0.5rem", right: "1.5rem" }}
       >
@@ -69,7 +80,7 @@ const SearchBar: React.FunctionComponent<Props> = props => {
           <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"></path>
         </svg>
       </button>
-    </div>
+    </form>
   )
 }
 
