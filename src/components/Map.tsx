@@ -7,9 +7,11 @@ import MapClass from "../lib/map"
 import Nominatim from "../lib/nominatim"
 import { fetchJobs } from "../redux/jobs/actions"
 import { Job } from "../redux/jobs/types"
+import { setSelectedCountries } from "../redux/countries/actions"
 
 interface DispatchProps {
   fetchJobs: () => void
+  setSelectedCountries: (countries: any[]) => void
 }
 
 interface StateProps {
@@ -18,6 +20,9 @@ interface StateProps {
   }
   search: {
     query: string
+  }
+  countries: {
+    selectedCountries: any[]
   }
 }
 
@@ -28,7 +33,6 @@ const Map: React.FunctionComponent<Props> = props => {
   const [isLoading, setLoading] = useState<boolean>(false)
   const [isRendered, setIsRendered] = useState<boolean>(false)
   const [map, setMap] = useState()
-  const [selectedCountries, setSelectedCountries] = useState<any[]>([])
   /*
     Render map
   */
@@ -39,9 +43,9 @@ const Map: React.FunctionComponent<Props> = props => {
     */
     const init = async (): Promise<void> => {
       const newMap = new MapClass("map")
-      newMap.addCountryLayer((features: any[]) =>
-        setSelectedCountries(features),
-      )
+      newMap.addCountryLayer((features: any[]) => {
+        props.setSelectedCountries(features)
+      })
       await setMap(newMap)
       setIsRendered(true)
     }
@@ -49,9 +53,8 @@ const Map: React.FunctionComponent<Props> = props => {
   }, [])
 
   useEffect(() => {
-    log.info("selectedCountries", selectedCountries)
-    log.info("length:", selectedCountries.length)
-  })
+    log.info("selectedCountries", props.countries)
+  }, [props.countries])
   /*
     Fetching Nominatim data
   */
@@ -92,7 +95,7 @@ const Map: React.FunctionComponent<Props> = props => {
       log.debug("Settings locations", locations)
       map.setLocations(locations, true)
     } else {
-      log.warn("There are no jobs to be displayed", locations)
+      log.debug("There are no jobs to be displayed", locations)
     }
   }, [props.jobs, isRendered])
 
@@ -101,12 +104,15 @@ const Map: React.FunctionComponent<Props> = props => {
 const mapStateToProps = (state: StateProps): StateProps => ({
   jobs: state.jobs,
   search: state.search,
+  countries: state.countries,
 })
 
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<{}, {}, any>,
 ): DispatchProps => ({
   fetchJobs: () => dispatch(fetchJobs()),
+  setSelectedCountries: (countries: any[]) =>
+    dispatch(setSelectedCountries(countries)),
 })
 
 export default connect(

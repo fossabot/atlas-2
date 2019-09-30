@@ -27,7 +27,6 @@ const onClick = (olmap: Map, callback?: (features: any[]) => void): void => {
         feature.setStyle(countryLayerStyle(false))
       }
       if (callback) {
-        log.warn("Callback started", callback)
         callback(selectedFeatures)
       }
     })
