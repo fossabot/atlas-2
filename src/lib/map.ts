@@ -7,7 +7,7 @@ import Mask from "ol-ext/filter/Mask"
 import { Attribution, defaults } from "ol/control.js"
 import FullScreen from "ol/control/FullScreen"
 import { platformModifierKeyOnly } from "ol/events/condition.js"
-import Feature from "ol/Feature"
+import Feature, { FeatureLike } from "ol/Feature"
 import GeoJSON from "ol/format/GeoJSON"
 import { fromCircle } from "ol/geom/Polygon"
 import { Draw, Modify } from "ol/interaction"
@@ -26,7 +26,9 @@ import { Job, Location } from "../types/custom_types"
 import { OLFeature, OLLayer, OLNotification, OLSelect } from "../types/ol_types"
 import ClusterLayer from "./clusterLayer"
 import { log } from "./logger"
-
+import { onClick as countryOnClick, countryLayer } from "./countryLayer"
+import RenderFeature from "ol/render/Feature"
+import { Layer } from "ol/layer"
 /**
  * OpenLayers Map
  *
@@ -43,6 +45,7 @@ export default class Map implements MapInterface {
   public notification: OLNotification
   public olmap: OLMap
   private select: OLSelect
+  public selectedCountries: any[]
 
   /**
    *Creates an instance of Map.
@@ -60,6 +63,12 @@ export default class Map implements MapInterface {
     this.addControls()
     // this.addCircleSelect()
     this.select = this.addSelect()
+    this.addCountryLayer()
+  }
+
+  addCountryLayer(): void {
+    this.olmap.addLayer(countryLayer)
+    this.selectedCountries = countryOnClick(this.olmap)
   }
 
   /**
