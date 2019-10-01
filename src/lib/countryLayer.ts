@@ -3,7 +3,18 @@ import VectorLayer from "ol/layer/Vector"
 import VectorSource from "ol/source/Vector"
 import { countryLayerStyle } from "../styles/countryStyle"
 import { Map } from "ol"
-import { log } from "./logger"
+
+export const getCountryCode = (country: any): string => {
+  if (country.hasOwnProperty("id_")) {
+    return country.id_
+  }
+  return ""
+}
+
+export const getCountryCodes = (countries: any[]): string[] => {
+  return countries.map(getCountryCode)
+}
+
 const countryLayer = new VectorLayer({
   source: new VectorSource({
     url:
@@ -27,7 +38,8 @@ const onClick = (olmap: Map, callback?: (features: any[]) => void): void => {
         feature.setStyle(countryLayerStyle(false))
       }
       if (callback) {
-        callback(selectedFeatures)
+        const countryCodes = getCountryCodes(selectedFeatures)
+        callback(countryCodes)
       }
     })
   })

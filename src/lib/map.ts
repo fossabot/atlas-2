@@ -7,7 +7,7 @@ import Mask from "ol-ext/filter/Mask"
 import { Attribution, defaults } from "ol/control.js"
 import FullScreen from "ol/control/FullScreen"
 import { platformModifierKeyOnly } from "ol/events/condition.js"
-import Feature, { FeatureLike } from "ol/Feature"
+import Feature from "ol/Feature"
 import GeoJSON from "ol/format/GeoJSON"
 import { fromCircle } from "ol/geom/Polygon"
 import { Draw, Modify } from "ol/interaction"
@@ -27,8 +27,6 @@ import { OLFeature, OLLayer, OLNotification, OLSelect } from "../types/ol_types"
 import ClusterLayer from "./clusterLayer"
 import { log } from "./logger"
 import { onClick as countryOnClick, countryLayer } from "./countryLayer"
-import RenderFeature from "ol/render/Feature"
-import { Layer } from "ol/layer"
 /**
  * OpenLayers Map
  *
@@ -68,16 +66,6 @@ export default class Map implements MapInterface {
     this.olmap.addLayer(countryLayer)
     log.info("Got here")
     countryOnClick(this.olmap, callback)
-  }
-
-  /**
-   * Displays a notification box
-   *
-   * @param text - Can be anything but a string probably makes the most sense.
-   * @memberof Map
-   */
-  private notify(text: string): void {
-    // this.notification.show(text)
   }
 
   /**
@@ -233,7 +221,6 @@ export default class Map implements MapInterface {
   private handleDrawEnd(circle: Feature): void {
     // TODO Radius calculation. Needs to use projection
     // https://stackoverflow.com/questions/32202944/openlayers-3-circle-radius-in-meters
-    this.notify("Radius: ~" + this.getRadius(circle).toFixed(0) + " m")
     const feature = this.makeFeatureFromCircle(circle)
     this.crop(feature)
   }

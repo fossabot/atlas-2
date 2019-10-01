@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { ThunkDispatch } from "redux-thunk"
-import { Map as OLMap } from "ol"
 import { log } from "../lib/logger"
 import MapClass from "../lib/map"
 import Nominatim from "../lib/nominatim"
@@ -11,7 +10,7 @@ import { setSelectedCountries } from "../redux/countries/actions"
 
 interface DispatchProps {
   fetchJobs: () => void
-  setSelectedCountries: (countries: any[]) => void
+  setSelectedCountries: (countries: string[]) => void
 }
 
 interface StateProps {
@@ -22,7 +21,7 @@ interface StateProps {
     query: string
   }
   countries: {
-    selectedCountries: any[]
+    selectedCountries: string[]
   }
 }
 
@@ -111,7 +110,7 @@ const mapDispatchToProps = (
   dispatch: ThunkDispatch<{}, {}, any>,
 ): DispatchProps => ({
   fetchJobs: () => dispatch(fetchJobs()),
-  setSelectedCountries: (countries: any[]) =>
+  setSelectedCountries: (countries: string[]) =>
     dispatch(setSelectedCountries(countries)),
 })
 

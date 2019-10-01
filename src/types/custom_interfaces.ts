@@ -9,7 +9,6 @@ import { OLCluster, OLLayer, OLNotification } from "./ol_types"
 export declare interface MapInterface {
   jobs: Job[]
   olmap: OLMap
-  notification: OLNotification
   setLocations: (locations: Location[], draw: boolean) => void
 
   zoomToLayer(layer: OLLayer): void
