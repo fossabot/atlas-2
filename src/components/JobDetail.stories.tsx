@@ -7,6 +7,7 @@ import JobDetail from "./JobDetail"
 const data: Record<string, Job> = {
   default: {
     corp: "Bosch",
+    country: "ASD",
     date: "20.01.2019",
     id: 1,
     lat: 50,
@@ -20,6 +21,8 @@ const data: Record<string, Job> = {
   },
   highScore: {
     corp: "Bosch",
+
+    country: "ASD",
     date: "20.01.2019",
     id: 1,
     lat: 50,
@@ -33,6 +36,8 @@ const data: Record<string, Job> = {
   },
   maxScore: {
     corp: "Bosch",
+
+    country: "ASD",
     date: "20.01.2019",
     id: 1,
     lat: 50,
@@ -46,6 +51,8 @@ const data: Record<string, Job> = {
   },
   lowScore: {
     corp: "Bosch",
+
+    country: "ASD",
     date: "20.01.2019",
     id: 1,
     lat: 50,
@@ -59,6 +66,7 @@ const data: Record<string, Job> = {
   },
   zeroScore: {
     corp: "Bosch",
+    country: "ASD",
     date: "20.01.2019",
     id: 1,
     lat: 50,

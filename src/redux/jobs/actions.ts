@@ -11,7 +11,7 @@ export const set = (jobs: Job[]): FetchJobsAction => {
 export const fetchJobs = (): ThunkAction<Promise<void>, {}, {}, AnyAction> => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
     return new Promise<void>(resolve => {
-      new Sample().jobs(1000).then(jobs => dispatch(set(jobs)))
+      new Sample().jobs(200).then(jobs => dispatch(set(jobs)))
       resolve()
     })
   }

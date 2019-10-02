@@ -46,7 +46,7 @@ describe("countryLayer.ts", () => {
       })
     })
     describe("if not all countries have valid ids", () => {
-      test("should return the correct ids", () => {
+      test("should return the correct ids and omit countries without one", () => {
         const countries = [
           {},
           {
@@ -56,7 +56,24 @@ describe("countryLayer.ts", () => {
             id_: "USA",
           },
         ]
-        const expected = ["", "RUS", "USA"]
+        const expected = ["RUS", "USA"]
+        expect(getCountryCodes(countries)).toEqual(expected)
+      })
+    })
+    describe("if a country exists more than once", () => {
+      test("should return a unique set of the correct ids ", () => {
+        const countries = [
+          {
+            id_: "RUS",
+          },
+          {
+            id_: "RUS",
+          },
+          {
+            id_: "USA",
+          },
+        ]
+        const expected = ["RUS", "USA"]
         expect(getCountryCodes(countries)).toEqual(expected)
       })
     })

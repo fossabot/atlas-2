@@ -1,5 +1,6 @@
 export interface Job {
   corp: string
+  country: string
   date: string
   id: number
   lat: number
@@ -13,6 +14,7 @@ export interface Job {
 
 export interface JobState {
   allJobs: Job[]
+  shownJobs: Job[]
 }
 
 export const FETCH_JOBS = "FETCH_JOBS"

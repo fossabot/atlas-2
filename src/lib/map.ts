@@ -457,6 +457,7 @@ export default class Map implements MapInterface {
   public setLocations(locations: Location[], draw = false): void {
     // this.ui.updateFromLocations(locations)
     log.info("Setting locations", locations)
+    this.markerLayer.clear()
     this.markerLayer.addLocations(locations)
     if (draw) {
       this.markerLayer.drawLocations()

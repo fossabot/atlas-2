@@ -3,6 +3,7 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}", "!src/**/*.d.ts"],
   coverageDirectory: "coverage",
+  /*
   coverageThreshold: {
     global: {
       branches: 50,
@@ -11,6 +12,7 @@ module.exports = {
       statements: -50,
     },
   },
+*/
   roots: ["./__tests__/unit/"],
   testURL: "http://localhost",
   testPathIgnorePatterns: ["/dist/", "node_modules"],

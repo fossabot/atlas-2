@@ -1,5 +1,6 @@
 export interface Location {
   corp: string
+  country: string
   date: string
   ids?: string
   lat: number
@@ -50,6 +51,7 @@ export interface RawSearch {
 
 export interface Job {
   corp: string
+  country: string
   date: string
   id: number
   lat: number

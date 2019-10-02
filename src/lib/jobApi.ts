@@ -53,6 +53,7 @@ export default class Jobs {
     rawSearch.jobs.forEach((rawJob: RawJob) => {
       jobs.push({
         corp: rawJob.firma,
+        country: "ASD",
         date: rawJob.datum,
         id: Number(rawJob.ID),
         lat: Number(rawJob.lat),

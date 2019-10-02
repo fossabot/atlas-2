@@ -16,6 +16,7 @@ interface DispatchProps {
 interface StateProps {
   jobs: {
     allJobs: Job[]
+    shownJobs: Job[]
   }
   search: {
     query: string
@@ -52,12 +53,12 @@ const Map: React.FunctionComponent<Props> = props => {
   }, [])
 
   useEffect(() => {
-    log.info("selectedCountries", props.countries)
+    log.info("selectedCountries", props.countries.selectedCountries)
   }, [props.countries])
+
   /*
     Fetching Nominatim data
   */
-
   useEffect(() => {
     const fetchNominatim = async (): Promise<void> => {
       if (props.search.query.length > 0) {
@@ -89,17 +90,26 @@ const Map: React.FunctionComponent<Props> = props => {
   }, [])
 
   useEffect(() => {
-    const locations = props.jobs.allJobs
+    let locations = []
+    if (props.countries.selectedCountries.length > 0) {
+      locations = props.jobs.allJobs.filter(job => {
+        return props.countries.selectedCountries.includes(job.country)
+      })
+    } else {
+      locations = props.jobs.allJobs
+    }
+
     if (locations.length > 0) {
       log.debug("Settings locations", locations)
       map.setLocations(locations, true)
     } else {
       log.debug("There are no jobs to be displayed", locations)
     }
-  }, [props.jobs, isRendered])
+  }, [props.jobs, isRendered, props.countries.selectedCountries])
 
   return <div id="map"></div>
 }
+
 const mapStateToProps = (state: StateProps): StateProps => ({
   jobs: state.jobs,
   search: state.search,

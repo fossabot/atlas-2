@@ -9,6 +9,7 @@ import Cluster from "ol/source/Cluster"
 import VectorSource from "ol/source/Vector"
 
 import ClusterStyle from "../styles/cluster"
+// TODO REFACTOR TO USE JOB INSTEAD OF LOCATION
 import { Location } from "../types/custom_types"
 import { includes } from "./util"
 

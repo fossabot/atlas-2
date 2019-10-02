@@ -12,7 +12,16 @@ export const getCountryCode = (country: any): string => {
 }
 
 export const getCountryCodes = (countries: any[]): string[] => {
-  return countries.map(getCountryCode)
+  const countryCodes = countries.map(getCountryCode)
+  const uniqueCountryCodes = [...new Set(countryCodes)]
+
+  // Remove a potential empty string in the array
+  const index = uniqueCountryCodes.indexOf("")
+  if (index >= 0) {
+    uniqueCountryCodes.splice(index, 1)
+  }
+
+  return uniqueCountryCodes
 }
 
 const countryLayer = new VectorLayer({
