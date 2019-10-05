@@ -4,12 +4,13 @@ import { ThunkDispatch } from "redux-thunk"
 import { log } from "../lib/logger"
 import MapClass from "../lib/map"
 import Nominatim from "../lib/nominatim"
-import { fetchJobs } from "../redux/jobs/actions"
+import { fetchJobs, setShownJobs } from "../redux/jobs/actions"
 import { Job } from "../redux/jobs/types"
 import { setSelectedCountries } from "../redux/countries/actions"
 
 interface DispatchProps {
   fetchJobs: () => void
+  setShownJobs: (jobs: Job[]) => void
   setSelectedCountries: (countries: string[]) => void
 }
 
@@ -52,10 +53,6 @@ const Map: React.FunctionComponent<Props> = props => {
     init()
   }, [])
 
-  useEffect(() => {
-    log.info("selectedCountries", props.countries.selectedCountries)
-  }, [props.countries])
-
   /*
     Fetching Nominatim data
   */
@@ -89,8 +86,11 @@ const Map: React.FunctionComponent<Props> = props => {
     return () => {}
   }, [])
 
+  /*
+    Locations
+  */
   useEffect(() => {
-    let locations = []
+    let locations: Job[] = []
     if (props.countries.selectedCountries.length > 0) {
       locations = props.jobs.allJobs.filter(job => {
         return props.countries.selectedCountries.includes(job.country)
@@ -98,14 +98,12 @@ const Map: React.FunctionComponent<Props> = props => {
     } else {
       locations = props.jobs.allJobs
     }
-
-    if (locations.length > 0) {
-      log.debug("Settings locations", locations)
-      map.setLocations(locations, true)
-    } else {
-      log.debug("There are no jobs to be displayed", locations)
+    // Check if map is defined yet, because this hook runs at init
+    if (map) {
+      map.setLocations(locations)
     }
-  }, [props.jobs, isRendered, props.countries.selectedCountries])
+    props.setShownJobs(locations)
+  }, [props.jobs.allJobs, isRendered, props.countries.selectedCountries])
 
   return <div id="map"></div>
 }
@@ -120,6 +118,7 @@ const mapDispatchToProps = (
   dispatch: ThunkDispatch<{}, {}, any>,
 ): DispatchProps => ({
   fetchJobs: () => dispatch(fetchJobs()),
+  setShownJobs: (jobs: Job[]) => dispatch(setShownJobs(jobs)),
   setSelectedCountries: (countries: string[]) =>
     dispatch(setSelectedCountries(countries)),
 })

@@ -2,10 +2,20 @@ import { AnyAction } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
 
 import Sample from "../../lib/sample"
-import { FETCH_JOBS, FetchJobsAction, Job } from "./types"
+import {
+  FETCH_JOBS,
+  FetchJobsAction,
+  Job,
+  SetShowJobsAction,
+  SET_SHOWN_JOBS,
+} from "./types"
 
 export const set = (jobs: Job[]): FetchJobsAction => {
   return { type: FETCH_JOBS, payload: jobs }
+}
+
+export const setShownJobs = (jobs: Job[]): SetShowJobsAction => {
+  return { type: SET_SHOWN_JOBS, payload: jobs }
 }
 
 export const fetchJobs = (): ThunkAction<Promise<void>, {}, {}, AnyAction> => {

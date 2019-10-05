@@ -11,7 +11,7 @@ import Map from "./Map"
 import Menu from "./Menu"
 import Modal from "./Modal"
 import Notifications from "./Notifications"
-
+import Statistics from "./Statistics"
 interface State {
   modal: { isShowing: boolean }
   isFullsceen: boolean
@@ -65,6 +65,7 @@ const App: React.FunctionComponent<Props> = props => {
           toggleModal={toggleModal}
           toggleFullscreen={toggleFullscreen}
         ></Menu>
+        <Statistics></Statistics>
         <Map></Map>
         {state.modal.isShowing ? (
           <Modal show={state.modal.isShowing} toggle={toggleModal}>
