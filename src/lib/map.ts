@@ -454,14 +454,11 @@ export default class Map implements MapInterface {
    * @memberof Map
    */
 
-  public setLocations(locations: Location[], draw = false): void {
+  public setLocations(locations: Location[]): void {
     // this.ui.updateFromLocations(locations)
     log.info("Setting locations", locations)
     this.markerLayer.clear()
-    this.markerLayer.addLocations(locations)
-    if (draw) {
-      this.markerLayer.drawLocations()
-    }
+    this.markerLayer.drawLocations(locations)
   }
 
   /**
