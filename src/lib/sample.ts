@@ -2,7 +2,7 @@
 
 import axios from "axios"
 
-import { Job } from "../redux/jobs/types"
+import { Job } from "../types/customTypes"
 import { log } from "./logger"
 
 /**
@@ -29,10 +29,12 @@ export default class Sample {
       jobs.push({
         id: i,
         corp: this.generateString(count / 4500),
-        country: iso3.data[city.country],
+        location: {
+          country: iso3.data[city.country],
+          lat: Number(city.lat),
+          lon: Number(city.lon),
+        },
         date: "",
-        lat: Number(city.lat),
-        lon: Number(city.lon),
         logo: "",
         score: Math.random(),
         title: "",

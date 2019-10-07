@@ -1,6 +1,6 @@
 import axios from "axios"
 
-import { Job, RawJob, RawSearch } from "../types/custom_types"
+import { Job, RawJob, RawSearch } from "../types/customTypes"
 
 /**
  * Class to gather jobs from the api.
@@ -53,15 +53,18 @@ export default class Jobs {
     rawSearch.jobs.forEach((rawJob: RawJob) => {
       jobs.push({
         corp: rawJob.firma,
-        country: "ASD",
+        location: {
+          country: "ASD",
+          lat: Number(rawJob.lat),
+          lon: Number(rawJob.lng),
+        },
         date: rawJob.datum,
         id: Number(rawJob.ID),
-        lat: Number(rawJob.lat),
         logo: rawJob.logo,
-        lon: Number(rawJob.lng),
         title: rawJob.titel,
         type: rawJob.typ,
         url: rawJob.url,
+        score: 0,
       })
     })
     return jobs

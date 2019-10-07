@@ -1,16 +1,4 @@
-export interface Job {
-  corp: string
-  country: string
-  date: string
-  id: number
-  lat: number
-  logo: string
-  lon: number
-  score: number
-  title: string
-  type: string
-  url: string
-}
+import { Job } from "../../types/customTypes"
 
 export interface JobState {
   allJobs: Job[]

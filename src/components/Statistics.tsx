@@ -1,7 +1,7 @@
 import React from "react"
 
 import { connect } from "react-redux"
-import { Job } from "../redux/jobs/types"
+import { Job } from "../types/customTypes"
 
 interface StateProps {
   jobs: {

@@ -5,11 +5,10 @@ import Sample from "../../lib/sample"
 import {
   FETCH_JOBS,
   FetchJobsAction,
-  Job,
   SetShowJobsAction,
   SET_SHOWN_JOBS,
 } from "./types"
-
+import { Job } from "../../types/customTypes"
 export const set = (jobs: Job[]): FetchJobsAction => {
   return { type: FETCH_JOBS, payload: jobs }
 }

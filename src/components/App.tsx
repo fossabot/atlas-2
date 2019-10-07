@@ -3,7 +3,7 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
 
-import { Job } from "../redux/jobs/types"
+import { Job } from "../types/customTypes"
 import { addNotification } from "../redux/notifications/actions"
 import { NotificationActionTypes } from "../redux/notifications/types"
 import Form from "./Form"
