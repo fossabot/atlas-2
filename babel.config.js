@@ -3,11 +3,12 @@ module.exports = api => {
   api.cache(true)
   return {
     presets: [
-      "@babel/react",
-      "@babel/typescript",
       [
-        "@babel/env",
+        "@babel/preset-env",
         {
+          debug: true,
+          useBuiltIns: "entry",
+          corejs: 3,
           modules: isTest ? "commonjs" : false,
           targets: {
             browsers: ["last 2 versions", "ie >= 11"],
@@ -15,6 +16,8 @@ module.exports = api => {
           },
         },
       ],
+      "@babel/react",
+      "@babel/typescript",
     ],
     plugins: isTest ? ["macros"] : [],
   }

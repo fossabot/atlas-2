@@ -1,6 +1,3 @@
-import "core-js/stable"
-import "regenerator-runtime/runtime"
-
 import "../../static/css/ol-ext.css"
 import "../../static/css/ol.css"
 import "../../static/css/tailwind.css"

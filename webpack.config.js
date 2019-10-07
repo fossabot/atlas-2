@@ -7,22 +7,18 @@ const PurgecssPlugin = require("purgecss-webpack-plugin")
 const glob = require("glob")
 
 module.exports = {
-  entry: {
-    index: "./src/lib/index.tsx",
-  },
+  entry: ["@babel/polyfill", "./src/lib/index.tsx"],
   output: {
     filename: "atlas.js",
     chunkFilename: "[name].atlas.js",
     library: "atlas",
     path: path.resolve(__dirname, "dist"),
   },
-  /*
   optimization: {
     splitChunks: {
       chunks: "all",
     },
   },
-  */
   devtool: "source-map",
   devServer: {
     compress: true,
