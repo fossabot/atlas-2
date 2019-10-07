@@ -64,7 +64,6 @@ export default class Map implements MapInterface {
 
   addCountryLayer(callback?: (features: any[]) => void): void {
     this.olmap.addLayer(countryLayer)
-    log.info("Got here")
     countryOnClick(this.olmap, callback)
   }
 
