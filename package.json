@@ -24,7 +24,7 @@
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ./",
     "serve": "serve ./dist",
     "storybook": "start-storybook -p 6006",
-    "test:all": "yarn test:unit && yarn build && yarn test:e2e:ci",
+    "test:all": "yarn test:unit && yarn test:e2e",
     "test:e2e": "start-server-and-test buildandserve http://localhost:5000 e2e",
     "test:e2e:ci": "start-server-and-test serve http://localhost:5000 e2e:ci",
     "test:unit": "jest",
@@ -37,7 +37,6 @@
     }
   },
   "dependencies": {
-    "axios": "^0.19.0",
     "ol": "^5.3.3",
     "ol-ext": "^3.1.6"
   },

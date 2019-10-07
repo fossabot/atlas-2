@@ -1,5 +1,14 @@
 import { Location } from "../types/customTypes"
 
+export async function fetchJson(url: string): Promise<Record<string, any>> {
+  const response = await fetch(url)
+  if (response.ok) {
+    return response.json()
+  }
+  const text = await response.text()
+  throw new Error(text)
+}
+
 /**
  * Removes all occurences of an element from a list
  *

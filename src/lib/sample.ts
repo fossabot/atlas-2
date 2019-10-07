@@ -1,9 +1,6 @@
-// @flow
-
-import axios from "axios"
-
 import { Job } from "../types/customTypes"
 import { log } from "./logger"
+import { fetchJson } from "./util"
 
 /**
  * Random sample generator
@@ -19,9 +16,16 @@ export default class Sample {
    */
   public async jobs(count: number): Promise<Job[]> {
     const startTime = new Date()
-    const response = await axios.get("../data/cities.json")
-    const iso3 = await axios.get("../data/iso3.json")
-    const cities = response.data
+    // TODO selfhost these files
+    const [cities, iso3] = await Promise.all([
+      fetchJson(
+        "https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json",
+      ),
+      fetchJson(
+        "https://gist.githubusercontent.com/chronark/53ffb75636c27ef2ab194b9086abb01b/raw/eeb63680b0a94b0376ebf4bed5a45ec87dfbbbb4/iso3.json",
+      ),
+    ])
+
     const jobs = []
     while (jobs.length < count && cities.length > 0) {
       const i = Math.floor(Math.random() * cities.length)
@@ -30,9 +34,9 @@ export default class Sample {
         id: i,
         corp: this.generateString(count / 4500),
         location: {
-          country: iso3.data[city.country],
+          country: iso3[city.country],
           lat: Number(city.lat),
-          lon: Number(city.lon),
+          lon: Number(city.lng),
         },
         date: "",
         logo: "",

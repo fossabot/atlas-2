@@ -56,10 +56,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new CopyPlugin([
-      { from: "data", to: "data" },
-      { from: "static", to: "static" },
-    ]),
+    new CopyPlugin([{ from: "static", to: "static" }]),
     new HtmlPlugin({
       template: "./src/lib/index.html",
     }),
