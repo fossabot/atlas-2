@@ -1,7 +1,8 @@
-import { FETCH_JOBS, JobActionTypes, JobState } from "./types"
+import { FETCH_JOBS, SET_SHOWN_JOBS, JobActionTypes, JobState } from "./types"
 
 const initialState: JobState = {
   allJobs: [],
+  shownJobs: [],
 }
 
 export default function(
@@ -10,9 +11,13 @@ export default function(
 ): JobState {
   switch (action.type) {
     case FETCH_JOBS:
-      return {
+      return Object.assign({}, state, {
         allJobs: action.payload,
-      }
+      })
+    case SET_SHOWN_JOBS:
+      return Object.assign({}, state, {
+        shownJobs: action.payload,
+      })
     default:
       return state
   }

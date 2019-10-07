@@ -9,14 +9,12 @@ import Cluster from "ol/source/Cluster"
 import VectorSource from "ol/source/Vector"
 
 import ClusterStyle from "../styles/cluster"
-import { Location } from "../types/custom_types"
-import { includes } from "./util"
+import { Job } from "../types/customTypes"
 
 /**
  * Handles clustering of locations
  */
 export default class ClusterLayer implements ClusterLayer {
-  private displayedLocations: Location[]
   private distance: number
   public clusterSource: Cluster
   public animatedCluster: BaseLayer
@@ -27,7 +25,6 @@ export default class ClusterLayer implements ClusterLayer {
    */
   public constructor(distance = 40) {
     // sets up an empty cluster layer
-    this.displayedLocations = []
     this.distance = distance
     this.clusterSource = new Cluster({
       distance: this.distance,
@@ -45,34 +42,18 @@ export default class ClusterLayer implements ClusterLayer {
   }
 
   /**
-   * Pushes all locations in 'this.displayedLocations' into the clusterSource and renders them.
+   * Adds jobs to the map
    */
-  public drawLocations(
-    displayedLocations: Location[] = this.displayedLocations,
-  ): void {
+  public addJobs(jobs: Job[]): void {
     const features = []
-    for (const location of displayedLocations) {
+    for (const job of jobs) {
       const newFeature = new Feature({
-        geometry: new Point(fromLonLat([location.lon, location.lat])),
+        geometry: new Point(fromLonLat([job.location.lon, job.location.lat])),
       })
-      newFeature.set("location", location, false)
-      const searchString = `${location.corp} - ${location.title}`
-      newFeature.set("search", searchString)
+      newFeature.set("job", job, false)
       features.push(newFeature)
     }
     this.clusterSource.getSource().addFeatures(features)
-
-    // this.ui.updateActiveJobs(displayedLocations.length)
-  }
-
-  /**
-   * Adds more locations. Call @link drawLocations to render them immediately.
-   * @param locations
-   */
-  public addLocations(locations: Location[]): void {
-    for (const location of locations) {
-      this.displayedLocations.push(location)
-    }
   }
 
   /**
@@ -82,16 +63,5 @@ export default class ClusterLayer implements ClusterLayer {
     if (this.clusterSource.getSource()) {
       this.clusterSource.getSource().clear()
     }
-  }
-
-  /**
-   * Remove all supplied locations from the displayedLocations
-   * @param locations
-   */
-  public removeLocations(locations: Location[] = []): void {
-    const difference = this.displayedLocations.filter(
-      job => !includes(locations, job),
-    )
-    this.displayedLocations = difference
   }
 }

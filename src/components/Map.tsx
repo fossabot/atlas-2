@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { ThunkDispatch } from "redux-thunk"
-
-import { log } from "../lib/logger"
 import MapClass from "../lib/map"
 import Nominatim from "../lib/nominatim"
-import { fetchJobs } from "../redux/jobs/actions"
-import { Job } from "../redux/jobs/types"
+import { fetchJobs, setShownJobs } from "../redux/jobs/actions"
+import { Job } from "../types/customTypes"
+import { setSelectedCountries } from "../redux/countries/actions"
 
 interface DispatchProps {
   fetchJobs: () => void
+  setShownJobs: (jobs: Job[]) => void
+  setSelectedCountries: (countries: string[]) => void
 }
 
 interface StateProps {
   jobs: {
     allJobs: Job[]
+    shownJobs: Job[]
   }
   search: {
     query: string
+  }
+  countries: {
+    selectedCountries: string[]
   }
 }
 
@@ -25,20 +30,31 @@ interface StateProps {
 type Props = StateProps & DispatchProps
 
 const Map: React.FunctionComponent<Props> = props => {
-  const [isLoading, setLoading] = useState(false)
-  const [isRendered, setIsRendered] = useState(false)
+  const [isLoading, setLoading] = useState<boolean>(false)
+  const [isRendered, setIsRendered] = useState<boolean>(false)
   const [map, setMap] = useState()
   /*
     Render map
   */
   useEffect(() => {
-    setMap(new MapClass("map"))
-    setIsRendered(true)
+    /*
+     the state setter is running asynchronous, so there can be a racecondition 
+    where 'isRendered' could be set before 'map'
+    */
+    const init = async (): Promise<void> => {
+      const newMap = new MapClass("map")
+      newMap.addCountryLayer((features: any[]) => {
+        props.setSelectedCountries(features)
+      })
+      await setMap(newMap)
+      setIsRendered(true)
+    }
+    init()
   }, [])
+
   /*
     Fetching Nominatim data
   */
-
   useEffect(() => {
     const fetchNominatim = async (): Promise<void> => {
       if (props.search.query.length > 0) {
@@ -69,28 +85,41 @@ const Map: React.FunctionComponent<Props> = props => {
     return () => {}
   }, [])
 
+  /*
+    Jobs
+  */
   useEffect(() => {
-    const locations = props.jobs.allJobs
-    log.info("This is the map object", map)
-    if (locations.length > 0) {
-      log.debug("Settings locations", locations)
-      map.setLocations(locations, true)
+    let jobs: Job[] = []
+    if (props.countries.selectedCountries.length > 0) {
+      jobs = props.jobs.allJobs.filter(job => {
+        return props.countries.selectedCountries.includes(job.location.country)
+      })
     } else {
-      log.warn("There are no jobs to be displayed", locations)
+      jobs = props.jobs.allJobs
     }
-  }, [props.jobs, isRendered])
+    // Check if map is defined yet, because this hook runs at init
+    if (map) {
+      map.setJobs(jobs)
+    }
+    props.setShownJobs(jobs)
+  }, [props.jobs.allJobs, isRendered, props.countries.selectedCountries])
 
   return <div id="map"></div>
 }
+
 const mapStateToProps = (state: StateProps): StateProps => ({
   jobs: state.jobs,
   search: state.search,
+  countries: state.countries,
 })
 
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<{}, {}, any>,
 ): DispatchProps => ({
   fetchJobs: () => dispatch(fetchJobs()),
+  setShownJobs: (jobs: Job[]) => dispatch(setShownJobs(jobs)),
+  setSelectedCountries: (countries: string[]) =>
+    dispatch(setSelectedCountries(countries)),
 })
 
 export default connect(

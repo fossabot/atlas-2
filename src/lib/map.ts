@@ -21,12 +21,12 @@ import { Fill, Stroke, Style } from "ol/style.js"
 import View from "ol/View"
 
 import PolygonStyle from "../styles/polygon"
-import { MapInterface } from "../types/custom_interfaces"
-import { Job, Location } from "../types/custom_types"
-import { OLFeature, OLLayer, OLNotification, OLSelect } from "../types/ol_types"
+import { MapInterface } from "../types/customInterfaces"
+import { Job } from "../types/customTypes"
+import { OLFeature, OLLayer, OLNotification, OLSelect } from "../types/olTypes"
 import ClusterLayer from "./clusterLayer"
 import { log } from "./logger"
-
+import { onClick as countryOnClick, countryLayer } from "./countryLayer"
 /**
  * OpenLayers Map
  *
@@ -62,14 +62,10 @@ export default class Map implements MapInterface {
     this.select = this.addSelect()
   }
 
-  /**
-   * Displays a notification box
-   *
-   * @param text - Can be anything but a string probably makes the most sense.
-   * @memberof Map
-   */
-  private notify(text: string): void {
-    // this.notification.show(text)
+  addCountryLayer(callback?: (features: any[]) => void): void {
+    this.olmap.addLayer(countryLayer)
+    log.info("Got here")
+    countryOnClick(this.olmap, callback)
   }
 
   /**
@@ -225,7 +221,6 @@ export default class Map implements MapInterface {
   private handleDrawEnd(circle: Feature): void {
     // TODO Radius calculation. Needs to use projection
     // https://stackoverflow.com/questions/32202944/openlayers-3-circle-radius-in-meters
-    this.notify("Radius: ~" + this.getRadius(circle).toFixed(0) + " m")
     const feature = this.makeFeatureFromCircle(circle)
     this.crop(feature)
   }
@@ -447,25 +442,17 @@ export default class Map implements MapInterface {
   /**
    * Job setter
    *
-   * Sets the internal jobs. This overrides any previous jobs.
-   * If you want to add jobs to the existing pool you need to read `this.jobs`
-   * and then set all jobs again.
-   * All jobs can be accessed in this
-   * [callback]{@link Interaction#setSelectCallback} function.
+   * This overrides any previous jobs.
    *
-   * @param locations All locations that you want to display.
-   * @param [draw=false] If True `this.markerLayer.drawLocations(locations)`
-   * will get called and the locations will get rendered immediately.
+   * @param jobs All jobs that you want to display.
    * @memberof Map
    */
 
-  public setLocations(locations: Location[], draw = false): void {
-    // this.ui.updateFromLocations(locations)
-    log.info("Setting locations", locations)
-    this.markerLayer.addLocations(locations)
-    if (draw) {
-      this.markerLayer.drawLocations()
-    }
+  public setJobs(jobs: Job[]): void {
+    // this.ui.updateFromjobs(jobs)
+    log.info("Setting jobs", jobs)
+    this.markerLayer.clear()
+    this.markerLayer.addJobs(jobs)
   }
 
   /**

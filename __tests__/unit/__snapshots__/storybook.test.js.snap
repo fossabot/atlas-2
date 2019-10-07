@@ -474,7 +474,7 @@ exports[`Storyshots Menu default 1`] = `
   }
 >
   <nav
-    className="w-full bg-white border-b border-gray-400"
+    className="w-full bg-white"
     id="header"
   >
     <div
@@ -592,7 +592,7 @@ exports[`Storyshots Menu fullscreen 1`] = `
   }
 >
   <nav
-    className="w-full bg-white border-b border-gray-400"
+    className="w-full bg-white"
     id="header"
   >
     <div

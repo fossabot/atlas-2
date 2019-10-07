@@ -10,7 +10,7 @@ export interface MenuProps {
 
 const Menu: React.FunctionComponent<MenuProps> = props => {
   return (
-    <nav id="header" className="w-full bg-white border-b border-gray-400">
+    <nav id="header" className="w-full bg-white">
       <div className="w-full flex flex-no-wrap items-center justify-between mt-0 py-4">
         <div className="pl-4 flex items-center">
           <a
