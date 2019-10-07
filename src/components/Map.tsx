@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { ThunkDispatch } from "redux-thunk"
-import { log } from "../lib/logger"
 import MapClass from "../lib/map"
 import Nominatim from "../lib/nominatim"
 import { fetchJobs, setShownJobs } from "../redux/jobs/actions"
-import { Job } from "../redux/jobs/types"
+import { Job } from "../types/customTypes"
 import { setSelectedCountries } from "../redux/countries/actions"
 
 interface DispatchProps {
@@ -87,22 +86,22 @@ const Map: React.FunctionComponent<Props> = props => {
   }, [])
 
   /*
-    Locations
+    Jobs
   */
   useEffect(() => {
-    let locations: Job[] = []
+    let jobs: Job[] = []
     if (props.countries.selectedCountries.length > 0) {
-      locations = props.jobs.allJobs.filter(job => {
-        return props.countries.selectedCountries.includes(job.country)
+      jobs = props.jobs.allJobs.filter(job => {
+        return props.countries.selectedCountries.includes(job.location.country)
       })
     } else {
-      locations = props.jobs.allJobs
+      jobs = props.jobs.allJobs
     }
     // Check if map is defined yet, because this hook runs at init
     if (map) {
-      map.setLocations(locations)
+      map.setJobs(jobs)
     }
-    props.setShownJobs(locations)
+    props.setShownJobs(jobs)
   }, [props.jobs.allJobs, isRendered, props.countries.selectedCountries])
 
   return <div id="map"></div>

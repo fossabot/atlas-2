@@ -21,9 +21,9 @@ import { Fill, Stroke, Style } from "ol/style.js"
 import View from "ol/View"
 
 import PolygonStyle from "../styles/polygon"
-import { MapInterface } from "../types/custom_interfaces"
-import { Job, Location } from "../types/custom_types"
-import { OLFeature, OLLayer, OLNotification, OLSelect } from "../types/ol_types"
+import { MapInterface } from "../types/customInterfaces"
+import { Job } from "../types/customTypes"
+import { OLFeature, OLLayer, OLNotification, OLSelect } from "../types/olTypes"
 import ClusterLayer from "./clusterLayer"
 import { log } from "./logger"
 import { onClick as countryOnClick, countryLayer } from "./countryLayer"
@@ -442,23 +442,17 @@ export default class Map implements MapInterface {
   /**
    * Job setter
    *
-   * Sets the internal jobs. This overrides any previous jobs.
-   * If you want to add jobs to the existing pool you need to read `this.jobs`
-   * and then set all jobs again.
-   * All jobs can be accessed in this
-   * [callback]{@link Interaction#setSelectCallback} function.
+   * This overrides any previous jobs.
    *
-   * @param locations All locations that you want to display.
-   * @param [draw=false] If True `this.markerLayer.drawLocations(locations)`
-   * will get called and the locations will get rendered immediately.
+   * @param jobs All jobs that you want to display.
    * @memberof Map
    */
 
-  public setLocations(locations: Location[]): void {
-    // this.ui.updateFromLocations(locations)
-    log.info("Setting locations", locations)
+  public setJobs(jobs: Job[]): void {
+    // this.ui.updateFromjobs(jobs)
+    log.info("Setting jobs", jobs)
     this.markerLayer.clear()
-    this.markerLayer.drawLocations(locations)
+    this.markerLayer.addJobs(jobs)
   }
 
   /**

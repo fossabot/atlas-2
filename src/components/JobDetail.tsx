@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Job } from "../redux/jobs/types"
+import { Job } from "../types/customTypes"
 
 interface Props {
   job: Job

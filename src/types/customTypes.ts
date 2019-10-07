@@ -1,17 +1,3 @@
-export interface Location {
-  corp: string
-  country: string
-  date: string
-  ids?: string
-  lat: number
-  logo: string
-  lon: number
-  score: number
-  title: string
-  type: string
-  url: string
-}
-
 export interface Elements {
   activeJobsCounter?: HTMLElement
   allJobsCounter?: HTMLElement
@@ -49,15 +35,19 @@ export interface RawSearch {
   orte: RawLocation[]
 }
 
+export interface Location {
+  country: string
+  lat: number
+  lon: number
+}
+
 export interface Job {
   corp: string
-  country: string
+  location: Location
   date: string
   id: number
-  lat: number
   logo: string
-  lon: number
-  score?: number
+  score: number
   title: string
   type: string
   url: string

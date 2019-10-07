@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { LogObject } from "../types/custom_types"
+import { LogObject } from "../types/customTypes"
 
 /**
  * @description Custom logger

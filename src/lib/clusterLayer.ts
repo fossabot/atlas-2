@@ -9,9 +9,7 @@ import Cluster from "ol/source/Cluster"
 import VectorSource from "ol/source/Vector"
 
 import ClusterStyle from "../styles/cluster"
-// TODO REFACTOR TO USE JOB INSTEAD OF LOCATION
-import { Location } from "../types/custom_types"
-import { includes } from "./util"
+import { Job } from "../types/customTypes"
 
 /**
  * Handles clustering of locations
@@ -44,17 +42,15 @@ export default class ClusterLayer implements ClusterLayer {
   }
 
   /**
-   * Pushes all locations in 'this.displayedLocations' into the clusterSource and renders them.
+   * Adds jobs to the map
    */
-  public drawLocations(locations: Location[]): void {
+  public addJobs(jobs: Job[]): void {
     const features = []
-    for (const location of locations) {
+    for (const job of jobs) {
       const newFeature = new Feature({
-        geometry: new Point(fromLonLat([location.lon, location.lat])),
+        geometry: new Point(fromLonLat([job.location.lon, job.location.lat])),
       })
-      newFeature.set("location", location, false)
-      const searchString = `${location.corp} - ${location.title}`
-      newFeature.set("search", searchString)
+      newFeature.set("job", job, false)
       features.push(newFeature)
     }
     this.clusterSource.getSource().addFeatures(features)
