@@ -3,7 +3,7 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
 
-import { Job } from "../redux/jobs/types"
+import { Job } from "../types/customTypes"
 import { addNotification } from "../redux/notifications/actions"
 import { NotificationActionTypes } from "../redux/notifications/types"
 import Form from "./Form"
@@ -11,7 +11,7 @@ import Map from "./Map"
 import Menu from "./Menu"
 import Modal from "./Modal"
 import Notifications from "./Notifications"
-
+import Statistics from "./Statistics"
 interface State {
   modal: { isShowing: boolean }
   isFullsceen: boolean
@@ -65,6 +65,7 @@ const App: React.FunctionComponent<Props> = props => {
           toggleModal={toggleModal}
           toggleFullscreen={toggleFullscreen}
         ></Menu>
+        <Statistics></Statistics>
         <Map></Map>
         {state.modal.isShowing ? (
           <Modal show={state.modal.isShowing} toggle={toggleModal}>

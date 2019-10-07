@@ -2,7 +2,7 @@
 
 import axios from "axios"
 
-import { Job } from "../redux/jobs/types"
+import { Job } from "../types/customTypes"
 import { log } from "./logger"
 
 /**
@@ -17,33 +17,34 @@ export default class Sample {
    * @returns {Promise<IJob[]>}
    * @memberof Sample
    */
-  public jobs(count: number): Promise<Job[]> {
+  public async jobs(count: number): Promise<Job[]> {
     const startTime = new Date()
-    return axios
-      .get("../data/cities.json")
-      .then(response => response.data)
-      .then(cities => {
-        const jobs = []
-        while (jobs.length < count && cities.length > 0) {
-          const i = Math.floor(Math.random() * cities.length)
-          const city = cities.splice(i, 1)[0]
-          jobs.push({
-            id: i,
-            corp: this.generateString(count / 4500),
-            date: "",
-            lat: Number(city.lat),
-            lon: Number(city.lon),
-            logo: "",
-            score: Math.random(),
-            title: "",
-            type: "",
-            url: "fake.domain.com",
-          })
-        }
-        const elapsedTime = Number(new Date()) - Number(startTime)
-        log.debug(`Generating ${jobs.length} jobs took ${elapsedTime} ms.`)
-        return jobs
+    const response = await axios.get("../data/cities.json")
+    const iso3 = await axios.get("../data/iso3.json")
+    const cities = response.data
+    const jobs = []
+    while (jobs.length < count && cities.length > 0) {
+      const i = Math.floor(Math.random() * cities.length)
+      const city = cities.splice(i, 1)[0]
+      jobs.push({
+        id: i,
+        corp: this.generateString(count / 4500),
+        location: {
+          country: iso3.data[city.country],
+          lat: Number(city.lat),
+          lon: Number(city.lon),
+        },
+        date: "",
+        logo: "",
+        score: Math.random(),
+        title: "",
+        type: "",
+        url: "fake.domain.com",
       })
+    }
+    const elapsedTime = Number(new Date()) - Number(startTime)
+    log.info(`Generating ${jobs.length} jobs took ${elapsedTime} ms.`)
+    return jobs
   }
 
   /**

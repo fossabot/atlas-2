@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { LogObject } from "../types/custom_types"
+import { LogObject } from "../types/customTypes"
 
 /**
  * @description Custom logger
@@ -49,6 +49,9 @@ class Logger {
    * @memberof Logger
    */
   private buildPayload(level: string, payload: LogObject): LogObject {
+    if (typeof payload !== "object") {
+      payload = { payload }
+    }
     payload.timestamp = new Date()
     payload.level = level
     return payload

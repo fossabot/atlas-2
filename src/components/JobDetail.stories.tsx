@@ -1,18 +1,21 @@
 import { storiesOf } from "@storybook/react"
 import React from "react"
 
-import { Job } from "../redux/jobs/types"
+import { Job } from "../types/customTypes"
 import JobDetail from "./JobDetail"
 
 const data: Record<string, Job> = {
   default: {
     corp: "Bosch",
+    location: {
+      country: "ASD",
+      lat: 50,
+      lon: 11,
+    },
     date: "20.01.2019",
     id: 1,
-    lat: 50,
     logo:
       "https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg",
-    lon: 11,
     score: 0.6,
     title: "System Engineer",
     type: "Full Time",
@@ -20,12 +23,15 @@ const data: Record<string, Job> = {
   },
   highScore: {
     corp: "Bosch",
+    location: {
+      country: "ASD",
+      lat: 50,
+      lon: 11,
+    },
     date: "20.01.2019",
     id: 1,
-    lat: 50,
     logo:
       "https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg",
-    lon: 11,
     score: 0.9,
     title: "System Engineer",
     type: "Full Time",
@@ -33,12 +39,15 @@ const data: Record<string, Job> = {
   },
   maxScore: {
     corp: "Bosch",
+    location: {
+      country: "ASD",
+      lat: 50,
+      lon: 11,
+    },
     date: "20.01.2019",
     id: 1,
-    lat: 50,
     logo:
       "https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg",
-    lon: 11,
     score: 1,
     title: "System Engineer",
     type: "Full Time",
@@ -46,12 +55,15 @@ const data: Record<string, Job> = {
   },
   lowScore: {
     corp: "Bosch",
+    location: {
+      country: "ASD",
+      lat: 50,
+      lon: 11,
+    },
     date: "20.01.2019",
     id: 1,
-    lat: 50,
     logo:
       "https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg",
-    lon: 11,
     score: 0.2,
     title: "System Engineer",
     type: "Full Time",
@@ -59,12 +71,15 @@ const data: Record<string, Job> = {
   },
   zeroScore: {
     corp: "Bosch",
+    location: {
+      country: "ASD",
+      lat: 50,
+      lon: 11,
+    },
     date: "20.01.2019",
     id: 1,
-    lat: 50,
     logo:
       "https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg",
-    lon: 11,
     score: 0,
     title: "System Engineer",
     type: "Full Time",

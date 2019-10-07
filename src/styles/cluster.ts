@@ -6,8 +6,8 @@ import RegularShape from "ol/style/RegularShape"
 
 import { log } from "../lib/logger"
 import { bound } from "../lib/util"
-import { Location } from "../types/custom_types"
-import { OLFeature, OLStyle } from "../types/ol_types"
+import { Location, Job } from "../types/customTypes"
+import { OLFeature, OLStyle } from "../types/olTypes"
 
 /**
  * Handles definition of a style for clusters.
@@ -102,8 +102,8 @@ export default class ClusterStyle {
   private maxScore(features: OLFeature[]): number {
     let maxScore = 0
     for (const feature of features) {
-      const location: Location = feature.get("location")
-      const score: number = location.score
+      const job: Job = feature.get("job")
+      const score: number = job.score
       maxScore = Math.max(maxScore, score)
     }
     return maxScore
@@ -182,8 +182,8 @@ export default class ClusterStyle {
     const subfeatures: OLFeature[] = feature.get("features")
 
     if (subfeatures && subfeatures.length === 1) {
-      const location: Location = subfeatures[0].get("location")
-      return location.score
+      const job: Job = subfeatures[0].get("job")
+      return job.score
     }
 
     return 0

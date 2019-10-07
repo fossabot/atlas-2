@@ -1,34 +1,32 @@
-import { Location } from "../types/custom_types"
+import { Location } from "../types/customTypes"
+
+/**
+ * Removes all occurences of an element from a list
+ *
+ * @export
+ * @param {any[]} list
+ * @param {*} entry
+ * @returns {any[]}
+ */
+export function removeFrom(list: any[], entry: any): any[] {
+  return list.filter(value => {
+    return value !== entry
+  })
+}
 
 /**
  * Removes all entries in list1 from list2 and return list2.
  *
  * @export
- * @param list1
- * @param list2
- * @returns {array} The Difference list2 - list1
+ * @param {any[]} list1
+ * @param {any[]} list2
+ * @returns {any[]}
  */
-export function removeFrom(list1: any[], list2: any[]): any[] {
-  for (const entry of list1) {
-    if (includes(list2, entry)) {
-      const pos: number = list2.indexOf(entry)
-      list2.splice(pos, 1)
-    }
-  }
-  return list2
-}
-
-/**
- * Return true if value is in container.
- * @param container an array of X
- * @param value X
- */
-export function includes(container: Location[], value: Location): boolean {
-  const pos = container.indexOf(value)
-  if (pos >= 0) {
-    return true
-  }
-  return false
+export function removeListFromList(list1: any[], list2: any[]): any[] {
+  const unique = [...new Set(list2)]
+  return list1.filter(value => {
+    return !unique.includes(value)
+  })
 }
 
 /**
