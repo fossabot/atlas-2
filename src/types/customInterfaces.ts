@@ -4,7 +4,7 @@ import VectorLayer from "ol/layer/Vector"
 
 import Map from "../lib/map"
 import { Elements, Job, Location } from "./customTypes"
-import { OLCluster, OLLayer, OLNotification } from "./olTypes"
+import { OLCluster, OLLayer } from "./olTypes"
 
 export declare interface MapInterface {
   jobs: Job[]

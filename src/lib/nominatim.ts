@@ -1,4 +1,4 @@
-import { fetchJson } from "./util"
+import axios from "axios"
 interface Result {
   geojson: Record<string, any>
   lat: number
@@ -86,10 +86,10 @@ export default class Nominatim {
     address: string,
   ): Promise<{ result: Result | undefined; success: boolean }> {
     const url = this.buildURL(address)
-    return fetchJson(url).then(json => {
+    return axios.get(url).then(response => {
       try {
         return {
-          result: this.cleanJson(json),
+          result: this.cleanJson(response.data),
           success: true,
         }
       } catch {

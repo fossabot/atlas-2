@@ -1,6 +1,6 @@
 import { Job } from "../types/customTypes"
 import { log } from "./logger"
-import { fetchJson } from "./util"
+import axios from "axios"
 
 /**
  * Random sample generator
@@ -18,12 +18,16 @@ export default class Sample {
     const startTime = new Date()
     // TODO selfhost these files
     const [cities, iso3] = await Promise.all([
-      fetchJson(
-        "https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json",
-      ),
-      fetchJson(
-        "https://gist.githubusercontent.com/chronark/53ffb75636c27ef2ab194b9086abb01b/raw/eeb63680b0a94b0376ebf4bed5a45ec87dfbbbb4/iso3.json",
-      ),
+      axios
+        .get(
+          "https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json",
+        )
+        .then(response => response.data),
+      axios
+        .get(
+          "https://gist.githubusercontent.com/chronark/53ffb75636c27ef2ab194b9086abb01b/raw/eeb63680b0a94b0376ebf4bed5a45ec87dfbbbb4/iso3.json",
+        )
+        .then(response => response.data),
     ])
 
     const jobs = []

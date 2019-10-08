@@ -35,6 +35,7 @@ const Notification: React.FunctionComponent<NotificationProps> = props => {
 
   return (
     <li
+      key={props.notification.id}
       className={"w-full p-4 m-4 list-none flex justify-between " + colorClass}
     >
       <div>

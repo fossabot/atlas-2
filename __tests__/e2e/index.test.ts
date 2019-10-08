@@ -37,9 +37,13 @@ test("ol-attribution", async t => {
 
 test("can click canvas", async t => {
   const canvas = Selector("canvas")
-  await t
-    .expect(canvas.exists)
-    .ok()
-    .setTestSpeed(0.1)
-    .click(canvas, { offsetX: 100, offsetY: 100 })
+  await t.expect(canvas.exists).ok()
+  await t.setTestSpeed(0.1).click(canvas, { offsetX: 100, offsetY: 100 })
+})
+
+test("can enter a search string", async t => {
+  const searchBar = Selector("#searchForm")
+  const searchSubmit = Selector("#searchSubmit")
+  await t.expect(searchBar.exists).ok()
+  await t.typeText(searchBar, "Germany").click(searchSubmit)
 })

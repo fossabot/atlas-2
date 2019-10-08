@@ -67,6 +67,7 @@ const SearchBar: React.FunctionComponent<Props> = props => {
                   "
       ></input>
       <button
+        id="searchSubmit"
         type="button"
         onClick={onSubmit}
         className="absolute"

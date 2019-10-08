@@ -25,6 +25,7 @@ module.exports = {
     jest: true,
   },
   rules: {
+    "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/ban-ts-ignore": "warn",
     "@typescript-eslint/no-empty-function": "warn",
     "@typescript-eslint/no-explicit-any": "off",

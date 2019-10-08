@@ -6,7 +6,7 @@ import RegularShape from "ol/style/RegularShape"
 
 import { log } from "../lib/logger"
 import { bound } from "../lib/util"
-import { Location, Job } from "../types/customTypes"
+import { Job } from "../types/customTypes"
 import { OLFeature, OLStyle } from "../types/olTypes"
 
 /**

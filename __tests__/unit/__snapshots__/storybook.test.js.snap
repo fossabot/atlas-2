@@ -523,6 +523,7 @@ exports[`Storyshots Menu default 1`] = `
           />
           <button
             className="absolute"
+            id="searchSubmit"
             onClick={[Function]}
             style={
               Object {
@@ -641,6 +642,7 @@ exports[`Storyshots Menu fullscreen 1`] = `
           />
           <button
             className="absolute"
+            id="searchSubmit"
             onClick={[Function]}
             style={
               Object {
@@ -2852,6 +2854,7 @@ exports[`Storyshots SearchBar default 1`] = `
     />
     <button
       className="absolute"
+      id="searchSubmit"
       onClick={[Function]}
       style={
         Object {
@@ -2912,6 +2915,7 @@ exports[`Storyshots SearchBar loading 1`] = `
     />
     <button
       className="absolute"
+      id="searchSubmit"
       onClick={[Function]}
       style={
         Object {
