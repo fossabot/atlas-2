@@ -30,6 +30,7 @@ interface StateProps {
 type Props = StateProps & DispatchProps
 
 const Map: React.FunctionComponent<Props> = props => {
+  const MAP_ID = "map"
   const [isLoading, setLoading] = useState<boolean>(false)
   const [isRendered, setIsRendered] = useState<boolean>(false)
   const [map, setMap] = useState()
@@ -42,7 +43,7 @@ const Map: React.FunctionComponent<Props> = props => {
     where 'isRendered' could be set before 'map'
     */
     const init = async (): Promise<void> => {
-      const newMap = new MapClass("map")
+      const newMap = new MapClass(MAP_ID)
       newMap.addCountryLayer((features: any[]) => {
         props.setSelectedCountries(features)
       })
@@ -104,7 +105,7 @@ const Map: React.FunctionComponent<Props> = props => {
     props.setShownJobs(jobs)
   }, [props.jobs.allJobs, isRendered, props.countries.selectedCountries])
 
-  return <div id="map"></div>
+  return <div id={MAP_ID}></div>
 }
 
 const mapStateToProps = (state: StateProps): StateProps => ({

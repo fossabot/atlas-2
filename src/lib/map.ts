@@ -4,9 +4,10 @@ import Button from "ol-ext/control/Button"
 import LayerPopup from "ol-ext/control/LayerPopup"
 import Crop from "ol-ext/filter/Crop"
 import Mask from "ol-ext/filter/Mask"
-import { Attribution, defaults } from "ol/control.js"
+import Layer from "ol/layer"
+import { Attribution, defaults } from "ol/control"
 import FullScreen from "ol/control/FullScreen"
-import { platformModifierKeyOnly } from "ol/events/condition.js"
+import { platformModifierKeyOnly, shiftKeyOnly } from "ol/events/condition"
 import Feature from "ol/Feature"
 import GeoJSON from "ol/format/GeoJSON"
 import { fromCircle } from "ol/geom/Polygon"
@@ -17,16 +18,15 @@ import VectorLayer from "ol/layer/Vector"
 import { fromLonLat } from "ol/proj"
 import OSM from "ol/source/OSM"
 import VectorSource from "ol/source/Vector"
-import { Fill, Stroke, Style } from "ol/style.js"
+import { Fill, Stroke, Style } from "ol/style"
 import View from "ol/View"
-
 import PolygonStyle from "../styles/polygon"
 import { MapInterface } from "../types/customInterfaces"
 import { Job } from "../types/customTypes"
-import { OLFeature, OLLayer, OLNotification, OLSelect } from "../types/olTypes"
 import ClusterLayer from "./clusterLayer"
 import { log } from "./logger"
 import { onClick as countryOnClick, countryLayer } from "./countryLayer"
+
 /**
  * OpenLayers Map
  *
@@ -40,9 +40,7 @@ export default class Map implements MapInterface {
   public jobs: Job[]
   private mapID: string
   private markerLayer: ClusterLayer
-  public notification: OLNotification
   public olmap: OLMap
-  private select: OLSelect
 
   /**
    *Creates an instance of Map.
@@ -58,8 +56,7 @@ export default class Map implements MapInterface {
     this.olmap = this.buildMap()
     this.buildMarkerLayer()
     this.addControls()
-    // this.addCircleSelect()
-    this.select = this.addSelect()
+    this.addCircleSelect()
   }
 
   addCountryLayer(callback?: (features: any[]) => void): void {
@@ -156,72 +153,33 @@ export default class Map implements MapInterface {
    * @memberof Map
    */
   private addCircleSelect(): void {
-    const drawLayer = new VectorLayer({
-      source: new VectorSource(),
-    })
-    // drawLayer = this.olmap.layers
+    const drawLayer = this.recreateDrawLayer()
     this.olmap.addLayer(drawLayer)
     const modify = new Modify({
       source: drawLayer.getSource(),
     })
     this.olmap.addInteraction(modify)
-    const draw: Draw = new Draw({
+
+    const draw = new Draw({
       source: drawLayer.getSource(),
       // @ts-ignore
-      type: "CIRCLE",
+      type: "Circle",
       wrapX: true,
-      style: new Style({
-        fill: new Fill({
-          color: "rgba(0,0,0,0)",
-        }),
-        stroke: new Stroke({
-          color: "rgba(200,0,0,1)",
-          width: 1,
-        }),
-      }),
-      name: "drawInteraction",
+      condition: shiftKeyOnly,
     })
+
+    draw.on("drawstart", () => {})
+
     this.olmap.addInteraction(draw)
-
-    draw.on("drawstart", () => {
-      drawLayer.getSource().clear()
-      const layer = this.getLayerByName("greyout")
-      if (typeof layer !== "undefined") {
-        this.olmap.removeLayer(layer)
-      }
-    })
-
-    modify.on("modifystart", () => {
-      const layer = this.getLayerByName("greyout")
-      if (typeof layer !== "undefined") {
-        this.olmap.removeLayer(layer)
-      }
-    })
-
-    modify.on("modifyend", e => {
-      if (e.features.get("array_")[0]) {
-        this.handleDrawEnd(e.features.get("array_")[0])
-      }
-    })
-
-    draw.on("drawend", e => {
-      if (e.feature) {
-        this.handleDrawEnd(e.feature)
-      }
-    })
   }
 
-  /**
-   * Handle notification and call the this.crop
-   *
-   * @param {*} circle
-   * @memberof Map
-   */
-  private handleDrawEnd(circle: Feature): void {
-    // TODO Radius calculation. Needs to use projection
-    // https://stackoverflow.com/questions/32202944/openlayers-3-circle-radius-in-meters
-    const feature = this.makeFeatureFromCircle(circle)
-    this.crop(feature)
+  private recreateDrawLayer(): VectorLayer {
+    this.removeLayerByName("drawLayer")
+    const layer = new VectorLayer({
+      source: new VectorSource(),
+    })
+    layer.set("name", "drawLayer")
+    return layer
   }
 
   /**
@@ -233,26 +191,6 @@ export default class Map implements MapInterface {
    */
   private getRadius(circle: Feature): number {
     return circle.get("values_").geometry.getRadius()
-  }
-
-  /**
-   * @description Generates a new layer and adds the geojson data as feature
-   * @param {*} geojson
-   * @returns
-   * @memberof Map
-   */
-  public featureLayerFromGeoJson(geojson: any): VectorLayer {
-    const layer = new VectorLayer({
-      source: new VectorSource({
-        features: new GeoJSON().readFeatures(geojson, {
-          featureProjection: "EPSG:3857",
-        }),
-      }),
-      style: new PolygonStyle().style(),
-    })
-    this.olmap.addLayer(layer)
-    this.crop(layer.getSource().getFeatures()[0])
-    return layer
   }
 
   /**
@@ -285,7 +223,7 @@ export default class Map implements MapInterface {
    * @returns
    * @memberof Map
    */
-  private getLayerByName(name: string): OLLayer | undefined {
+  private getLayerByName(name: string): VectorLayer | undefined {
     const layers = this.olmap.getLayers()
     layers.forEach(layer => {
       if (layer.get("name") === name) {
@@ -303,69 +241,17 @@ export default class Map implements MapInterface {
    * @returns
    * @memberof Map
    */
-  private getOrCreateLayer(name: string, opts: Record<string, any>): OLLayer {
+  private getOrCreateLayer(
+    name: string,
+    opts: Record<string, any>,
+  ): VectorLayer {
     let layer = this.getLayerByName(name)
     if (typeof layer === "undefined") {
-      const newLayer = new TileLayer(opts)
-      layer = (newLayer as unknown) as OLLayer
-      this.olmap.addLayer(layer)
+      layer = new VectorLayer(opts)
+      layer.set("name", name)
+      return layer
     }
     return layer
-  }
-
-  /**
-   * Adds a greyed-out look to the map.
-   * Greys out everything except the inside of the feature.
-   *
-   * @param feature
-   * @memberof Map
-   */
-  private crop(feature: OLFeature): void {
-    const crop = new Crop({
-      feature: feature,
-      inner: true,
-      fill: new Fill({
-        color: [0, 0, 0, 0.5],
-      }),
-    })
-    const mask = new Mask({
-      feature: feature,
-      inner: false,
-      fill: new Fill({ color: [0, 0, 0, 0.4] }),
-    })
-
-    const greyOutLayer = this.getOrCreateLayer("greyout", {
-      name: "greyout",
-      source: new OSM(),
-    })
-    greyOutLayer.addFilter(crop)
-    greyOutLayer.addFilter(mask)
-  }
-
-  /**
-   * Adds ability to click on a cluster and displays the individual jobs
-   * in the jobList.
-   *
-   * @returns
-   * @memberof Map
-   */
-  private addSelect(): OLSelect {
-    const select = new Select({
-      condition: platformModifierKeyOnly,
-    })
-    this.olmap.addInteraction(select)
-
-    /*
-    TODO: rework UI
-    select.on("select", e => {
-      const c = e.selected
-      if (c.length === 1) {
-        const feature = c[0]
-        this.ui.updateJobList(feature) 
-      }
-    })
-*/
-    return select
   }
 
   /**
@@ -389,10 +275,10 @@ export default class Map implements MapInterface {
     return new OLMap({
       target: this.mapID,
       controls: defaults({ attribution: false }).extend([
-        new LayerPopup(),
         new Attribution({
           collapsible: true,
         }),
+        new LayerPopup(),
       ]),
       layers: [
         new TileLayer({
@@ -400,26 +286,6 @@ export default class Map implements MapInterface {
             wrapX: true,
           }),
         }),
-        /*
-        new TileLayer({
-          title: "OpenRailwayMap",
-
-          source: new XYZ({
-            url:
-              "https://{a-c}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png",
-            attributions:
-              'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Map style: &copy; <a href="https://www.OpenRailwayMap.org">OpenRailwayMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
-          }),
-        }),
-        */
-        // new VectorTileLayer({
-        //   source: new VectorTileSource({
-        //     format: new MVT(),
-        //     url:
-        //       "http://jbs-osm.informatik.fh-nuernberg.de:18000/maps/osm/{z}/{x}/{y}.pbf",
-        //   }),
-        //   style: vectorStyle,
-        // }),
       ],
       view: new View({
         center: fromLonLat([0, 45]),
