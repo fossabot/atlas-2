@@ -35,22 +35,31 @@ const countryLayer = new VectorLayer({
 
 const onClick = (olmap: Map, callback?: (features: any[]) => void): void => {
   const selectedFeatures: any[] = []
-  olmap.on("singleclick", e => {
-    olmap.forEachFeatureAtPixel(e.pixel, (feature: any) => {
-      const selectedIndex = selectedFeatures.indexOf(feature)
 
-      if (selectedIndex < 0) {
-        selectedFeatures.push(feature)
-        feature.setStyle(countryLayerStyle(true))
-      } else {
-        selectedFeatures.splice(selectedIndex, 1)
-        feature.setStyle(countryLayerStyle(false))
-      }
-      if (callback) {
-        const countryCodes = getCountryCodes(selectedFeatures)
-        callback(countryCodes)
-      }
-    })
+  const layerFilter = (layer: any): boolean => {
+    return layer.get("name") === "countries"
+  }
+
+  olmap.on("singleclick", e => {
+    olmap.forEachFeatureAtPixel(
+      e.pixel,
+      (feature: any) => {
+        const selectedIndex = selectedFeatures.indexOf(feature)
+
+        if (selectedIndex < 0) {
+          selectedFeatures.push(feature)
+          feature.setStyle(countryLayerStyle(true))
+        } else {
+          selectedFeatures.splice(selectedIndex, 1)
+          feature.setStyle(countryLayerStyle(false))
+        }
+        if (callback) {
+          const countryCodes = getCountryCodes(selectedFeatures)
+          callback(countryCodes)
+        }
+      },
+      { layerFilter },
+    )
   })
 }
 

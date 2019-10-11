@@ -55,8 +55,14 @@ export default class Map implements MapInterface {
     this.addCircleSelect()
   }
 
+  addVectorLayer(name: string, layer: VectorLayer): VectorLayer {
+    layer.set("name", name)
+    this.olmap.addLayer(layer)
+    return layer
+  }
+
   addCountryLayer(callback?: (features: any[]) => void): void {
-    this.olmap.addLayer(countryLayer)
+    this.addVectorLayer("countries", countryLayer)
     countryOnClick(this.olmap, callback)
   }
 
