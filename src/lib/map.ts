@@ -2,17 +2,12 @@ import { Map as OLMap } from "ol"
 import Bar from "ol-ext/control/Bar"
 import Button from "ol-ext/control/Button"
 import LayerPopup from "ol-ext/control/LayerPopup"
-import Crop from "ol-ext/filter/Crop"
-import Mask from "ol-ext/filter/Mask"
-import Layer from "ol/layer"
 import { Attribution, defaults } from "ol/control"
 import FullScreen from "ol/control/FullScreen"
-import { platformModifierKeyOnly, shiftKeyOnly } from "ol/events/condition"
+import { shiftKeyOnly } from "ol/events/condition"
 import Feature from "ol/Feature"
-import GeoJSON from "ol/format/GeoJSON"
 import { fromCircle } from "ol/geom/Polygon"
 import { Draw, Modify } from "ol/interaction"
-import Select from "ol/interaction/Select"
 import TileLayer from "ol/layer/Tile"
 import VectorLayer from "ol/layer/Vector"
 import { fromLonLat } from "ol/proj"
@@ -20,12 +15,13 @@ import OSM from "ol/source/OSM"
 import VectorSource from "ol/source/Vector"
 import { Fill, Stroke, Style } from "ol/style"
 import View from "ol/View"
-import PolygonStyle from "../styles/polygon"
 import { MapInterface } from "../types/customInterfaces"
 import { Job } from "../types/customTypes"
 import ClusterLayer from "./clusterLayer"
 import { log } from "./logger"
 import { onClick as countryOnClick, countryLayer } from "./countryLayer"
+import BaseLayer from "ol/layer/Base"
+import Layer from "ol/layer/Layer"
 
 /**
  * OpenLayers Map
@@ -92,32 +88,9 @@ export default class Map implements MapInterface {
       className: "",
       title: "Remove Selection",
       handleClick: () => {
-        this.removeCrop()
+        this.removeLayersByNames(["drawLayer"])
       },
     })
-  }
-
-  /**
-   * @description Removes the greyout and selectLayer from the map
-   * @memberof Map
-   */
-  private removeCrop(): void {
-    this.removeLayerByName("greyout")
-    for (const layerName of ["draw", "geojson"]) {
-      this.clearSource(layerName)
-    }
-  }
-
-  /**
-   * @description clears the source of a layer specified by its name.
-   * @param {string} layerName
-   * @memberof Map
-   */
-  private clearSource(layerName: string): void {
-    const layer = this.getLayerByName(layerName)
-    if (typeof layer !== "undefined") {
-      layer.getSource().clear()
-    }
   }
 
   /**
@@ -125,11 +98,12 @@ export default class Map implements MapInterface {
    * @param {string} name
    * @memberof Map
    */
-  private removeLayerByName(name: string): void {
-    const layer = this.getLayerByName(name)
-    if (typeof layer !== "undefined") {
+  private removeLayersByNames(names: string[]): void {
+    const layers = this.getLayersByNames(names)
+    layers.forEach((layer: BaseLayer) => {
+      log.info("Deleting layer", layer)
       this.olmap.removeLayer(layer)
-    }
+    })
   }
 
   /**
@@ -153,7 +127,7 @@ export default class Map implements MapInterface {
    * @memberof Map
    */
   private addCircleSelect(): void {
-    const drawLayer = this.recreateDrawLayer()
+    const drawLayer = this.clearDrawLayer()
     this.olmap.addLayer(drawLayer)
     const modify = new Modify({
       source: drawLayer.getSource(),
@@ -168,17 +142,22 @@ export default class Map implements MapInterface {
       condition: shiftKeyOnly,
     })
 
-    draw.on("drawstart", () => {})
+    draw.on("drawend", () => {
+      this.clearDrawLayer()
+    })
 
     this.olmap.addInteraction(draw)
   }
 
-  private recreateDrawLayer(): VectorLayer {
-    this.removeLayerByName("drawLayer")
-    const layer = new VectorLayer({
+  private clearDrawLayer(): VectorLayer {
+    log.info("Recreating drawLayer")
+    let [layer, wasCreated] = this.getOrCreateLayer("drawLayer", {
       source: new VectorSource(),
     })
-    layer.set("name", "drawLayer")
+    layer = layer as VectorLayer
+    if (!wasCreated && typeof layer.getSource === "function") {
+      layer.getSource().clear()
+    }
     return layer
   }
 
@@ -223,14 +202,15 @@ export default class Map implements MapInterface {
    * @returns
    * @memberof Map
    */
-  private getLayerByName(name: string): VectorLayer | undefined {
-    const layers = this.olmap.getLayers()
-    layers.forEach(layer => {
-      if (layer.get("name") === name) {
-        return layer
+  private getLayersByNames(names: string[]): BaseLayer[] {
+    const allLayers = this.olmap.getLayers()
+    const filteredLayers: BaseLayer[] = []
+    allLayers.forEach(layer => {
+      if (names.includes(layer.get("name"))) {
+        filteredLayers.push(layer)
       }
     })
-    return undefined
+    return filteredLayers
   }
 
   /**
@@ -244,14 +224,23 @@ export default class Map implements MapInterface {
   private getOrCreateLayer(
     name: string,
     opts: Record<string, any>,
-  ): VectorLayer {
-    let layer = this.getLayerByName(name)
-    if (typeof layer === "undefined") {
-      layer = new VectorLayer(opts)
-      layer.set("name", name)
-      return layer
+  ): [VectorLayer, boolean] {
+    const layers = this.getLayersByNames([name])
+    let layer: VectorLayer, wasCreated: boolean
+    switch (layers.length) {
+      case 1:
+        layer = (layers[0] as unknown) as VectorLayer
+        wasCreated = false
+        break
+      case 0:
+        layer = new VectorLayer(opts)
+        layer.set("name", name)
+        wasCreated = true
+        break
+      default:
+        throw Error(`I found more than one layer with this name: ${name}`)
     }
-    return layer
+    return [layer, wasCreated]
   }
 
   /**
