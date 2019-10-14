@@ -163,6 +163,7 @@ export default class Map implements MapInterface {
       type: "Circle",
       wrapX: true,
       condition: shiftKeyOnly,
+      // Sets the style during first transformation
       style: polygonStyle(),
     })
     this.handleCircleSelect(draw)
@@ -181,6 +182,7 @@ export default class Map implements MapInterface {
   }: { clear?: boolean } = {}): VectorLayer {
     let [layer, wasCreated] = this.getOrCreateLayer("drawLayer", {
       source: new VectorSource(),
+      // Sets the style after transformation
       style: polygonStyle(),
     })
     layer = layer as VectorLayer
