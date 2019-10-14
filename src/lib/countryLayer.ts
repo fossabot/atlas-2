@@ -30,7 +30,7 @@ const countryLayer = new VectorLayer({
       "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json",
     format: new GeoJSON(),
   }),
-  style: countryLayerStyle(false),
+  style: countryLayerStyle({ isSelected: false }),
 })
 
 const onClick = (olmap: Map, callback?: (features: any[]) => void): void => {
@@ -48,10 +48,10 @@ const onClick = (olmap: Map, callback?: (features: any[]) => void): void => {
 
         if (selectedIndex < 0) {
           selectedFeatures.push(feature)
-          feature.setStyle(countryLayerStyle(true))
+          feature.setStyle(countryLayerStyle({ isSelected: true }))
         } else {
           selectedFeatures.splice(selectedIndex, 1)
-          feature.setStyle(countryLayerStyle(false))
+          feature.setStyle(countryLayerStyle({ isSelected: false }))
         }
         if (callback) {
           const countryCodes = getCountryCodes(selectedFeatures)

@@ -6,9 +6,9 @@ import { Attribution, defaults } from "ol/control"
 import FullScreen from "ol/control/FullScreen"
 import { shiftKeyOnly } from "ol/events/condition"
 import GeoJSON from "ol/format/GeoJSON"
-import PolygonStyle from "../styles/polygon"
+import polygonStyle from "../styles/polygon"
 import Feature from "ol/Feature"
-import { fromCircle } from "ol/geom/Polygon"
+import Polygon, { fromCircle } from "ol/geom/Polygon"
 import { Draw, Modify } from "ol/interaction"
 import TileLayer from "ol/layer/Tile"
 import VectorLayer from "ol/layer/Vector"
@@ -81,7 +81,7 @@ export default class Map implements MapInterface {
           featureProjection: "EPSG:3857",
         }),
       }),
-      style: new PolygonStyle().style(),
+      style: polygonStyle(),
     })
     this.addVectorLayer("geojson", layer)
     return layer
@@ -110,7 +110,7 @@ export default class Map implements MapInterface {
       className: "",
       title: "Remove Circle Selection",
       handleClick: () => {
-        this.getDrawLayer({ clear: true })
+        this.clearSource(this.getDrawLayer())
       },
     })
   }
@@ -163,20 +163,25 @@ export default class Map implements MapInterface {
       type: "Circle",
       wrapX: true,
       condition: shiftKeyOnly,
+      style: polygonStyle(),
     })
+    this.handleCircleSelect(draw)
+  }
 
-    draw.on("drawstart", () => {
-      this.clearSource(drawLayer)
+  private handleCircleSelect(draw: Draw): void {
+    draw.on("drawend", () => {
+      this.clearSource(this.getDrawLayer())
     })
 
     this.olmap.addInteraction(draw)
   }
 
-  private getDrawLayer(opts: { clear: boolean }): VectorLayer {
-    const { clear } = opts
-    log.info("Recreating drawLayer")
+  private getDrawLayer({
+    clear = false,
+  }: { clear?: boolean } = {}): VectorLayer {
     let [layer, wasCreated] = this.getOrCreateLayer("drawLayer", {
       source: new VectorSource(),
+      style: polygonStyle(),
     })
     layer = layer as VectorLayer
     if (!wasCreated && clear) {

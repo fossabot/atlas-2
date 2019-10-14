@@ -9,46 +9,31 @@ import Style from "ol/style/Style"
  *
  * @param {boolean} [selected=false] - Whether or not the polygon is currently selected.
  *
- * @export
- * @class PolygonStyle
  */
-export default class PolygonStyle {
-  public selected: boolean
-  /**
-   *Creates an instance of PolygonStyle.
-   * @param selected Whether the polygon is currently selected or not.
-   * @memberof PolygonStyle
-   */
-  public constructor(selected = false) {
-    this.selected = selected
-  }
+const polygonStyle = ({
+  isSelected = false,
+}: { isSelected?: boolean } = {}): Style => {
+  const selectedStyle = new Style({
+    fill: new Fill({
+      color: "rgba(5,25,35,0.4)",
+    }),
+    stroke: new Stroke({
+      color: "rgba(0,0,0,0)",
+      width: 0,
+    }),
+  })
 
-  /**
-   * Calculate the styling for each polygon.
-   *
-   * @returns {Style}
-   * @memberof ClusterStyle
-   */
-  public style(): Style {
-    if (this.selected) {
-      return new Style({
-        fill: new Fill({
-          color: "rgba(5,25,35,0.4)",
-        }),
-        stroke: new Stroke({
-          color: "rgba(0,0,0,0)",
-          width: 0,
-        }),
-      })
-    }
-    return new Style({
-      fill: new Fill({
-        color: "rgba(224,236,244,0.3)",
-      }),
-      stroke: new Stroke({
-        color: "rgba(129,15,124,0.7)",
-        width: 2,
-      }),
-    })
-  }
+  const regularStyle = new Style({
+    fill: new Fill({
+      color: "rgba(224,236,244,0.3)",
+    }),
+    stroke: new Stroke({
+      color: "rgb(112,148,194)",
+      width: 2,
+    }),
+  })
+
+  return isSelected ? selectedStyle : regularStyle
 }
+
+export default polygonStyle
