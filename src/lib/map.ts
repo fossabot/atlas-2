@@ -5,6 +5,8 @@ import LayerPopup from "ol-ext/control/LayerPopup"
 import { Attribution, defaults } from "ol/control"
 import FullScreen from "ol/control/FullScreen"
 import { shiftKeyOnly } from "ol/events/condition"
+import GeoJSON from "ol/format/GeoJSON"
+import PolygonStyle from "../styles/polygon"
 import Feature from "ol/Feature"
 import { fromCircle } from "ol/geom/Polygon"
 import { Draw, Modify } from "ol/interaction"
@@ -35,8 +37,8 @@ import Layer from "ol/layer/Layer"
 export default class Map implements MapInterface {
   public jobs: Job[]
   private mapID: string
-  private markerLayer: ClusterLayer
   public olmap: OLMap
+  private clusterLayer: ClusterLayer
 
   /**
    *Creates an instance of Map.
@@ -50,7 +52,7 @@ export default class Map implements MapInterface {
 
     this.jobs = []
     this.olmap = this.buildMap()
-    this.buildMarkerLayer()
+    this.buildClusterLayer()
     this.addControls()
     this.addCircleSelect()
   }
@@ -67,6 +69,25 @@ export default class Map implements MapInterface {
   }
 
   /**
+   * @description Generates a new layer and adds the geojson data as feature
+   * @param {*} geojson
+   * @returns
+   * @memberof Map
+   */
+  public featureLayerFromGeoJson(geojson: any): VectorLayer {
+    const layer = new VectorLayer({
+      source: new VectorSource({
+        features: new GeoJSON().readFeatures(geojson, {
+          featureProjection: "EPSG:3857",
+        }),
+      }),
+      style: new PolygonStyle().style(),
+    })
+    this.addVectorLayer("geojson", layer)
+    return layer
+  }
+
+  /**
    * Adds map controls
    * Should be called in the constructor
    *
@@ -79,22 +100,17 @@ export default class Map implements MapInterface {
 
     this.olmap.addControl(new FullScreen())
     this.olmap.addControl(mainbar)
-    mainbar.addControl(this.selectRemoveButton())
+    mainbar.addControl(this.circleSelectRemoveButton())
     return mainbar
   }
 
-  /**
-   * @description Adds a new Button to remove a selection.
-   * @returns
-   * @memberof Map
-   */
-  private selectRemoveButton(): void {
+  private circleSelectRemoveButton(): void {
     return new Button({
       html: "R",
       className: "",
-      title: "Remove Selection",
+      title: "Remove Circle Selection",
       handleClick: () => {
-        this.removeLayersByNames(["drawLayer"])
+        this.getDrawLayer({ clear: true })
       },
     })
   }
@@ -106,6 +122,7 @@ export default class Map implements MapInterface {
    */
   private removeLayersByNames(names: string[]): void {
     const layers = this.getLayersByNames(names)
+    log.info("layers", layers)
     layers.forEach((layer: BaseLayer) => {
       log.info("Deleting layer", layer)
       this.olmap.removeLayer(layer)
@@ -133,7 +150,7 @@ export default class Map implements MapInterface {
    * @memberof Map
    */
   private addCircleSelect(): void {
-    const drawLayer = this.clearDrawLayer()
+    const drawLayer = this.getDrawLayer({ clear: true })
     this.olmap.addLayer(drawLayer)
     const modify = new Modify({
       source: drawLayer.getSource(),
@@ -148,20 +165,28 @@ export default class Map implements MapInterface {
       condition: shiftKeyOnly,
     })
 
-    draw.on("drawend", () => {
-      this.clearDrawLayer()
+    draw.on("drawstart", () => {
+      this.clearSource(drawLayer)
     })
 
     this.olmap.addInteraction(draw)
   }
 
-  private clearDrawLayer(): VectorLayer {
+  private getDrawLayer(opts: { clear: boolean }): VectorLayer {
+    const { clear } = opts
     log.info("Recreating drawLayer")
     let [layer, wasCreated] = this.getOrCreateLayer("drawLayer", {
       source: new VectorSource(),
     })
     layer = layer as VectorLayer
-    if (!wasCreated && typeof layer.getSource === "function") {
+    if (!wasCreated && clear) {
+      this.clearSource(layer)
+    }
+    return layer
+  }
+
+  private clearSource(layer: VectorLayer): VectorLayer {
+    if (typeof layer.getSource === "function") {
       layer.getSource().clear()
     }
     return layer
@@ -294,9 +319,9 @@ export default class Map implements MapInterface {
    *
    * @memberof Map
    */
-  private buildMarkerLayer(): void {
-    this.markerLayer = new ClusterLayer(60)
-    this.olmap.addLayer(this.markerLayer.animatedCluster)
+  private buildClusterLayer(): void {
+    this.clusterLayer = new ClusterLayer(60)
+    this.addVectorLayer("cluster", this.clusterLayer.animatedCluster)
   }
 
   /**
@@ -309,10 +334,9 @@ export default class Map implements MapInterface {
    */
 
   public setJobs(jobs: Job[]): void {
-    // this.ui.updateFromjobs(jobs)
     log.info("Setting jobs", jobs)
-    this.markerLayer.clear()
-    this.markerLayer.addJobs(jobs)
+    this.clusterLayer.clear()
+    this.clusterLayer.addJobs(jobs)
   }
 
   /**

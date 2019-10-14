@@ -30,7 +30,7 @@ export default class Sample {
         .then(response => response.data),
     ])
 
-    const jobs = []
+    const jobs: Job[] = []
     while (jobs.length < count && cities.length > 0) {
       const i = Math.floor(Math.random() * cities.length)
       const city = cities.splice(i, 1)[0]

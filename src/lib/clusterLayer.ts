@@ -3,13 +3,13 @@
 import AnimatedCluster from "ol-ext/layer/AnimatedCluster"
 import Feature from "ol/Feature"
 import Point from "ol/geom/Point"
-import BaseLayer from "ol/layer/Base"
 import { fromLonLat } from "ol/proj.js"
 import Cluster from "ol/source/Cluster"
 import VectorSource from "ol/source/Vector"
 
 import ClusterStyle from "../styles/cluster"
 import { Job } from "../types/customTypes"
+import VectorLayer from "ol/layer/Vector"
 
 /**
  * Handles clustering of locations
@@ -17,7 +17,7 @@ import { Job } from "../types/customTypes"
 export default class ClusterLayer implements ClusterLayer {
   private distance: number
   public clusterSource: Cluster
-  public animatedCluster: BaseLayer
+  public animatedCluster: VectorLayer
   /**
    *Creates an instance of ClusterLayer.
    * @param [distance=40]
@@ -37,8 +37,6 @@ export default class ClusterLayer implements ClusterLayer {
         return new ClusterStyle().style(cluster)
       },
     })
-    this.animatedCluster.setZIndex(100)
-    // this.ui = ui
   }
 
   /**
