@@ -6,7 +6,7 @@ import Nominatim from "../lib/nominatim"
 import { fetchJobs, setShownJobs } from "../redux/jobs/actions"
 import { Job } from "../types/customTypes"
 import { setSelectedCountries } from "../redux/countries/actions"
-
+import { log } from "../lib/logger"
 interface DispatchProps {
   fetchJobs: () => void
   setShownJobs: (jobs: Job[]) => void

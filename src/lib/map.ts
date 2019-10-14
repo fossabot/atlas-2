@@ -24,6 +24,7 @@ import { log } from "./logger"
 import { onClick as countryOnClick, countryLayer } from "./countryLayer"
 import BaseLayer from "ol/layer/Base"
 import Layer from "ol/layer/Layer"
+import Geometry from "ol/geom/Geometry"
 
 /**
  * OpenLayers Map
@@ -166,15 +167,35 @@ export default class Map implements MapInterface {
       // Sets the style during first transformation
       style: polygonStyle(),
     })
-    this.handleCircleSelect(draw)
+    this.handleCircleSelectEvents(draw, modify)
+    this.olmap.addInteraction(draw)
   }
 
-  private handleCircleSelect(draw: Draw): void {
+  private handleCircleSelectEvents(draw: Draw, modify: Modify): void {
+    const getCircle = (): Geometry | undefined => {
+      const source = this.getDrawLayer().getSource()
+      if (source.getFeatures().length === 1) {
+        return source.getFeatures()[0].get("geometry")
+      }
+
+      return undefined
+    }
+
+    const onEnd = (): void => {
+      const circle = getCircle()
+      if (circle) {
+        log.info("CIRCLE", circle)
+      }
+    }
+
     draw.on("drawend", () => {
       this.clearSource(this.getDrawLayer())
+      onEnd()
     })
 
-    this.olmap.addInteraction(draw)
+    modify.on("modifyend", () => {
+      onEnd()
+    })
   }
 
   private getDrawLayer({
