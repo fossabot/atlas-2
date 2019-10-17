@@ -5,11 +5,9 @@ import MapClass from "../lib/map"
 import Nominatim from "../lib/nominatim"
 import { fetchJobs, setShownJobs } from "../redux/jobs/actions"
 import { Job } from "../types/customTypes"
-import { setSelectedCountries } from "../redux/countries/actions"
 interface DispatchProps {
   fetchJobs: () => void
   setShownJobs: (jobs: Job[]) => void
-  setSelectedCountries: (countries: string[]) => void
 }
 
 interface StateProps {
@@ -21,7 +19,7 @@ interface StateProps {
     query: string
   }
   countries: {
-    selectedCountries: string[]
+    selectedCountries: Record<string, any>[]
   }
 }
 
@@ -43,9 +41,7 @@ const Map: React.FunctionComponent<Props> = props => {
     */
     const init = async (): Promise<void> => {
       const newMap = new MapClass(MAP_ID)
-      newMap.addCountryLayer((features: any[]) => {
-        props.setSelectedCountries(features)
-      })
+      newMap.addCountryLayer()
       await setMap(newMap)
       setIsRendered(true)
     }
@@ -76,6 +72,13 @@ const Map: React.FunctionComponent<Props> = props => {
     fetchNominatim()
   }, [props.search.query])
 
+  useEffect(() => {
+    console.log("Running")
+    if (map) {
+      map.featureLayerFromGeoJson(props.countries.selectedCountries)
+    }
+  }, [props.countries.selectedCountries])
+
   /*
     Fetching jobs
   */
@@ -89,14 +92,8 @@ const Map: React.FunctionComponent<Props> = props => {
     Updating redux jobs from country select
   */
   useEffect(() => {
-    let jobs: Job[] = []
-    if (props.countries.selectedCountries.length > 0) {
-      jobs = props.jobs.allJobs.filter(job => {
-        return props.countries.selectedCountries.includes(job.location.country)
-      })
-    } else {
-      jobs = props.jobs.allJobs
-    }
+    const jobs: Job[] = []
+
     props.setShownJobs(jobs)
   }, [props.countries.selectedCountries])
 
@@ -124,8 +121,6 @@ const mapDispatchToProps = (
 ): DispatchProps => ({
   fetchJobs: () => dispatch(fetchJobs()),
   setShownJobs: (jobs: Job[]) => dispatch(setShownJobs(jobs)),
-  setSelectedCountries: (countries: string[]) =>
-    dispatch(setSelectedCountries(countries)),
 })
 
 export default connect(

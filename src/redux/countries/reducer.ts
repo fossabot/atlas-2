@@ -1,11 +1,15 @@
 import {
-  SET_SELECTED_COUNTRIES,
   SetSelectedCountriesActionTypes,
   SelectedCountriesState,
+  ADD_SELECTED_COUNTRY,
+  REMOVE_SELECTED_COUNTRY,
+  ADD_COUNTRY,
 } from "./types"
+import { removeFrom } from "../../lib/util"
 
 const initialState: SelectedCountriesState = {
   selectedCountries: [],
+  allCountries: [],
 }
 
 export default function(
@@ -13,9 +17,20 @@ export default function(
   action: SetSelectedCountriesActionTypes,
 ): SelectedCountriesState {
   switch (action.type) {
-    case SET_SELECTED_COUNTRIES:
+    case ADD_SELECTED_COUNTRY:
       return {
-        selectedCountries: action.payload,
+        ...state,
+        selectedCountries: [...state.selectedCountries, action.payload],
+      }
+    case REMOVE_SELECTED_COUNTRY:
+      return {
+        ...state,
+        selectedCountries: removeFrom(state.selectedCountries, action.payload),
+      }
+    case ADD_COUNTRY:
+      return {
+        ...state,
+        allCountries: [...state.allCountries, action.payload],
       }
     default:
       return state

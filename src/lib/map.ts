@@ -64,27 +64,111 @@ export default class Map implements MapInterface {
     return layer
   }
 
-  addCountryLayer(callback?: (features: any[]) => void): void {
-    this.addVectorLayer("countries", countryLayer)
-    countryOnClick(this.olmap, callback)
+  addCountryLayer(): void {
+    countryLayer(this)
   }
 
-  /**
-   * @description Generates a new layer and adds the geojson data as feature
-   * @param {*} geojson
-   * @returns
-   * @memberof Map
-   */
-  public featureLayerFromGeoJson(geojson: any): VectorLayer {
+  public featureLayerFromGeoJson(geojson: Record<string, any>[]): VectorLayer {
+    const cleanGeoJson = {
+      type: "FeatureCollection",
+      features: geojson.flatMap((g: Record<string, any>) => {
+        console.log(g)
+        return g.features.map((f: any) => {
+          return {
+            type: f.type,
+            geometry: f.geometry,
+          }
+        })
+      }),
+    }
+
+    console.log(cleanGeoJson)
+    const example = [
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [0, 0],
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "LineString",
+          coordinates: [[4e6, -2e6], [8e6, 2e6]],
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "LineString",
+          coordinates: [[4e6, 2e6], [8e6, -2e6]],
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "Polygon",
+          coordinates: [[[-5e6, -1e6], [-4e6, 1e6], [-3e6, -1e6]]],
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "MultiLineString",
+          coordinates: [
+            [[-1e6, -7.5e5], [-1e6, 7.5e5]],
+            [[1e6, -7.5e5], [1e6, 7.5e5]],
+            [[-7.5e5, -1e6], [7.5e5, -1e6]],
+            [[-7.5e5, 1e6], [7.5e5, 1e6]],
+          ],
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "MultiPolygon",
+          coordinates: [
+            [[[-5e6, 6e6], [-5e6, 8e6], [-3e6, 8e6], [-3e6, 6e6]]],
+            [[[-2e6, 6e6], [-2e6, 8e6], [0, 8e6], [0, 6e6]]],
+            [[[1e6, 6e6], [1e6, 8e6], [3e6, 8e6], [3e6, 6e6]]],
+          ],
+        },
+      },
+      {
+        type: "Feature",
+        geometry: {
+          type: "GeometryCollection",
+          geometries: [
+            {
+              type: "LineString",
+              coordinates: [[-5e6, -5e6], [0, -5e6]],
+            },
+            {
+              type: "Point",
+              coordinates: [4e6, -5e6],
+            },
+            {
+              type: "Polygon",
+              coordinates: [[[1e6, -6e6], [2e6, -4e6], [3e6, -6e6]]],
+            },
+          ],
+        },
+      },
+    ]
+    example.forEach(element => {
+      cleanGeoJson.features.push(element)
+    })
+
+    const features = new GeoJSON().readFeatures(cleanGeoJson)
     const layer = new VectorLayer({
       source: new VectorSource({
-        features: new GeoJSON().readFeatures(geojson, {
-          featureProjection: "EPSG:3857",
-        }),
+        features: features,
       }),
-      style: polygonStyle(),
+      style: polygonStyle({ isSelected: true }),
     })
     this.addVectorLayer("geojson", layer)
+    console.log(layer.getSource().getFeatures())
     return layer
   }
 

@@ -1,12 +1,26 @@
+import { GeoJSON } from "geojson"
 export interface SelectedCountriesState {
-  selectedCountries: string[]
+  allCountries: GeoJSON[]
+  selectedCountries: GeoJSON[]
 }
 
-export const SET_SELECTED_COUNTRIES = "SET_SELECTED_COUNTRIES"
+export const ADD_COUNTRY = "ADD_COUNTRY"
+export const ADD_SELECTED_COUNTRY = "ADD_SELECTED_COUNTRY"
+export const REMOVE_SELECTED_COUNTRY = "REMOVE_SELECTED_COUNTRY"
 
-export interface SetSelectedCountriesAction {
-  type: typeof SET_SELECTED_COUNTRIES
-  payload: string[]
+export interface AddCountryAction {
+  type: typeof ADD_COUNTRY
+  payload: GeoJSON
+}
+export interface AddSelectedCountryAction {
+  type: typeof ADD_SELECTED_COUNTRY
+  payload: GeoJSON
+}
+export interface RemoveSelectedCountryAction {
+  type: typeof REMOVE_SELECTED_COUNTRY
+  payload: GeoJSON
 }
 
-export type SetSelectedCountriesActionTypes = SetSelectedCountriesAction
+export type SetSelectedCountriesActionTypes = AddSelectedCountryAction &
+  AddCountryAction &
+  RemoveSelectedCountryAction
