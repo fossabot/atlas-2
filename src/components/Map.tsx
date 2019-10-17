@@ -6,7 +6,6 @@ import Nominatim from "../lib/nominatim"
 import { fetchJobs, setShownJobs } from "../redux/jobs/actions"
 import { Job } from "../types/customTypes"
 import { setSelectedCountries } from "../redux/countries/actions"
-import { log } from "../lib/logger"
 interface DispatchProps {
   fetchJobs: () => void
   setShownJobs: (jobs: Job[]) => void
@@ -87,7 +86,7 @@ const Map: React.FunctionComponent<Props> = props => {
   }, [])
 
   /*
-    Jobs
+    Updating redux jobs from country select
   */
   useEffect(() => {
     let jobs: Job[] = []
@@ -98,12 +97,18 @@ const Map: React.FunctionComponent<Props> = props => {
     } else {
       jobs = props.jobs.allJobs
     }
+    props.setShownJobs(jobs)
+  }, [props.countries.selectedCountries])
+
+  /*
+    Updating Jobs on map
+  */
+  useEffect(() => {
     // Check if map is defined yet, because this hook runs at init
     if (map) {
-      map.setJobs(jobs)
+      map.setJobs(props.jobs.shownJobs)
     }
-    props.setShownJobs(jobs)
-  }, [props.jobs.allJobs, isRendered, props.countries.selectedCountries])
+  }, [props.jobs.shownJobs])
 
   return <div id={MAP_ID}></div>
 }

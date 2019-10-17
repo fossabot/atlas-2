@@ -8,7 +8,7 @@ import { shiftKeyOnly } from "ol/events/condition"
 import GeoJSON from "ol/format/GeoJSON"
 import polygonStyle from "../styles/polygon"
 import Feature from "ol/Feature"
-import Polygon, { fromCircle } from "ol/geom/Polygon"
+import { fromCircle } from "ol/geom/Polygon"
 import { Draw, Modify } from "ol/interaction"
 import TileLayer from "ol/layer/Tile"
 import VectorLayer from "ol/layer/Vector"
@@ -23,9 +23,9 @@ import ClusterLayer from "./clusterLayer"
 import { log } from "./logger"
 import { onClick as countryOnClick, countryLayer } from "./countryLayer"
 import BaseLayer from "ol/layer/Base"
-import Layer from "ol/layer/Layer"
 import Geometry from "ol/geom/Geometry"
-
+import store from "../redux/store"
+import { setShownJobs } from "../redux/jobs/actions"
 /**
  * OpenLayers Map
  *
@@ -184,7 +184,17 @@ export default class Map implements MapInterface {
     const onEnd = (): void => {
       const circle = getCircle()
       if (circle) {
-        log.info("CIRCLE", circle)
+        const allJobs = store.getState().jobs.allJobs
+        const newVisibleJobs: Job[] = []
+        allJobs.forEach(job => {
+          if (
+            circle.intersectsCoordinate([job.location.lat, job.location.lon])
+          ) {
+            newVisibleJobs.push(job)
+          }
+        })
+        log.info("dispatching", newVisibleJobs)
+        store.dispatch(setShownJobs(newVisibleJobs))
       }
     }
 
