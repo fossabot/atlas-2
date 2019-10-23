@@ -1,5 +1,12 @@
-import { addSelectedCountries } from "../../../src/redux/countries/actions"
-import { ADD_SELECTED_COUNTRIES } from "../../../src/redux/countries/types"
+import {
+  addSelectedCountries,
+  removeSelectedCountries,
+} from "../../../src/redux/countries/actions"
+import {
+  ADD_SELECTED_COUNTRIES,
+  REMOVE_SELECTED_COUNTRIES,
+  CountriesState,
+} from "../../../src/redux/countries/types"
 import reducer from "../../../src/redux/countries/reducer"
 describe("actions", () => {
   it("should create an action to add selected countries", () => {
@@ -13,15 +20,32 @@ describe("actions", () => {
 })
 
 describe("reducer", () => {
-  const initialState = {
-    allCountries: [],
-    selectedCountries: [],
-  }
+  let initialState
+  beforeEach(() => {
+    initialState = {
+      allCountries: [],
+      selectedCountries: [],
+    }
+  })
+
   it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual(initialState)
   })
-
-  it("should handle ADD_SELECTED_COUNTRIES", () => {
+  describe("ADD_SELECTED_COUNTRIES", () => {
+    it("should handle a single country", () => {
+      const countries = ["USA"]
+      expect(
+        reducer(initialState, {
+          type: ADD_SELECTED_COUNTRIES,
+          payload: countries,
+        }),
+      ).toEqual({
+        allCountries: [],
+        selectedCountries: countries,
+      })
+    })
+  })
+  it("should handle multiple countries", () => {
     const countries = ["USA", "GER", "ITA"]
     expect(
       reducer(initialState, {
@@ -31,6 +55,38 @@ describe("reducer", () => {
     ).toEqual({
       allCountries: [],
       selectedCountries: countries,
+    })
+  })
+  describe("REMOVE_SELECTED_COUNTRIES", () => {
+    beforeEach(() => {
+      initialState = {
+        allCountries: [],
+        selectedCountries: ["USA", "GER", "ITA"],
+      }
+    })
+    describe("when the country exists", () => {
+      it("should handle a single country", () => {
+        expect(
+          reducer(initialState, {
+            type: REMOVE_SELECTED_COUNTRIES,
+            payload: ["ITA"],
+          }),
+        ).toEqual({
+          allCountries: [],
+          selectedCountries: ["USA", "GER"],
+        })
+      })
+    })
+    it("should handle multiple countries", () => {
+      expect(
+        reducer(initialState, {
+          type: REMOVE_SELECTED_COUNTRIES,
+          payload: ["ITA", "GER"],
+        }),
+      ).toEqual({
+        allCountries: [],
+        selectedCountries: ["USA"],
+      })
     })
   })
 })

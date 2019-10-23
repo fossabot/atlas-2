@@ -5,7 +5,7 @@ import {
   REMOVE_SELECTED_COUNTRIES,
   ADD_COUNTRY,
 } from "./types"
-import { removeFrom } from "../../lib/util"
+import { removeListFromList } from "../../lib/util"
 
 const initialState: CountriesState = {
   selectedCountries: [],
@@ -18,15 +18,23 @@ export default function(
 ): CountriesState {
   switch (action.type) {
     case ADD_SELECTED_COUNTRIES:
-      console.log(state)
       return {
         ...state,
-        selectedCountries: [...state.selectedCountries, ...action.payload],
+        selectedCountries: [
+          ...new Set([...state.selectedCountries, ...action.payload]),
+        ],
       }
     case REMOVE_SELECTED_COUNTRIES:
+      console.log(
+        "newCountries",
+        removeListFromList(action.payload, state.selectedCountries),
+      )
       return {
         ...state,
-        selectedCountries: removeFrom(state.selectedCountries, action.payload),
+        selectedCountries: removeListFromList(
+          action.payload,
+          state.selectedCountries,
+        ),
       }
     case ADD_COUNTRY:
       return {

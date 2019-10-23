@@ -1,3 +1,5 @@
+import { log } from "./logger"
+
 /**
  * Removes all occurences of an element from a list
  *
@@ -21,8 +23,8 @@ export function removeFrom(list: any[], entry: any): any[] {
  * @returns {any[]}
  */
 export function removeListFromList(list1: any[], list2: any[]): any[] {
-  const unique = [...new Set(list2)]
-  return list1.filter(value => {
+  const unique = [...new Set(list1)]
+  return list2.filter(value => {
     return !unique.includes(value)
   })
 }
