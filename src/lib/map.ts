@@ -69,21 +69,21 @@ export default class Map implements MapInterface {
     countryLayer(this)
   }
 
-  public featureLayerFromGeoJson(geojson: IGeoJSON[]): VectorLayer {
-    console.log(geojson)
-    const cleanGeoJson = geojson[0]
-    console.log(cleanGeoJson)
-    const features = new GeoJSON({
-      featureProjection: "EPSG:3857",
-    }).readFeatures(cleanGeoJson)
+  public featureLayerFromGeoJson(geojson: Record<string, any>[]): VectorLayer {
+    this.removeLayersByNames(["geojson"])
+
+    const source = new VectorSource()
+    geojson.forEach(g => {
+      const features = new GeoJSON({
+        featureProjection: "EPSG:3857",
+      }).readFeatures(g)
+      source.addFeatures(features)
+    })
     const layer = new VectorLayer({
-      source: new VectorSource({
-        features: features,
-      }),
-      style: polygonStyle({ isSelected: true }),
+      source: source,
+      style: polygonStyle({ isSelected: false }),
     })
     this.addVectorLayer("geojson", layer)
-    console.log(layer.getSource().getFeatures())
     return layer
   }
 

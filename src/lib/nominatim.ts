@@ -82,7 +82,7 @@ export default class Nominatim {
     lat: number,
     lon: number,
   ): Promise<GeoJSON | undefined> {
-    const url = `https://nominatim.openstreetmap.org/reverse?format=geojson&lat=${lat}&lon=${lon}&zoom=3&polygon_geojson=1`
+    const url = `https://nominatim.openstreetmap.org/reverse?format=geojson&lat=${lat}&lon=${lon}&zoom=3&polygon_geojson=1&limit=1`
 
     return axios
       .get(url)

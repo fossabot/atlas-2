@@ -28,13 +28,13 @@ const countryLayer = (map: Map): void => {
   map.olmap.on("singleclick", async (event: any) => {
     const cachedFeature = getCachedFeature(event.pixel)
     if (cachedFeature) {
-      //   if (
-      //     store.getState().countries.selectedCountries.includes(cachedFeature)
-      //   ) {
-      //     store.dispatch(removeSelectedCountry(cachedFeature))
-      //   } else {
-      //     store.dispatch(addSelectedCountry(cachedFeature))
-      //   }
+      // if (
+      //   store.getState().countries.selectedCountries.includes(cachedFeature)
+      // ) {
+      //   store.dispatch(removeSelectedCountries([cachedFeature]))
+      // } else {
+      //   store.dispatch(addSelectedCountries([cachedFeature]))
+      // }
     } else {
       const [lon, lat] = toLonLat(event.coordinate)
       const geojson = await new Nominatim().getCountryFromLatLon(lat, lon)
