@@ -27,7 +27,6 @@ const countryLayer = (map: Map): void => {
 
   map.olmap.on("singleclick", async (event: any) => {
     const cachedFeature = getCachedFeature(event.pixel)
-    console.log(cachedFeature)
     if (cachedFeature) {
       //   if (
       //     store.getState().countries.selectedCountries.includes(cachedFeature)
