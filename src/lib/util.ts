@@ -48,19 +48,3 @@ export function strip(text: string): string {
 export function bound(lower: number, value: number, upper: number): number {
   return Math.max(lower, Math.min(value, upper))
 }
-
-/**
- * @description Calculate how many unique companies are offering jobs.
- * @param {IJob[]} jobs
- * @returns {number}
- * @memberof Sample
- */
-export function keyCount(arr: any[], key: string): number {
-  const companies = []
-  for (const entry of arr) {
-    if (entry.hasOwnProperty(key)) {
-      companies.push(entry[key])
-    }
-  }
-  return [...new Set(companies)].length
-}

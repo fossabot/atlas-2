@@ -1,23 +1,23 @@
 import { GeoJSON } from "geojson"
 import {
-  AddSelectedCountryAction,
-  ADD_SELECTED_COUNTRY,
+  AddSelectedCountriesAction,
+  ADD_SELECTED_COUNTRIES,
   AddCountryAction,
-  RemoveSelectedCountryAction,
-  REMOVE_SELECTED_COUNTRY,
+  RemoveSelectedCountriesAction,
+  REMOVE_SELECTED_COUNTRIES,
   ADD_COUNTRY,
 } from "./types"
 
-export const addSelectedCountry = (
-  country: GeoJSON,
-): AddSelectedCountryAction => {
-  return { type: ADD_SELECTED_COUNTRY, payload: country }
+export const addSelectedCountries = (
+  countries: GeoJSON[],
+): AddSelectedCountriesAction => {
+  return { type: ADD_SELECTED_COUNTRIES, payload: countries }
 }
 export const addCountry = (country: GeoJSON): AddCountryAction => {
   return { type: ADD_COUNTRY, payload: country }
 }
-export const removeSelectedCountry = (
-  country: GeoJSON,
-): RemoveSelectedCountryAction => {
-  return { type: REMOVE_SELECTED_COUNTRY, payload: country }
+export const removeSelectedCountries = (
+  countries: GeoJSON[],
+): RemoveSelectedCountriesAction => {
+  return { type: REMOVE_SELECTED_COUNTRIES, payload: countries }
 }

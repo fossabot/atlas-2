@@ -1,7 +1,7 @@
 import { getCountryCode, getCountryCodes } from "../../src/lib/countryLayer"
 
 describe("countryLayer.ts", () => {
-  describe("getCountryCode()", () => {
+  describe.skip("getCountryCode()", () => {
     describe("if country has an id", () => {
       test("should return the correct code", () => {
         const country = {
@@ -21,7 +21,7 @@ describe("countryLayer.ts", () => {
     })
   })
 
-  describe("getCountryCodes()", () => {
+  describe.skip("getCountryCodes()", () => {
     describe("if countries is an empty list", () => {
       test("should return an empty array", () => {
         const countries = []

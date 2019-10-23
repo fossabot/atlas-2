@@ -4,9 +4,9 @@ import { toLonLat } from "ol/proj"
 import Nominatim from "./nominatim"
 import store from "../redux/store"
 import {
-  addSelectedCountry,
+  addSelectedCountries,
   addCountry,
-  removeSelectedCountry,
+  removeSelectedCountries,
 } from "../redux/countries/actions"
 import { Feature } from "ol"
 
@@ -41,7 +41,7 @@ const countryLayer = (map: Map): void => {
       const geojson = await new Nominatim().getCountryFromLatLon(lat, lon)
       if (geojson) {
         store.dispatch(addCountry(geojson))
-        store.dispatch(addSelectedCountry(geojson))
+        store.dispatch(addSelectedCountries([geojson]))
       }
     }
   })

@@ -350,13 +350,13 @@ describe("strip()", () => {
   })
 })
 
-describe("interval()", () => {
+describe("bound()", () => {
   describe("value is below lower limit", () => {
     it("should return lower limit", () => {
       expect(bound(20, 1, 40)).toEqual(20)
     })
   })
-  describe("value is inside limit limit", () => {
+  describe("value is inside limit", () => {
     it("should return lower limit", () => {
       expect(bound(1, 2, 3)).toEqual(2)
     })
@@ -365,101 +365,5 @@ describe("interval()", () => {
     it("should return lower limit", () => {
       expect(bound(424, 1414, 500)).toEqual(500)
     })
-  })
-})
-
-describe("keyCount()", () => {
-  describe("when every item has the requested key", () => {
-    const testCases = [
-      {
-        arr: [
-          {
-            testKey: "string1",
-          },
-          {
-            testKey: "string2",
-          },
-          {
-            testKey: "string1",
-          },
-          {
-            testKey: "string3",
-          },
-          {
-            testKey: "string2",
-          },
-        ],
-        expected: 3,
-      },
-      {
-        arr: [
-          {
-            testKey: "string1",
-          },
-          {
-            testKey: "string2",
-          },
-          {
-            testKey: "string3",
-          },
-          {
-            testKey: "string4",
-          },
-          {
-            testKey: "string5",
-          },
-        ],
-        expected: 5,
-      },
-    ]
-
-    for (const tc of testCases) {
-      it("should return the correct number of unique entries", () => {
-        expect(keyCount(tc.arr, "testKey")).toEqual(tc.expected)
-      })
-    }
-  })
-  describe("when not every item has the requested key", () => {
-    const testCases = [
-      {
-        arr: [
-          {
-            testKey: "string1",
-          },
-          {},
-          {
-            testKey: "string1",
-          },
-          {
-            testKey: "string3",
-          },
-          {
-            testKey: "string2",
-          },
-        ],
-        expected: 3,
-      },
-      {
-        arr: [
-          {
-            testKey: "string1",
-          },
-          {
-            testKey: "string3",
-          },
-          {},
-          {
-            testKey: "string4",
-          },
-        ],
-        expected: 3,
-      },
-    ]
-
-    for (const tc of testCases) {
-      it("should return the correct number of unique entries", () => {
-        expect(keyCount(tc.arr, "testKey")).toEqual(tc.expected)
-      })
-    }
   })
 })
