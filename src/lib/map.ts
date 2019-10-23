@@ -70,8 +70,12 @@ export default class Map implements MapInterface {
   }
 
   public featureLayerFromGeoJson(geojson: Record<string, any>[]): VectorLayer {
-    this.removeLayersByNames(["geojson"])
-
+    const [layer, wasCreated] = this.getOrCreateLayer("geojson", {
+      style: polygonStyle({ isSelected: false }),
+    })
+    if (!wasCreated) {
+      layer.getSource().clear()
+    }
     const source = new VectorSource()
     geojson.forEach(g => {
       const features = new GeoJSON({
@@ -79,11 +83,10 @@ export default class Map implements MapInterface {
       }).readFeatures(g)
       source.addFeatures(features)
     })
-    const layer = new VectorLayer({
-      source: source,
-      style: polygonStyle({ isSelected: false }),
-    })
-    this.addVectorLayer("geojson", layer)
+    layer.setSource(source)
+    if (wasCreated) {
+      this.addVectorLayer("geojson", layer)
+    }
     return layer
   }
 
