@@ -10,6 +10,17 @@ import {
 } from "../redux/countries/actions"
 import { Feature } from "ol"
 import { GeoJSON } from "ol/format"
+import { loadFeaturesXhr } from "ol/featureloader"
+
+const convertGeoJsonToGeometries = (
+  geojson: Record<string, any>,
+): (Record<string, any> | undefined)[] => {
+  const features = new GeoJSON({
+    featureProjection: "EPSG:3857",
+  }).readFeatures(geojson)
+  return features.map(feature => feature.getGeometry())
+}
+
 const countryLayer = (map: Map): void => {
   const layerFilter = (layer: any): boolean => {
     return layer.get("name") === "countries"
@@ -39,8 +50,15 @@ const countryLayer = (map: Map): void => {
       const [lon, lat] = toLonLat(event.coordinate)
       const geojson = await new Nominatim().getCountryFromLatLon(lat, lon)
       if (geojson) {
-        store.dispatch(addCountry(geojson))
-        store.dispatch(addSelectedCountries([geojson]))
+        const geometries = convertGeoJsonToGeometries(geojson)
+        if (geometries) {
+          geometries.forEach(geometry => {
+            if (geometry) {
+              store.dispatch(addCountry(geometry))
+              store.dispatch(addSelectedCountries([geometry]))
+            }
+          })
+        }
       }
     }
   })

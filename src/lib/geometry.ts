@@ -7,7 +7,7 @@ import { log } from "./logger"
 
 export const areCoordinatesInGeometry = (
   lonLat: [number, number],
-  geometry: Geometry,
+  geometry: Record<string, any>,
   checkExtentFirst = true,
 ): boolean => {
   const coords = fromLonLat(lonLat)
@@ -19,34 +19,27 @@ export const areCoordinatesInGeometry = (
   return result
 }
 
-export const getJobsInGeoJson = (
+export const getJobsInGeometry = (
   jobs: Job[],
-  geojson: Record<string, any>[],
+  geometry: Record<string, any>[],
 ): Job[] => {
   const startTime = new Date()
 
   let newShownJobs: Job[] = []
-  geojson.forEach(geojsonFeature => {
-    const features = new GeoJSON({
-      featureProjection: "EPSG:3857",
-    }).readFeatures(geojsonFeature)
-
-    features.forEach(feature => {
-      const geometry = feature.getGeometry()
-      if (geometry) {
-        const newJobs = jobs.filter(job => {
-          return areCoordinatesInGeometry(
-            [job.location.lon, job.location.lat],
-            geometry,
-          )
-        })
-        newShownJobs = newShownJobs.concat(newJobs)
-      }
-    })
+  geometry.forEach(geometryFeature => {
+    if (geometryFeature) {
+      const newJobs = jobs.filter(job => {
+        return areCoordinatesInGeometry(
+          [job.location.lon, job.location.lat],
+          geometryFeature,
+        )
+      })
+      newShownJobs = newShownJobs.concat(newJobs)
+    }
   })
   const elapsedTime = Number(new Date()) - Number(startTime)
   log.debug(
-    `Filtering through ${jobs.length} jobs in ${geojson.length} geojson features took ${elapsedTime} ms.`,
+    `Filtering through ${jobs.length} jobs in ${geometry.length} geojson features took ${elapsedTime} ms.`,
   )
   return newShownJobs
 }

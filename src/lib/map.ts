@@ -68,8 +68,28 @@ export default class Map implements MapInterface {
     countryLayer(this)
   }
 
-  public countryLayerFromGeoJson(geojson: Record<string, any>[]): VectorLayer {
-    return this.featureLayerFromGeoJson(geojson, "countries")
+  public countryLayerFromGeometry(
+    geometry: Record<string, any>[],
+  ): VectorLayer {
+    const layerName = "countries"
+    const [layer, wasCreated] = this.getOrCreateLayer(layerName, {
+      style: polygonStyle({ isSelected: false }),
+    })
+    if (!wasCreated) {
+      layer.getSource().clear()
+    }
+    const source = new VectorSource()
+    const features = geometry.map(g => {
+      return new Feature({
+        geometry: g,
+      })
+    })
+    source.addFeatures(features)
+    layer.setSource(source)
+    if (wasCreated) {
+      this.addVectorLayer(layerName, layer)
+    }
+    return layer
   }
 
   private featureLayerFromGeoJson(

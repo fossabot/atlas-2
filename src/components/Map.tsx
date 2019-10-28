@@ -5,7 +5,7 @@ import MapClass from "../lib/map"
 import Nominatim from "../lib/nominatim"
 import { fetchJobs, setShownJobs } from "../redux/jobs/actions"
 import { Job } from "../types/customTypes"
-import { getJobsInGeoJson } from "../lib/geometry"
+import { getJobsInGeometry } from "../lib/geometry"
 interface DispatchProps {
   fetchJobs: () => void
   setShownJobs: (jobs: Job[]) => void
@@ -72,7 +72,7 @@ const Map: React.FunctionComponent<Props> = props => {
 
   useEffect(() => {
     if (map) {
-      map.countryLayerFromGeoJson(props.countries.selectedCountries)
+      map.countryLayerFromGeometry(props.countries.selectedCountries)
     }
   }, [props.countries.selectedCountries])
 
@@ -93,7 +93,7 @@ const Map: React.FunctionComponent<Props> = props => {
     if (props.countries.selectedCountries.length === 0) {
       newShownJobs = props.jobs.allJobs
     } else {
-      newShownJobs = getJobsInGeoJson(
+      newShownJobs = getJobsInGeometry(
         props.jobs.allJobs,
         props.countries.selectedCountries,
       )
