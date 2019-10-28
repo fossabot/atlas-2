@@ -25,10 +25,6 @@ export default function(
         ],
       }
     case REMOVE_SELECTED_COUNTRIES:
-      console.log(
-        "newCountries",
-        removeListFromList(action.payload, state.selectedCountries),
-      )
       return {
         ...state,
         selectedCountries: removeListFromList(

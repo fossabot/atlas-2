@@ -3,11 +3,7 @@ import Map from "./map"
 import { toLonLat } from "ol/proj"
 import Nominatim from "./nominatim"
 import store from "../redux/store"
-import {
-  addSelectedCountries,
-  addCountry,
-  removeSelectedCountries,
-} from "../redux/countries/actions"
+import { addSelectedCountries, addCountry } from "../redux/countries/actions"
 import { Feature } from "ol"
 
 const countryLayer = (map: Map): void => {

@@ -1,11 +1,7 @@
-import {
-  addSelectedCountries,
-  removeSelectedCountries,
-} from "../../../src/redux/countries/actions"
+import { addSelectedCountries } from "../../../src/redux/countries/actions"
 import {
   ADD_SELECTED_COUNTRIES,
   REMOVE_SELECTED_COUNTRIES,
-  CountriesState,
 } from "../../../src/redux/countries/types"
 import reducer from "../../../src/redux/countries/reducer"
 describe("actions", () => {

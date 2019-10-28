@@ -101,7 +101,6 @@ const Map: React.FunctionComponent<Props> = props => {
           props.countries.selectedCountries,
           job,
         )
-        console.log(doesContain)
         return doesContain
       })
 

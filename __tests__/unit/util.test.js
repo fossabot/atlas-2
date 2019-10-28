@@ -1,6 +1,5 @@
 import {
   bound,
-  keyCount,
   removeFrom,
   strip,
   removeListFromList,

@@ -1,8 +1,7 @@
 import { Job } from "../types/customTypes"
 import GeoJSON from "ol/format/GeoJSON"
-import { fromLonLat, toLonLat } from "ol/proj"
+import { fromLonLat } from "ol/proj"
 import { containsXY } from "ol/extent"
-import { doesNotReject } from "assert"
 
 export const countriesContain = (
   countries: Record<string, any>[],

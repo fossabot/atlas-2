@@ -1,5 +1,3 @@
-import { log } from "./logger"
-
 /**
  * Removes all occurences of an element from a list
  *
