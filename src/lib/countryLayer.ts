@@ -3,9 +3,13 @@ import Map from "./map"
 import { toLonLat } from "ol/proj"
 import Nominatim from "./nominatim"
 import store from "../redux/store"
-import { addSelectedCountries, addCountry } from "../redux/countries/actions"
+import {
+  addSelectedCountries,
+  addCountry,
+  removeSelectedCountries,
+} from "../redux/countries/actions"
 import { Feature } from "ol"
-
+import { GeoJSON } from "ol/format"
 const countryLayer = (map: Map): void => {
   const layerFilter = (layer: any): boolean => {
     return layer.get("name") === "countries"
@@ -23,14 +27,14 @@ const countryLayer = (map: Map): void => {
 
   map.olmap.on("singleclick", async (event: any) => {
     const cachedFeature = getCachedFeature(event.pixel)
+    console.log(cachedFeature)
     if (cachedFeature) {
-      // if (
-      //   store.getState().countries.selectedCountries.includes(cachedFeature)
-      // ) {
-      //   store.dispatch(removeSelectedCountries([cachedFeature]))
-      // } else {
-      //   store.dispatch(addSelectedCountries([cachedFeature]))
-      // }
+      console.log(cachedFeature.getGeometry() as Record<string, any>)
+      store.dispatch(
+        removeSelectedCountries([
+          cachedFeature.getGeometry() as Record<string, any>,
+        ]),
+      )
     } else {
       const [lon, lat] = toLonLat(event.coordinate)
       const geojson = await new Nominatim().getCountryFromLatLon(lat, lon)
@@ -41,30 +45,5 @@ const countryLayer = (map: Map): void => {
     }
   })
 }
-const onClick = (map: Map): void => {
-  const selectedFeatures: any[] = []
 
-  const layerFilter = (layer: any): boolean => {
-    return layer.get("name") === "countries"
-  }
-
-  map.olmap.on("singleclick", e => {
-    map.olmap.forEachFeatureAtPixel(
-      e.pixel,
-      (feature: any) => {
-        const selectedIndex = selectedFeatures.indexOf(feature)
-
-        if (selectedIndex < 0) {
-          selectedFeatures.push(feature)
-          feature.setStyle(countryLayerStyle({ isSelected: true }))
-        } else {
-          selectedFeatures.splice(selectedIndex, 1)
-          feature.setStyle(countryLayerStyle({ isSelected: false }))
-        }
-      },
-      { layerFilter },
-    )
-  })
-}
-
-export { onClick, countryLayer }
+export { countryLayer }

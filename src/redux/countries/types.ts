@@ -1,7 +1,6 @@
-import { GeoJSON } from "geojson"
 export interface CountriesState {
-  allCountries: GeoJSON[]
-  selectedCountries: GeoJSON[]
+  allCountries: Record<string, any>[]
+  selectedCountries: Record<string, any>[]
 }
 
 export const ADD_COUNTRY = "ADD_COUNTRY"
@@ -10,15 +9,15 @@ export const REMOVE_SELECTED_COUNTRIES = "REMOVE_SELECTED_COUNTRIES"
 
 export interface AddCountryAction {
   type: typeof ADD_COUNTRY
-  payload: GeoJSON
+  payload: Record<string, any>
 }
 export interface AddSelectedCountriesAction {
   type: typeof ADD_SELECTED_COUNTRIES
-  payload: GeoJSON[]
+  payload: Record<string, any>[]
 }
 export interface RemoveSelectedCountriesAction {
   type: typeof REMOVE_SELECTED_COUNTRIES
-  payload: GeoJSON[]
+  payload: Record<string, any>[]
 }
 
 export type CountriesActionTypes = AddSelectedCountriesAction &

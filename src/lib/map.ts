@@ -68,8 +68,15 @@ export default class Map implements MapInterface {
     countryLayer(this)
   }
 
-  public featureLayerFromGeoJson(geojson: Record<string, any>[]): VectorLayer {
-    const [layer, wasCreated] = this.getOrCreateLayer("geojson", {
+  public countryLayerFromGeoJson(geojson: Record<string, any>[]): VectorLayer {
+    return this.featureLayerFromGeoJson(geojson, "countries")
+  }
+
+  private featureLayerFromGeoJson(
+    geojson: Record<string, any>[],
+    layerName: string,
+  ): VectorLayer {
+    const [layer, wasCreated] = this.getOrCreateLayer(layerName, {
       style: polygonStyle({ isSelected: false }),
     })
     if (!wasCreated) {
@@ -84,7 +91,7 @@ export default class Map implements MapInterface {
     })
     layer.setSource(source)
     if (wasCreated) {
-      this.addVectorLayer("geojson", layer)
+      this.addVectorLayer(layerName, layer)
     }
     return layer
   }
