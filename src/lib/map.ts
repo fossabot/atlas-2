@@ -26,7 +26,6 @@ import BaseLayer from "ol/layer/Base"
 import Geometry from "ol/geom/Geometry"
 import store from "../redux/store"
 import { setShownJobs } from "../redux/jobs/actions"
-import { GeoJSON as IGeoJSON } from "geojson"
 /**
  * OpenLayers Map
  *

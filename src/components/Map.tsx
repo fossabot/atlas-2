@@ -5,6 +5,7 @@ import MapClass from "../lib/map"
 import Nominatim from "../lib/nominatim"
 import { fetchJobs, setShownJobs } from "../redux/jobs/actions"
 import { Job } from "../types/customTypes"
+import { countriesContain } from "../lib/geometry"
 interface DispatchProps {
   fetchJobs: () => void
   setShownJobs: (jobs: Job[]) => void
@@ -73,7 +74,6 @@ const Map: React.FunctionComponent<Props> = props => {
   }, [props.search.query])
 
   useEffect(() => {
-    console.log("Running")
     if (map) {
       map.featureLayerFromGeoJson(props.countries.selectedCountries)
     }
@@ -92,10 +92,34 @@ const Map: React.FunctionComponent<Props> = props => {
     Updating redux jobs from country select
   */
   useEffect(() => {
-    const jobs: Job[] = []
+    let newShownJobs: Job[] = []
+    if (props.countries.selectedCountries.length === 0) {
+      newShownJobs = props.jobs.allJobs
+    } else {
+      newShownJobs = props.jobs.allJobs.filter(job => {
+        const doesContain = countriesContain(
+          props.countries.selectedCountries,
+          job,
+        )
+        console.log(doesContain)
+        return doesContain
+      })
 
-    props.setShownJobs(jobs)
-  }, [props.countries.selectedCountries])
+      // countries.forEach(country => {
+      //   console.log(geometry)
+      //   if (geometry) {
+      //     props.jobs.allJobs.forEach(job => {
+      //       console.log(
+      //         geometry.intersectsCoordinate(
+      //           fromLonLat([job.location.lat, job.location.lon]),
+      //         ),
+      //       )
+      //     })
+      //   }
+    }
+
+    props.setShownJobs(newShownJobs)
+  }, [props.countries.selectedCountries, props.jobs.allJobs])
 
   /*
     Updating Jobs on map
