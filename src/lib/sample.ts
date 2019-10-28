@@ -17,18 +17,11 @@ export default class Sample {
   public async jobs(count: number): Promise<Job[]> {
     const startTime = new Date()
     // TODO selfhost these files
-    const [cities, iso3] = await Promise.all([
-      axios
-        .get(
-          "https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json",
-        )
-        .then(response => response.data),
-      axios
-        .get(
-          "https://gist.githubusercontent.com/chronark/53ffb75636c27ef2ab194b9086abb01b/raw/eeb63680b0a94b0376ebf4bed5a45ec87dfbbbb4/iso3.json",
-        )
-        .then(response => response.data),
-    ])
+    const cities = await axios
+      .get(
+        "https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json",
+      )
+      .then(response => response.data)
 
     const jobs: Job[] = []
     while (jobs.length < count && cities.length > 0) {
@@ -38,7 +31,6 @@ export default class Sample {
         id: i,
         corp: this.generateString(count / 4500),
         location: {
-          country: iso3[city.country],
           lat: Number(city.lat),
           lon: Number(city.lng),
         },
