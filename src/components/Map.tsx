@@ -3,11 +3,10 @@ import { connect } from "react-redux"
 import { ThunkDispatch } from "redux-thunk"
 import MapClass from "../lib/map"
 import Nominatim from "../lib/nominatim"
-import { fetchJobs, setShownJobs } from "../redux/jobs/actions"
+import { setShownJobs } from "../redux/jobs/actions"
 import { Job } from "../types/customTypes"
 import { getJobsInGeometry } from "../lib/geometry"
 interface DispatchProps {
-  fetchJobs: () => void
   setShownJobs: (jobs: Job[]) => void
 }
 
@@ -41,7 +40,6 @@ const Map: React.FunctionComponent<Props> = props => {
     */
     const init = async (): Promise<void> => {
       const newMap = new MapClass(MAP_ID)
-      newMap.addCountryLayer()
       await setMap(newMap)
       setIsRendered(true)
     }
@@ -75,15 +73,6 @@ const Map: React.FunctionComponent<Props> = props => {
       map.countryLayerFromGeometry(props.countries.selectedCountries)
     }
   }, [props.countries.selectedCountries])
-
-  /*
-    Fetching jobs
-  */
-  useEffect(() => {
-    props.fetchJobs()
-
-    return () => {}
-  }, [])
 
   /*
     Updating redux jobs from country select
@@ -124,7 +113,6 @@ const mapStateToProps = (state: StateProps): StateProps => ({
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<{}, {}, any>,
 ): DispatchProps => ({
-  fetchJobs: () => dispatch(fetchJobs()),
   setShownJobs: (jobs: Job[]) => dispatch(setShownJobs(jobs)),
 })
 

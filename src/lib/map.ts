@@ -25,7 +25,8 @@ import { countryLayer } from "./countryLayer"
 import BaseLayer from "ol/layer/Base"
 import Geometry from "ol/geom/Geometry"
 import store from "../redux/store"
-import { setShownJobs } from "../redux/jobs/actions"
+import { setAllJobs, setShownJobs } from "../redux/jobs/actions"
+import Sample from "./sample"
 /**
  * OpenLayers Map
  *
@@ -49,13 +50,20 @@ export default class Map implements MapInterface {
   public constructor(mapID = "map") {
     log.debug("Initializing map", { mapID })
     this.mapID = mapID
-    // this.ui = new UI(this)
 
     this.jobs = []
     this.olmap = this.buildMap()
     this.buildClusterLayer()
+    this.loadJobs()
     this.addControls()
     this.addCircleSelect()
+    this.addCountryLayer()
+  }
+
+  loadJobs(): void {
+    new Sample().jobs(200).then((jobs: Job[]) => {
+      store.dispatch(setAllJobs(jobs))
+    })
   }
 
   addVectorLayer(name: string, layer: VectorLayer): VectorLayer {
@@ -400,7 +408,7 @@ export default class Map implements MapInterface {
    */
 
   public setJobs(jobs: Job[]): void {
-    log.info("Setting jobs", jobs)
+    log.debug("Setting jobs", jobs)
     this.clusterLayer.clear()
     this.clusterLayer.addJobs(jobs)
   }

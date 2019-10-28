@@ -5,11 +5,11 @@ export interface JobState {
   shownJobs: Job[]
 }
 
-export const FETCH_JOBS = "FETCH_JOBS"
+export const SET_ALL_JOBS = "SET_ALL_JOBS"
 export const SET_SHOWN_JOBS = "SET_SHOWN_JOBS"
 
-export interface FetchJobsAction {
-  type: typeof FETCH_JOBS
+export interface SetAllJobsAction {
+  type: typeof SET_ALL_JOBS
   payload: Job[]
 }
 
@@ -18,4 +18,4 @@ export interface SetShowJobsAction {
   payload: Job[]
 }
 
-export type JobActionTypes = FetchJobsAction & SetShowJobsAction
+export type JobActionTypes = SetAllJobsAction & SetShowJobsAction
