@@ -8,9 +8,8 @@ import {
   addCountry,
   removeSelectedCountries,
 } from "../redux/countries/actions"
-import { Feature } from "ol"
 import { GeoJSON } from "ol/format"
-import { loadFeaturesXhr } from "ol/featureloader"
+import { areCoordinatesInGeometry } from "./geometry"
 
 const convertGeoJsonToGeometries = (
   geojson: Record<string, any>,
@@ -22,30 +21,20 @@ const convertGeoJsonToGeometries = (
 }
 
 const countryLayer = (map: Map): void => {
-  const layerFilter = (layer: any): boolean => {
-    return layer.get("name") === "countries"
-  }
-
-  const getCachedFeature = (pixel: number[]): Feature | undefined => {
-    return map.olmap.forEachFeatureAtPixel(
-      pixel,
-      (feature: any) => {
-        return feature
-      },
-      { layerFilter },
-    )
+  const getCachedGeometry = (event: any): Record<string, any> => {
+    const [lon, lat] = toLonLat(event.coordinate)
+    const matches = store.getState().countries.allCountries.filter(geometry => {
+      return areCoordinatesInGeometry([lon, lat], geometry)
+    })
+    return matches[0]
   }
 
   map.olmap.on("singleclick", async (event: any) => {
-    const cachedFeature = getCachedFeature(event.pixel)
-    console.log(cachedFeature)
-    if (cachedFeature) {
-      console.log(cachedFeature.getGeometry() as Record<string, any>)
-      store.dispatch(
-        removeSelectedCountries([
-          cachedFeature.getGeometry() as Record<string, any>,
-        ]),
-      )
+    const cachedGeometry = getCachedGeometry(event)
+    if (cachedGeometry) {
+      store.getState().countries.selectedCountries.includes(cachedGeometry)
+        ? store.dispatch(removeSelectedCountries([cachedGeometry]))
+        : store.dispatch(addSelectedCountries([cachedGeometry]))
     } else {
       const [lon, lat] = toLonLat(event.coordinate)
       const geojson = await new Nominatim().getCountryFromLatLon(lat, lon)
