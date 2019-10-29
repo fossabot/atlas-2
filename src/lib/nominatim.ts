@@ -1,6 +1,7 @@
 import axios from "axios"
-
-interface Result {
+import { log } from "./logger"
+import { GeoJSON } from "geojson"
+interface ForwardResult {
   geojson: Record<string, any>
   lat: number
   lon: number
@@ -51,7 +52,7 @@ export default class Nominatim {
    * @returns {({ [key: string]: string | number })}
    * @memberof Nominatim
    */
-  private cleanJson(jsonData: Record<string, any>): Result {
+  private cleanJson(jsonData: Record<string, any>): ForwardResult {
     if (jsonData.length >= 1) {
       return {
         lat: Number(jsonData[0].lat),
@@ -77,6 +78,25 @@ export default class Nominatim {
     return parameters.join("&")
   }
 
+  public getCountryFromLonLat(
+    lonLat: [number, number],
+  ): Promise<GeoJSON | undefined> {
+    const url = `https://nominatim.openstreetmap.org/reverse?format=geojson&lon=${lonLat[0]}&lat=${lonLat[1]}&zoom=3&polygon_geojson=1&limit=1`
+
+    return axios
+      .get(url)
+      .then(response => response.data)
+      .then(data => {
+        if (data.error) {
+          return
+        }
+        return data
+      })
+      .catch(error => {
+        log.error(error, { url })
+      })
+  }
+
   /**
    * @description Performs a forward search.
    * @param {string} address
@@ -85,23 +105,20 @@ export default class Nominatim {
    */
   public forwardSearch(
     address: string,
-  ): Promise<{ result: Result | undefined; success: boolean }> {
+  ): Promise<{ result: ForwardResult | undefined; success: boolean }> {
     const url = this.buildURL(address)
-    return axios
-      .get(url)
-      .then(response => response.data)
-      .then(json => {
-        try {
-          return {
-            result: this.cleanJson(json),
-            success: true,
-          }
-        } catch {
-          return {
-            result: undefined,
-            success: false,
-          }
+    return axios.get(url).then(response => {
+      try {
+        return {
+          result: this.cleanJson(response.data),
+          success: true,
         }
-      })
+      } catch {
+        return {
+          result: undefined,
+          success: false,
+        }
+      }
+    })
   }
 }

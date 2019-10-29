@@ -1,13 +1,3 @@
-export interface Elements {
-  activeJobsCounter?: HTMLElement
-  allJobsCounter?: HTMLElement
-  corporationsCounter?: HTMLElement
-  jobList?: HTMLElement
-  jobTemplate?: HTMLTemplateElement
-  locationSearchSubmit?: HTMLElement
-  locationSearchText?: HTMLElement
-}
-
 export interface RawJob {
   datum: string
   extern: string
@@ -36,7 +26,6 @@ export interface RawSearch {
 }
 
 export interface Location {
-  country: string
   lat: number
   lon: number
 }

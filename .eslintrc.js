@@ -25,6 +25,7 @@ module.exports = {
     jest: true,
   },
   rules: {
+    "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/ban-ts-ignore": "warn",
     "@typescript-eslint/no-empty-function": "warn",
     "@typescript-eslint/no-explicit-any": "off",
@@ -47,7 +48,7 @@ module.exports = {
       { functions: false, classes: true, variables: true, typedefs: true },
     ],
     "react/prop-types": "off",
-    "no-console": "error",
+    "no-console": "warn",
     "require-jsdoc": [
       "off",
       {

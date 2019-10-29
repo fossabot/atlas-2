@@ -1,12 +1,25 @@
-export interface SelectedCountriesState {
-  selectedCountries: string[]
+export interface CountriesState {
+  allCountries: Record<string, any>[]
+  selectedCountries: Record<string, any>[]
 }
 
-export const SET_SELECTED_COUNTRIES = "SET_SELECTED_COUNTRIES"
+export const ADD_COUNTRY = "ADD_COUNTRY"
+export const ADD_SELECTED_COUNTRIES = "ADD_SELECTED_COUNTRIES"
+export const REMOVE_SELECTED_COUNTRIES = "REMOVE_SELECTED_COUNTRIES"
 
-export interface SetSelectedCountriesAction {
-  type: typeof SET_SELECTED_COUNTRIES
-  payload: string[]
+export interface AddCountryAction {
+  type: typeof ADD_COUNTRY
+  payload: Record<string, any>
+}
+export interface AddSelectedCountriesAction {
+  type: typeof ADD_SELECTED_COUNTRIES
+  payload: Record<string, any>[]
+}
+export interface RemoveSelectedCountriesAction {
+  type: typeof REMOVE_SELECTED_COUNTRIES
+  payload: Record<string, any>[]
 }
 
-export type SetSelectedCountriesActionTypes = SetSelectedCountriesAction
+export type CountriesActionTypes = AddSelectedCountriesAction &
+  AddCountryAction &
+  RemoveSelectedCountriesAction

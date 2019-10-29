@@ -1,6 +1,5 @@
 import {
   bound,
-  keyCount,
   removeFrom,
   strip,
   removeListFromList,
@@ -167,7 +166,7 @@ describe("removeListFromList()", () => {
       {
         type: "string",
         input: {
-          list1: [
+          list2: [
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
             "Aliquam tincidunt mauris eu risus.",
             "Vestibulum commodo felis quis tortor.",
@@ -175,7 +174,7 @@ describe("removeListFromList()", () => {
             "Cras iaculis ultricies nulla.",
             "Donec quis dui at dolor tempor interdum.",
           ],
-          list2: [
+          list1: [
             "Vestibulum commodo felis quis tortor.",
             "Aliquam tincidunt mauris eu risus.",
           ],
@@ -184,14 +183,14 @@ describe("removeListFromList()", () => {
       {
         type: "number",
         input: {
-          list1: [1, 2, 3, 4],
-          list2: [3, 2],
+          list2: [1, 2, 3, 4],
+          list1: [3, 2],
         },
       },
       {
         type: "object",
         input: {
-          list1: [
+          list2: [
             {
               key: "value",
             },
@@ -202,7 +201,7 @@ describe("removeListFromList()", () => {
               yetAnotherKey: 1,
             },
           ],
-          list2: [
+          list1: [
             {
               otherKey: [1, 2],
             },
@@ -215,15 +214,15 @@ describe("removeListFromList()", () => {
     ]
     testCases.forEach(tc => {
       describe(`for type ${tc.type}`, () => {
-        const originalArray = tc.input.list1
+        const originalArray = tc.input.list2
         it("should return the correct array", () => {
-          const result = removeListFromList(tc.input.list1, tc.input.list2)
+          const result = removeListFromList(tc.input.list2, tc.input.list1)
           tc.input.list2.forEach(element => {
             expect(result.includes(element)).toBe(false)
           })
         })
         it("should not mutate the original array", () => {
-          expect(originalArray).toEqual(tc.input.list1)
+          expect(originalArray).toEqual(tc.input.list2)
         })
       })
     })
@@ -233,22 +232,22 @@ describe("removeListFromList()", () => {
       {
         type: "string",
         input: {
-          list1: [],
-          list2: ["Vestibulum commodo felis quis tortor."],
+          list2: [],
+          list1: ["Vestibulum commodo felis quis tortor."],
         },
       },
       {
         type: "number",
         input: {
-          list1: [],
-          list2: [2, 3],
+          list2: [],
+          list1: [2, 3],
         },
       },
       {
         type: "object",
         input: {
-          list1: [],
-          list2: [
+          list2: [],
+          list1: [
             {
               otherKey: [1, 2],
             },
@@ -258,15 +257,15 @@ describe("removeListFromList()", () => {
     ]
     testCases.forEach(tc => {
       describe(`for type ${tc.type}`, () => {
-        const originalArray = tc.input.list1
+        const originalArray = tc.input.list2
         it("should return the correct array", () => {
-          const result = removeListFromList(tc.input.list1, tc.input.list2)
+          const result = removeListFromList(tc.input.list2, tc.input.list1)
           tc.input.list2.forEach(element => {
             expect(result.includes(element)).toBe(false)
           })
         })
         it("should not mutate the original array", () => {
-          expect(originalArray).toEqual(tc.input.list1)
+          expect(originalArray).toEqual(tc.input.list2)
         })
       })
     })
@@ -276,14 +275,14 @@ describe("removeListFromList()", () => {
       {
         type: "string",
         input: {
-          list1: [
+          list2: [
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
             "Aliquam tincidunt mauris eu risus.",
             "Vestibulum commodo felis quis tortor.",
             "Donec quis dui at dolor tempor interdum.",
           ],
-          list2: [
+          list1: [
             "Aliquam tincidunt mauris eu risus.",
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
           ],
@@ -292,14 +291,14 @@ describe("removeListFromList()", () => {
       {
         type: "number",
         input: {
-          list1: [1, 2, 2, 3, 4],
-          list2: [3, 4],
+          list2: [1, 2, 2, 3, 4],
+          list1: [3, 4],
         },
       },
       {
         type: "object",
         input: {
-          list1: [
+          list2: [
             {
               key: "value",
             },
@@ -313,7 +312,7 @@ describe("removeListFromList()", () => {
               otherKey: [1, 2],
             },
           ],
-          list2: [
+          list1: [
             {
               otherKey: [1, 2],
             },
@@ -323,15 +322,15 @@ describe("removeListFromList()", () => {
     ]
     testCases.forEach(tc => {
       describe(`for type ${tc.type}`, () => {
-        const originalArray = tc.input.list1
+        const originalArray = tc.input.list2
         it("should return the correct array", () => {
-          const result = removeListFromList(tc.input.list1, tc.input.list2)
+          const result = removeListFromList(tc.input.list2, tc.input.list1)
           tc.input.list2.forEach(element => {
             expect(result.includes(element)).toBe(false)
           })
         })
         it("should not mutate the original array", () => {
-          expect(originalArray).toEqual(tc.input.list1)
+          expect(originalArray).toEqual(tc.input.list2)
         })
       })
     })
@@ -350,13 +349,13 @@ describe("strip()", () => {
   })
 })
 
-describe("interval()", () => {
+describe("bound()", () => {
   describe("value is below lower limit", () => {
     it("should return lower limit", () => {
       expect(bound(20, 1, 40)).toEqual(20)
     })
   })
-  describe("value is inside limit limit", () => {
+  describe("value is inside limit", () => {
     it("should return lower limit", () => {
       expect(bound(1, 2, 3)).toEqual(2)
     })
@@ -365,101 +364,5 @@ describe("interval()", () => {
     it("should return lower limit", () => {
       expect(bound(424, 1414, 500)).toEqual(500)
     })
-  })
-})
-
-describe("keyCount()", () => {
-  describe("when every item has the requested key", () => {
-    const testCases = [
-      {
-        arr: [
-          {
-            testKey: "string1",
-          },
-          {
-            testKey: "string2",
-          },
-          {
-            testKey: "string1",
-          },
-          {
-            testKey: "string3",
-          },
-          {
-            testKey: "string2",
-          },
-        ],
-        expected: 3,
-      },
-      {
-        arr: [
-          {
-            testKey: "string1",
-          },
-          {
-            testKey: "string2",
-          },
-          {
-            testKey: "string3",
-          },
-          {
-            testKey: "string4",
-          },
-          {
-            testKey: "string5",
-          },
-        ],
-        expected: 5,
-      },
-    ]
-
-    for (const tc of testCases) {
-      it("should return the correct number of unique entries", () => {
-        expect(keyCount(tc.arr, "testKey")).toEqual(tc.expected)
-      })
-    }
-  })
-  describe("when not every item has the requested key", () => {
-    const testCases = [
-      {
-        arr: [
-          {
-            testKey: "string1",
-          },
-          {},
-          {
-            testKey: "string1",
-          },
-          {
-            testKey: "string3",
-          },
-          {
-            testKey: "string2",
-          },
-        ],
-        expected: 3,
-      },
-      {
-        arr: [
-          {
-            testKey: "string1",
-          },
-          {
-            testKey: "string3",
-          },
-          {},
-          {
-            testKey: "string4",
-          },
-        ],
-        expected: 3,
-      },
-    ]
-
-    for (const tc of testCases) {
-      it("should return the correct number of unique entries", () => {
-        expect(keyCount(tc.arr, "testKey")).toEqual(tc.expected)
-      })
-    }
   })
 })

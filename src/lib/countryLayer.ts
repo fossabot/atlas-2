@@ -1,57 +1,56 @@
-import GeoJSON from "ol/format/GeoJSON"
-import VectorLayer from "ol/layer/Vector"
-import VectorSource from "ol/source/Vector"
 import { countryLayerStyle } from "../styles/countryStyle"
-import { Map } from "ol"
+import Map from "./map"
+import { toLonLat } from "ol/proj"
+import Nominatim from "./nominatim"
+import store from "../redux/store"
+import {
+  addSelectedCountries,
+  addCountry,
+  removeSelectedCountries,
+} from "../redux/countries/actions"
+import { GeoJSON } from "ol/format"
+import { areCoordinatesInGeometry } from "./geometry"
 
-export const getCountryCode = (country: any): string => {
-  if (country.hasOwnProperty("id_")) {
-    return country.id_
-  }
-  return ""
+const convertGeoJsonToGeometries = (
+  geojson: Record<string, any>,
+): (Record<string, any> | undefined)[] => {
+  const features = new GeoJSON({
+    featureProjection: "EPSG:3857",
+  }).readFeatures(geojson)
+  return features.map(feature => feature.getGeometry())
 }
 
-export const getCountryCodes = (countries: any[]): string[] => {
-  const countryCodes = countries.map(getCountryCode)
-  const uniqueCountryCodes = [...new Set(countryCodes)]
-
-  // Remove a potential empty string in the array
-  const index = uniqueCountryCodes.indexOf("")
-  if (index >= 0) {
-    uniqueCountryCodes.splice(index, 1)
-  }
-
-  return uniqueCountryCodes
-}
-
-const countryLayer = new VectorLayer({
-  source: new VectorSource({
-    url:
-      "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json",
-    format: new GeoJSON(),
-  }),
-  style: countryLayerStyle(false),
-})
-
-const onClick = (olmap: Map, callback?: (features: any[]) => void): void => {
-  const selectedFeatures: any[] = []
-  olmap.on("singleclick", e => {
-    olmap.forEachFeatureAtPixel(e.pixel, (feature: any) => {
-      const selectedIndex = selectedFeatures.indexOf(feature)
-
-      if (selectedIndex < 0) {
-        selectedFeatures.push(feature)
-        feature.setStyle(countryLayerStyle(true))
-      } else {
-        selectedFeatures.splice(selectedIndex, 1)
-        feature.setStyle(countryLayerStyle(false))
-      }
-      if (callback) {
-        const countryCodes = getCountryCodes(selectedFeatures)
-        callback(countryCodes)
-      }
+const countryLayer = (map: Map): void => {
+  const getCachedGeometry = (event: any): Record<string, any> => {
+    const [lon, lat] = toLonLat(event.coordinate)
+    const matches = store.getState().countries.allCountries.filter(geometry => {
+      return areCoordinatesInGeometry([lon, lat], geometry)
     })
+    return matches[0]
+  }
+
+  map.olmap.on("singleclick", async (event: any) => {
+    const cachedGeometry = getCachedGeometry(event)
+    if (cachedGeometry) {
+      store.getState().countries.selectedCountries.includes(cachedGeometry)
+        ? store.dispatch(removeSelectedCountries([cachedGeometry]))
+        : store.dispatch(addSelectedCountries([cachedGeometry]))
+    } else {
+      const [lon, lat] = toLonLat(event.coordinate)
+      const geojson = await new Nominatim().getCountryFromLonLat([lon, lat])
+      if (geojson) {
+        const geometries = convertGeoJsonToGeometries(geojson)
+        if (geometries) {
+          geometries.forEach(geometry => {
+            if (geometry) {
+              store.dispatch(addCountry(geometry))
+              store.dispatch(addSelectedCountries([geometry]))
+            }
+          })
+        }
+      }
+    }
   })
 }
 
-export { onClick, countryLayer }
+export { countryLayer }
