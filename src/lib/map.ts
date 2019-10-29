@@ -27,6 +27,7 @@ import Geometry from "ol/geom/Geometry"
 import store from "../redux/store"
 import { setAllJobs, setShownJobs } from "../redux/jobs/actions"
 import Sample from "./sample"
+import { filterJobs } from "./jobFilter"
 /**
  * OpenLayers Map
  *
@@ -76,9 +77,7 @@ export default class Map implements MapInterface {
     countryLayer(this)
   }
 
-  public countryLayerFromGeometry(
-    geometry: Record<string, any>[],
-  ): VectorLayer {
+  public countryLayerFromGeometry(geometry: Record<string, any>[]): VectorLayer {
     const layerName = "countries"
     const [layer, wasCreated] = this.getOrCreateLayer(layerName, {
       style: polygonStyle({ isSelected: false }),
@@ -100,10 +99,7 @@ export default class Map implements MapInterface {
     return layer
   }
 
-  private featureLayerFromGeoJson(
-    geojson: Record<string, any>[],
-    layerName: string,
-  ): VectorLayer {
+  private featureLayerFromGeoJson(geojson: Record<string, any>[], layerName: string): VectorLayer {
     const [layer, wasCreated] = this.getOrCreateLayer(layerName, {
       style: polygonStyle({ isSelected: false }),
     })
@@ -220,17 +216,11 @@ export default class Map implements MapInterface {
     const onEnd = (): void => {
       const circle = getCircle()
       if (circle) {
-        const allJobs = store.getState().jobs.allJobs
-        const newVisibleJobs: Job[] = []
-        allJobs.forEach(job => {
-          if (
-            circle.intersectsCoordinate([job.location.lat, job.location.lon])
-          ) {
-            newVisibleJobs.push(job)
-          }
+        const filteredJobs = filterJobs(store.getState().jobs.allJobs, {
+          countries: store.getState().countries.selectedCountries,
+          circle: circle,
         })
-        log.info("dispatching", newVisibleJobs)
-        store.dispatch(setShownJobs(newVisibleJobs))
+        store.dispatch(setShownJobs(filteredJobs))
       }
     }
 
@@ -244,9 +234,7 @@ export default class Map implements MapInterface {
     })
   }
 
-  private getDrawLayer({
-    clear = false,
-  }: { clear?: boolean } = {}): VectorLayer {
+  private getDrawLayer({ clear = false }: { clear?: boolean } = {}): VectorLayer {
     let [layer, wasCreated] = this.getOrCreateLayer("drawLayer", {
       source: new VectorSource(),
       // Sets the style after transformation
@@ -326,10 +314,7 @@ export default class Map implements MapInterface {
    * @returns
    * @memberof Map
    */
-  private getOrCreateLayer(
-    name: string,
-    opts: Record<string, any>,
-  ): [VectorLayer, boolean] {
+  private getOrCreateLayer(name: string, opts: Record<string, any>): [VectorLayer, boolean] {
     const layers = this.getLayersByNames([name])
     let layer: VectorLayer, wasCreated: boolean
     switch (layers.length) {

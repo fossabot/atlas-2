@@ -5,7 +5,7 @@ import MapClass from "../lib/map"
 import Nominatim from "../lib/nominatim"
 import { setShownJobs } from "../redux/jobs/actions"
 import { Job } from "../types/customTypes"
-import { getJobsInGeometry } from "../lib/geometry"
+import { filterJobs } from "../lib/jobFilter"
 interface DispatchProps {
   setShownJobs: (jobs: Job[]) => void
 }
@@ -54,9 +54,7 @@ const Map: React.FunctionComponent<Props> = props => {
       if (props.search.query.length > 0) {
         const nominatim = new Nominatim()
 
-        const { result, success } = await nominatim.forwardSearch(
-          props.search.query,
-        )
+        const { result, success } = await nominatim.forwardSearch(props.search.query)
         if (success && typeof result !== "undefined") {
           if (isRendered) {
             const layer = map.countryLayerFromGeoJson(result.geojson)
@@ -82,10 +80,7 @@ const Map: React.FunctionComponent<Props> = props => {
     if (props.countries.selectedCountries.length === 0) {
       newShownJobs = props.jobs.allJobs
     } else {
-      newShownJobs = getJobsInGeometry(
-        props.jobs.allJobs,
-        props.countries.selectedCountries,
-      )
+      newShownJobs = filterJobs(props.jobs.allJobs, { countries: props.countries.selectedCountries })
     }
 
     props.setShownJobs(newShownJobs)
@@ -110,9 +105,7 @@ const mapStateToProps = (state: StateProps): StateProps => ({
   countries: state.countries,
 })
 
-const mapDispatchToProps = (
-  dispatch: ThunkDispatch<{}, {}, any>,
-): DispatchProps => ({
+const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>): DispatchProps => ({
   setShownJobs: (jobs: Job[]) => dispatch(setShownJobs(jobs)),
 })
 
