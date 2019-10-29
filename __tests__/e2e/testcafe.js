@@ -15,7 +15,7 @@ const browsers = process.env.CI
 // Try to aim for 1 browser per thread.
 const concurrency = Math.max(
   1,
-  Math.floor(os.cpus().length / browsers.length) - 1,
+  Math.floor((os.cpus().length - 1) / browsers.length),
 )
 
 createTestCafe("localhost", 1337, 1338)
