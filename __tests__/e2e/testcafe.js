@@ -9,8 +9,8 @@ const browsers = process.env.CI
   : [
       "chrome",
       "firefox",
-      "ie",
-      "edge",
+      // "ie",
+      // "edge",
       "chrome:emulation:width=720;height=1280;mobile=true;orientation=vertical;touch=true",
       "chrome:emulation:width=1080;height=1920;mobile=true;orientation=vertical;touch=true",
     ]
