@@ -1,5 +1,3 @@
-import { Location } from "../types/customTypes"
-
 /**
  * Removes all occurences of an element from a list
  *
@@ -23,8 +21,8 @@ export function removeFrom(list: any[], entry: any): any[] {
  * @returns {any[]}
  */
 export function removeListFromList(list1: any[], list2: any[]): any[] {
-  const unique = [...new Set(list2)]
-  return list1.filter(value => {
+  const unique = [...new Set(list1)]
+  return list2.filter(value => {
     return !unique.includes(value)
   })
 }
@@ -49,20 +47,4 @@ export function strip(text: string): string {
  */
 export function bound(lower: number, value: number, upper: number): number {
   return Math.max(lower, Math.min(value, upper))
-}
-
-/**
- * @description Calculate how many unique companies are offering jobs.
- * @param {IJob[]} jobs
- * @returns {number}
- * @memberof Sample
- */
-export function keyCount(arr: any[], key: string): number {
-  const companies = []
-  for (const entry of arr) {
-    if (entry.hasOwnProperty(key)) {
-      companies.push(entry[key])
-    }
-  }
-  return [...new Set(companies)].length
 }

@@ -58,7 +58,9 @@ const App: React.FunctionComponent<Props> = props => {
       }
     >
       <div>
-        <button onClick={notify}>Dispatch</button>
+        <button id="dispatch" onClick={notify}>
+          Dispatch
+        </button>
         <Notifications></Notifications>
         <Menu
           isFullscreen={state.isFullscreen}

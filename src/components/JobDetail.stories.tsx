@@ -8,7 +8,6 @@ const data: Record<string, Job> = {
   default: {
     corp: "Bosch",
     location: {
-      country: "ASD",
       lat: 50,
       lon: 11,
     },
@@ -24,7 +23,6 @@ const data: Record<string, Job> = {
   highScore: {
     corp: "Bosch",
     location: {
-      country: "ASD",
       lat: 50,
       lon: 11,
     },
@@ -40,7 +38,6 @@ const data: Record<string, Job> = {
   maxScore: {
     corp: "Bosch",
     location: {
-      country: "ASD",
       lat: 50,
       lon: 11,
     },
@@ -56,7 +53,6 @@ const data: Record<string, Job> = {
   lowScore: {
     corp: "Bosch",
     location: {
-      country: "ASD",
       lat: 50,
       lon: 11,
     },
@@ -72,7 +68,6 @@ const data: Record<string, Job> = {
   zeroScore: {
     corp: "Bosch",
     location: {
-      country: "ASD",
       lat: 50,
       lon: 11,
     },

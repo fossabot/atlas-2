@@ -1,9 +1,6 @@
-// @flow
-
-import axios from "axios"
-
 import { Job } from "../types/customTypes"
 import { log } from "./logger"
+import axios from "axios"
 
 /**
  * Random sample generator
@@ -19,10 +16,14 @@ export default class Sample {
    */
   public async jobs(count: number): Promise<Job[]> {
     const startTime = new Date()
-    const response = await axios.get("../data/cities.json")
-    const iso3 = await axios.get("../data/iso3.json")
-    const cities = response.data
-    const jobs = []
+    // TODO selfhost these files
+    const cities = await axios
+      .get(
+        "https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json",
+      )
+      .then(response => response.data)
+
+    const jobs: Job[] = []
     while (jobs.length < count && cities.length > 0) {
       const i = Math.floor(Math.random() * cities.length)
       const city = cities.splice(i, 1)[0]
@@ -30,9 +31,8 @@ export default class Sample {
         id: i,
         corp: this.generateString(count / 4500),
         location: {
-          country: iso3.data[city.country],
           lat: Number(city.lat),
-          lon: Number(city.lon),
+          lon: Number(city.lng),
         },
         date: "",
         logo: "",

@@ -3,14 +3,11 @@ import { connect } from "react-redux"
 import { ThunkDispatch } from "redux-thunk"
 import MapClass from "../lib/map"
 import Nominatim from "../lib/nominatim"
-import { fetchJobs, setShownJobs } from "../redux/jobs/actions"
+import { setShownJobs } from "../redux/jobs/actions"
 import { Job } from "../types/customTypes"
-import { setSelectedCountries } from "../redux/countries/actions"
-
+import { getJobsInGeometry } from "../lib/geometry"
 interface DispatchProps {
-  fetchJobs: () => void
   setShownJobs: (jobs: Job[]) => void
-  setSelectedCountries: (countries: string[]) => void
 }
 
 interface StateProps {
@@ -22,7 +19,7 @@ interface StateProps {
     query: string
   }
   countries: {
-    selectedCountries: string[]
+    selectedCountries: Record<string, any>[]
   }
 }
 
@@ -30,7 +27,7 @@ interface StateProps {
 type Props = StateProps & DispatchProps
 
 const Map: React.FunctionComponent<Props> = props => {
-  const [isLoading, setLoading] = useState<boolean>(false)
+  const MAP_ID = "map"
   const [isRendered, setIsRendered] = useState<boolean>(false)
   const [map, setMap] = useState()
   /*
@@ -42,10 +39,7 @@ const Map: React.FunctionComponent<Props> = props => {
     where 'isRendered' could be set before 'map'
     */
     const init = async (): Promise<void> => {
-      const newMap = new MapClass("map")
-      newMap.addCountryLayer((features: any[]) => {
-        props.setSelectedCountries(features)
-      })
+      const newMap = new MapClass(MAP_ID)
       await setMap(newMap)
       setIsRendered(true)
     }
@@ -60,51 +54,54 @@ const Map: React.FunctionComponent<Props> = props => {
       if (props.search.query.length > 0) {
         const nominatim = new Nominatim()
 
-        setLoading(true)
         const { result, success } = await nominatim.forwardSearch(
           props.search.query,
         )
         if (success && typeof result !== "undefined") {
           if (isRendered) {
-            const layer = map.featureLayerFromGeoJson(result.geojson)
+            const layer = map.countryLayerFromGeoJson(result.geojson)
             map.zoomToLayer(layer)
           }
         }
-        setLoading(false)
       }
     }
     fetchNominatim()
   }, [props.search.query])
 
-  /*
-    Fetching jobs
-  */
   useEffect(() => {
-    props.fetchJobs()
-
-    return () => {}
-  }, [])
-
-  /*
-    Jobs
-  */
-  useEffect(() => {
-    let jobs: Job[] = []
-    if (props.countries.selectedCountries.length > 0) {
-      jobs = props.jobs.allJobs.filter(job => {
-        return props.countries.selectedCountries.includes(job.location.country)
-      })
-    } else {
-      jobs = props.jobs.allJobs
+    if (map) {
+      map.countryLayerFromGeometry(props.countries.selectedCountries)
     }
+  }, [props.countries.selectedCountries])
+
+  /*
+    Updating redux jobs from country select
+  */
+  useEffect(() => {
+    let newShownJobs: Job[] = []
+    if (props.countries.selectedCountries.length === 0) {
+      newShownJobs = props.jobs.allJobs
+    } else {
+      newShownJobs = getJobsInGeometry(
+        props.jobs.allJobs,
+        props.countries.selectedCountries,
+      )
+    }
+
+    props.setShownJobs(newShownJobs)
+  }, [props.countries.selectedCountries, props.jobs.allJobs])
+
+  /*
+    Updating Jobs on map
+  */
+  useEffect(() => {
     // Check if map is defined yet, because this hook runs at init
     if (map) {
-      map.setJobs(jobs)
+      map.setJobs(props.jobs.shownJobs)
     }
-    props.setShownJobs(jobs)
-  }, [props.jobs.allJobs, isRendered, props.countries.selectedCountries])
+  }, [props.jobs.shownJobs])
 
-  return <div id="map"></div>
+  return <div id={MAP_ID}></div>
 }
 
 const mapStateToProps = (state: StateProps): StateProps => ({
@@ -116,10 +113,7 @@ const mapStateToProps = (state: StateProps): StateProps => ({
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<{}, {}, any>,
 ): DispatchProps => ({
-  fetchJobs: () => dispatch(fetchJobs()),
   setShownJobs: (jobs: Job[]) => dispatch(setShownJobs(jobs)),
-  setSelectedCountries: (countries: string[]) =>
-    dispatch(setSelectedCountries(countries)),
 })
 
 export default connect(

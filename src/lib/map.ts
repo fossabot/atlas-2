@@ -2,31 +2,31 @@ import { Map as OLMap } from "ol"
 import Bar from "ol-ext/control/Bar"
 import Button from "ol-ext/control/Button"
 import LayerPopup from "ol-ext/control/LayerPopup"
-import Crop from "ol-ext/filter/Crop"
-import Mask from "ol-ext/filter/Mask"
-import { Attribution, defaults } from "ol/control.js"
+import { Attribution, defaults } from "ol/control"
 import FullScreen from "ol/control/FullScreen"
-import { platformModifierKeyOnly } from "ol/events/condition.js"
-import Feature from "ol/Feature"
+import { shiftKeyOnly } from "ol/events/condition"
 import GeoJSON from "ol/format/GeoJSON"
+import polygonStyle from "../styles/polygon"
+import Feature from "ol/Feature"
 import { fromCircle } from "ol/geom/Polygon"
 import { Draw, Modify } from "ol/interaction"
-import Select from "ol/interaction/Select"
 import TileLayer from "ol/layer/Tile"
 import VectorLayer from "ol/layer/Vector"
 import { fromLonLat } from "ol/proj"
 import OSM from "ol/source/OSM"
 import VectorSource from "ol/source/Vector"
-import { Fill, Stroke, Style } from "ol/style.js"
+import { Fill, Stroke, Style } from "ol/style"
 import View from "ol/View"
-
-import PolygonStyle from "../styles/polygon"
 import { MapInterface } from "../types/customInterfaces"
 import { Job } from "../types/customTypes"
-import { OLFeature, OLLayer, OLNotification, OLSelect } from "../types/olTypes"
 import ClusterLayer from "./clusterLayer"
 import { log } from "./logger"
-import { onClick as countryOnClick, countryLayer } from "./countryLayer"
+import { countryLayer } from "./countryLayer"
+import BaseLayer from "ol/layer/Base"
+import Geometry from "ol/geom/Geometry"
+import store from "../redux/store"
+import { setAllJobs, setShownJobs } from "../redux/jobs/actions"
+import Sample from "./sample"
 /**
  * OpenLayers Map
  *
@@ -39,10 +39,8 @@ import { onClick as countryOnClick, countryLayer } from "./countryLayer"
 export default class Map implements MapInterface {
   public jobs: Job[]
   private mapID: string
-  private markerLayer: ClusterLayer
-  public notification: OLNotification
   public olmap: OLMap
-  private select: OLSelect
+  private clusterLayer: ClusterLayer
 
   /**
    *Creates an instance of Map.
@@ -52,20 +50,78 @@ export default class Map implements MapInterface {
   public constructor(mapID = "map") {
     log.debug("Initializing map", { mapID })
     this.mapID = mapID
-    // this.ui = new UI(this)
 
     this.jobs = []
     this.olmap = this.buildMap()
-    this.buildMarkerLayer()
+    this.buildClusterLayer()
+    this.loadJobs()
     this.addControls()
-    // this.addCircleSelect()
-    this.select = this.addSelect()
+    this.addCircleSelect()
+    this.addCountryLayer()
   }
 
-  addCountryLayer(callback?: (features: any[]) => void): void {
-    this.olmap.addLayer(countryLayer)
-    log.info("Got here")
-    countryOnClick(this.olmap, callback)
+  loadJobs(): void {
+    new Sample().jobs(200).then((jobs: Job[]) => {
+      store.dispatch(setAllJobs(jobs))
+    })
+  }
+
+  addVectorLayer(name: string, layer: VectorLayer): VectorLayer {
+    layer.set("name", name)
+    this.olmap.addLayer(layer)
+    return layer
+  }
+
+  addCountryLayer(): void {
+    countryLayer(this)
+  }
+
+  public countryLayerFromGeometry(
+    geometry: Record<string, any>[],
+  ): VectorLayer {
+    const layerName = "countries"
+    const [layer, wasCreated] = this.getOrCreateLayer(layerName, {
+      style: polygonStyle({ isSelected: false }),
+    })
+    if (!wasCreated) {
+      layer.getSource().clear()
+    }
+    const source = new VectorSource()
+    const features = geometry.map(g => {
+      return new Feature({
+        geometry: g,
+      })
+    })
+    source.addFeatures(features)
+    layer.setSource(source)
+    if (wasCreated) {
+      this.addVectorLayer(layerName, layer)
+    }
+    return layer
+  }
+
+  private featureLayerFromGeoJson(
+    geojson: Record<string, any>[],
+    layerName: string,
+  ): VectorLayer {
+    const [layer, wasCreated] = this.getOrCreateLayer(layerName, {
+      style: polygonStyle({ isSelected: false }),
+    })
+    if (!wasCreated) {
+      layer.getSource().clear()
+    }
+    const source = new VectorSource()
+    geojson.forEach(g => {
+      const features = new GeoJSON({
+        featureProjection: "EPSG:3857",
+      }).readFeatures(g)
+      source.addFeatures(features)
+    })
+    layer.setSource(source)
+    if (wasCreated) {
+      this.addVectorLayer(layerName, layer)
+    }
+    return layer
   }
 
   /**
@@ -81,47 +137,19 @@ export default class Map implements MapInterface {
 
     this.olmap.addControl(new FullScreen())
     this.olmap.addControl(mainbar)
-    mainbar.addControl(this.selectRemoveButton())
+    mainbar.addControl(this.circleSelectRemoveButton())
     return mainbar
   }
 
-  /**
-   * @description Adds a new Button to remove a selection.
-   * @returns
-   * @memberof Map
-   */
-  private selectRemoveButton(): void {
+  private circleSelectRemoveButton(): void {
     return new Button({
       html: "R",
       className: "",
-      title: "Remove Selection",
+      title: "Remove Circle Selection",
       handleClick: () => {
-        this.removeCrop()
+        this.clearSource(this.getDrawLayer())
       },
     })
-  }
-
-  /**
-   * @description Removes the greyout and selectLayer from the map
-   * @memberof Map
-   */
-  private removeCrop(): void {
-    this.removeLayerByName("greyout")
-    for (const layerName of ["draw", "geojson"]) {
-      this.clearSource(layerName)
-    }
-  }
-
-  /**
-   * @description clears the source of a layer specified by its name.
-   * @param {string} layerName
-   * @memberof Map
-   */
-  private clearSource(layerName: string): void {
-    const layer = this.getLayerByName(layerName)
-    if (typeof layer !== "undefined") {
-      layer.getSource().clear()
-    }
   }
 
   /**
@@ -129,11 +157,13 @@ export default class Map implements MapInterface {
    * @param {string} name
    * @memberof Map
    */
-  private removeLayerByName(name: string): void {
-    const layer = this.getLayerByName(name)
-    if (typeof layer !== "undefined") {
+  private removeLayersByNames(names: string[]): void {
+    const layers = this.getLayersByNames(names)
+    log.info("layers", layers)
+    layers.forEach((layer: BaseLayer) => {
+      log.info("Deleting layer", layer)
       this.olmap.removeLayer(layer)
-    }
+    })
   }
 
   /**
@@ -157,72 +187,83 @@ export default class Map implements MapInterface {
    * @memberof Map
    */
   private addCircleSelect(): void {
-    const drawLayer = new VectorLayer({
-      source: new VectorSource(),
-    })
-    // drawLayer = this.olmap.layers
+    const drawLayer = this.getDrawLayer({ clear: true })
     this.olmap.addLayer(drawLayer)
     const modify = new Modify({
       source: drawLayer.getSource(),
     })
     this.olmap.addInteraction(modify)
-    const draw: Draw = new Draw({
+
+    const draw = new Draw({
       source: drawLayer.getSource(),
       // @ts-ignore
-      type: "CIRCLE",
+      type: "Circle",
       wrapX: true,
-      style: new Style({
-        fill: new Fill({
-          color: "rgba(0,0,0,0)",
-        }),
-        stroke: new Stroke({
-          color: "rgba(200,0,0,1)",
-          width: 1,
-        }),
-      }),
-      name: "drawInteraction",
+      condition: shiftKeyOnly,
+      // Sets the style during first transformation
+      style: polygonStyle(),
     })
+    this.handleCircleSelectEvents(draw, modify)
     this.olmap.addInteraction(draw)
+  }
 
-    draw.on("drawstart", () => {
-      drawLayer.getSource().clear()
-      const layer = this.getLayerByName("greyout")
-      if (typeof layer !== "undefined") {
-        this.olmap.removeLayer(layer)
+  private handleCircleSelectEvents(draw: Draw, modify: Modify): void {
+    const getCircle = (): Geometry | undefined => {
+      const source = this.getDrawLayer().getSource()
+      if (source.getFeatures().length === 1) {
+        return source.getFeatures()[0].get("geometry")
       }
+
+      return undefined
+    }
+
+    const onEnd = (): void => {
+      const circle = getCircle()
+      if (circle) {
+        const allJobs = store.getState().jobs.allJobs
+        const newVisibleJobs: Job[] = []
+        allJobs.forEach(job => {
+          if (
+            circle.intersectsCoordinate([job.location.lat, job.location.lon])
+          ) {
+            newVisibleJobs.push(job)
+          }
+        })
+        log.info("dispatching", newVisibleJobs)
+        store.dispatch(setShownJobs(newVisibleJobs))
+      }
+    }
+
+    draw.on("drawend", () => {
+      this.clearSource(this.getDrawLayer())
+      onEnd()
     })
 
-    modify.on("modifystart", () => {
-      const layer = this.getLayerByName("greyout")
-      if (typeof layer !== "undefined") {
-        this.olmap.removeLayer(layer)
-      }
-    })
-
-    modify.on("modifyend", e => {
-      if (e.features.get("array_")[0]) {
-        this.handleDrawEnd(e.features.get("array_")[0])
-      }
-    })
-
-    draw.on("drawend", e => {
-      if (e.feature) {
-        this.handleDrawEnd(e.feature)
-      }
+    modify.on("modifyend", () => {
+      onEnd()
     })
   }
 
-  /**
-   * Handle notification and call the this.crop
-   *
-   * @param {*} circle
-   * @memberof Map
-   */
-  private handleDrawEnd(circle: Feature): void {
-    // TODO Radius calculation. Needs to use projection
-    // https://stackoverflow.com/questions/32202944/openlayers-3-circle-radius-in-meters
-    const feature = this.makeFeatureFromCircle(circle)
-    this.crop(feature)
+  private getDrawLayer({
+    clear = false,
+  }: { clear?: boolean } = {}): VectorLayer {
+    let [layer, wasCreated] = this.getOrCreateLayer("drawLayer", {
+      source: new VectorSource(),
+      // Sets the style after transformation
+      style: polygonStyle(),
+    })
+    layer = layer as VectorLayer
+    if (!wasCreated && clear) {
+      this.clearSource(layer)
+    }
+    return layer
+  }
+
+  private clearSource(layer: VectorLayer): VectorLayer {
+    if (typeof layer.getSource === "function") {
+      layer.getSource().clear()
+    }
+    return layer
   }
 
   /**
@@ -234,26 +275,6 @@ export default class Map implements MapInterface {
    */
   private getRadius(circle: Feature): number {
     return circle.get("values_").geometry.getRadius()
-  }
-
-  /**
-   * @description Generates a new layer and adds the geojson data as feature
-   * @param {*} geojson
-   * @returns
-   * @memberof Map
-   */
-  public featureLayerFromGeoJson(geojson: any): VectorLayer {
-    const layer = new VectorLayer({
-      source: new VectorSource({
-        features: new GeoJSON().readFeatures(geojson, {
-          featureProjection: "EPSG:3857",
-        }),
-      }),
-      style: new PolygonStyle().style(),
-    })
-    this.olmap.addLayer(layer)
-    this.crop(layer.getSource().getFeatures()[0])
-    return layer
   }
 
   /**
@@ -286,14 +307,15 @@ export default class Map implements MapInterface {
    * @returns
    * @memberof Map
    */
-  private getLayerByName(name: string): OLLayer | undefined {
-    const layers = this.olmap.getLayers()
-    layers.forEach(layer => {
-      if (layer.get("name") === name) {
-        return layer
+  private getLayersByNames(names: string[]): BaseLayer[] {
+    const allLayers = this.olmap.getLayers()
+    const filteredLayers: BaseLayer[] = []
+    allLayers.forEach(layer => {
+      if (names.includes(layer.get("name"))) {
+        filteredLayers.push(layer)
       }
     })
-    return undefined
+    return filteredLayers
   }
 
   /**
@@ -304,69 +326,26 @@ export default class Map implements MapInterface {
    * @returns
    * @memberof Map
    */
-  private getOrCreateLayer(name: string, opts: Record<string, any>): OLLayer {
-    let layer = this.getLayerByName(name)
-    if (typeof layer === "undefined") {
-      const newLayer = new TileLayer(opts)
-      layer = (newLayer as unknown) as OLLayer
-      this.olmap.addLayer(layer)
+  private getOrCreateLayer(
+    name: string,
+    opts: Record<string, any>,
+  ): [VectorLayer, boolean] {
+    const layers = this.getLayersByNames([name])
+    let layer: VectorLayer, wasCreated: boolean
+    switch (layers.length) {
+      case 1:
+        layer = (layers[0] as unknown) as VectorLayer
+        wasCreated = false
+        break
+      case 0:
+        layer = new VectorLayer(opts)
+        layer.set("name", name)
+        wasCreated = true
+        break
+      default:
+        throw Error(`I found more than one layer with this name: ${name}`)
     }
-    return layer
-  }
-
-  /**
-   * Adds a greyed-out look to the map.
-   * Greys out everything except the inside of the feature.
-   *
-   * @param feature
-   * @memberof Map
-   */
-  private crop(feature: OLFeature): void {
-    const crop = new Crop({
-      feature: feature,
-      inner: true,
-      fill: new Fill({
-        color: [0, 0, 0, 0.5],
-      }),
-    })
-    const mask = new Mask({
-      feature: feature,
-      inner: false,
-      fill: new Fill({ color: [0, 0, 0, 0.4] }),
-    })
-
-    const greyOutLayer = this.getOrCreateLayer("greyout", {
-      name: "greyout",
-      source: new OSM(),
-    })
-    greyOutLayer.addFilter(crop)
-    greyOutLayer.addFilter(mask)
-  }
-
-  /**
-   * Adds ability to click on a cluster and displays the individual jobs
-   * in the jobList.
-   *
-   * @returns
-   * @memberof Map
-   */
-  private addSelect(): OLSelect {
-    const select = new Select({
-      condition: platformModifierKeyOnly,
-    })
-    this.olmap.addInteraction(select)
-
-    /*
-    TODO: rework UI
-    select.on("select", e => {
-      const c = e.selected
-      if (c.length === 1) {
-        const feature = c[0]
-        this.ui.updateJobList(feature) 
-      }
-    })
-*/
-    return select
+    return [layer, wasCreated]
   }
 
   /**
@@ -390,10 +369,10 @@ export default class Map implements MapInterface {
     return new OLMap({
       target: this.mapID,
       controls: defaults({ attribution: false }).extend([
-        new LayerPopup(),
         new Attribution({
           collapsible: true,
         }),
+        new LayerPopup(),
       ]),
       layers: [
         new TileLayer({
@@ -401,26 +380,6 @@ export default class Map implements MapInterface {
             wrapX: true,
           }),
         }),
-        /*
-        new TileLayer({
-          title: "OpenRailwayMap",
-
-          source: new XYZ({
-            url:
-              "https://{a-c}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png",
-            attributions:
-              'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Map style: &copy; <a href="https://www.OpenRailwayMap.org">OpenRailwayMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
-          }),
-        }),
-        */
-        // new VectorTileLayer({
-        //   source: new VectorTileSource({
-        //     format: new MVT(),
-        //     url:
-        //       "http://jbs-osm.informatik.fh-nuernberg.de:18000/maps/osm/{z}/{x}/{y}.pbf",
-        //   }),
-        //   style: vectorStyle,
-        // }),
       ],
       view: new View({
         center: fromLonLat([0, 45]),
@@ -434,9 +393,9 @@ export default class Map implements MapInterface {
    *
    * @memberof Map
    */
-  private buildMarkerLayer(): void {
-    this.markerLayer = new ClusterLayer(60)
-    this.olmap.addLayer(this.markerLayer.animatedCluster)
+  private buildClusterLayer(): void {
+    this.clusterLayer = new ClusterLayer(60)
+    this.addVectorLayer("cluster", this.clusterLayer.animatedCluster)
   }
 
   /**
@@ -449,10 +408,9 @@ export default class Map implements MapInterface {
    */
 
   public setJobs(jobs: Job[]): void {
-    // this.ui.updateFromjobs(jobs)
-    log.info("Setting jobs", jobs)
-    this.markerLayer.clear()
-    this.markerLayer.addJobs(jobs)
+    log.debug("Setting jobs", jobs)
+    this.clusterLayer.clear()
+    this.clusterLayer.addJobs(jobs)
   }
 
   /**
