@@ -5,10 +5,7 @@ const initialState: JobState = {
   shownJobs: [],
 }
 
-export default function(
-  state = initialState,
-  action: JobActionTypes,
-): JobState {
+export default function(state = initialState, action: JobActionTypes): JobState {
   switch (action.type) {
     case SET_ALL_JOBS:
       return Object.assign({}, state, {

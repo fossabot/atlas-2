@@ -5,6 +5,7 @@ module.exports = {
   semi: false,
   // Trailing commas help with git merging and conflict resolution
   trailingComma: "all",
+  printWidth: 120,
   overrides: [
     {
       files: ".editorconfig",

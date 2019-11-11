@@ -37,11 +37,7 @@ const SearchBar: React.FunctionComponent<Props> = props => {
   }
 
   return (
-    <form
-      className={` w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative  ${
-        loading ? "bg-gray-900" : ""
-      } `}
-    >
+    <form className={` w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative  ${loading ? "bg-gray-900" : ""} `}>
       {loading ? "HELLO WORLD" : ""}
       <input
         onKeyDown={onKeyDown}

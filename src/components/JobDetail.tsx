@@ -16,9 +16,7 @@ const JobDetail: React.FunctionComponent<Props> = props => {
       <div className="w-full">
         <div className="p-4">
           <div className="flex justify-between">
-            <p className="uppercase tracking-wide text-sm font-bold text-gray-700">
-              {job.corp}
-            </p>
+            <p className="uppercase tracking-wide text-sm font-bold text-gray-700">{job.corp}</p>
             <p>{job.score}</p>
           </div>
           <p className="text-3xl text-gray-900">{job.title}</p>
@@ -32,10 +30,7 @@ const JobDetail: React.FunctionComponent<Props> = props => {
             </p>
           </div>
           <div className="">
-            <a
-              className="text-gray-900 font-bold hover:text-jb-primary"
-              href="#"
-            >
+            <a className="text-gray-900 font-bold hover:text-jb-primary" href="#">
               View
             </a>
           </div>

@@ -1,9 +1,4 @@
-import {
-  bound,
-  removeFrom,
-  strip,
-  removeListFromList,
-} from "../../src/lib/util"
+import { bound, removeFrom, strip, removeListFromList } from "../../src/lib/util"
 
 describe("removeFrom()", () => {
   describe("when there are no duplicates", () => {
@@ -174,10 +169,7 @@ describe("removeListFromList()", () => {
             "Cras iaculis ultricies nulla.",
             "Donec quis dui at dolor tempor interdum.",
           ],
-          list1: [
-            "Vestibulum commodo felis quis tortor.",
-            "Aliquam tincidunt mauris eu risus.",
-          ],
+          list1: ["Vestibulum commodo felis quis tortor.", "Aliquam tincidunt mauris eu risus."],
         },
       },
       {
@@ -282,10 +274,7 @@ describe("removeListFromList()", () => {
             "Vestibulum commodo felis quis tortor.",
             "Donec quis dui at dolor tempor interdum.",
           ],
-          list1: [
-            "Aliquam tincidunt mauris eu risus.",
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-          ],
+          list1: ["Aliquam tincidunt mauris eu risus.", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."],
         },
       },
       {

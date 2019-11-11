@@ -68,9 +68,7 @@ export default class ClusterStyle {
       throw new RangeError("score must be between 0 and 1, including 0 and 1.")
     }
     if (minScore < 0 || minScore > 1) {
-      throw new RangeError(
-        "minScore must be between 0 and 1, including 0 and 1.",
-      )
+      throw new RangeError("minScore must be between 0 and 1, including 0 and 1.")
     }
     if (minScore >= score) {
       return this.colorGradient[0]

@@ -2,9 +2,7 @@ import Fill from "ol/style/Fill"
 import Stroke from "ol/style/Stroke"
 import Style from "ol/style/Style"
 
-export const countryLayerStyle = ({
-  isSelected = false,
-}: { isSelected?: boolean } = {}): Style => {
+export const countryLayerStyle = ({ isSelected = false }: { isSelected?: boolean } = {}): Style => {
   const selectedStyle = new Style({
     stroke: new Stroke({
       color: "rgba(200,20,20,0.8)",

@@ -21,11 +21,7 @@ export default class Nominatim {
    */
   public constructor() {
     this.apiURLBase = "https://nominatim.openstreetmap.org/search?q="
-    this.apiURLQueryParameters = [
-      "format=jsonv2",
-      "polygon_geojson=1",
-      "limit=1",
-    ]
+    this.apiURLQueryParameters = ["format=jsonv2", "polygon_geojson=1", "limit=1"]
   }
 
   /**
@@ -35,12 +31,7 @@ export default class Nominatim {
    * @memberof Nominatim
    */
   private buildURL(address: string): string {
-    const url = "".concat(
-      this.apiURLBase,
-      address,
-      "&",
-      this.flattenParameters(),
-    )
+    const url = "".concat(this.apiURLBase, address, "&", this.flattenParameters())
     return encodeURI(url)
   }
 
@@ -60,9 +51,7 @@ export default class Nominatim {
         geojson: jsonData[0].geojson,
       }
     } else {
-      throw new RangeError(
-        "Json data did not have enough enough elements, expecting at least 1.",
-      )
+      throw new RangeError("Json data did not have enough enough elements, expecting at least 1.")
     }
   }
 
@@ -72,16 +61,20 @@ export default class Nominatim {
    * @returns
    * @memberof Nominatim
    */
-  private flattenParameters(
-    parameters: string[] = this.apiURLQueryParameters,
-  ): string {
+  private flattenParameters(parameters: string[] = this.apiURLQueryParameters): string {
     return parameters.join("&")
   }
 
-  public getCountryFromLonLat(
-    lonLat: [number, number],
-  ): Promise<GeoJSON | undefined> {
-    const url = `https://nominatim.openstreetmap.org/reverse?format=geojson&lon=${lonLat[0]}&lat=${lonLat[1]}&zoom=3&polygon_geojson=1&limit=1`
+  public getCountryFromLonLat(lonLat: [number, number]): Promise<GeoJSON | undefined> {
+    const parameters = [
+      "format=geojson",
+      `lon=${lonLat[0]}`,
+      `lat=${lonLat[1]}`,
+      "zoom=3",
+      "polygon_geojson=1",
+      "limit=1",
+    ]
+    const url = "https://nominatim.openstreetmap.org/reverse?" + parameters.join("&")
 
     return axios
       .get(url)
@@ -103,9 +96,7 @@ export default class Nominatim {
    * @returns
    * @memberof Nominatim
    */
-  public forwardSearch(
-    address: string,
-  ): Promise<{ result: ForwardResult | undefined; success: boolean }> {
+  public forwardSearch(address: string): Promise<{ result: ForwardResult | undefined; success: boolean }> {
     const url = this.buildURL(address)
     return axios.get(url).then(response => {
       try {

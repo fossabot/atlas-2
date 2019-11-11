@@ -1,15 +1,7 @@
 import { createNotification } from "./factory"
-import {
-  ADD_NOTIFICATION,
-  AddNotificationAction,
-  REMOVE_NOTIFICATION,
-  RemoveNotificationAction,
-} from "./types"
+import { ADD_NOTIFICATION, AddNotificationAction, REMOVE_NOTIFICATION, RemoveNotificationAction } from "./types"
 
-export const addNotification = (
-  level: string,
-  content: string,
-): AddNotificationAction => {
+export const addNotification = (level: string, content: string): AddNotificationAction => {
   return {
     type: ADD_NOTIFICATION,
     payload: createNotification({ level, content }),
