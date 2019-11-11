@@ -2,7 +2,7 @@ import { Map as OLMap } from "ol"
 import Bar from "ol-ext/control/Bar"
 import Button from "ol-ext/control/Button"
 import LayerPopup from "ol-ext/control/LayerPopup"
-import { Attribution, defaults } from "ol/control"
+import { Attribution, defaults, Zoom, OverviewMap } from "ol/control"
 import FullScreen from "ol/control/FullScreen"
 import { shiftKeyOnly } from "ol/events/condition"
 import GeoJSON from "ol/format/GeoJSON"
@@ -351,21 +351,27 @@ export default class Map implements MapInterface {
      * @returns
      */
 
+    const layers = [
+      new TileLayer({
+        source: new OSM({
+          wrapX: true,
+        }),
+      }),
+    ]
+
     return new OLMap({
       target: this.mapID,
-      controls: defaults({ attribution: false }).extend([
+      controls: [
         new Attribution({
           collapsible: true,
         }),
         new LayerPopup(),
-      ]),
-      layers: [
-        new TileLayer({
-          source: new OSM({
-            wrapX: true,
-          }),
+        new OverviewMap({
+          layers: layers,
         }),
+        new Zoom(),
       ],
+      layers: layers,
       view: new View({
         center: fromLonLat([0, 45]),
         zoom: 2,
