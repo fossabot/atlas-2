@@ -19,16 +19,15 @@ const convertGeoJsonToGeometries = (
   }).readFeatures(geojson)
   return features.map(feature => feature.getGeometry())
 }
+const getCachedGeometry = (event: any): Record<string, any> => {
+  const [lon, lat] = toLonLat(event.coordinate)
+  const matches = store.getState().countries.allCountries.filter(geometry => {
+    return areCoordinatesInGeometry([lon, lat], geometry)
+  })
+  return matches[0]
+}
 
 const countryLayer = (map: Map): void => {
-  const getCachedGeometry = (event: any): Record<string, any> => {
-    const [lon, lat] = toLonLat(event.coordinate)
-    const matches = store.getState().countries.allCountries.filter(geometry => {
-      return areCoordinatesInGeometry([lon, lat], geometry)
-    })
-    return matches[0]
-  }
-
   map.olmap.on("singleclick", async (event: any) => {
     const cachedGeometry = getCachedGeometry(event)
     if (cachedGeometry) {
@@ -43,7 +42,9 @@ const countryLayer = (map: Map): void => {
         if (geometries) {
           geometries.forEach(geometry => {
             if (geometry) {
-              store.dispatch(addCountry(geometry))
+              if (!store.getState().countries.allCountries.includes(geometry)) {
+                store.dispatch(addCountry(geometry))
+              }
               store.dispatch(addSelectedCountries([geometry]))
             }
           })

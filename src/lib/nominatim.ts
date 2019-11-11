@@ -81,7 +81,16 @@ export default class Nominatim {
   public getCountryFromLonLat(
     lonLat: [number, number],
   ): Promise<GeoJSON | undefined> {
-    const url = `https://nominatim.openstreetmap.org/reverse?format=geojson&lon=${lonLat[0]}&lat=${lonLat[1]}&zoom=3&polygon_geojson=1&limit=1`
+    const parameters = [
+      "format=geojson",
+      `lon=${lonLat[0]}`,
+      `lat=${lonLat[1]}`,
+      "zoom=3",
+      "polygon_geojson=1",
+      "limit=1",
+    ]
+    const url =
+      "https://nominatim.openstreetmap.org/reverse?" + parameters.join("&")
 
     return axios
       .get(url)
