@@ -20,6 +20,4 @@ export interface RemoveSelectedCountriesAction {
   payload: Record<string, any>[]
 }
 
-export type CountriesActionTypes = AddSelectedCountriesAction &
-  AddCountryAction &
-  RemoveSelectedCountriesAction
+export type CountriesActionTypes = AddSelectedCountriesAction & AddCountryAction & RemoveSelectedCountriesAction

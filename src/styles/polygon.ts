@@ -10,9 +10,7 @@ import Style from "ol/style/Style"
  * @param {boolean} [selected=false] - Whether or not the polygon is currently selected.
  *
  */
-const polygonStyle = ({
-  isSelected = false,
-}: { isSelected?: boolean } = {}): Style => {
+const polygonStyle = ({ isSelected = false }: { isSelected?: boolean } = {}): Style => {
   const selectedStyle = new Style({
     fill: new Fill({
       color: "rgba(5,25,35,0.4)",

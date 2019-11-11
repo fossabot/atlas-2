@@ -3,17 +3,11 @@ import Map from "./map"
 import { toLonLat } from "ol/proj"
 import Nominatim from "./nominatim"
 import store from "../redux/store"
-import {
-  addSelectedCountries,
-  addCountry,
-  removeSelectedCountries,
-} from "../redux/countries/actions"
+import { addSelectedCountries, addCountry, removeSelectedCountries } from "../redux/countries/actions"
 import { GeoJSON } from "ol/format"
 import { areCoordinatesInGeometry } from "./geometry"
 
-const convertGeoJsonToGeometries = (
-  geojson: Record<string, any>,
-): (Record<string, any> | undefined)[] => {
+const convertGeoJsonToGeometries = (geojson: Record<string, any>): (Record<string, any> | undefined)[] => {
   const features = new GeoJSON({
     featureProjection: "EPSG:3857",
   }).readFeatures(geojson)

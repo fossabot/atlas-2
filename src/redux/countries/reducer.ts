@@ -12,25 +12,17 @@ const initialState: CountriesState = {
   allCountries: [],
 }
 
-export default function(
-  state = initialState,
-  action: CountriesActionTypes,
-): CountriesState {
+export default function(state = initialState, action: CountriesActionTypes): CountriesState {
   switch (action.type) {
     case ADD_SELECTED_COUNTRIES:
       return {
         ...state,
-        selectedCountries: [
-          ...new Set([...state.selectedCountries, ...action.payload]),
-        ],
+        selectedCountries: [...new Set([...state.selectedCountries, ...action.payload])],
       }
     case REMOVE_SELECTED_COUNTRIES:
       return {
         ...state,
-        selectedCountries: removeListFromList(
-          action.payload,
-          state.selectedCountries,
-        ),
+        selectedCountries: removeListFromList(action.payload, state.selectedCountries),
       }
     case ADD_COUNTRY:
       return {

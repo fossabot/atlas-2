@@ -78,14 +78,7 @@ const branchOptions = [
   "Verkehr, Lager, Logistik",
   "Wissenschaft, Forschung &amp; Entwicklung",
 ]
-const contractOptions = [
-  "Befristet",
-  "Festanstellung",
-  "Freie Mitarbeit",
-  "Projektarbeit",
-  "Teilzeit",
-  "Vollzeit",
-]
+const contractOptions = ["Befristet", "Festanstellung", "Freie Mitarbeit", "Projektarbeit", "Teilzeit", "Vollzeit"]
 const languageOptions = [
   "Deutsch",
   "Deutscher Dialekt (Schweizerdeutsch)",
@@ -183,18 +176,14 @@ const Form: React.FunctionComponent = () => {
     <form>
       <div className="lg:flex lg:flex-wrap">
         <div className="w-full lg:w-1/2 px-3">
-          <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold">
-            Was?
-          </label>
+          <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold">Was?</label>
           <Dropdown label="Praktikumsart" options={whatOptions}></Dropdown>
           <Dropdown label="Faukultät" options={facultyOptions}></Dropdown>
           <Dropdown label="Branche" options={branchOptions}></Dropdown>
           <TextInput label="Stichworte"></TextInput>
         </div>
         <div className="w-full lg:w-1/2 px-3">
-          <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mt-8 lg:mt-0">
-            Wo?
-          </label>
+          <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mt-8 lg:mt-0">Wo?</label>
           <TextInput label="Ort oder Adresse"></TextInput>
           <div className="flex w-full mt-2">
             <span
@@ -244,10 +233,7 @@ const Form: React.FunctionComponent = () => {
         <div className="flex flex-wrap">
           <div className="w-full lg:w-1/2 px-3">
             <Dropdown label="Vertragsart" options={contractOptions}></Dropdown>
-            <Dropdown
-              label="Sprachkenntnisse"
-              options={languageOptions}
-            ></Dropdown>
+            <Dropdown label="Sprachkenntnisse" options={languageOptions}></Dropdown>
           </div>
           <div className="w-full lg:w-1/2 px-3">
             <Dropdown label="Bewerbung in" options={languageOptions}></Dropdown>

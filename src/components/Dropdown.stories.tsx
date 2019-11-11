@@ -11,6 +11,4 @@ export const actions = {}
 
 storiesOf("Dropdown", module)
   .addDecorator(story => <div style={{ padding: "3rem" }}>{story()}</div>)
-  .add("default", () => (
-    <Dropdown label={data.label} options={data.options} {...actions} />
-  ))
+  .add("default", () => <Dropdown label={data.label} options={data.options} {...actions} />)

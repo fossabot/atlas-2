@@ -52,9 +52,7 @@ const App: React.FunctionComponent<Props> = props => {
   return (
     <div
       className={
-        state.isFullscreen
-          ? "transition-all fixed top-0 left-0 w-screen h-screen bg-white z-50"
-          : "transition-all"
+        state.isFullscreen ? "transition-all fixed top-0 left-0 w-screen h-screen bg-white z-50" : "transition-all"
       }
     >
       <div>
@@ -62,11 +60,7 @@ const App: React.FunctionComponent<Props> = props => {
           Dispatch
         </button>
         <Notifications></Notifications>
-        <Menu
-          isFullscreen={state.isFullscreen}
-          toggleModal={toggleModal}
-          toggleFullscreen={toggleFullscreen}
-        ></Menu>
+        <Menu isFullscreen={state.isFullscreen} toggleModal={toggleModal} toggleFullscreen={toggleFullscreen}></Menu>
         <Statistics></Statistics>
         <Map></Map>
         {state.modal.isShowing ? (
@@ -80,8 +74,7 @@ const App: React.FunctionComponent<Props> = props => {
 }
 
 const mapDispatchToProps = (dispatch: any): DispatchProps => ({
-  addNotification: (level: string, content: string) =>
-    dispatch(addNotification(level, content)),
+  addNotification: (level: string, content: string) => dispatch(addNotification(level, content)),
 })
 
 const mapStateToProps = (state: StateProps): StateProps => ({
