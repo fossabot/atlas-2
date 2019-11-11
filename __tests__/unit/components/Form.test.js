@@ -52,11 +52,7 @@ describe("Form", () => {
           `,
         },
         {
-          in: [
-            "Angewandte Mathematik, Physik und Allgemeinwissenschaften",
-            "Architektur",
-            "Bauingenieurwesen",
-          ],
+          in: ["Angewandte Mathematik, Physik und Allgemeinwissenschaften", "Architektur", "Bauingenieurwesen"],
           snapshot: `
           Array [
             <option
@@ -96,9 +92,7 @@ describe("Form", () => {
           ]
           `,
       }
-      expect(createSelectOptions(testCase.in)).toMatchInlineSnapshot(
-        testCase.snapshot,
-      )
+      expect(createSelectOptions(testCase.in)).toMatchInlineSnapshot(testCase.snapshot)
     })
 
     it("should return an empty string if no options are provided", () => {

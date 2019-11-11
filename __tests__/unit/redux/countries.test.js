@@ -1,8 +1,5 @@
 import { addSelectedCountries } from "../../../src/redux/countries/actions"
-import {
-  ADD_SELECTED_COUNTRIES,
-  REMOVE_SELECTED_COUNTRIES,
-} from "../../../src/redux/countries/types"
+import { ADD_SELECTED_COUNTRIES, REMOVE_SELECTED_COUNTRIES } from "../../../src/redux/countries/types"
 import reducer from "../../../src/redux/countries/reducer"
 describe("actions", () => {
   it("should create an action to add selected countries", () => {

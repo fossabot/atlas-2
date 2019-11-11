@@ -1,16 +1,8 @@
-import {
-  ADD_NOTIFICATION,
-  NotificationActionTypes,
-  NotificationState,
-  REMOVE_NOTIFICATION,
-} from "./types"
+import { ADD_NOTIFICATION, NotificationActionTypes, NotificationState, REMOVE_NOTIFICATION } from "./types"
 
 const initialState: NotificationState = { notifications: [] }
 
-export default function(
-  state: NotificationState = initialState,
-  action: NotificationActionTypes,
-): NotificationState {
+export default function(state: NotificationState = initialState, action: NotificationActionTypes): NotificationState {
   switch (action.type) {
     case ADD_NOTIFICATION:
       return {
@@ -18,9 +10,7 @@ export default function(
       }
     case REMOVE_NOTIFICATION:
       return {
-        notifications: state.notifications.filter(
-          notification => notification.id !== action.payload,
-        ),
+        notifications: state.notifications.filter(notification => notification.id !== action.payload),
       }
     default:
       return state

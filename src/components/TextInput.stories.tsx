@@ -12,9 +12,5 @@ export const actions = {}
 storiesOf("TextInput", module)
   .addDecorator(story => <div style={{ padding: "3rem" }}>{story()}</div>)
 
-  .add("default", () => (
-    <TextInput label={data.label} placeholder={data.placeholder} {...actions} />
-  ))
-  .add("without Placeholder", () => (
-    <TextInput label={data.label} {...actions} />
-  ))
+  .add("default", () => <TextInput label={data.label} placeholder={data.placeholder} {...actions} />)
+  .add("without Placeholder", () => <TextInput label={data.label} {...actions} />)

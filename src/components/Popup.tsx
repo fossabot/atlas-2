@@ -17,16 +17,11 @@ const Popup: React.FunctionComponent = () => {
         <div className="w-3/5 h-full flex items-center bg-gray-100 rounded-lg">
           <div className="p-12 md:pr-24 md:pl-16 md:py-12">
             <p className="text-gray-600">
-              <span className="text-gray-900">Bosch</span> is a UK-based fashion
-              retailer that has nearly doubled in size since last year. They
-              integrated Stripe to deliver seamless checkout across mobile and
-              web for customers in 100+ countries, all while automatically
-              combating fraud.
+              <span className="text-gray-900">Bosch</span> is a UK-based fashion retailer that has nearly doubled in
+              size since last year. They integrated Stripe to deliver seamless checkout across mobile and web for
+              customers in 100+ countries, all while automatically combating fraud.
             </p>
-            <a
-              className="flex items-baseline mt-3 text-indigo-600 hover:text-indigo-900 focus:text-indigo-900"
-              href=""
-            >
+            <a className="flex items-baseline mt-3 text-indigo-600 hover:text-indigo-900 focus:text-indigo-900" href="">
               <span>Learn more about our users</span>
               <span className="text-xs ml-1">&#x279c;</span>
             </a>

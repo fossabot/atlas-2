@@ -7,14 +7,15 @@ import JobDetail from "./JobDetail"
 const data: Record<string, Job> = {
   default: {
     corp: "Bosch",
-    location: {
-      lat: 50,
-      lon: 11,
-    },
+    locations: [
+      {
+        lat: 50,
+        lon: 11,
+      },
+    ],
     date: "20.01.2019",
     id: 1,
-    logo:
-      "https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg",
+    logo: "https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg",
     score: 0.6,
     title: "System Engineer",
     type: "Full Time",
@@ -22,14 +23,15 @@ const data: Record<string, Job> = {
   },
   highScore: {
     corp: "Bosch",
-    location: {
-      lat: 50,
-      lon: 11,
-    },
+    locations: [
+      {
+        lat: 50,
+        lon: 11,
+      },
+    ],
     date: "20.01.2019",
     id: 1,
-    logo:
-      "https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg",
+    logo: "https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg",
     score: 0.9,
     title: "System Engineer",
     type: "Full Time",
@@ -37,14 +39,15 @@ const data: Record<string, Job> = {
   },
   maxScore: {
     corp: "Bosch",
-    location: {
-      lat: 50,
-      lon: 11,
-    },
+    locations: [
+      {
+        lat: 50,
+        lon: 11,
+      },
+    ],
     date: "20.01.2019",
     id: 1,
-    logo:
-      "https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg",
+    logo: "https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg",
     score: 1,
     title: "System Engineer",
     type: "Full Time",
@@ -52,14 +55,15 @@ const data: Record<string, Job> = {
   },
   lowScore: {
     corp: "Bosch",
-    location: {
-      lat: 50,
-      lon: 11,
-    },
+    locations: [
+      {
+        lat: 50,
+        lon: 11,
+      },
+    ],
     date: "20.01.2019",
     id: 1,
-    logo:
-      "https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg",
+    logo: "https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg",
     score: 0.2,
     title: "System Engineer",
     type: "Full Time",
@@ -67,14 +71,15 @@ const data: Record<string, Job> = {
   },
   zeroScore: {
     corp: "Bosch",
-    location: {
-      lat: 50,
-      lon: 11,
-    },
+    locations: [
+      {
+        lat: 50,
+        lon: 11,
+      },
+    ],
     date: "20.01.2019",
     id: 1,
-    logo:
-      "https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg",
+    logo: "https://connectedautomateddriving.eu/wp-content/uploads/2018/11/bosch-logo.jpg",
     score: 0,
     title: "System Engineer",
     type: "Full Time",

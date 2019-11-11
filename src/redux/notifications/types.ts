@@ -21,6 +21,4 @@ export interface NotificationState {
   notifications: Notification[]
 }
 
-export type NotificationActionTypes =
-  | AddNotificationAction
-  | RemoveNotificationAction
+export type NotificationActionTypes = AddNotificationAction | RemoveNotificationAction

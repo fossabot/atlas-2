@@ -34,10 +34,7 @@ module.exports = {
     "no-prototype-builtins": "off",
     // https://basarat.gitbooks.io/typescript/docs/tips/defaultIsBad.html
     // Use function hoisting to improve code readability
-    "no-use-before-define": [
-      "error",
-      { functions: false, classes: true, variables: true },
-    ],
+    "no-use-before-define": ["error", { functions: false, classes: true, variables: true }],
     // Makes no sense to allow type inferrence for expression parameters, but require typing the response
     "@typescript-eslint/explicit-function-return-type": [
       "error",

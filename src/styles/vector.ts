@@ -41,19 +41,13 @@ export const buildingStyle = new Style({
  */
 export function vectorStyle(feature: OLFeature): Style[] | null {
   log.info(feature.get("layer"))
-  if (
-    feature.get("layer") === "populated_places" ||
-    feature.get("layer") === "buildings"
-  ) {
+  if (feature.get("layer") === "populated_places" || feature.get("layer") === "buildings") {
     return [buildingStyle]
   }
   if (feature.get("layer") === "transport_lines") {
     return [streetStyle]
   }
-  if (
-    feature.get("layer") === "country_polygons" ||
-    feature.get("layer") === "landuse_areas"
-  ) {
+  if (feature.get("layer") === "country_polygons" || feature.get("layer") === "landuse_areas") {
     return null // return null for no style to be applied
   }
   return [defaultStyle]

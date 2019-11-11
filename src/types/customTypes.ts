@@ -32,7 +32,7 @@ export interface Location {
 
 export interface Job {
   corp: string
-  location: Location
+  locations: Location[]
   date: string
   id: number
   logo: string

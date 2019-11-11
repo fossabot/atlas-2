@@ -35,14 +35,8 @@ export const actions = {}
 
 storiesOf("Notification", module)
   .addDecorator(story => <div style={{ padding: "3rem" }}>{story()}</div>)
-  .add("default", () => (
-    <Notification notification={data.default} {...actions} />
-  ))
+  .add("default", () => <Notification notification={data.default} {...actions} />)
   .add("info", () => <Notification notification={data.info} {...actions} />)
-  .add("warning", () => (
-    <Notification notification={data.warning} {...actions} />
-  ))
+  .add("warning", () => <Notification notification={data.warning} {...actions} />)
   .add("error", () => <Notification notification={data.error} {...actions} />)
-  .add("success", () => (
-    <Notification notification={data.success} {...actions} />
-  ))
+  .add("success", () => <Notification notification={data.success} {...actions} />)

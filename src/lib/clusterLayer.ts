@@ -10,6 +10,7 @@ import VectorSource from "ol/source/Vector"
 import ClusterStyle from "../styles/cluster"
 import { Job } from "../types/customTypes"
 import VectorLayer from "ol/layer/Vector"
+import { OLFeature } from "../types/olTypes"
 
 /**
  * Handles clustering of locations
@@ -43,14 +44,16 @@ export default class ClusterLayer implements ClusterLayer {
    * Adds jobs to the map
    */
   public addJobs(jobs: Job[]): void {
-    const features = []
-    for (const job of jobs) {
-      const newFeature = new Feature({
-        geometry: new Point(fromLonLat([job.location.lon, job.location.lat])),
+    const features: Feature[] = []
+    jobs.forEach(job => {
+      job.locations.forEach(location => {
+        const newFeature = new Feature({
+          geometry: new Point(fromLonLat([location.lon, location.lat])),
+        })
+        newFeature.set("job", job, false)
+        features.push(newFeature)
       })
-      newFeature.set("job", job, false)
-      features.push(newFeature)
-    }
+    })
     this.clusterSource.getSource().addFeatures(features)
   }
 
