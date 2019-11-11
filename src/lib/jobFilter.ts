@@ -7,7 +7,6 @@ const getJobsInGeometry = (jobs: Job[], geometry: Record<string, any>[]): Job[] 
     if (geometryFeature) {
       const newJobs = jobs.filter(job => {
         const isInside = areCoordinatesInGeometry([job.location.lon, job.location.lat], geometryFeature)
-        console.log(isInside)
         return isInside
       })
       newShownJobs = newShownJobs.concat(newJobs)
