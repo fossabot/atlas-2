@@ -64,7 +64,7 @@ module.exports = {
       files: ["*/e2e/*test.ts"],
       rules: {
         "jest/no-test-callback": "off",
-        "jest/expected-expec": "off",
+        "jest/expected-expect": "off",
       },
     },
   ],

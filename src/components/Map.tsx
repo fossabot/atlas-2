@@ -96,7 +96,7 @@ const Map: React.FunctionComponent<Props> = props => {
     }
   }, [props.jobs.shownJobs])
 
-  return <div id={MAP_ID}></div>
+  return <div id={MAP_ID} style={{ height: "500px" }}></div>
 }
 
 const mapStateToProps = (state: StateProps): StateProps => ({

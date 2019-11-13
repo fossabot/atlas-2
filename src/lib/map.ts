@@ -1,6 +1,9 @@
-import { Map as OLMap } from "ol"
+import ol, { Map as OLMap } from "ol"
 import Bar from "ol-ext/control/Bar"
 import Button from "ol-ext/control/Button"
+import View from "ol/View"
+import TileLayer from "ol/layer/Tile"
+import XYZ from "ol/source/XYZ"
 import LayerPopup from "ol-ext/control/LayerPopup"
 import { Attribution, defaults, Zoom, OverviewMap } from "ol/control"
 import FullScreen from "ol/control/FullScreen"
@@ -10,13 +13,13 @@ import polygonStyle from "../styles/polygon"
 import Feature from "ol/Feature"
 import { fromCircle } from "ol/geom/Polygon"
 import { Draw, Modify } from "ol/interaction"
-import TileLayer from "ol/layer/Tile"
+
 import VectorLayer from "ol/layer/Vector"
 import { fromLonLat } from "ol/proj"
 import OSM from "ol/source/OSM"
 import VectorSource from "ol/source/Vector"
 import { Fill, Stroke, Style } from "ol/style"
-import View from "ol/View"
+
 import { MapInterface } from "../types/customInterfaces"
 import { Job } from "../types/customTypes"
 import ClusterLayer from "./clusterLayer"
@@ -54,7 +57,7 @@ export default class Map implements MapInterface {
    * @param [mapID="map"]
    * @memberof Map
    */
-  public constructor(mapID = "map") {
+  public constructor(mapID: string) {
     log.debug("Initializing map", { mapID })
     this.mapID = mapID
 
@@ -367,7 +370,7 @@ export default class Map implements MapInterface {
     })
 
     const olmap = new OLMap({
-      target: this.mapID,
+      target: "map",
       controls: [
         new Attribution({
           collapsible: true,
