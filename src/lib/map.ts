@@ -34,7 +34,8 @@ import { filterJobs } from "./jobFilter"
 import VectorTileLayer from "ol/layer/VectorTile"
 import VectorTileSource from "ol/source/VectorTile"
 import { MVT } from "ol/format"
-import { apply } from "ol-mapbox-style"
+import olms, { apply as applyMapboxStyle, applyBackground, applyStyle } from "ol-mapbox-style"
+import stylefunction from "ol-mapbox-style/stylefunction"
 
 import mapbox from "./mapbox"
 /**
@@ -352,14 +353,6 @@ export default class Map implements MapInterface {
    * @memberof Map
    */
   private buildMap(): OLMap {
-    /**
-     *
-     *
-     * @param {*} feature
-     * @param {*} resolution
-     * @returns
-     */
-
     const mapboxLayer = new VectorTileLayer({
       declutter: true,
       source: new VectorTileSource({
@@ -367,28 +360,32 @@ export default class Map implements MapInterface {
         url: mapbox.tiles,
       }),
       preload: 1,
+      style: new Style(),
     })
 
-    const olmap = new OLMap({
-      target: "map",
-      controls: [
-        new Attribution({
-          collapsible: true,
-        }),
-        new LayerPopup(),
-        new OverviewMap({
-          layers: [mapboxLayer],
-        }),
-        new Zoom(),
-      ],
-      layers: [mapboxLayer],
-      view: new View({
-        center: fromLonLat([0, 45]),
-        zoom: 2,
+    const layers = [mapboxLayer]
+
+    const controls = [
+      new Attribution({
+        collapsible: true,
       }),
-    })
-    // olms(olmap, mapbox.style)
-    apply(olmap, mapbox.style)
+      new LayerPopup(layers),
+      new OverviewMap({
+        layers: layers,
+      }),
+      new Zoom(),
+    ]
+
+    const olmap = applyMapboxStyle(this.mapID, mapbox.style)
+    // const olmap = new OLMap({
+    //   target: this.mapID,
+    //   controls: controls,
+    //   layers: layers,
+    //   view: new View({
+    //     center: fromLonLat([0, 45]),
+    //     zoom: 2,
+    //   }),
+    // })
     return olmap
   }
 
