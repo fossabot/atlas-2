@@ -28,6 +28,12 @@ import store from "../redux/store"
 import { setAllJobs, setShownJobs } from "../redux/jobs/actions"
 import Sample from "./sample"
 import { filterJobs } from "./jobFilter"
+import VectorTileLayer from "ol/layer/VectorTile"
+import VectorTileSource from "ol/source/VectorTile"
+import { MVT } from "ol/format"
+import { apply } from "ol-mapbox-style"
+
+import mapbox from "./mapbox"
 /**
  * OpenLayers Map
  *
@@ -351,15 +357,16 @@ export default class Map implements MapInterface {
      * @returns
      */
 
-    const layers = [
-      new TileLayer({
-        source: new OSM({
-          wrapX: true,
-        }),
+    const mapboxLayer = new VectorTileLayer({
+      declutter: true,
+      source: new VectorTileSource({
+        format: new MVT(),
+        url: mapbox.tiles,
       }),
-    ]
+      preload: 1,
+    })
 
-    return new OLMap({
+    const olmap = new OLMap({
       target: this.mapID,
       controls: [
         new Attribution({
@@ -367,16 +374,19 @@ export default class Map implements MapInterface {
         }),
         new LayerPopup(),
         new OverviewMap({
-          layers: layers,
+          layers: [mapboxLayer],
         }),
         new Zoom(),
       ],
-      layers: layers,
+      layers: [mapboxLayer],
       view: new View({
         center: fromLonLat([0, 45]),
         zoom: 2,
       }),
     })
+    // olms(olmap, mapbox.style)
+    apply(olmap, mapbox.style)
+    return olmap
   }
 
   /**

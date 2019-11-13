@@ -5,61 +5,72 @@ const HtmlPlugin = require("html-webpack-plugin")
 const path = require("path")
 const PurgecssPlugin = require("purgecss-webpack-plugin")
 const glob = require("glob")
+const Dotenv = require("dotenv-webpack")
 
-module.exports = {
-  entry: ["@babel/polyfill", "./src/lib/index.tsx"],
-  output: {
-    filename: "atlas.js",
-    chunkFilename: "[name].atlas.js",
-    library: "atlas",
-    path: path.resolve(__dirname, "dist"),
-  },
-  optimization: {
-    splitChunks: {
-      chunks: "all",
+module.exports = env => {
+  return {
+    node: { fs: "empty" },
+
+    entry: ["@babel/polyfill", "./src/lib/index.tsx"],
+    output: {
+      filename: "atlas.js",
+      chunkFilename: "[name].atlas.js",
+      library: "atlas",
+      path: path.resolve(__dirname, "dist"),
     },
-  },
-  devtool: "source-map",
-  devServer: {
-    compress: true,
-    overlay: true,
-    port: 3000,
-    open: false,
-    stats: "normal",
-  },
-  resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"],
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          "style-loader",
-          "css-loader",
-          {
-            loader: "postcss-loader",
-            options: {
-              ident: "postcss",
-              plugins: [require("tailwindcss"), require("autoprefixer")],
-            },
-          },
-        ],
+    optimization: {
+      splitChunks: {
+        chunks: "all",
       },
-      { test: /\.tsx?$/, loader: "babel-loader" },
-      { test: /\.tsx?$/, loader: "ts-loader" },
-      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
-    ],
-  },
-  plugins: [
-    new CopyPlugin([{ from: "static", to: "static" }]),
-    new HtmlPlugin({
-      template: "./src/lib/index.html",
-    }),
-    new PurgecssPlugin({
-      paths: glob.sync(`${path.join(__dirname, "static/css")}/**/*`, {
-        nodir: true,
+    },
+    devtool: "source-map",
+    devServer: {
+      compress: true,
+      overlay: true,
+      port: 3000,
+      open: false,
+      stats: "normal",
+    },
+    resolve: {
+      extensions: [".ts", ".tsx", ".js", ".jsx"],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          use: [
+            "style-loader",
+            "css-loader",
+            {
+              loader: "postcss-loader",
+              options: {
+                ident: "postcss",
+                plugins: [require("tailwindcss"), require("autoprefixer")],
+              },
+            },
+          ],
+        },
+        { test: /\.tsx?$/, loader: "babel-loader" },
+        { test: /\.tsx?$/, loader: "ts-loader" },
+        { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+      ],
+    },
+    plugins: [
+      new CopyPlugin([{ from: "static", to: "static" }]),
+      new HtmlPlugin({
+        template: "./src/lib/index.html",
       }),
-    }),
-  ],
+      new PurgecssPlugin({
+        paths: glob.sync(`${path.join(__dirname, "static/css")}/**/*`, {
+          nodir: true,
+        }),
+      }),
+      /*
+        Mapbox requres an access token that we are loading from a local .env file.
+      */
+      new Dotenv({
+        path: "./.env",
+      }),
+    ],
+  }
 }

@@ -109,7 +109,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>): DispatchProps
   setShownJobs: (jobs: Job[]) => dispatch(setShownJobs(jobs)),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Map)
+export default connect(mapStateToProps, mapDispatchToProps)(Map)

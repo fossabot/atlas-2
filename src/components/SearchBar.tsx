@@ -89,7 +89,4 @@ const mapDispatchToProps = (dispatch: any): DispatchProps => ({
   search: (search: string) => dispatch(setSearch(search)),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(SearchBar)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)
