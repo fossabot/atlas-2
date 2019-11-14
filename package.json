@@ -37,7 +37,9 @@
     }
   },
   "dependencies": {
+    "@sentry/browser": "^5.9.0",
     "axios": "^0.19.0",
+    "logrocket": "^1.0.3",
     "ol": "^6.1.1",
     "ol-ext": "^3.1.6",
     "ol-mapbox-style": "^5.0.2"
