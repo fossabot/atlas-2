@@ -1,4 +1,3 @@
-import { countryLayerStyle } from "../styles/countryStyle"
 import Map from "./map"
 import { toLonLat } from "ol/proj"
 import Nominatim from "./nominatim"

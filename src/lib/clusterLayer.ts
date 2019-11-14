@@ -10,7 +10,6 @@ import VectorSource from "ol/source/Vector"
 import ClusterStyle from "../styles/cluster"
 import { Job } from "../types/customTypes"
 import VectorLayer from "ol/layer/Vector"
-import { OLFeature } from "../types/olTypes"
 
 /**
  * Handles clustering of locations

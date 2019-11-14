@@ -37,7 +37,7 @@ import { MVT } from "ol/format"
 import olms, { apply as applyMapboxStyle, applyBackground, applyStyle } from "ol-mapbox-style"
 import stylefunction from "ol-mapbox-style/stylefunction"
 
-import mapbox from "./mapbox"
+import MabBox from "./mapbox"
 /**
  * OpenLayers Map
  *
@@ -357,7 +357,7 @@ export default class Map implements MapInterface {
       declutter: true,
       source: new VectorTileSource({
         format: new MVT(),
-        url: mapbox.tiles,
+        url: new MabBox().getTileURL(),
       }),
       preload: 1,
       style: new Style(),
@@ -376,7 +376,7 @@ export default class Map implements MapInterface {
       new Zoom(),
     ]
 
-    const olmap = applyMapboxStyle(this.mapID, mapbox.style)
+    const olmap = applyMapboxStyle(this.mapID, new MabBox().getStyleURL())
     // const olmap = new OLMap({
     //   target: this.mapID,
     //   controls: controls,
