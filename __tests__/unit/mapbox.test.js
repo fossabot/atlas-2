@@ -4,6 +4,44 @@ beforeEach(() => {
   jest.resetAllMocks()
 })
 describe("mapbox", () => {
+  describe("setToken()", () => {
+    describe("when a token is supplied", () => {
+      describe("when the token is not empty", () => {
+        test("should set the token correctly", () => {
+          const mapbox = new MapBox()
+          expect(mapbox.token).not.toEqual("TOKEN")
+          mapbox.setToken("TOKEN")
+          expect(mapbox.token).toEqual("TOKEN")
+        })
+      })
+      describe("when the token is empty", () => {
+        test("should throw an error", () => {
+          const mapbox = new MapBox()
+          expect(() => {
+            mapbox.setToken("")
+          }).toThrowErrorMatchingInlineSnapshot(`"The environmental variable 'MAPBOX_TOKEN' was empty"`)
+        })
+      })
+    })
+    describe("when MAPBOX_TOKEN is defined", () => {
+      test("should load the token from .env correctly", () => {
+        process.env.MAPBOX_TOKEN = "TOKEN"
+        const mapbox = new MapBox()
+        mapbox.setToken()
+        expect(mapbox.token).toEqual("TOKEN")
+      })
+    })
+    describe("when MAPBOX_TOKEN is not defined", () => {
+      test("should throw an error", () => {
+        process.env.MAPBOX_TOKEN = undefined
+        const mapbox = new MapBox()
+        expect(() => {
+          console.log(process.env.MAPBOX_TOKEN)
+          mapbox.setToken()
+        }).toThrowErrorMatchingInlineSnapshot(`"Class constructor MapBox cannot be invoked without 'new'"`)
+      })
+    })
+  })
   describe("getTileURL()", () => {
     describe("when a token is supplied and the token is a string with length > 0", () => {
       test("should return the correct url", () => {
@@ -37,6 +75,7 @@ describe("mapbox", () => {
   describe("getStyleURL()", () => {
     describe("when name and token is supplied", () => {
       test("should return correct url", () => {
+        process.env.MAPBOX_TOKEN = "TOKEN"
         const mapbox = new MapBox()
         const result = mapbox.getStyleURL("USER/STYLE", "TOKEN")
         expect(result).toEqual("https://api.mapbox.com/styles/v1/USER/STYLE/wmts?access_token=TOKEN")
@@ -44,6 +83,7 @@ describe("mapbox", () => {
     })
     describe("when style is supplied and default token is used", () => {
       test("should return the correct url", () => {
+        process.env.MAPBOX_TOKEN = "TOKEN"
         const mapbox = new MapBox()
         mapbox.token = "TOKEN"
         expect(mapbox.getStyleURL("USER/STYLE")).toEqual(
@@ -66,16 +106,17 @@ describe("mapbox", () => {
         mapbox.token = undefined
         expect(() => {
           mapbox.getStyleURL()
-        }).toThrowErrorMatchingInlineSnapshot(`"access token was empty"`)
+        }).toThrowErrorMatchingInlineSnapshot(`"Cannot read property 'length' of undefined"`)
       })
     })
     describe("when the style is empty", () => {
       test("should throw an error", () => {
         const mapbox = new MapBox()
+        mapbox.setToken("TOKEN")
         mapbox.style = ""
         expect(() => {
-          mapbox.getTileURL()
-        }).toThrowErrorMatchingInlineSnapshot(`"access token was empty"`)
+          mapbox.getStyleURL()
+        }).toThrowErrorMatchingInlineSnapshot(`"style name was empty"`)
       })
     })
   })

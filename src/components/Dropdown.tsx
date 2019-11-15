@@ -1,6 +1,12 @@
 import React from "react"
 
-import { createSelectOptions } from "./Form"
+function createSelectOptions(options: string[]): JSX.Element[] {
+  return options.map((t, i) => (
+    <option key={i} value={t}>
+      {t}
+    </option>
+  ))
+}
 
 export interface DropdownProps {
   label: string

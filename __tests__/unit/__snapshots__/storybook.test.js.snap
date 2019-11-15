@@ -56,14 +56,54 @@ exports[`Storyshots Dropdown default 1`] = `
       "
     >
       <option
-        value="Option 1"
+        value="Praktikum im Studium"
       >
-        Option 1
+        Praktikum im Studium
       </option>
       <option
-        value="Option 2"
+        value="Bachelor- oder Masterarbeit"
       >
-        Option 2
+        Bachelor- oder Masterarbeit
+      </option>
+      <option
+        value="Stellen f&uuml;r Doktoranden und Doktorandinnen"
+      >
+        Stellen f&uuml;r Doktoranden und Doktorandinnen
+      </option>
+      <option
+        value="Stellen f&uuml;r Duales Studium"
+      >
+        Stellen f&uuml;r Duales Studium
+      </option>
+      <option
+        value="Werkstudentent&auml;tigkeit"
+      >
+        Werkstudentent&auml;tigkeit
+      </option>
+      <option
+        value="Studentenjob"
+      >
+        Studentenjob
+      </option>
+      <option
+        value="Stelle f&uuml;r Absolventen und Absolventinnen"
+      >
+        Stelle f&uuml;r Absolventen und Absolventinnen
+      </option>
+      <option
+        value="Traineeprogramm"
+      >
+        Traineeprogramm
+      </option>
+      <option
+        value="Stelle, die erste Berufserfahrung voraussetzt"
+      >
+        Stelle, die erste Berufserfahrung voraussetzt
+      </option>
+      <option
+        value="Stellen f&uuml;r Studienabbrecher"
+      >
+        Stellen f&uuml;r Studienabbrecher
       </option>
     </select>
   </div>
