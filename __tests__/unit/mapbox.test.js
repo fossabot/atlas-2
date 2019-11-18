@@ -123,7 +123,6 @@ describe("mapbox", () => {
         const mapbox = new MapBox()
         mapbox.token = undefined
         expect(() => {
-          console.log(mapbox.token)
           mapbox.getStyleURL()
         }).toThrowErrorMatchingInlineSnapshot(`"access token was empty"`)
       })

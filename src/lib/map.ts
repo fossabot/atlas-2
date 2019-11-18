@@ -357,6 +357,8 @@ export default class Map implements MapInterface {
       source: new VectorTileSource({
         format: new MVT(),
         url: new MapBox().getTileURL(),
+        attributions:
+          '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
       }),
       preload: 1,
       style: new Style(),
@@ -388,7 +390,6 @@ export default class Map implements MapInterface {
     olmap = applyMapboxStyle(olmap, new MapBox().getStyleURL())
     mapboxLayer.setZIndex(this.zIndices.tiles)
     this.addVectorLayer("tiles", mapboxLayer, olmap)
-    console.log(olmap.getLayers().getArray())
     return olmap
   }
 

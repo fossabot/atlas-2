@@ -61,7 +61,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["*/e2e/*test.js"],
+      files: ["*/e2e/*test.ts"],
       rules: {
         "jest/no-test-callback": "off",
         "jest/expected-expect": "off",
