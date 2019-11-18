@@ -54,10 +54,10 @@ const Map: React.FunctionComponent<Props> = props => {
       if (props.search.query.length > 0) {
         const nominatim = new Nominatim()
 
-        const { result, success } = await nominatim.forwardSearch(props.search.query)
+        const { result, success } = await nominatim.forward(props.search.query)
         if (success && typeof result !== "undefined") {
           if (isRendered) {
-            const layer = map.countryLayerFromGeoJson(result.geojson)
+            const layer = map.featureLayerFromGeoJson(result.geojson, "draw")
             map.zoomToLayer(layer)
           }
         }

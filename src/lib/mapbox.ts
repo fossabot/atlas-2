@@ -7,13 +7,14 @@ export default class MapBox {
   private style: string
   public constructor() {
     this.style = styles.streets
+    this.setToken()
   }
 
   public setToken(token?: string): void {
     if (typeof token !== "undefined" && token.length > 0) {
       this.token = token
     } else {
-      if (process.env.MAPBOX_TOKEN && process.env.MAPBOX_TOKEN.length > 0 && process.env.MAPBOX_TOKEN != "undefined") {
+      if (process.env.MAPBOX_TOKEN && process.env.MAPBOX_TOKEN.length > 0 && process.env.MAPBOX_TOKEN !== "undefined") {
         this.token = process.env.MAPBOX_TOKEN
       } else {
         throw new Error("The environmental variable 'MAPBOX_TOKEN' was empty")
@@ -35,6 +36,6 @@ export default class MapBox {
     if (!style || style.length <= 0) {
       throw new Error("style name was empty")
     }
-    return `https://api.mapbox.com/styles/v1/${style}/wmts?access_token=${token}`
+    return `https://api.mapbox.com/styles/v1/${style}?access_token=${token}`
   }
 }
