@@ -36,9 +36,8 @@ describe("mapbox", () => {
         process.env.MAPBOX_TOKEN = undefined
         const mapbox = new MapBox()
         expect(() => {
-          console.log(process.env.MAPBOX_TOKEN)
           mapbox.setToken()
-        }).toThrowErrorMatchingInlineSnapshot(`"Class constructor MapBox cannot be invoked without 'new'"`)
+        }).toThrowErrorMatchingInlineSnapshot(`"The environmental variable 'MAPBOX_TOKEN' was empty"`)
       })
     })
   })
@@ -105,8 +104,9 @@ describe("mapbox", () => {
         const mapbox = new MapBox()
         mapbox.token = undefined
         expect(() => {
+          console.log(mapbox.token)
           mapbox.getStyleURL()
-        }).toThrowErrorMatchingInlineSnapshot(`"Cannot read property 'length' of undefined"`)
+        }).toThrowErrorMatchingInlineSnapshot(`"access token was empty"`)
       })
     })
     describe("when the style is empty", () => {
