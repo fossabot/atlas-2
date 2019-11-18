@@ -1,6 +1,7 @@
 import axios from "axios"
 import { log } from "./logger"
 import { GeoJSON } from "geojson"
+import { Geocoder } from "../types/customInterfaces"
 interface ForwardResult {
   geojson: Record<string, any>
   lat: number
@@ -12,7 +13,7 @@ interface ForwardResult {
  * @export
  * @class Nominatim
  */
-export default class Nominatim {
+export default class Nominatim implements Geocoder {
   private apiURLBase: string
   private apiURLQueryParameters: string[]
   /**
@@ -65,15 +66,8 @@ export default class Nominatim {
     return parameters.join("&")
   }
 
-  public getCountryFromLonLat(lonLat: [number, number]): Promise<GeoJSON | undefined> {
-    const parameters = [
-      "format=geojson",
-      `lon=${lonLat[0]}`,
-      `lat=${lonLat[1]}`,
-      "zoom=3",
-      "polygon_geojson=1",
-      "limit=1",
-    ]
+  public reverse(lon: number, lat: number): Promise<GeoJSON | undefined> {
+    const parameters = ["format=geojson", `lon=${lon}`, `lat=${lat}`, "zoom=3", "polygon_geojson=1", "limit=1"]
     const url = "https://nominatim.openstreetmap.org/reverse?" + parameters.join("&")
 
     return axios
@@ -96,7 +90,7 @@ export default class Nominatim {
    * @returns
    * @memberof Nominatim
    */
-  public forwardSearch(address: string): Promise<{ result: ForwardResult | undefined; success: boolean }> {
+  public forward(address: string): Promise<{ result: ForwardResult | undefined; success: boolean }> {
     const url = this.buildURL(address)
     return axios.get(url).then(response => {
       try {
