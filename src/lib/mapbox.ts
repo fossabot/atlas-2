@@ -11,8 +11,12 @@ export default class MapBox {
   }
 
   public setToken(token?: string): void {
-    if (typeof token !== "undefined" && token.length > 0) {
-      this.token = token
+    if (typeof token !== "undefined") {
+      if (token.length > 0) {
+        this.token = token
+      } else {
+        throw new Error("Token was an empty string")
+      }
     } else {
       if (process.env.MAPBOX_TOKEN && process.env.MAPBOX_TOKEN.length > 0 && process.env.MAPBOX_TOKEN !== "undefined") {
         this.token = process.env.MAPBOX_TOKEN
