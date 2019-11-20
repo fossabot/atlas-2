@@ -14,10 +14,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-      - run: yarn install
-      - run: yarn format
-      - run: yarn tsc
-      - run: yarn build
-      - run: yarn storybook
-      - run: yarn test:unit
-      - run: yarn test:e2e
+      - name: Installing dependencies
+        run: yarn install
+      - name: Linting
+        run: yarn format
+      - name: Typechecking
+        run: yarn tsc
+      - name: Building package
+        run: yarn build
+      - name: Testing storybook components
+        run: yarn storybook
+      - name: Unittests
+        run: yarn test:unit
+      - name: Integration tests
+        run: yarn test:e2e
