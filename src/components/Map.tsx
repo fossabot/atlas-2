@@ -54,10 +54,10 @@ const Map: React.FunctionComponent<Props> = props => {
       if (props.search.query.length > 0) {
         const nominatim = new Nominatim()
 
-        const { result, success } = await nominatim.forwardSearch(props.search.query)
+        const { result, success } = await nominatim.forward(props.search.query)
         if (success && typeof result !== "undefined") {
           if (isRendered) {
-            const layer = map.countryLayerFromGeoJson(result.geojson)
+            const layer = map.featureLayerFromGeoJson(result.geojson, "draw")
             map.zoomToLayer(layer)
           }
         }
@@ -96,7 +96,7 @@ const Map: React.FunctionComponent<Props> = props => {
     }
   }, [props.jobs.shownJobs])
 
-  return <div id={MAP_ID}></div>
+  return <div id={MAP_ID} style={{ height: "500px" }}></div>
 }
 
 const mapStateToProps = (state: StateProps): StateProps => ({
@@ -109,7 +109,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>): DispatchProps
   setShownJobs: (jobs: Job[]) => dispatch(setShownJobs(jobs)),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Map)
+export default connect(mapStateToProps, mapDispatchToProps)(Map)
