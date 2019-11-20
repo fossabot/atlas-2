@@ -1,5 +1,5 @@
 module.exports = api => {
-  const plugins = ["@babel/plugin-transform-for-of"]
+  const plugins = []
   const isTest = api.env("test")
   if (isTest) {
     plugins.push("macros")
