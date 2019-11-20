@@ -36,6 +36,18 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        // exclude: /node_modules/,
+        // include: /node_modules\/ol-mapbox-style/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            cacheDirectory: true,
+            exclude: /node_modules/, // \/(?!ol-mapbox-style\/).*/,
+          },
+        },
+      },
+      {
         test: /\.css$/,
         use: [
           "style-loader",
