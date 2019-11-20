@@ -3,11 +3,11 @@ name: CI
 on: [push, pull_request]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest, windows-latest]
     strategy:
       matrix:
         node: [ 10.x, 12.x ]
-    name: Node ${{ matrix.node }} sample
+    name: CI on Node@${{ matrix.node }}
     steps:
       - uses: actions/checkout@v1
       - name: Setup node
