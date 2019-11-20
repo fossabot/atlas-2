@@ -3,28 +3,34 @@ name: CI
 on: [push, pull_request]
 jobs:
   build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [ 10.x, 12.x ]
-    name: CI on Node@${{ matrix.node }}
+    runs-on: [ ubuntu-latest, windows-latest]
+    name: CI on Node@12
     steps:
       - uses: actions/checkout@v1
       - name: Setup node
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 12
+
       - name: Installing dependencies
         run: yarn install
+        
       - name: Linting
         run: yarn format
+        
       - name: Typechecking
         run: yarn tsc
+        
       - name: Building package
         run: yarn build
+        
       - name: Testing storybook components
         run: yarn storybook
+        
       - name: Unittests
         run: yarn test:unit
+                
       - name: Integration tests
         run: yarn test:e2e
+        env:
+          CI: true
