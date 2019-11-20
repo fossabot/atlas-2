@@ -22,6 +22,11 @@ createTestCafe("localhost", 1337, 1338)
         stopOnFirstfail: true,
       })
   })
-  .then(() => {
+  .then(failedCount => {
+    console.log("Tests failed: " + failedCount)
+    testcafe.close()
+  })
+  .catch(error => {
+    console.error(error)
     testcafe.close()
   })
