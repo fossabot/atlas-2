@@ -34,24 +34,15 @@ import { filterJobs } from "./jobFilter"
 import VectorTileLayer from "ol/layer/VectorTile"
 import VectorTileSource from "ol/source/VectorTile"
 import { MVT } from "ol/format"
-import olms, { apply as applyMapboxStyle, applyBackground, applyStyle } from "ol-mapbox-style"
-import stylefunction from "ol-mapbox-style/stylefunction"
+import { apply as applyMapboxStyle } from "ol-mapbox-style"
+import MapBox from "./mapbox"
 
-import MabBox from "./mapbox"
-/**
- * OpenLayers Map
- *
- * This class handles everything to display a map.
- *
- * @export
- * @param [mapID='map'] The id of the `<div>` element where the map will be placed.
- * @class Map
- */
 export default class Map implements MapInterface {
   public jobs: Job[]
   private mapID: string
   public olmap: OLMap
   private clusterLayer: ClusterLayer
+  private zIndices: Record<string, number>
 
   /**
    *Creates an instance of Map.
@@ -61,14 +52,20 @@ export default class Map implements MapInterface {
   public constructor(mapID: string) {
     log.debug("Initializing map", { mapID })
     this.mapID = mapID
+    this.zIndices = {
+      tiles: 0,
+      countries: 10,
+      circleSelect: 10,
+      jobs: 1000,
+    }
 
     this.jobs = []
     this.olmap = this.buildMap()
-    this.buildClusterLayer()
     this.loadJobs()
     this.addControls()
     this.addCircleSelect()
     this.addCountryLayer()
+    this.buildClusterLayer()
   }
 
   loadJobs(): void {
@@ -77,9 +74,9 @@ export default class Map implements MapInterface {
     })
   }
 
-  addVectorLayer(name: string, layer: VectorLayer): VectorLayer {
+  addVectorLayer(name: string, layer: VectorLayer, map = this.olmap): VectorLayer {
     layer.set("name", name)
-    this.olmap.addLayer(layer)
+    map.addLayer(layer)
     return layer
   }
 
@@ -106,6 +103,7 @@ export default class Map implements MapInterface {
     if (wasCreated) {
       this.addVectorLayer(layerName, layer)
     }
+    layer.setZIndex(this.zIndices.countries)
     return layer
   }
 
@@ -254,6 +252,7 @@ export default class Map implements MapInterface {
     if (!wasCreated && clear) {
       this.clearSource(layer)
     }
+    layer.setZIndex(this.zIndices.circleSelect)
     return layer
   }
 
@@ -357,7 +356,9 @@ export default class Map implements MapInterface {
       declutter: true,
       source: new VectorTileSource({
         format: new MVT(),
-        url: new MabBox().getTileURL(),
+        url: new MapBox().getTileURL(),
+        attributions:
+          '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
       }),
       preload: 1,
       style: new Style(),
@@ -376,16 +377,19 @@ export default class Map implements MapInterface {
       new Zoom(),
     ]
 
-    const olmap = applyMapboxStyle(this.mapID, new MabBox().getStyleURL())
-    // const olmap = new OLMap({
-    //   target: this.mapID,
-    //   controls: controls,
-    //   layers: layers,
-    //   view: new View({
-    //     center: fromLonLat([0, 45]),
-    //     zoom: 2,
-    //   }),
-    // })
+    // const olmap = applyMapboxStyle(this.mapID, new MabBox().getStyleURL())
+
+    let olmap = new OLMap({
+      target: this.mapID,
+      controls: controls,
+      view: new View({
+        center: fromLonLat([0, 45]),
+        zoom: 2,
+      }),
+    })
+    olmap = applyMapboxStyle(olmap, new MapBox().getStyleURL())
+    mapboxLayer.setZIndex(this.zIndices.tiles)
+    this.addVectorLayer("tiles", mapboxLayer, olmap)
     return olmap
   }
 
@@ -396,6 +400,7 @@ export default class Map implements MapInterface {
    */
   private buildClusterLayer(): void {
     this.clusterLayer = new ClusterLayer(60)
+    this.clusterLayer.animatedCluster.setZIndex(this.zIndices.jobs)
     this.addVectorLayer("cluster", this.clusterLayer.animatedCluster)
   }
 

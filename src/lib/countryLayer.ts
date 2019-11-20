@@ -29,7 +29,7 @@ const countryLayer = (map: Map): void => {
         : store.dispatch(addSelectedCountries([cachedGeometry]))
     } else {
       const [lon, lat] = toLonLat(event.coordinate)
-      const geojson = await new Nominatim().getCountryFromLonLat([lon, lat])
+      const geojson = await new Nominatim().reverse(lon, lat)
       if (geojson) {
         const geometries = convertGeoJsonToGeometries(geojson)
         if (geometries) {

@@ -1,5 +1,10 @@
 module.exports = api => {
+  const plugins = []
   const isTest = api.env("test")
+  if (isTest) {
+    plugins.push("macros")
+  }
+
   api.cache(true)
   return {
     presets: [
@@ -19,6 +24,6 @@ module.exports = api => {
       "@babel/react",
       "@babel/typescript",
     ],
-    plugins: isTest ? ["macros"] : [],
+    plugins: plugins,
   }
 }
