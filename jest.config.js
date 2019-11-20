@@ -26,6 +26,6 @@ module.exports = {
       "<rootDir>/__mocks__/fileMock.js",
     "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
   },
-  verbose: true,
+  verbose: false,
   setupFiles: ["jest-canvas-mock"],
 }

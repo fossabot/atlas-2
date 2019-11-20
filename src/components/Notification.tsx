@@ -59,7 +59,4 @@ const mapDispatchToProps = (dispatch: any): DispatchProps => ({
   },
 })
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(Notification)
+export default connect(null, mapDispatchToProps)(Notification)

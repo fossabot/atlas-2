@@ -24,3 +24,8 @@ export declare interface ClusterLayer {
   clusterSource: OLCluster
   animatedCluster: BaseLayer
 }
+
+export declare interface Geocoder {
+  forward(search: string): any
+  reverse(lat: number, lon: number): any
+}
