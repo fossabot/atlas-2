@@ -5,9 +5,9 @@ jobs:
   build:
     strategy:
       matrix:
-        platform: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.platform }}
-    name: CI on ${{matrix.platform }}
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    name: CI on ${{matrix.os }}
     steps:
       - uses: actions/checkout@v1
       - name: Setup node
@@ -17,23 +17,23 @@ jobs:
 
       - name: Installing dependencies
         run: yarn install
-        
+
       - name: Linting
         run: yarn format
-        
+
       - name: Typechecking
         run: yarn tsc
-        
+
       - name: Building package
         run: yarn build
-        
+
       - name: Testing storybook components
-        run: yarn storybook
-        
+        run: yarn build:storybook
+
       - name: Unittests
         run: yarn test:unit
-                
+
       - name: Integration tests
         run: yarn test:e2e
         env:
-          CI: true
+          CI: "true"
