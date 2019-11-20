@@ -1,6 +1,6 @@
 # atlas
 
-![CI](https://github.com/<OWNER>/<REPOSITORY>/workflows/CI>/badge.svg
+![CI](https://github.com/chronark/atlas/workflows/CI/badge.svg
 )
 
 > Mapping library for jobs
