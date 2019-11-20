@@ -1,13 +1,16 @@
-// @ts-ignore
 const createTestCafe = require("testcafe")
 
 let testcafe = null
-const concurrency = 1
 
 let browsers = process.env.CI ? ["chrome:headless"] : ["all"]
+let concurrency = 1
+let stopOnFirstfail = false
 if (process.env.IE_ONLY) {
   browsers = ["ie"]
+  concurrency = 2
+  stopOnFirstfail = true
 }
+
 createTestCafe("localhost", 1337, 1338)
   .then(tc => {
     testcafe = tc
@@ -15,11 +18,11 @@ createTestCafe("localhost", 1337, 1338)
 
     return runner
       .browsers(browsers)
-      .concurrency(1)
+      .concurrency(concurrency)
       .src("__tests__/e2e/*.test.ts")
       .tsConfigPath("tsconfig.json")
       .run({
-        stopOnFirstfail: true,
+        stopOnFirstfail: stopOnFirstfail,
       })
   })
   .then(failedCount => {
