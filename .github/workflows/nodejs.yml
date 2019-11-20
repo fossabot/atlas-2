@@ -4,10 +4,10 @@ on: [push, pull_request]
 
 jobs:
   install:
-    runs-on: [ubuntu-latest, windows-latest]
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x, 12.x]
+        node-version: [12.x]
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
