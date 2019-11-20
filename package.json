@@ -13,12 +13,13 @@
   "license": "MIT",
   "author": "Andreas Thomas <andreas.thomas@th-nuernberg.de>",
   "scripts": {
-    "build": "webpack --mode=production",
+    "build": "webpack --mode=production --progress",
     "build:storybook": "build-storybook",
     "buildandserve": "yarn build && yarn serve",
-    "dev": "webpack-dev-server --color",
+    "dev": "webpack-dev-server --progress",
     "e2e": " node ./__tests__/e2e/testcafe.js ",
     "e2e:ci": "export CI=true || set CI=true && yarn e2e ",
+    "e2e:ie": "export IE_ONLY=true || set IE_ONLY=true && yarn e2e",
     "format": "yarn prettier && yarn lint",
     "prettier": "prettier --write ./**/*.{js,jsx,ts,tsx,json} --loglevel warn",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ./",
@@ -27,6 +28,7 @@
     "test": "yarn test:unit && yarn test:e2e",
     "test:e2e": "start-server-and-test buildandserve http://localhost:5000 e2e",
     "test:e2e:ci": "start-server-and-test serve http://localhost:5000 e2e:ci",
+    "test:e2e:ie": "start-server-and-test serve http://localhost:5000 e2e:ie",
     "test:unit": "jest",
     "tsc": "./node_modules/.bin/tsc --noEmit"
   },
@@ -39,7 +41,6 @@
   "dependencies": {
     "@sentry/browser": "^5.9.1",
     "axios": "^0.19.0",
-    "logrocket": "^1.0.3",
     "ol": "^6.1.1",
     "ol-ext": "^3.1.6",
     "ol-mapbox-style": "^5.0.2"
