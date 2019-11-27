@@ -30,7 +30,8 @@ export default class MapBox {
     if (typeof token === "undefined" || token.length <= 0) {
       throw new Error("access token was empty")
     }
-    return "https://{a-d}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/{z}/{x}/{y}.vector.pbf?access_token=" + token
+    // return "https://{a-d}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/{z}/{x}/{y}.vector.pbf?access_token=" + token
+    return "http://www.localhost:9000/tiles?x={x}&y={y}&z={z}"
   }
 
   public getStyleURL(style = this.style, token = this.token): string {

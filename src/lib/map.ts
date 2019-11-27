@@ -360,7 +360,6 @@ export default class Map implements MapInterface {
         attributions:
           '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
       }),
-      preload: 1,
       style: new Style(),
     })
 
@@ -379,17 +378,18 @@ export default class Map implements MapInterface {
 
     // const olmap = applyMapboxStyle(this.mapID, new MabBox().getStyleURL())
 
-    let olmap = new OLMap({
+    const olmap = new OLMap({
       target: this.mapID,
       controls: controls,
+      layers: layers,
       view: new View({
         center: fromLonLat([0, 45]),
         zoom: 2,
       }),
     })
-    olmap = applyMapboxStyle(olmap, new MapBox().getStyleURL())
-    mapboxLayer.setZIndex(this.zIndices.tiles)
-    this.addVectorLayer("tiles", mapboxLayer, olmap)
+    // olmap = applyMapboxStyle(olmap, new MapBox().getStyleURL())
+    // mapboxLayer.setZIndex(this.zIndices.tiles)
+    // this.addVectorLayer("tiles", mapboxLayer, olmap)
     return olmap
   }
 
