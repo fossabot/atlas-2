@@ -378,18 +378,18 @@ export default class Map implements MapInterface {
 
     // const olmap = applyMapboxStyle(this.mapID, new MabBox().getStyleURL())
 
-    const olmap = new OLMap({
+    let olmap = new OLMap({
       target: this.mapID,
       controls: controls,
-      layers: layers,
+      layers: [],
       view: new View({
         center: fromLonLat([0, 45]),
         zoom: 2,
       }),
     })
-    // olmap = applyMapboxStyle(olmap, new MapBox().getStyleURL())
-    // mapboxLayer.setZIndex(this.zIndices.tiles)
-    // this.addVectorLayer("tiles", mapboxLayer, olmap)
+    olmap = applyMapboxStyle(olmap, new MapBox().getStyleURL())
+    mapboxLayer.setZIndex(this.zIndices.tiles)
+    this.addVectorLayer("tiles", mapboxLayer, olmap)
     return olmap
   }
 

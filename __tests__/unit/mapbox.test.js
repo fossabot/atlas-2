@@ -62,19 +62,17 @@ describe("mapbox", () => {
         process.env.MAPBOX_TOKEN = "setting this token, so mapbox will not throw yet"
 
         const mapbox = new MapBox()
-        const expectedURL =
-          "https://{a-d}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/{z}/{x}/{y}.vector.pbf?access_token=RANDOMSTRING"
+        const expectedURL = "http://jbs-osm.informatik.fh-nuernberg.de:52000/tiles?x={x}&y={y}&z={z}"
         const generatedURL = mapbox.getTileURL("RANDOMSTRING")
         expect(generatedURL).toEqual(expectedURL)
       })
     })
     describe("when no token is supplied", () => {
-      test("should use the inernal token", () => {
+      test("should use the internal token", () => {
         process.env.MAPBOX_TOKEN = "setting this token, so mapbox will not throw yet"
         const mapbox = new MapBox()
         mapbox.token = "RANDOMSTRING"
-        const expectedURL =
-          "https://{a-d}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/{z}/{x}/{y}.vector.pbf?access_token=RANDOMSTRING"
+        const expectedURL = "http://jbs-osm.informatik.fh-nuernberg.de:52000/tiles?x={x}&y={y}&z={z}"
         const generatedURL = mapbox.getTileURL()
         expect(generatedURL).toEqual(expectedURL)
       })
