@@ -359,20 +359,17 @@ export default class Map implements MapInterface {
           '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
       }),
     })
-    const layers = [mapboxLayer]
 
     const controls = [
       new Attribution({
         collapsible: true,
       }),
-      new LayerPopup(layers),
+      new LayerPopup([mapboxLayer]),
       new OverviewMap({
-        layers: layers,
+        layers: [mapboxLayer],
       }),
       new Zoom(),
     ]
-
-    // const olmap = applyMapboxStyle(this.mapID, new MabBox().getStyleURL())
 
     const olmap = new OLMap({
       target: this.mapID,
@@ -395,19 +392,16 @@ export default class Map implements MapInterface {
       .get(mapbox.style)
       .then(r => r.data)
       .then((glStyle: any) => {
-        const styleLayers: string[] = []
-        glStyle.layers.forEach((layer: Record<string, any>) => {
-          if (layer.source) {
-            styleLayers.push(layer.id)
-          }
-        })
-        const style = stylefunction(mapboxLayer, glStyle, styleLayers)
+        const styleLayers: string[] = glStyle.layers
+          .filter((layer: Record<string, any>) => {
+            return layer.hasOwnProperty("source") && typeof layer.source === "string"
+          })
+          .map((layer: Record<string, any>) => layer.id)
+        stylefunction(mapboxLayer, glStyle, styleLayers)
       })
 
-    // olmap = applyMapboxStyle(olmap, mapbox.style)
     mapboxLayer.setZIndex(this.zIndices.tiles)
 
-    console.log(olmap.getLayers().getArray())
     return olmap
   }
 
