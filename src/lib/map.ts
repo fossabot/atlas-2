@@ -1,25 +1,24 @@
-import ol, { Map as OLMap } from "ol"
+import { Map as OLMap } from "ol"
 import Bar from "ol-ext/control/Bar"
 import Button from "ol-ext/control/Button"
 import View from "ol/View"
-import TileLayer from "ol/layer/Tile"
-import XYZ from "ol/source/XYZ"
 import LayerPopup from "ol-ext/control/LayerPopup"
-import { Attribution, defaults, Zoom, OverviewMap } from "ol/control"
+import { Attribution, Zoom, OverviewMap } from "ol/control"
 import FullScreen from "ol/control/FullScreen"
 import { shiftKeyOnly } from "ol/events/condition"
+import VectorTileLayer from "ol/layer/VectorTile"
+import VectorTileSource from "ol/source/VectorTile"
 import GeoJSON from "ol/format/GeoJSON"
 import polygonStyle from "../styles/polygon"
 import Feature from "ol/Feature"
 import { fromCircle } from "ol/geom/Polygon"
 import { Draw, Modify } from "ol/interaction"
-
+import { Fill, Icon, Stroke, Style, Text } from "ol/style"
+import stylefunction from "ol-mapbox-style/stylefunction"
 import VectorLayer from "ol/layer/Vector"
 import { fromLonLat } from "ol/proj"
-import OSM from "ol/source/OSM"
 import VectorSource from "ol/source/Vector"
-import { Fill, Stroke, Style } from "ol/style"
-
+import axios from "axios"
 import { MapInterface } from "../types/customInterfaces"
 import { Job } from "../types/customTypes"
 import ClusterLayer from "./clusterLayer"
@@ -31,11 +30,10 @@ import store from "../redux/store"
 import { setAllJobs, setShownJobs } from "../redux/jobs/actions"
 import Sample from "./sample"
 import { filterJobs } from "./jobFilter"
-import VectorTileLayer from "ol/layer/VectorTile"
-import VectorTileSource from "ol/source/VectorTile"
 import { MVT } from "ol/format"
-import { apply as applyMapboxStyle } from "ol-mapbox-style"
-import MapBox from "./mapbox"
+import { apply as applyMapboxStyle, applyStyle } from "ol-mapbox-style"
+import { mapbox } from "./mapbox"
+import { string } from "prop-types"
 
 export default class Map implements MapInterface {
   public jobs: Job[]
@@ -356,13 +354,11 @@ export default class Map implements MapInterface {
       declutter: true,
       source: new VectorTileSource({
         format: new MVT(),
-        url: new MapBox().getTileURL(),
+        url: mapbox.tiles,
         attributions:
           '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
       }),
-      style: new Style(),
     })
-
     const layers = [mapboxLayer]
 
     const controls = [
@@ -378,18 +374,40 @@ export default class Map implements MapInterface {
 
     // const olmap = applyMapboxStyle(this.mapID, new MabBox().getStyleURL())
 
-    let olmap = new OLMap({
+    const olmap = new OLMap({
       target: this.mapID,
       controls: controls,
-      layers: [],
       view: new View({
         center: fromLonLat([0, 45]),
         zoom: 2,
       }),
     })
-    olmap = applyMapboxStyle(olmap, new MapBox().getStyleURL())
+    if (
+      olmap
+        .getLayers()
+        .getArray()
+        .indexOf(mapboxLayer) === -1
+    ) {
+      this.addVectorLayer("tiles", mapboxLayer, olmap)
+    }
+
+    axios
+      .get(mapbox.style)
+      .then(r => r.data)
+      .then((glStyle: any) => {
+        const styleLayers: string[] = []
+        glStyle.layers.forEach((layer: Record<string, any>) => {
+          if (layer.source) {
+            styleLayers.push(layer.id)
+          }
+        })
+        const style = stylefunction(mapboxLayer, glStyle, styleLayers)
+      })
+
+    // olmap = applyMapboxStyle(olmap, mapbox.style)
     mapboxLayer.setZIndex(this.zIndices.tiles)
-    this.addVectorLayer("tiles", mapboxLayer, olmap)
+
+    console.log(olmap.getLayers().getArray())
     return olmap
   }
 
