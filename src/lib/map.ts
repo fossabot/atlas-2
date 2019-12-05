@@ -18,7 +18,6 @@ import stylefunction from "ol-mapbox-style/stylefunction"
 import VectorLayer from "ol/layer/Vector"
 import { fromLonLat } from "ol/proj"
 import VectorSource from "ol/source/Vector"
-import axios from "axios"
 import { MapInterface } from "../types/customInterfaces"
 import { Job } from "../types/customTypes"
 import ClusterLayer from "./clusterLayer"
@@ -387,10 +386,8 @@ export default class Map implements MapInterface {
     ) {
       this.addVectorLayer("tiles", mapboxLayer, olmap)
     }
-
-    axios
-      .get(mapbox.style)
-      .then(r => r.data)
+    fetch(mapbox.style)
+      .then(r => r.json())
       .then((glStyle: any) => {
         const styleLayers: string[] = glStyle.layers
           .filter((layer: Record<string, any>) => {
