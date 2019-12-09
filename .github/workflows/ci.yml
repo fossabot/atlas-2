@@ -27,9 +27,6 @@ jobs:
       - name: Building package
         run: yarn build
 
-      - name: Testing storybook components
-        run: yarn build:storybook
-
       - name: Unittests
         run: yarn test:unit
 
