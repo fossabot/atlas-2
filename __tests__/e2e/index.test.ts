@@ -45,5 +45,9 @@ test("can enter a search string", async t => {
   const searchBar = Selector("#searchForm")
   const searchSubmit = Selector("#searchSubmit")
   await t.expect(searchBar.exists).ok()
-  await t.typeText(searchBar, "Germany").click(searchSubmit)
+  await t
+    .click(searchBar)
+    .pressKey("ctrl+a delete")
+    .typeText(searchBar, "Germany")
+    .click(searchSubmit)
 })
