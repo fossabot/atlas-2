@@ -6,7 +6,7 @@ import Nominatim from "../lib/nominatim"
 import { setShownJobs } from "../redux/jobs/actions"
 import { Job } from "../types/customTypes"
 import { filterJobs } from "../lib/jobFilter"
-import API from "../lib/api"
+import Charon from "../lib/charon"
 interface DispatchProps {
   setShownJobs: (jobs: Job[]) => void
 }
@@ -53,8 +53,8 @@ const Map: React.FunctionComponent<Props> = props => {
   useEffect(() => {
     const fetchForwardGeocoding = async (): Promise<void> => {
       if (props.search.query.length > 0) {
-        const api = new API()
-        const result = await api.forwardGeocoding(props.search.query, ["country", "region"])
+        const charon = new Charon()
+        const result = await charon.forwardGeocoding(props.search.query, ["country", "region"])
         if (typeof result !== "undefined") {
           const layer = map.featureLayerFromGeoJson(result)
           map.zoomToLayer(layer)

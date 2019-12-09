@@ -19,7 +19,7 @@ import VectorLayer from "ol/layer/Vector"
 import { fromLonLat } from "ol/proj"
 import VectorSource from "ol/source/Vector"
 import { MapInterface } from "../types/customInterfaces"
-import { Job } from "../types/customTypes"
+import { Job, GeocodingResponseObject } from "../types/customTypes"
 import ClusterLayer from "./clusterLayer"
 import { log } from "./logger"
 import { countryLayer } from "./countryLayer"
@@ -31,7 +31,8 @@ import Sample from "./sample"
 import { filterJobs } from "./jobFilter"
 import { MVT } from "ol/format"
 import { apply as applyMapboxStyle, applyStyle } from "ol-mapbox-style"
-import { mapbox } from "./mapbox"
+import Charon from "./charon"
+
 import { string } from "prop-types"
 
 export default class Map implements MapInterface {
@@ -104,20 +105,23 @@ export default class Map implements MapInterface {
     return layer
   }
 
-  private featureLayerFromGeoJson(geojson: Record<string, any>[], layerName: string): VectorLayer {
+  public featureLayerFromGeoJson(geojson: GeocodingResponseObject): VectorLayer {
+    const layerName = "featureLayer"
     const [layer, wasCreated] = this.getOrCreateLayer(layerName, {
-      style: polygonStyle({ isSelected: false }),
+      style: new Style({
+        fill: new Fill({
+          color: "rgba(1,1,1,1)",
+        }),
+      }),
     })
     if (!wasCreated) {
       layer.getSource().clear()
     }
     const source = new VectorSource()
-    geojson.forEach(g => {
-      const features = new GeoJSON({
-        featureProjection: "EPSG:3857",
-      }).readFeatures(g)
-      source.addFeatures(features)
-    })
+    const features = new GeoJSON({
+      featureProjection: "EPSG:3857",
+    }).readFeatures(geojson.features[0])
+    source.addFeatures(features)
     layer.setSource(source)
     if (wasCreated) {
       this.addVectorLayer(layerName, layer)
@@ -353,7 +357,7 @@ export default class Map implements MapInterface {
       declutter: true,
       source: new VectorTileSource({
         format: new MVT(),
-        url: mapbox.tiles,
+        url: new Charon().getTileURL(),
         attributions:
           '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
       }),
@@ -386,20 +390,21 @@ export default class Map implements MapInterface {
     ) {
       this.addVectorLayer("tiles", mapboxLayer, olmap)
     }
-    fetch(mapbox.style)
-      .then(r => r.json())
-      .then((glStyle: any) => {
-        const styleLayers: string[] = glStyle.layers
-          .filter((layer: Record<string, any>) => {
-            return layer.hasOwnProperty("source") && typeof layer.source === "string"
-          })
-          .map((layer: Record<string, any>) => layer.id)
-        stylefunction(mapboxLayer, glStyle, styleLayers)
-      })
 
-    mapboxLayer.setZIndex(this.zIndices.tiles)
-
+    this.applyMapboxStyle(mapboxLayer)
     return olmap
+  }
+
+  private async applyMapboxStyle(mapboxLayer: VectorTileLayer): Promise<void> {
+    const glStyle = await new Charon().getStyle()
+
+    const styleLayers: string[] = glStyle.layers
+      .filter((layer: Record<string, any>) => {
+        return layer.hasOwnProperty("source")
+      })
+      .map((layer: Record<string, any>) => layer.id)
+
+    stylefunction(mapboxLayer, glStyle, styleLayers)
   }
 
   /**

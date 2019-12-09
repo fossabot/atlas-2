@@ -26,6 +26,6 @@ export declare interface ClusterLayer {
 }
 
 export declare interface Geocoder {
-  forward(search: string): any
-  reverse(lat: number, lon: number): any
+  forward(search: string): Record<string, any>
+  reverse(lat: number, lon: number): Record<string, any>
 }
