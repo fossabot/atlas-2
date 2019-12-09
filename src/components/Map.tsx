@@ -54,10 +54,10 @@ const Map: React.FunctionComponent<Props> = props => {
     const fetchForwardGeocoding = async (): Promise<void> => {
       if (props.search.query.length > 0) {
         const charon = new Charon()
-        const result = await charon.forwardGeocoding(props.search.query, ["country", "region"])
+        const result = await charon.forwardGeocoding(props.search.query, [])
         if (typeof result !== "undefined") {
-          const layer = map.featureLayerFromGeoJson(result)
-          map.zoomToLayer(layer)
+          map.featureLayerFromGeoJson(result)
+          map.zoomToBBox(result.features[0].bbox)
         }
       }
     }

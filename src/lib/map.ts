@@ -12,11 +12,11 @@ import GeoJSON from "ol/format/GeoJSON"
 import polygonStyle from "../styles/polygon"
 import Feature from "ol/Feature"
 import { fromCircle } from "ol/geom/Polygon"
-import { Draw, Modify } from "ol/interaction"
+import { Draw, Modify, Extent } from "ol/interaction"
 import { Fill, Icon, Stroke, Style, Text } from "ol/style"
 import stylefunction from "ol-mapbox-style/stylefunction"
 import VectorLayer from "ol/layer/Vector"
-import { fromLonLat } from "ol/proj"
+import { fromLonLat, transformExtent } from "ol/proj"
 import VectorSource from "ol/source/Vector"
 import { MapInterface } from "../types/customInterfaces"
 import { Job, GeocodingResponseObject } from "../types/customTypes"
@@ -457,6 +457,11 @@ export default class Map implements MapInterface {
    */
   public zoomToLayer(layer: VectorLayer): void {
     const extent = layer.getSource().getExtent()
+    this.olmap.getView().fit(extent, { duration: 1000 })
+  }
+
+  public zoomToBBox(bbox: [number, number, number, number]): void {
+    const extent = transformExtent(bbox, "EPSG:4326", "EPSG:3857")
     this.olmap.getView().fit(extent, { duration: 1000 })
   }
 }
