@@ -157,7 +157,8 @@
   border-radius: 0;
   background: rgba(255, 255, 255, 0.8);
   /* border: 1px solid rgba(0, 60, 136, 0.5); */
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 60, 136, 0.5), 1px 1px 2px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 60, 136, 0.5),
+    1px 1px 2px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 0 1px rgba(0, 60, 136, 0.5), 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -500,11 +501,23 @@
   min-width: 6em;
   text-align: center;
 }
-.ol-editbar .ol-drawregular .ol-bar .ol-text-button > div > div > div:first-child {
+.ol-editbar
+  .ol-drawregular
+  .ol-bar
+  .ol-text-button
+  > div
+  > div
+  > div:first-child {
   border-width: 0.5em 0.5em 0.5em 0;
   margin: 0 0.5em 0 0;
 }
-.ol-editbar .ol-drawregular .ol-bar .ol-text-button > div > div > div:last-child {
+.ol-editbar
+  .ol-drawregular
+  .ol-bar
+  .ol-text-button
+  > div
+  > div
+  > div:last-child {
   border-width: 0.5em 0 0.5em 0.5em;
   margin: 0 0 0 0.5em;
 }
@@ -1421,7 +1434,12 @@
   top: 0.22em;
   left: 0.34em;
   background: #83bcc5;
-  background-image: radial-gradient(circle at 0.85em 0.6em, #70b3be 0, #70b3be 0.65em, #83bcc5 0.65em);
+  background-image: radial-gradient(
+    circle at 0.85em 0.6em,
+    #70b3be 0,
+    #70b3be 0.65em,
+    #83bcc5 0.65em
+  );
 }
 .ol-layerswitcher-buttons {
   display: block;
@@ -1595,8 +1613,18 @@
   box-sizing: border-box;
   border-radius: 3px;
   background: #69c;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 60, 136, 0)), to(rgba(0, 60, 136, 0.6)));
-  background: linear-gradient(to right, rgba(0, 60, 136, 0), rgba(0, 60, 136, 0.6));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(rgba(0, 60, 136, 0)),
+    to(rgba(0, 60, 136, 0.6))
+  );
+  background: linear-gradient(
+    to right,
+    rgba(0, 60, 136, 0),
+    rgba(0, 60, 136, 0.6)
+  );
   cursor: pointer;
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
@@ -1621,7 +1649,10 @@
   width: 50%;
   height: 50%;
 }
-.ol-touch .ol-layerswitcher .layerswitcher-opacity .layerswitcher-opacity-cursor {
+.ol-touch
+  .ol-layerswitcher
+  .layerswitcher-opacity
+  .layerswitcher-opacity-cursor {
   width: 26px;
   height: 26px;
 }
@@ -1907,10 +1938,12 @@
   left: 0.5em;
   top: 0.3em;
   border-radius: 50%;
-  -webkit-box-shadow: 0.05em 0.3em 0 -0.051em currentColor, -0.05em -0.35em 0 -0.1em currentColor,
-    -0.5em -0.35em 0 0em currentColor, -0.65em 0.1em 0 -0.03em currentColor, -0.65em -0.05em 0 -0.05em currentColor;
-  box-shadow: 0.05em 0.3em 0 -0.051em currentColor, -0.05em -0.35em 0 -0.1em currentColor,
-    -0.5em -0.35em 0 0em currentColor, -0.65em 0.1em 0 -0.03em currentColor, -0.65em -0.05em 0 -0.05em currentColor;
+  -webkit-box-shadow: 0.05em 0.3em 0 -0.051em currentColor,
+    -0.05em -0.35em 0 -0.1em currentColor, -0.5em -0.35em 0 0em currentColor,
+    -0.65em 0.1em 0 -0.03em currentColor, -0.65em -0.05em 0 -0.05em currentColor;
+  box-shadow: 0.05em 0.3em 0 -0.051em currentColor,
+    -0.05em -0.35em 0 -0.1em currentColor, -0.5em -0.35em 0 0em currentColor,
+    -0.65em 0.1em 0 -0.03em currentColor, -0.65em -0.05em 0 -0.05em currentColor;
 }
 
 .ol-mapzone > div {
@@ -1933,7 +1966,8 @@
   text-align: center;
   width: 160%;
   overflow: hidden;
-  font-family: "Lucida Grande", Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
+  font-family: "Lucida Grande", Verdana, Geneva, Lucida, Arial, Helvetica,
+    sans-serif;
   -webkit-transform: scaleX(0.625);
   transform: scaleX(0.625);
   -webkit-transform-origin: 0 0;
@@ -2301,8 +2335,10 @@
   width: 0.78em;
   height: 0.6em;
   border-radius: 40% 50% 0 0 / 50% 70% 0 0;
-  -webkit-box-shadow: inset 0 0 0 0.065em, -0.35em 0.14em 0 -0.09em, inset 0 -0.37em, inset -0.14em 0.005em;
-  box-shadow: inset 0 0 0 0.065em, -0.35em 0.14em 0 -0.09em, inset 0 -0.37em, inset -0.14em 0.005em;
+  -webkit-box-shadow: inset 0 0 0 0.065em, -0.35em 0.14em 0 -0.09em,
+    inset 0 -0.37em, inset -0.14em 0.005em;
+  box-shadow: inset 0 0 0 0.065em, -0.35em 0.14em 0 -0.09em, inset 0 -0.37em,
+    inset -0.14em 0.005em;
   clip: rect(0 1em 0.5em -1em);
   top: 0.35em;
   left: 0.4em;
@@ -2328,9 +2364,10 @@
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  -webkit-box-shadow: inset 0.3em 0, 0.1em 0.5em 0 -0.1em, -0.1em 0.5em 0 -0.1em, 0.25em 0.1em 0 -0.1em,
-    -0.25em 0.1em 0 -0.1em;
-  box-shadow: inset 0.3em 0, 0.1em 0.5em 0 -0.1em, -0.1em 0.5em 0 -0.1em, 0.25em 0.1em 0 -0.1em, -0.25em 0.1em 0 -0.1em;
+  -webkit-box-shadow: inset 0.3em 0, 0.1em 0.5em 0 -0.1em, -0.1em 0.5em 0 -0.1em,
+    0.25em 0.1em 0 -0.1em, -0.25em 0.1em 0 -0.1em;
+  box-shadow: inset 0.3em 0, 0.1em 0.5em 0 -0.1em, -0.1em 0.5em 0 -0.1em,
+    0.25em 0.1em 0 -0.1em, -0.25em 0.1em 0 -0.1em;
   border-top: 0.2em solid transparent;
 }
 .ol-control.ol-routing .ol-pedestrian:before {
@@ -2770,10 +2807,12 @@
   background-color: transparent;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  -webkit-box-shadow: 0.45em 0 currentColor, -0.45em 0 currentColor, 0 -0.45em currentColor, 0 0.45em currentColor,
-    0.25em 0 currentColor, -0.25em 0 currentColor, 0 -0.25em currentColor, 0 0.25em currentColor;
-  box-shadow: 0.45em 0 currentColor, -0.45em 0 currentColor, 0 -0.45em currentColor, 0 0.45em currentColor,
-    0.25em 0 currentColor, -0.25em 0 currentColor, 0 -0.25em currentColor, 0 0.25em currentColor;
+  -webkit-box-shadow: 0.45em 0 currentColor, -0.45em 0 currentColor,
+    0 -0.45em currentColor, 0 0.45em currentColor, 0.25em 0 currentColor,
+    -0.25em 0 currentColor, 0 -0.25em currentColor, 0 0.25em currentColor;
+  box-shadow: 0.45em 0 currentColor, -0.45em 0 currentColor,
+    0 -0.45em currentColor, 0 0.45em currentColor, 0.25em 0 currentColor,
+    -0.25em 0 currentColor, 0 -0.25em currentColor, 0 0.25em currentColor;
 }
 .ol-control.ol-select {
   top: 0.5em;
@@ -3764,7 +3803,14 @@
       currentColor 75%,
       currentColor
     ),
-    linear-gradient(45deg, currentColor 25%, transparent 25%, transparent 75%, currentColor 75%, currentColor);
+    linear-gradient(
+      45deg,
+      currentColor 25%,
+      transparent 25%,
+      transparent 75%,
+      currentColor 75%,
+      currentColor
+    );
   background-size: 1em 1em;
   background-position: 0.5em 0, 0 0.5em;
   border-width: 0.25em;
