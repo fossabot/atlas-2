@@ -3,19 +3,7 @@ import { log } from "./logger"
 import axios from "axios"
 import CircleStyle from "ol/style/Circle"
 
-/**
- * Random sample generator
- *
- * Use this if you need testing data.
- */
 export default class Sample {
-  /**
-   * @description
-   * @param {number} count
-   * @returns {Promise<IJob[]>}
-   * @memberof Sample
-   */
-
   private getLocations(cities: Record<string, any>[], locationCount: number): { lat: number; lon: number }[] {
     const locations: { lat: number; lon: number }[] = []
     for (let l = 0; l < locationCount; l++) {
@@ -55,12 +43,6 @@ export default class Sample {
     return jobs
   }
 
-  /**
-   * @description Generate a random string.
-   * @param {number} [length=4]
-   * @returns
-   * @memberof Sample
-   */
   private generateString(length = 4): string {
     let result = ""
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
