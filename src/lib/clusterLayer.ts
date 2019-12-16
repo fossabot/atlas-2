@@ -12,18 +12,10 @@ import { Job } from "../types/customTypes"
 import VectorLayer from "ol/layer/Vector"
 import { OLFeature } from "../types/olTypes"
 
-/**
- * Handles clustering of locations
- */
 export default class ClusterLayer implements ClusterLayer {
   private distance: number
   public clusterSource: Cluster
   public animatedCluster: VectorLayer
-  /**
-   *Creates an instance of ClusterLayer.
-   * @param [distance=40]
-   * @memberof ClusterLayer
-   */
   public constructor(distance = 40) {
     // sets up an empty cluster layer
     this.distance = distance
@@ -40,9 +32,6 @@ export default class ClusterLayer implements ClusterLayer {
     })
   }
 
-  /**
-   * Adds jobs to the map
-   */
   public addJobs(jobs: Job[]): void {
     const features: Feature[] = []
     jobs.forEach(job => {
@@ -57,9 +46,6 @@ export default class ClusterLayer implements ClusterLayer {
     this.clusterSource.getSource().addFeatures(features)
   }
 
-  /**
-   * Removes all elements of the clusterSource
-   */
   public clear(): void {
     if (this.clusterSource.getSource()) {
       this.clusterSource.getSource().clear()

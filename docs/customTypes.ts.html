@@ -5,7 +5,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: lib/logger.ts</title>
+    <title>JSDoc: customTypes.ts</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -58,7 +58,7 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="Logger.html">Logger</a></li><li><a href="Logger.Logger.html">Logger</a></li></ul><h3>Interfaces</h3><ul><li><a href="Location.html">Location</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bound">bound</a></li><li><a href="global.html#removeFrom">removeFrom</a></li><li><a href="global.html#removeListFromList">removeListFromList</a></li><li><a href="global.html#strip">strip</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Interfaces</h3><ul><li><a href="Location.html">Location</a></li></ul></div>
                     </nav>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Source</p>
-                        <h1>lib/logger.ts</h1>
+                        <h1>customTypes.ts</h1>
                     </header>
                     
                     
@@ -76,112 +76,103 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/* eslint-disable no-console */
-
-import { LogObject } from "../types/customTypes"
-
-/**
- * @description Custom logger
- * @export
- * @class Logger
- */
-class Logger {
-  /**
-   *Creates an instance of Logger.
-   * @memberof Logger
-   */
-  public constructor() {
-    switch (process.env.NODE_ENV) {
-      case "production":
-        this.disableConsole()
-        break
-      case "test":
-        this.disableConsole()
-        break
-      default:
-        this.info("Development mode detected, verbose-logging enabled.")
-        break
-    }
-  }
-
-  /**
-   * @description Disables all console output for production.
-   * possible methods are: ["log", "debug", "info", "warn", error"]
-   * @memberof Atlas
-   */
-  private disableConsole(): void {
-    if (window) {
-      window.console.log = () => {}
-      window.console.warn = () => {}
-      window.console.error = () => {}
-      window.console.debug = () => {}
-    }
-  }
-
-  /**
-   * @description Basic console.log call with additional parameters
-   * @static
-   * @param {string} [level="info"]
-   * @param {String} text
-   * @param {object} payload
-   * @memberof Logger
-   */
-  private buildPayload(level: string, payload: LogObject): LogObject {
-    if (typeof payload !== "object") {
-      payload = { payload }
-    }
-    payload.timestamp = new Date()
-    payload.level = level
-    return payload
-  }
-
-  /**
-   * @description Debug logging
-   * @param {string} text
-   * @param {object} payload
-   * @memberof Logger
-   */
-  public debug(text: string, payload: LogObject = {}): void {
-    payload = this.buildPayload("debug", payload)
-    console.debug(text, payload)
-  }
-
-  /**
-   * @description Info logging
-   * @param {string} text
-   * @param {object} payload
-   * @memberof Logger
-   */
-  public info(text: string, payload: LogObject = {}): void {
-    payload = this.buildPayload("info", payload)
-    console.log(text, payload)
-  }
-
-  /**
-   * @description Warning logging
-   * @param {string} text
-   * @param {object} payload
-   * @memberof Logger
-   */
-  public warn(text: string, payload: LogObject = {}): void {
-    payload = this.buildPayload("warn", payload)
-    console.warn(text, payload)
-  }
-
-  /**
-   * @description Error logging
-   * @param {string} text
-   * @param {object} payload
-   * @memberof Logger
-   */
-  public error(text: string, payload: LogObject = {}): void {
-    payload = this.buildPayload("error", payload)
-    console.error(text, payload)
-  }
+            <pre class="prettyprint source linenums"><code>
+export interface RawJob {
+  datum: string
+  extern: string
+  firma: string
+  ID: string
+  lat: string
+  lng: string
+  logo: string
+  titel: string
+  typ: string
+  url: string
 }
 
-const log = new Logger()
-export { log }
+export interface RawLocation {
+  IDs: string
+  jobs: number[]
+  lat: string
+  lng: string
+  titel: string
+  weight: number
+}
+
+export interface RawSearch {
+  jobs: RawJob[]
+  orte: RawLocation[]
+}
+
+/**
+ *
+ *
+ * @export
+ * @interface Location
+ */
+export interface Location {
+  /**
+   * Latitude of the location
+   */
+  lat: number
+  /**
+   * Longitude of the location
+   */
+  lon: number
+}
+
+export interface Job {
+  corp: string
+  locations: Location[]
+  date: string
+  id: number
+  logo: string
+  score: number
+  title: string
+  type: string
+  url: string
+}
+
+export type LogObject = Record&lt;string, any> | number
+
+export interface GeocodingResponseObject {
+  type: string
+  query: string
+  features: FeaturesEntity[]
+  attribution: string
+}
+export interface FeaturesEntity {
+  id: string
+  type: string
+  place_type?: string[]
+  relevance: number
+  properties: Properties
+  text: string
+  place_name: string
+  bbox?: number[]
+  center?: number[]
+  geometry: Geometry
+  context?: ContextEntity[]
+  matching_text?: string
+  matching_place_name?: string
+}
+export interface Properties {
+  wikidata?: string
+  accuracy?: string
+  address?: string
+  landmark?: boolean
+  category?: string
+}
+export interface Geometry {
+  type: string
+  coordinates?: number[]
+}
+export interface ContextEntity {
+  id: string
+  wikidata?: string
+  text: string
+  short_code?: string
+}
 </code></pre>
         </article>
     </section>
@@ -197,7 +188,7 @@ export { log }
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Dec 16 2019 18:06:56 GMT+0100 (GMT+01:00)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Dec 16 2019 18:08:56 GMT+0100 (GMT+01:00)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>

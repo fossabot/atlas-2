@@ -1,6 +1,3 @@
-import { string } from "prop-types"
-import { GeoJSONFeature } from "ol/format/GeoJSON"
-
 export interface RawJob {
   datum: string
   extern: string
@@ -28,8 +25,20 @@ export interface RawSearch {
   orte: RawLocation[]
 }
 
+/**
+ *
+ *
+ * @export
+ * @interface Location
+ */
 export interface Location {
+  /**
+   * Latitude of the location
+   */
   lat: number
+  /**
+   * Longitude of the location
+   */
   lon: number
 }
 

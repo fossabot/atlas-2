@@ -1,15 +1,7 @@
-// @flow
-
 import Fill from "ol/style/Fill"
 import Stroke from "ol/style/Stroke"
 import Style from "ol/style/Style"
 
-/**
- * Handler for polygon styling.
- *
- * @param {boolean} [selected=false] - Whether or not the polygon is currently selected.
- *
- */
 const polygonStyle = ({ isSelected = false }: { isSelected?: boolean } = {}): Style => {
   const selectedStyle = new Style({
     fill: new Fill({
