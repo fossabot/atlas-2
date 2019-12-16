@@ -9,25 +9,9 @@ import { bound } from "../lib/util"
 import { Job } from "../types/customTypes"
 import { OLFeature, OLStyle } from "../types/olTypes"
 
-/**
- * Handles definition of a style for clusters.
- * @description some description
- * @export
- * @class ClusterStyle
- */
 export default class ClusterStyle {
   private colorGradient: string[]
-  /**
-   *Creates an instance of ClusterStyle.
-   * @param {string[]} [colorGradient=[
-   *       "#ffffcc",
-   *       "#fed976",
-   *       "#fd8d3c",
-   *       "#e31a1c",
-   *       "#800026",
-   *     ]]
-   * @memberof ClusterStyle
-   */
+
   public constructor(
     colorGradient: string[] = [
       "rgb(112,148,194)",
@@ -48,20 +32,6 @@ export default class ClusterStyle {
     this.colorGradient = colorGradient
   }
 
-  /**
-   * Calculates a color depending on a given score.
-   *
-   * The interval between `minScore` and `1` gets populated with colors
-   * and the right colour will be returned.
-   *
-   * @param score Must be between `[0.0 - 1.0]`.
-   * @returns Returns a color in hexadezimal format
-   * @memberof ClusterStyle
-   *
-   * @example
-   * colorByScore(0.75)
-   * // returns '#881AC1'
-   */
   private colorByScore(score: number, minScore = 0.5): string {
     log.debug("Calculating color by score")
     if (score < 0 || score > 1) {
@@ -79,24 +49,6 @@ export default class ClusterStyle {
     return this.colorGradient[index]
   }
 
-  /**
-   * Calculate the maximum score of a list of features.
-   *
-   * @param  features
-   * @param  features.score - The individual score of a location between `0` and `1`
-   * @returns  The maximum score of a list of locations between `0` and `1`
-   * @memberof ClusterStyle
-   * @example
-   * const f = [
-   *  {
-   *    location: {
-   *      score: 0.45
-   *    }
-   *  },
-   * ]
-   * maxScore(f)
-   * // returns 0.45
-   */
   private maxScore(features: OLFeature[]): number {
     let maxScore = 0
     for (const feature of features) {
@@ -107,14 +59,6 @@ export default class ClusterStyle {
     return maxScore
   }
 
-  /**
-   * @description Create a style for clusters.
-   * @param {Number} score
-   * @param {Number} scale
-   * @param {number} size
-   * @returns {OLSytyle}
-   * @memberof ClusterStyle
-   */
   private polygonStyle(score: number, scale: number, size: number): OLStyle {
     const radius = bound(15, size, 25)
     return new Style({
@@ -142,14 +86,6 @@ export default class ClusterStyle {
     })
   }
 
-  /**
-   * Return a ol.Style for clusters
-   *
-   * @param cluster
-   * @returns An array with a single `OLStyle` element.
-   * This is necessary because OL expects an array.
-   * @memberof ClusterStyle
-   */
   public style(cluster: OLFeature): OLStyle[] {
     const features: OLFeature[] = cluster.get("features")
     const size = features.length
@@ -164,19 +100,7 @@ export default class ClusterStyle {
     }
   }
 
-  /**
-   * Extract the score from a single feature.
-   *
-   * @param  feature
-   * @returns
-   * @memberof ClusterStyle
-   */
   private getScore(feature: OLFeature): number {
-    /*
-     * We need to unpack the feature by taking the `features` value.
-     * This returns an array of features and we can take the first element
-     * to get the `location` value of that element.
-     */
     const subfeatures: OLFeature[] = feature.get("features")
 
     if (subfeatures && subfeatures.length === 1) {
@@ -187,13 +111,6 @@ export default class ClusterStyle {
     return 0
   }
 
-  /**
-   * Return a style for a cluster that is currently selected
-   *
-   * @param  cluster
-   * @returns
-   * @memberof ClusterStyle
-   */
   private selectedStyle(cluster: OLFeature): OLStyle[] {
     const size = 1
     const score = this.getScore(cluster)

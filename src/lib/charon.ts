@@ -21,7 +21,6 @@ export default class Charon {
     const response = await fetch(url)
     if (response.status === 200) {
       const json = await response.json()
-      console.log(json)
       return json
     }
     return undefined
