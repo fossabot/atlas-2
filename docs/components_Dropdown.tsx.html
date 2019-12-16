@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: components/Dropdown.tsx</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -63,8 +65,8 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Title</p>
-                        <h1>Home</h1>
+                        <p>Source</p>
+                        <h1>components/Dropdown.tsx</h1>
                     </header>
                     
                     
@@ -72,35 +74,85 @@
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     <section>
-        <article><h1>atlas</h1>
-<p><img src="https://github.com/chronark/atlas/workflows/CI/badge.svg" alt="CI"></p>
-<blockquote>
-<p>Mapping library for jobs</p>
-</blockquote>
-<hr>
-<p><img src="https://chronark.github.io/atlas/" alt="Documentation"></p></article>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react"
+
+/**
+ * @param options
+ */
+function createSelectOptions(options: string[]): JSX.Element[] {
+  return options.map((t, i) => (
+    &lt;option key={i} value={t}>
+      {t}
+    &lt;/option>
+  ))
+}
+
+export interface DropdownProps {
+  label: string
+  options: string[]
+}
+
+const Dropdown: React.FunctionComponent&lt;DropdownProps> = props => {
+  return (
+    &lt;div
+      className="
+    flex 
+    w-full 
+    mt-2
+    "
+    >
+      &lt;span
+        className="
+      flex
+      w-1/2
+      lg:w-1/3
+      items-center
+      bg-gray-100
+      rounded-l
+      border
+      border-r-0
+      border-grey-light
+      px-3
+      text-grey-dark
+      text-sm
+      whitespace-no-wrap
+      "
+      >
+        {props.label}
+      &lt;/span>
+      &lt;select
+        className="
+      flex-shrink
+      flex-grow
+      flex-auto
+      text-right
+      leading-normal
+      w-px
+      flex-1
+      border
+      h-8
+      border-grey-light
+      rounded
+      rounded-l-none
+      px-3
+      relative
+      focus:border-indigo-500
+      focus:outline-none
+      hover:bg-gray-200
+      "
+      >
+        {createSelectOptions(props.options)}
+      &lt;/select>
+    &lt;/div>
+  )
+}
+
+export default Dropdown
+</code></pre>
+        </article>
     </section>
-
-
 
 
 

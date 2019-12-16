@@ -4,6 +4,10 @@ const initialState: SearchState = {
   query: "",
 }
 
+/**
+ * @param state
+ * @param action
+ */
 export default function(state = initialState, action: SearchActionTypes): SearchState {
   switch (action.type) {
     case SET_SEARCH:

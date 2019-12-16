@@ -163,6 +163,9 @@ const languageOptions = [
   "Yoruba (Westafrika)",
 ]
 
+/**
+ * @param options
+ */
 export function createSelectOptions(options: string[]): JSX.Element[] {
   return options.map((t, i) => (
     <option key={i} value={t}>

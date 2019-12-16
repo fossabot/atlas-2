@@ -1,12 +1,12 @@
 module.exports = {
   tags: {
-    allowUnknownTags: true,
+    allowUnknownTags: ["category"],
   },
   source: {
     include: ["./src"],
     includePattern: "\\.(js|jsx|ts|tsx)$",
   },
-  plugins: ["node_modules/better-docs/typescript", "better-docs/component", "better-docs/category", "plugins/markdown"],
+  plugins: ["node_modules/better-docs/typescript", "node_modules/better-docs/category"],
   opts: {
     encoding: "utf8",
     destination: "docs/",

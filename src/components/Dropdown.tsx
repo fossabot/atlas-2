@@ -1,5 +1,8 @@
 import React from "react"
 
+/**
+ * @param options
+ */
 function createSelectOptions(options: string[]): JSX.Element[] {
   return options.map((t, i) => (
     <option key={i} value={t}>

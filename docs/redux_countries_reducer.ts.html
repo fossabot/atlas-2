@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: redux/countries/reducer.ts</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -63,8 +65,8 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Title</p>
-                        <h1>Home</h1>
+                        <p>Source</p>
+                        <h1>redux/countries/reducer.ts</h1>
                     </header>
                     
                     
@@ -72,35 +74,50 @@
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     <section>
-        <article><h1>atlas</h1>
-<p><img src="https://github.com/chronark/atlas/workflows/CI/badge.svg" alt="CI"></p>
-<blockquote>
-<p>Mapping library for jobs</p>
-</blockquote>
-<hr>
-<p><img src="https://chronark.github.io/atlas/" alt="Documentation"></p></article>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
+  CountriesActionTypes,
+  CountriesState,
+  ADD_SELECTED_COUNTRIES,
+  REMOVE_SELECTED_COUNTRIES,
+  ADD_COUNTRY,
+} from "./types"
+import { removeListFromList } from "../../lib/util"
+
+const initialState: CountriesState = {
+  selectedCountries: [],
+  allCountries: [],
+}
+
+/**
+ * @param state
+ * @param action
+ */
+export default function(state = initialState, action: CountriesActionTypes): CountriesState {
+  switch (action.type) {
+    case ADD_SELECTED_COUNTRIES:
+      return {
+        ...state,
+        selectedCountries: [...new Set([...state.selectedCountries, ...action.payload])],
+      }
+    case REMOVE_SELECTED_COUNTRIES:
+      return {
+        ...state,
+        selectedCountries: removeListFromList(action.payload, state.selectedCountries),
+      }
+    case ADD_COUNTRY:
+      return {
+        ...state,
+        allCountries: [...state.allCountries, action.payload],
+      }
+    default:
+      return state
+  }
+}
+</code></pre>
+        </article>
     </section>
-
-
 
 
 

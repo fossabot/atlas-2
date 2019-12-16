@@ -1,3 +1,5 @@
+/* eslint-disable jest/expect-expect */
+
 import { Selector } from "testcafe"
 fixture(`Map UI`).page("localhost:5000")
 

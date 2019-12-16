@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>JSDoc: components/Form.tsx</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                     
+                        <h1 class="navbar-item">Atlas</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                 
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                    
+                        <div class="navbar-item">
+                            <a href="https://github.com/chronark/atlas" target="_blank">
+                                GitHub
+                            </a>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Interfaces</h3><ul><li><a href="Location.html">Location</a></li></ul><h3>Global</h3><ul><li><a href="global.html#createNotification">createNotification</a></li><li><a href="global.html#createSelectOptions">createSelectOptions</a></li><li><a href="global.html#removeFrom">removeFrom</a></li><li><a href="global.html#removeListFromList">removeListFromList</a></li></ul></div><div class="category"><h2>Utility</h2><h3>Global</h3><ul><li><a href="global.html#bound">bound</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Source</p>
+                        <h1>components/Form.tsx</h1>
+                    </header>
+                    
+                    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react"
+
+import Dropdown from "./Dropdown"
+import TextInput from "./TextInput"
+
+const whatOptions = [
+  "Praktikum im Studium",
+  "Bachelor- oder Masterarbeit",
+  "Stellen f&amp;uuml;r Doktoranden und Doktorandinnen",
+  "Stellen f&amp;uuml;r Duales Studium",
+  "Werkstudentent&amp;auml;tigkeit",
+  "Studentenjob",
+  "Stelle f&amp;uuml;r Absolventen und Absolventinnen",
+  "Traineeprogramm",
+  "Stelle, die erste Berufserfahrung voraussetzt",
+  "Stellen f&amp;uuml;r Studienabbrecher",
+]
+const facultyOptions = [
+  "Angewandte Chemie",
+  "Angewandte Mathematik, Physik und Allgemeinwissenschaften",
+  "Architektur",
+  "Bauingenieurwesen",
+  "Betriebswirtschaft",
+  "Design",
+  "Elektrotechnik Feinwerktechnik Informationstechnik",
+  "Informatik",
+  "Maschinenbau und Versorgungstechnik",
+  "Sozialwissenschaften",
+  "Verfahrenstechnik",
+  "Werkstofftechnik",
+]
+const branchOptions = [
+  "Abfallwirtschaft",
+  "Anlagen- und Maschinenbau",
+  "Automatisierungstechnik",
+  "Automobilbau",
+  "Banken, Versicherung, Immobilien,",
+  "Finanzdienstleistung",
+  "Bauwesen, Architektur",
+  "Bergbau",
+  "Bildung&amp;amp;Training",
+  "Biotechnik, Pharmazie",
+  "Chemie- und erd&amp;ouml;lverarbeitende Industrie",
+  "Druck, Papier und Verpackungsindustrie",
+  "Einzel-, Gro&amp;szlig;- und Au&amp;szlig;enhandel",
+  "Elektrotechnik, Feinmechanik, Optik",
+  "Energie-/Wasserversorgung",
+  "Fahrzeugbau/-zulieferer",
+  "Gastronomie, Touristik",
+  "Gesundheit, Soziale Dienste",
+  "Glas, Keramik",
+  "Holz- und M&amp;ouml;belindustrie",
+  "Ingenieurdienstleistung",
+  "Internet",
+  "IT-Dienstleistung, EDV-Schulung",
+  "IT-Hardware – Programmierung und Design",
+  "IT-Softwareentwicklung",
+  "Konsumg&amp;uuml;ter",
+  "Kunst, Kultur",
+  "Kunststoffindustrie, -verarbeitung",
+  "Land-, Forst-, Fischwirtschaft",
+  "Luft- und Raumfahrt",
+  "Management, Beratung",
+  "Marketing, Werbung &amp;amp; PR",
+  "Marktforschung",
+  "Medien",
+  "Medizintechnik",
+  "Metall",
+  "Nahrungs- und Genussmittel",
+  "&amp;Ouml;ffentlicher Dienst und Verb&amp;auml;nde",
+  "Personaldienstleistung",
+  "Petrochemie",
+  "Recht, Steuern, Finanzen, Controlling",
+  "Sonstige Branche",
+  "Sonstige Dienstleistung",
+  "Telekommunikation",
+  "Textil, Leder, Bekleidung",
+  "Verkehr, Lager, Logistik",
+  "Wissenschaft, Forschung &amp;amp; Entwicklung",
+]
+const contractOptions = ["Befristet", "Festanstellung", "Freie Mitarbeit", "Projektarbeit", "Teilzeit", "Vollzeit"]
+const languageOptions = [
+  "Deutsch",
+  "Deutscher Dialekt (Schweizerdeutsch)",
+  "Englisch",
+  "Englisch (Technisches Englisch)",
+  "Englisch (Wirtschafts- oder Businessenglisch)d",
+  "Spanisch",
+  "Franz&amp;ouml;sisch",
+  "Afrikaansd",
+  "Akan/Twi (Westafrika)d",
+  "Albanischd",
+  "Amharisch (&amp;Auml;thiopien)",
+  "Arabischd",
+  "Aram&amp;auml;isch/Syrischd",
+  "Armenischd",
+  "Aserbaidschanischd",
+  "Bambara (Westafrika, Mali)",
+  "Bengalid",
+  "Birmanischd",
+  "Bosnischd",
+  "Bulgarischd",
+  "Chinesischd",
+  "D&amp;auml;nischd",
+  "Estnischd",
+  "Filipino (Tagalog)d",
+  "Finnischd",
+  "Georgischd",
+  "Griechischd",
+  "Gujaratid",
+  "Hausa (Westafrika)",
+  "Hebr&amp;auml;ischd",
+  "Hindid",
+  "Indonesischd",
+  "Isl&amp;auml;ndischd",
+  "Italienisch",
+  "Jamaika-Kreolisch (Patois)",
+  "Kambodschanisch (Khmer)d",
+  "Kasachischd",
+  "Kirgisischd",
+  "Koreanischd",
+  "Kroatischd",
+  "Kurdischd",
+  "Laotischd",
+  "Lettischd",
+  "Letzeburgisch (Luxemburg)",
+  "Malayalamd",
+  "Marathid",
+  "Mazedonischd",
+  "Mongolischd",
+  "Nepalesischd",
+  "Niederl&amp;auml;ndisch/Fl&amp;auml;misch",
+  "Pakistanisch/Urdud",
+  "Paschtu/Paschto/Pashto (Afghanistan)",
+  "Portugiesischd",
+  "Punjabid",
+  "Romanid",
+  "Rum&amp;auml;nischd",
+  "Russisch",
+  "Schwedischd",
+  "Serbischd",
+  "Singhalesischd",
+  "Slowakischd",
+  "Slowenischd",
+  "Somalid",
+  "Sorbisch/Wendischd",
+  "Suaheli (Ostafrika)d",
+  "Taiwanischd",
+  "Tamild",
+  "Telugud",
+  "Thaid",
+  "Tibetischd",
+  "Tigrinja (Eritrea)d",
+  "Tschechischd",
+  "Tschetschenischd",
+  "T&amp;uuml;rkisch",
+  "Uigurischd",
+  "Ukrainischd",
+  "Ungarischd",
+  "Usbekischd",
+  "Vietnamesischd",
+  "Wei&amp;szlig;russisch",
+  "Yoruba (Westafrika)",
+]
+
+/**
+ * @param options
+ */
+export function createSelectOptions(options: string[]): JSX.Element[] {
+  return options.map((t, i) => (
+    &lt;option key={i} value={t}>
+      {t}
+    &lt;/option>
+  ))
+}
+
+const Form: React.FunctionComponent = () => {
+  return (
+    &lt;form>
+      &lt;div className="lg:flex lg:flex-wrap">
+        &lt;div className="w-full lg:w-1/2 px-3">
+          &lt;label className="block uppercase tracking-wide text-grey-darker text-xs font-bold">Was?&lt;/label>
+          &lt;Dropdown label="Praktikumsart" options={whatOptions}>&lt;/Dropdown>
+          &lt;Dropdown label="Faukultät" options={facultyOptions}>&lt;/Dropdown>
+          &lt;Dropdown label="Branche" options={branchOptions}>&lt;/Dropdown>
+          &lt;TextInput label="Stichworte">&lt;/TextInput>
+        &lt;/div>
+        &lt;div className="w-full lg:w-1/2 px-3">
+          &lt;label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mt-8 lg:mt-0">Wo?&lt;/label>
+          &lt;TextInput label="Ort oder Adresse">&lt;/TextInput>
+          &lt;div className="flex w-full mt-2">
+            &lt;span
+              className="
+            flex
+            w-full
+            items-center
+            bg-gray-100
+            rounded-l
+            border
+            border-r-0
+            border-grey-light
+            px-3
+            text-grey-dark
+            text-sm
+            whitespace-no-wrap
+            "
+            >
+              Umkreissuche mit
+            &lt;/span>
+            &lt;input
+              type="number"
+              defaultValue="100"
+              className="
+              overflow-x-hidden
+              text-right
+              leading-normal
+              border
+              h-8
+              border-grey-light
+              px-3
+              focus:border-indigo-500
+              focus:outline-none
+              hover:bg-gray-200
+              "
+            >&lt;/input>
+            &lt;span className="flex flex-shrink items-center leading-normal bg-gray-100 rounded rounded-l-none border border-l-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+              km Radius
+            &lt;/span>
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
+      &lt;div>
+        &lt;label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mt-8 ml-3">
+          Und Ausserdem...
+        &lt;/label>
+        &lt;div className="flex flex-wrap">
+          &lt;div className="w-full lg:w-1/2 px-3">
+            &lt;Dropdown label="Vertragsart" options={contractOptions}>&lt;/Dropdown>
+            &lt;Dropdown label="Sprachkenntnisse" options={languageOptions}>&lt;/Dropdown>
+          &lt;/div>
+          &lt;div className="w-full lg:w-1/2 px-3">
+            &lt;Dropdown label="Bewerbung in" options={languageOptions}>&lt;/Dropdown>
+            &lt;TextInput label="Ohne diese Stichworte">&lt;/TextInput>
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
+      &lt;div className="mx-3 flex justify-end">
+        &lt;button
+          type="submit"
+          className="
+          block 
+          w-full
+          bg-gray-200
+          border-b-2
+          border-indigo-500
+          hover:bg-indigo-200
+          text-gray-900
+          font-bold
+          py-2
+          px-8
+          mt-8
+          rounded
+          lg:w-auto
+          
+          "
+        >
+          Search
+        &lt;/button>
+      &lt;/div>
+    &lt;/form>
+  )
+}
+
+export default Form
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Dec 16 2019 18:59:32 GMT+0100 (GMT+01:00)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
+</footer>
+
+
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

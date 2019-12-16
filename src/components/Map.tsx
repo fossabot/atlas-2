@@ -26,7 +26,6 @@ interface StateProps {
 
 // interface OwnProps {}
 type Props = StateProps & DispatchProps
-
 const Map: React.FunctionComponent<Props> = props => {
   const MAP_ID = "map"
   const [isRendered, setIsRendered] = useState<boolean>(false)

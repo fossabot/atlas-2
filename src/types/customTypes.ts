@@ -28,16 +28,15 @@ export interface RawSearch {
 /**
  *
  *
- * @export
  * @interface Location
  */
 export interface Location {
   /**
-   * Latitude of the location
+   * Latitude of the location.
    */
   lat: number
   /**
-   * Longitude of the location
+   * Longitude of the location.
    */
   lon: number
 }

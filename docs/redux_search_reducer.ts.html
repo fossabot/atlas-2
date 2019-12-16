@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: redux/search/reducer.ts</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -63,8 +65,8 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Title</p>
-                        <h1>Home</h1>
+                        <p>Source</p>
+                        <h1>redux/search/reducer.ts</h1>
                     </header>
                     
                     
@@ -72,35 +74,31 @@
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     <section>
-        <article><h1>atlas</h1>
-<p><img src="https://github.com/chronark/atlas/workflows/CI/badge.svg" alt="CI"></p>
-<blockquote>
-<p>Mapping library for jobs</p>
-</blockquote>
-<hr>
-<p><img src="https://chronark.github.io/atlas/" alt="Documentation"></p></article>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { SET_SEARCH, SearchActionTypes, SearchState } from "./types"
+
+const initialState: SearchState = {
+  query: "",
+}
+
+/**
+ * @param state
+ * @param action
+ */
+export default function(state = initialState, action: SearchActionTypes): SearchState {
+  switch (action.type) {
+    case SET_SEARCH:
+      return {
+        query: action.payload,
+      }
+    default:
+      return state
+  }
+}
+</code></pre>
+        </article>
     </section>
-
-
 
 
 
