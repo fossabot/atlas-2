@@ -6,4 +6,4 @@
 
 ---
 
-![Documentation](https://chronark.github.io/atlas/)
+[Documentation](https://chronark.github.io/atlas/)
