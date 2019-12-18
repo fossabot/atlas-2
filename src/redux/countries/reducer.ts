@@ -1,3 +1,6 @@
+/*
+ * @module redux
+ */
 import {
   CountriesActionTypes,
   CountriesState,

@@ -1,5 +1,6 @@
-// @flow
-
+/**
+ *
+ */
 import AnimatedCluster from "ol-ext/layer/AnimatedCluster"
 import Feature from "ol/Feature"
 import Point from "ol/geom/Point"

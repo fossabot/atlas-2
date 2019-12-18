@@ -72,8 +72,8 @@ module.exports = {
     "jsdoc/implements-on-classes": 1, // Recommended
     "jsdoc/match-description": 1,
     "jsdoc/newline-after-description": 1, // Recommended
-    "jsdoc/no-types": 1,
-    "jsdoc/no-undefined-types": 1, // Recommended
+    "jsdoc/no-types": 2,
+    "jsdoc/no-undefined-types": "off", // Recommended
     "jsdoc/require-description": 1,
     "jsdoc/require-description-complete-sentence": 1,
     "jsdoc/require-example": "off",
@@ -82,7 +82,7 @@ module.exports = {
     "jsdoc/require-param": "warn", // Recommended
     "jsdoc/require-param-description": 1, // Recommended
     "jsdoc/require-param-name": 1, // Recommended
-    "jsdoc/require-param-type": "off", // Recommended
+    "jsdoc/require-param-type": "warn", // Recommended
     "jsdoc/require-returns": 1, // Recommended
     "jsdoc/require-returns-check": 1, // Recommended
     "jsdoc/require-returns-description": 1, // Recommended

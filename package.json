@@ -36,8 +36,9 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn docs && git add ./docs && lint-staged",
-      "pre-push": "yarn test"
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn test",
+      "post-commit": "yarn docs && git add ./docs && git commit -m \"Updated documentation\""
     }
   },
   "dependencies": {
@@ -73,7 +74,9 @@
     "copy-webpack-plugin": "^5.0.5",
     "core-js": "3.4.1",
     "css-loader": "^3.2.0",
+    "docdash": "^1.1.1",
     "dotenv-webpack": "^1.7.0",
+    "eledoc": "^0.2.1",
     "eslint": "^6.6.0",
     "eslint-config-airbnb-typescript": "^6.3.0",
     "eslint-config-prettier": "^6.6.0",
@@ -119,6 +122,9 @@
     "testcafe-react-selectors": "^3.3.0",
     "ts-jest": "^24.1.0",
     "ts-loader": "^6.2.1",
+    "typedoc": "^0.15.5",
+    "typedoc-clarity-theme": "^1.1.0",
+    "typedoc-plugin-external-module-name": "^2.1.0",
     "typescript": "^3.7.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",

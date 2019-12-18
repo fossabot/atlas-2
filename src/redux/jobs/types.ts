@@ -1,3 +1,6 @@
+/*
+ * @module redux
+ */
 import { Job } from "../../types/customTypes"
 
 export interface JobState {

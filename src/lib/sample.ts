@@ -1,3 +1,7 @@
+/**
+ * @module map
+ */
+
 import { Job } from "../types/customTypes"
 import { log } from "./logger"
 import axios from "axios"

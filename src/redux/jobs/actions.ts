@@ -1,4 +1,8 @@
+/*
+ * @module redux
+ */
 import { SET_ALL_JOBS, SetShowJobsAction, SET_SHOWN_JOBS, SetAllJobsAction } from "./types"
+
 import { Job } from "../../types/customTypes"
 
 export const setShownJobs = (jobs: Job[]): SetShowJobsAction => {
