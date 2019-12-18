@@ -326,18 +326,6 @@ describe("removeListFromList()", () => {
   })
 })
 
-describe("strip()", () => {
-  it("should remove leading spaces", () => {
-    expect(strip("  HelloWorld")).toEqual("HelloWorld")
-  })
-  it("should remove trailing spaces", () => {
-    expect(strip("HelloWorld  ")).toEqual("HelloWorld")
-  })
-  it("should note remove spaces inside the string", () => {
-    expect(strip("Hello World")).toEqual("Hello World")
-  })
-})
-
 describe("bound()", () => {
   describe("value is below lower limit", () => {
     it("should return lower limit", () => {

@@ -30,7 +30,11 @@ export function removeListFromList(list1: any[], list2: any[]): any[] {
 /**
  * Return value if it is between lower and upper, otherwise return the boundary value.
  *
- * @category Utility
+ * @export
+ * @param lower
+ * @param value
+ * @param upper
+ * @returns
  */
 export function bound(lower: number, value: number, upper: number): number {
   return Math.max(lower, Math.min(value, upper))
