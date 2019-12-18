@@ -6,14 +6,15 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
+        node: ["10", "12"]
     runs-on: ${{ matrix.os }}
-    name: CI on ${{matrix.os }}
+    name: ${{matrix.os }} - node_${{matrix.node}}
     steps:
       - uses: actions/checkout@v1
       - name: Setup node
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: ${{matrix.node}}
 
       - name: Get yarn cache
         id: yarn-cache
