@@ -25,8 +25,19 @@ export interface RawSearch {
   orte: RawLocation[]
 }
 
+/**
+ *
+ *
+ * @interface Location
+ */
 export interface Location {
+  /**
+   * Latitude of the location.
+   */
   lat: number
+  /**
+   * Longitude of the location.
+   */
   lon: number
 }
 
@@ -43,3 +54,42 @@ export interface Job {
 }
 
 export type LogObject = Record<string, any> | number
+
+export interface GeocodingResponseObject {
+  type: string
+  query: string
+  features: FeaturesEntity[]
+  attribution: string
+}
+export interface FeaturesEntity {
+  id: string
+  type: string
+  place_type?: string[]
+  relevance: number
+  properties: Properties
+  text: string
+  place_name: string
+  bbox?: number[]
+  center?: number[]
+  geometry: Geometry
+  context?: ContextEntity[]
+  matching_text?: string
+  matching_place_name?: string
+}
+export interface Properties {
+  wikidata?: string
+  accuracy?: string
+  address?: string
+  landmark?: boolean
+  category?: string
+}
+export interface Geometry {
+  type: string
+  coordinates?: number[]
+}
+export interface ContextEntity {
+  id: string
+  wikidata?: string
+  text: string
+  short_code?: string
+}

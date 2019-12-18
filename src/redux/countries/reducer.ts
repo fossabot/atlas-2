@@ -12,6 +12,10 @@ const initialState: CountriesState = {
   allCountries: [],
 }
 
+/**
+ * @param state
+ * @param action
+ */
 export default function(state = initialState, action: CountriesActionTypes): CountriesState {
   switch (action.type) {
     case ADD_SELECTED_COUNTRIES:

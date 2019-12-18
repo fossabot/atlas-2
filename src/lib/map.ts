@@ -2,26 +2,24 @@ import ol, { Map as OLMap } from "ol"
 import Bar from "ol-ext/control/Bar"
 import Button from "ol-ext/control/Button"
 import View from "ol/View"
-import TileLayer from "ol/layer/Tile"
-import XYZ from "ol/source/XYZ"
 import LayerPopup from "ol-ext/control/LayerPopup"
-import { Attribution, defaults, Zoom, OverviewMap } from "ol/control"
+import { Attribution, Zoom, OverviewMap } from "ol/control"
 import FullScreen from "ol/control/FullScreen"
 import { shiftKeyOnly } from "ol/events/condition"
+import VectorTileLayer from "ol/layer/VectorTile"
+import VectorTileSource from "ol/source/VectorTile"
 import GeoJSON from "ol/format/GeoJSON"
 import polygonStyle from "../styles/polygon"
 import Feature from "ol/Feature"
 import { fromCircle } from "ol/geom/Polygon"
-import { Draw, Modify } from "ol/interaction"
-
+import { Draw, Modify, Extent } from "ol/interaction"
+import { Fill, Icon, Stroke, Style, Text } from "ol/style"
+import stylefunction from "ol-mapbox-style/stylefunction"
 import VectorLayer from "ol/layer/Vector"
-import { fromLonLat } from "ol/proj"
-import OSM from "ol/source/OSM"
+import { fromLonLat, transformExtent } from "ol/proj"
 import VectorSource from "ol/source/Vector"
-import { Fill, Stroke, Style } from "ol/style"
-
 import { MapInterface } from "../types/customInterfaces"
-import { Job } from "../types/customTypes"
+import { Job, GeocodingResponseObject } from "../types/customTypes"
 import ClusterLayer from "./clusterLayer"
 import { log } from "./logger"
 import { countryLayer } from "./countryLayer"
@@ -31,11 +29,11 @@ import store from "../redux/store"
 import { setAllJobs, setShownJobs } from "../redux/jobs/actions"
 import Sample from "./sample"
 import { filterJobs } from "./jobFilter"
-import VectorTileLayer from "ol/layer/VectorTile"
-import VectorTileSource from "ol/source/VectorTile"
 import { MVT } from "ol/format"
-import { apply as applyMapboxStyle } from "ol-mapbox-style"
-import MapBox from "./mapbox"
+import { apply as applyMapboxStyle, applyStyle } from "ol-mapbox-style"
+import Charon from "./charon"
+
+import { string } from "prop-types"
 
 export default class Map implements MapInterface {
   public jobs: Job[]
@@ -44,11 +42,6 @@ export default class Map implements MapInterface {
   private clusterLayer: ClusterLayer
   private zIndices: Record<string, number>
 
-  /**
-   *Creates an instance of Map.
-   * @param [mapID="map"]
-   * @memberof Map
-   */
   public constructor(mapID: string) {
     log.debug("Initializing map", { mapID })
     this.mapID = mapID
@@ -107,20 +100,23 @@ export default class Map implements MapInterface {
     return layer
   }
 
-  private featureLayerFromGeoJson(geojson: Record<string, any>[], layerName: string): VectorLayer {
+  public featureLayerFromGeoJson(geojson: GeocodingResponseObject): VectorLayer {
+    const layerName = "featureLayer"
     const [layer, wasCreated] = this.getOrCreateLayer(layerName, {
-      style: polygonStyle({ isSelected: false }),
+      style: new Style({
+        fill: new Fill({
+          color: "rgba(1,1,1,1)",
+        }),
+      }),
     })
     if (!wasCreated) {
       layer.getSource().clear()
     }
     const source = new VectorSource()
-    geojson.forEach(g => {
-      const features = new GeoJSON({
-        featureProjection: "EPSG:3857",
-      }).readFeatures(g)
-      source.addFeatures(features)
-    })
+    const features = new GeoJSON({
+      featureProjection: "EPSG:3857",
+    }).readFeatures(geojson.features[0])
+    source.addFeatures(features)
     layer.setSource(source)
     if (wasCreated) {
       this.addVectorLayer(layerName, layer)
@@ -128,13 +124,6 @@ export default class Map implements MapInterface {
     return layer
   }
 
-  /**
-   * Adds map controls
-   * Should be called in the constructor
-   *
-   * @returns
-   * @memberof Map
-   */
   private addControls(): any {
     const mainbar = new Bar()
     mainbar.setPosition("left-top")
@@ -156,11 +145,6 @@ export default class Map implements MapInterface {
     })
   }
 
-  /**
-   * @description Removes an entire layer from the map.
-   * @param {string} name
-   * @memberof Map
-   */
   private removeLayersByNames(names: string[]): void {
     const layers = this.getLayersByNames(names)
     log.info("layers", layers)
@@ -170,13 +154,6 @@ export default class Map implements MapInterface {
     })
   }
 
-  /**
-   * Moves the map to the specified coordinates and sets the zoomlevel.
-   *
-   * @param {*} center
-   * @param {*} [zoom=-1]
-   * @memberof Map
-   */
   private zoomTo(center: number[], zoom = 16): void {
     log.debug("Zooming", { center, zoom })
     this.olmap.getView().animate({
@@ -185,11 +162,6 @@ export default class Map implements MapInterface {
     })
   }
 
-  /**
-   * Adds the ability to draw a circle on the map and crop its content.
-   *
-   * @memberof Map
-   */
   private addCircleSelect(): void {
     const drawLayer = this.getDrawLayer({ clear: true })
     this.olmap.addLayer(drawLayer)
@@ -263,24 +235,10 @@ export default class Map implements MapInterface {
     return layer
   }
 
-  /**
-   * Calculate the radius of a given circle
-   *
-   * @param {*} circle
-   * @returns
-   * @memberof Map
-   */
   private getRadius(circle: Feature): number {
     return circle.get("values_").geometry.getRadius()
   }
 
-  /**
-   * Convert a circle to its polygon representation.
-   *
-   * @param  circleFeature
-   * @returns
-   * @memberof Map
-   */
   private makeFeatureFromCircle(circleFeature: Feature): Feature {
     return new Feature({
       geometry: fromCircle(circleFeature.get("geometry")),
@@ -297,13 +255,6 @@ export default class Map implements MapInterface {
     })
   }
 
-  /**
-   * Search through the map's layers and return the searched one by name.
-   *
-   * @param {*} name
-   * @returns
-   * @memberof Map
-   */
   private getLayersByNames(names: string[]): BaseLayer[] {
     const allLayers = this.olmap.getLayers()
     const filteredLayers: BaseLayer[] = []
@@ -315,14 +266,6 @@ export default class Map implements MapInterface {
     return filteredLayers
   }
 
-  /**
-   * Returns the matching layer or create a new one if none exists.
-   *
-   * @param {*} name
-   * @param {*} opts
-   * @returns
-   * @memberof Map
-   */
   private getOrCreateLayer(name: string, opts: Record<string, any>): [VectorLayer, boolean] {
     const layers = this.getLayersByNames([name])
     let layer: VectorLayer, wasCreated: boolean
@@ -342,44 +285,29 @@ export default class Map implements MapInterface {
     return [layer, wasCreated]
   }
 
-  /**
-   * Initialize a map.
-   *
-   * Assign the Controls, TileLayer and View to the map.
-   * The default View position is `[lat: 0, lon: 45]` which centers it on the
-   * northern hemisphere.
-   *
-   * @memberof Map
-   */
   private buildMap(): OLMap {
     const mapboxLayer = new VectorTileLayer({
       declutter: true,
       source: new VectorTileSource({
         format: new MVT(),
-        url: new MapBox().getTileURL(),
+        url: new Charon().getTileURL(),
         attributions:
           '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
       }),
-      preload: 1,
-      style: new Style(),
     })
-
-    const layers = [mapboxLayer]
 
     const controls = [
       new Attribution({
         collapsible: true,
       }),
-      new LayerPopup(layers),
+      new LayerPopup([mapboxLayer]),
       new OverviewMap({
-        layers: layers,
+        layers: [mapboxLayer],
       }),
       new Zoom(),
     ]
 
-    // const olmap = applyMapboxStyle(this.mapID, new MabBox().getStyleURL())
-
-    let olmap = new OLMap({
+    const olmap = new OLMap({
       target: this.mapID,
       controls: controls,
       view: new View({
@@ -387,31 +315,36 @@ export default class Map implements MapInterface {
         zoom: 2,
       }),
     })
-    olmap = applyMapboxStyle(olmap, new MapBox().getStyleURL())
-    mapboxLayer.setZIndex(this.zIndices.tiles)
-    this.addVectorLayer("tiles", mapboxLayer, olmap)
+    if (
+      olmap
+        .getLayers()
+        .getArray()
+        .indexOf(mapboxLayer) === -1
+    ) {
+      this.addVectorLayer("tiles", mapboxLayer, olmap)
+    }
+
+    this.applyMapboxStyle(mapboxLayer)
     return olmap
   }
 
-  /**
-   * Create a new cluster layer and add it to the map.
-   *
-   * @memberof Map
-   */
+  private async applyMapboxStyle(mapboxLayer: VectorTileLayer): Promise<void> {
+    const glStyle = await new Charon().getStyle()
+
+    const styleLayers: string[] = glStyle.layers
+      .filter((layer: Record<string, any>) => {
+        return layer.hasOwnProperty("source")
+      })
+      .map((layer: Record<string, any>) => layer.id)
+
+    stylefunction(mapboxLayer, glStyle, styleLayers)
+  }
+
   private buildClusterLayer(): void {
     this.clusterLayer = new ClusterLayer(60)
     this.clusterLayer.animatedCluster.setZIndex(this.zIndices.jobs)
     this.addVectorLayer("cluster", this.clusterLayer.animatedCluster)
   }
-
-  /**
-   * Job setter
-   *
-   * This overrides any previous jobs.
-   *
-   * @param jobs All jobs that you want to display.
-   * @memberof Map
-   */
 
   public setJobs(jobs: Job[]): void {
     log.debug("Setting jobs", jobs)
@@ -419,30 +352,18 @@ export default class Map implements MapInterface {
     this.clusterLayer.addJobs(jobs)
   }
 
-  /**
-   * Sets the View to new coordinates and zoom level.
-   *
-   * @param lon The latitude between `-90` and `90`.
-   * @param  lat The longitude between `-180` and `180`.
-   * @param  zoom Zoom is an integer value between `1` and `20`.
-   * Bigger values equal zooming in.
-   * @memberof Map
-   */
   private setView(lon: number, lat: number, zoom: number): void {
     this.olmap.getView().setCenter([lat, lon])
     this.olmap.getView().setZoom(zoom)
   }
 
-  /**
-   * Sets the view to fit a specific layer into the viewport.
-   *
-   * Calculates the bounding box of the layer and zooms in accordingly.
-   *
-   * @param layer The VectorLayer you want to view.
-   * @memberof Map
-   */
   public zoomToLayer(layer: VectorLayer): void {
     const extent = layer.getSource().getExtent()
+    this.olmap.getView().fit(extent, { duration: 1000 })
+  }
+
+  public zoomToBBox(bbox: [number, number, number, number]): void {
+    const extent = transformExtent(bbox, "EPSG:4326", "EPSG:3857")
     this.olmap.getView().fit(extent, { duration: 1000 })
   }
 }

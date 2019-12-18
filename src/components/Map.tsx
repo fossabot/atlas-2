@@ -6,6 +6,7 @@ import Nominatim from "../lib/nominatim"
 import { setShownJobs } from "../redux/jobs/actions"
 import { Job } from "../types/customTypes"
 import { filterJobs } from "../lib/jobFilter"
+import Charon from "../lib/charon"
 interface DispatchProps {
   setShownJobs: (jobs: Job[]) => void
 }
@@ -25,7 +26,6 @@ interface StateProps {
 
 // interface OwnProps {}
 type Props = StateProps & DispatchProps
-
 const Map: React.FunctionComponent<Props> = props => {
   const MAP_ID = "map"
   const [isRendered, setIsRendered] = useState<boolean>(false)
@@ -50,20 +50,17 @@ const Map: React.FunctionComponent<Props> = props => {
     Fetching Nominatim data
   */
   useEffect(() => {
-    const fetchNominatim = async (): Promise<void> => {
+    const fetchForwardGeocoding = async (): Promise<void> => {
       if (props.search.query.length > 0) {
-        const nominatim = new Nominatim()
-
-        const { result, success } = await nominatim.forward(props.search.query)
-        if (success && typeof result !== "undefined") {
-          if (isRendered) {
-            const layer = map.featureLayerFromGeoJson(result.geojson, "draw")
-            map.zoomToLayer(layer)
-          }
+        const charon = new Charon()
+        const result = await charon.forwardGeocoding(props.search.query, [])
+        if (typeof result !== "undefined") {
+          map.featureLayerFromGeoJson(result)
+          map.zoomToBBox(result.features[0].bbox)
         }
       }
     }
-    fetchNominatim()
+    fetchForwardGeocoding()
   }, [props.search.query])
 
   useEffect(() => {

@@ -2,6 +2,10 @@ import { ADD_NOTIFICATION, NotificationActionTypes, NotificationState, REMOVE_NO
 
 const initialState: NotificationState = { notifications: [] }
 
+/**
+ * @param state
+ * @param action
+ */
 export default function(state: NotificationState = initialState, action: NotificationActionTypes): NotificationState {
   switch (action.type) {
     case ADD_NOTIFICATION:

@@ -1,0 +1,201 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>JSDoc: types/customTypes.ts</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                     
+                        <h1 class="navbar-item">Atlas</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                 
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                    
+                        <div class="navbar-item">
+                            <a href="https://github.com/chronark/atlas" target="_blank">
+                                GitHub
+                            </a>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Interfaces</h3><ul><li><a href="Location.html">Location</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bound">bound</a></li><li><a href="global.html#createNotification">createNotification</a></li><li><a href="global.html#createSelectOptions">createSelectOptions</a></li><li><a href="global.html#removeFrom">removeFrom</a></li><li><a href="global.html#removeListFromList">removeListFromList</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Source</p>
+                        <h1>types/customTypes.ts</h1>
+                    </header>
+                    
+                    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>export interface RawJob {
+  datum: string
+  extern: string
+  firma: string
+  ID: string
+  lat: string
+  lng: string
+  logo: string
+  titel: string
+  typ: string
+  url: string
+}
+
+export interface RawLocation {
+  IDs: string
+  jobs: number[]
+  lat: string
+  lng: string
+  titel: string
+  weight: number
+}
+
+export interface RawSearch {
+  jobs: RawJob[]
+  orte: RawLocation[]
+}
+
+/**
+ *
+ *
+ * @interface Location
+ */
+export interface Location {
+  /**
+   * Latitude of the location.
+   */
+  lat: number
+  /**
+   * Longitude of the location.
+   */
+  lon: number
+}
+
+export interface Job {
+  corp: string
+  locations: Location[]
+  date: string
+  id: number
+  logo: string
+  score: number
+  title: string
+  type: string
+  url: string
+}
+
+export type LogObject = Record&lt;string, any> | number
+
+export interface GeocodingResponseObject {
+  type: string
+  query: string
+  features: FeaturesEntity[]
+  attribution: string
+}
+export interface FeaturesEntity {
+  id: string
+  type: string
+  place_type?: string[]
+  relevance: number
+  properties: Properties
+  text: string
+  place_name: string
+  bbox?: number[]
+  center?: number[]
+  geometry: Geometry
+  context?: ContextEntity[]
+  matching_text?: string
+  matching_place_name?: string
+}
+export interface Properties {
+  wikidata?: string
+  accuracy?: string
+  address?: string
+  landmark?: boolean
+  category?: string
+}
+export interface Geometry {
+  type: string
+  coordinates?: number[]
+}
+export interface ContextEntity {
+  id: string
+  wikidata?: string
+  text: string
+  short_code?: string
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 18 2019 16:48:11 GMT+0100 (GMT+01:00)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
+</footer>
+
+
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
