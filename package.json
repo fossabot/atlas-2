@@ -36,9 +36,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn test",
-      "post-commit": "yarn docs && git add ./docs && git commit -m \"Updated documentation\""
+      "pre-commit": "yarn docs && git add ./docs && lint-staged",
+      "pre-push": "yarn test"
     }
   },
   "dependencies": {
