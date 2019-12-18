@@ -65,7 +65,7 @@ module.exports = {
     "jsdoc/check-alignment": 1, // Recommended
     "jsdoc/check-examples": "off",
     "jsdoc/check-indentation": 1,
-    "jsdoc/check-param-names": "off", // Recommended
+    "jsdoc/check-param-names": "warn", // Recommended
     "jsdoc/check-syntax": 1,
     "jsdoc/check-tag-names": 1, // Recommended
     "jsdoc/check-types": 1, // Recommended
@@ -79,14 +79,14 @@ module.exports = {
     "jsdoc/require-example": "off",
     "jsdoc/require-hyphen-before-param-description": 1,
     "jsdoc/require-jsdoc": 1, // Recommended
-    "jsdoc/require-param": "off", // Recommended
+    "jsdoc/require-param": "warn", // Recommended
     "jsdoc/require-param-description": 1, // Recommended
     "jsdoc/require-param-name": 1, // Recommended
-    "jsdoc/require-param-type": 1, // Recommended
+    "jsdoc/require-param-type": "off", // Recommended
     "jsdoc/require-returns": 1, // Recommended
     "jsdoc/require-returns-check": 1, // Recommended
     "jsdoc/require-returns-description": 1, // Recommended
-    "jsdoc/require-returns-type": 1, // Recommended
+    "jsdoc/require-returns-type": "off", // Recommended
     "jsdoc/valid-types": 1, // Recommended
   },
   overrides: [

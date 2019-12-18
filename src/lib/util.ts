@@ -1,10 +1,9 @@
 /**
  * Remove an item from a list.
  *
- * @export
- * @param list
- * @param entry
- * @returns
+ * @param list - A list of items.
+ * @param entry - A single item.
+ * @returns List without entry.
  */
 export function removeFrom(list: any[], entry: any): any[] {
   return list.filter(value => {
@@ -15,10 +14,9 @@ export function removeFrom(list: any[], entry: any): any[] {
 /**
  * Remove every item in list1 from list2.
  *
- * @export
- * @param list1
- * @param list2
- * @returns
+ * @param list1 - A subset of list2.
+ * @param list2 - A list of items.
+ * @returns List2 without all items present in list1.
  */
 export function removeListFromList(list1: any[], list2: any[]): any[] {
   const unique = [...new Set(list1)]
@@ -30,11 +28,10 @@ export function removeListFromList(list1: any[], list2: any[]): any[] {
 /**
  * Return value if it is between lower and upper, otherwise return the boundary value.
  *
- * @export
- * @param lower
- * @param value
- * @param upper
- * @returns
+ * @param  lower - The lower end of the boundary.
+ * @param  value - Any value.
+ * @param  upper - The upper end of the boundary.
+ * @returns A number that is within lower and upper.
  */
 export function bound(lower: number, value: number, upper: number): number {
   return Math.max(lower, Math.min(value, upper))
