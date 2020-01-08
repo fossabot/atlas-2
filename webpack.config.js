@@ -71,10 +71,6 @@ module.exports = {
           "cache-loader",
           {
             loader: "ts-loader",
-            options: {
-              transpileOnly: true,
-              experimentalWatchApi: true,
-            },
           },
         ],
       },
