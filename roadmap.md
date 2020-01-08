@@ -30,11 +30,13 @@ Bei 40.000 Usern sind das dann 8 Tiles pro User.
 
 Für eine detailierte Suche ist das sicherlich nicht ausreichend, aber gleichzeitig gibt es vermutlich auch viele, die einfach nur auf die Seite gehen und nicht mit der Karte interagieren.
 
-Um genau herauszufinden wie viele Tiles der durchschnittliche User benötigt, sollten wir das ganze am besten einfach austesten. [>Tests](Tests)
+Meine Vermuting ist, dass wir mehr für die Tiles zahlen, jedoch die Kosten für Forward und Reverse Geocoding gegen 0 gehen werden.
+
+Um genau herauszufinden wie viele Tiles der durchschnittliche User benötigt, sollten wir das ganze am besten einfach austesten. [>Tests](#Tests)
 
 ## Free?
 
-Für die Beschaffung der geojson Polygone für z.B. Länderumrisse werden wir sowieso weiterhin [Nominatim](https://nominatim.openstreetmap.org/) verwenden. Diese Anfragen müssen allerdings gecached werden, da Nominatim ein Ratelimit von 1 req/s angibt. Das sollte aber kein Problem darstellen, da wir dadurch gleichzeitig die Anonymität unserer Endnutzer schützen. (Mehr zum Cache Server weiter unten)
+Für die Beschaffung der geojson Polygone für z.B. Länderumrisse werden wir sowieso weiterhin [Nominatim](https://nominatim.openstreetmap.org/) verwenden. Diese Anfragen müssen allerdings gecached werden, da Nominatim ein Ratelimit von 1 req/s angibt. Das sollte aber kein Problem darstellen, da wir dadurch gleichzeitig die Anonymität unserer Endnutzer schützen. [>Server](#ProxyServer)
 
 Hier kann man sich dann überlegen ob es nicht sinnvoller wäre alle Geocoding Anfragen über Nominatim zu erledigen. Solange die Anfragen gecached werden, sehe ich hier keine Nachteile.
 
@@ -42,15 +44,35 @@ Matrix oder Isochrone Anfragen zu einem späteren Zeitpunkt müssten dann allerd
 
 # Tests
 
+Wie mit Birgit kurz besprochen werde ich dem Server noch ein paar Logging Funktionen hinzufügen,sodass wir nach dem Test abschätzen können, wie die Karte genutzt wird.
+
+Hierfür wäre natürlich wichtig zu definieren, was wir alles wissen wollen.
+
+- Requested Tiles pro User
+- Suchanfragen
+- ???
+
 # Aufwandsabschätzung
 
-## Proxy Server
+## ProxyServer
+[github.com](https://github.com/chronark/charon)
+
+Ich habe vor 1-2 Monaten aus Spaß zu Hause an einer Cache-Implementation in [go](https://golang.org/) gebastelt, weil ich dachte, dass man sich damit eigentlich sämtliche Kosten sparen könnte, da die Anfragen immer weniger sind als das Gratis-Limit.  
+Der server ist derzeit unter [jbs-osm.informatik.fh-nuernberg](jbs-osm.informatik.fh-nuernberg.de) zu finden.
+
+Leider verstößt das gegen die [TOS](https://www.mapbox.com/legal/tos) (2.8) von Mapbox.
+
+Auch wenn wir Tiles und Geocoding von mapbox nicht cachen dürfen, gibt es trotzdem einige Vorteile:
+
+- Secrets für diverse APIs erst beim Server hinzugefügt, damit diese nicht im javascript code an den Endnutzer weiter gegeben werden.
+- Nominatim's Ratelimit Problem wird gelöst
+- Datenschutz der Endnutzer [>Dateschutz](#datenschutz)
+- Möglichkeit selbst aus dem Verhalten der Nutzer zu lernen [>Statistik](#Statistik)
 
 ### Datenschutz
 
-Um die Anonymität der Kunden und Endnutzer zu gewährleisten verwenden wir einen Proxy/Cache server. Der [server](https://github.com/chronark/charon) ist derzeit unter [jbs-osm.informatik.fh-nuernberg](jbs-osm.informatik.fh-nuernberg.de) zu finden und ist in [go](https://golang.org/) geschrieben.
-
-Zusätzlich zur Anonymität werden secrets für diverse APIs erst beim Server hinzugefügt, damit diese nicht im javascript code an den Endnutzer weiter gegeben werden.
+Durch einen Proxyserver gelangen die IP-Adresse und sonstige Daten der Endnutzer nicht an den Karten-Provider.
+Zwar behaupten diese, dass sie nichts mit den Daten anfangen, aber sicher ist sicher.
 
 ### Statistik
 
@@ -61,5 +83,10 @@ Wie suchen nutzer nach jobs?
 - Durch Karten scrollen
 - Direkte Suchfragen
 - Werden verschiedene Orte verglichen?
+
+
+## Karte
+
+
 
 # Roadmap to 1.0
