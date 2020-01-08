@@ -70,6 +70,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-macros": "^2.8.0",
     "better-docs": "^1.4.7",
+    "cache-loader": "^4.1.0",
     "copy-webpack-plugin": "^5.0.5",
     "core-js": "3.4.1",
     "css-loader": "^3.2.0",
