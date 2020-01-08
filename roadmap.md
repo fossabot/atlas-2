@@ -25,18 +25,18 @@ Mapbox bietet zwar auch diese Möglichkeit an nur für einen map load zu zahlen,
 Ich habe leider nirgendwo einen guten Vergleich gefunden, auch keine Erfahrungsberichte von Leuten die gewechselt und ihre Zahlen veröffentlicht haben.
 
 Derzeit erreichen wir ca. 40.000 Maploads pro Monat, also ca \$80.
-Für den selben Preis erhalten wir bei Mapbox also 320.000 Tile requests.
+Für den selben Preis erhalten wir bei Mapbox 320.000 Tile requests.
 Bei 40.000 Usern sind das dann 8 Tiles pro User.
 
 Für eine detailierte Suche ist das sicherlich nicht ausreichend, aber gleichzeitig gibt es vermutlich auch viele, die einfach nur auf die Seite gehen und nicht mit der Karte interagieren.
 
-Meine Vermuting ist, dass wir mehr für die Tiles zahlen, jedoch die Kosten für Forward und Reverse Geocoding gegen 0 gehen werden.
+Meine Vermutung ist, dass wir mehr für die Tiles zahlen, jedoch die Kosten für Forward und Reverse Geocoding gegen 0 gehen werden.
 
 Um genau herauszufinden wie viele Tiles der durchschnittliche User benötigt, sollten wir das ganze am besten einfach austesten. [>Tests](#Tests)
 
-## Free?
+## Free
 
-Für die Beschaffung der geojson Polygone für z.B. Länderumrisse werden wir sowieso weiterhin [Nominatim](https://nominatim.openstreetmap.org/) verwenden. Diese Anfragen müssen allerdings gecached werden, da Nominatim ein Ratelimit von 1 req/s angibt. Das sollte aber kein Problem darstellen, da wir dadurch gleichzeitig die Anonymität unserer Endnutzer schützen. [>Server](#ProxyServer)
+Für die Beschaffung der geojson Polygone für z.B. Länderumrisse werden wir sowieso weiterhin [Nominatim](https://nominatim.openstreetmap.org/) verwenden. Diese Anfragen müssen allerdings gecached werden, da Nominatim ein Ratelimit von 1 req/s angibt. [>Server](#ProxyServer)
 
 Hier kann man sich dann überlegen ob es nicht sinnvoller wäre alle Geocoding Anfragen über Nominatim zu erledigen. Solange die Anfragen gecached werden, sehe ich hier keine Nachteile.
 
@@ -55,7 +55,8 @@ Hierfür wäre natürlich wichtig zu definieren, was wir alles wissen wollen.
 # Aufwandsabschätzung
 
 ## ProxyServer
-[github.com](https://github.com/chronark/charon)
+
+[github.com/chronark/charon](https://github.com/chronark/charon)
 
 Ich habe vor 1-2 Monaten aus Spaß zu Hause an einer Cache-Implementation in [go](https://golang.org/) gebastelt, weil ich dachte, dass man sich damit eigentlich sämtliche Kosten sparen könnte, da die Anfragen immer weniger sind als das Gratis-Limit.  
 Der server ist derzeit unter [jbs-osm.informatik.fh-nuernberg](jbs-osm.informatik.fh-nuernberg.de) zu finden.
@@ -84,9 +85,6 @@ Wie suchen nutzer nach jobs?
 - Direkte Suchfragen
 - Werden verschiedene Orte verglichen?
 
-
 ## Karte
-
-
 
 # Roadmap to 1.0
