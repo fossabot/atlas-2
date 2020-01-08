@@ -21,7 +21,7 @@ module.exports = {
       chunks: "all",
     },
   },
-  devtool: "source-map",
+  devtool: "cheap-module-eval-source-map",
   devServer: {
     compress: true,
     overlay: true,
@@ -36,19 +36,22 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        // exclude: /node_modules/,
-        // include: /node_modules\/ol-mapbox-style/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            cacheDirectory: true,
-            exclude: /node_modules/, // \/(?!ol-mapbox-style\/).*/,
+        include: path.resolve(__dirname, "src"),
+        use: [
+          "cache-loader",
+          {
+            loader: "babel-loader",
+            options: {
+              cacheDirectory: true,
+              exclude: /node_modules/, // \/(?!ol-mapbox-style\/).*/,
+            },
           },
-        },
+        ],
       },
       {
         test: /\.css$/,
         use: [
+          "cache-loader",
           "style-loader",
           "css-loader",
           {
@@ -60,9 +63,22 @@ module.exports = {
           },
         ],
       },
-      { test: /\.tsx?$/, loader: "babel-loader" },
-      { test: /\.tsx?$/, loader: "ts-loader" },
-      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+      { test: /\.tsx?$/, include: path.resolve(__dirname, "src"), loader: ["cache-loader", "babel-loader"] },
+      {
+        test: /\.tsx?$/,
+        include: path.resolve(__dirname, "src"),
+        use: [
+          "cache-loader",
+          {
+            loader: "ts-loader",
+            options: {
+              transpileOnly: true,
+              experimentalWatchApi: true,
+            },
+          },
+        ],
+      },
+      { enforce: "pre", test: /\.js$/, loader: ["cache-loader", "source-map-loader"] },
     ],
   },
   plugins: [
