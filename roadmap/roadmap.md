@@ -1,3 +1,5 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 # Kostenabschätzung
 
 ## Google vs Mapbox
@@ -78,11 +80,9 @@ Hierfür wäre natürlich wichtig zu definieren, was wir alles wissen wollen.
 Frontend Applikation zur Visualisierung der Jobs.
 Die Darstellung der Karte selbst benutzt [openlayers](https://openlayers.org/) und das Clientseitige Statemanagement wird realisiert mit [redux](https://redux.js.org/).
 
-### Einbau
+### Integration
 
-Der 1.0 Einbau soll möglichst reibungslos verlaufen, daher wird Atlas zu diesem Zeitpunkt noch keine Jobsuchen selbst durchführen. Eine Liste an aktuellen Jobs muss daher von außen mit `map.setJobs(jobs)` gesetzt werden. Diese Funktion sorgt dafür, dass alle Jobs aktualisiert werden.
-
-<div style="page-break-after: always;"></div>
+Der 1.0 Einbau soll möglichst reibungslos verlaufen, daher wird Atlas zu diesem Zeitpunkt noch keine Jobsuche selbst durchführen. Eine Liste an aktuellen Jobs muss daher von außen mit `map.setJobs(jobs)` gesetzt werden. Diese Funktion sorgt dafür, dass alle Jobs aktualisiert werden.
 
 #### API
 
@@ -99,7 +99,11 @@ interface Location {
    */
   lon: number
 }
+```
 
+<div style="page-break-after: always;"></div>
+
+```typescript
 interface Job {
   /**
    * Name of the corporation offering the job.
@@ -143,9 +147,6 @@ interface Job {
 
 Wie von Heiko gewünscht, ermöglich dies auch die Darstellung von Jobs, die mehrere Orte angegeben haben ohne, dass mehrer Job-Objekte erstellt werden müssen.
 
-
-
-
 ## Charon
 
 [github.com/chronark/charon](https://github.com/chronark/charon)
@@ -188,6 +189,11 @@ Die einzelnen Services laufen innerhalb von Docker-Containern. Individuelles upg
 
 #### Geocoding/Tile Request Cycle
 
+Tiles werden automatisch von Openlayers gecached und die GeoJson Daten in redux gespeichert. Allerdings sine die gecachte Tiles nur innerhalb einer Karteninstanz und GeoJson Daten nur innerhalb einer Atlas Instanz gespeichert.
+
+Deswegen wird Charon zwischen Atlas und mögliche 3rd Party Services gestellt und cached automatisch alle Anfragen.
+
+Der Ablauf ist hier grob dargestellt:
 ![requestSequenceDiagram](https://raw.githubusercontent.com/chronark/atlas/master/roadmap/requestSequenceDiagram.svg?sanitize=true)
 
 <!--
@@ -218,12 +224,14 @@ sequenceDiagram
     CharonAPI->>Atlas: CacheResult [http]
     Atlas->>AtlasCache: Write to Cache
     end
-``` 
+```
 -->
 
 <div style="page-break-after: always;"></div>
 
 # Roadmap to 1.0
+
+Im Prinzip könnte man die Karte jetzt bereits einbauen, jedoch sind einige Dinge noch nicht ganz ausgereift.
 
 ## TODO
 
@@ -249,7 +257,6 @@ Wie werden diese integriert und dargestellt?
 Gibt es ein Design?
 Heiko wollte im Hintergrund eine Karte und vorne drauf die Kacheln mit Jobs, soll das komplett von Atlas gerendert werden oder sollen die Daten nach außen geschickt werden und die Webseite selbst rendert das ganze dann?
 
-
 ### Integration
 
 Die Integration für 1.0 ist möglichst einfach gehalten.
@@ -257,28 +264,30 @@ Die Integration für 1.0 ist möglichst einfach gehalten.
 Atlas benutzt [webpack](https://webpack.js.org/) als Bundler und erzeugt damit eine einzelne `.js` Datei "atlas.js", sowie 2 .css Dateien, die von openlayers stammen.  
 `atlas.js` kann dann auf der bestehenden Seite geladen und verwendet werden.
 Lediglich ein `<div id="xyz">` ist erforderlich.
+
 ```html
 <script src="atlas.js"></script>
 ...
 
 <div id="map-container"></div>
 ```
+
 Die Karte wird dann so initialisiert:
+
 ```javascript
-jobs = // create Job[] object
-map = new atlas.Map("map-container")
+jobs = map = new atlas.Map("map-container") // create Job[] object
 map.setJobs(jobs)
 ```
-
 
 Die [Job API](https://jobboerse.th-nuernberg.de/srv.php/Suche/offers) der Jobbörse gibt derzeit sowohl Orte als auch Jobs zurück.
 Atlas führt ein neues [Format](#api) ein, dass beides vereint. das wird aber nicht mehr gebraucht. Entweder die API kann geändert werden, oder die Daten werden Clientseitig umgeformt und durch `map.setJobs()` geladen.
 
 #### API Änderung
+
 Entweder sollte es einen neuen Endpunkt geben, der den Score bereits hinzufügt und wie [hier](#API) formattiert zurück gibt:
 
 ```json
-HTTP/2 200 
+HTTP/2 200
 content-type: application/json
 {
     "jobs": [
@@ -291,6 +300,7 @@ content-type: application/json
 ```
 
 #### Frontend
+
 Oder der existierende Code kümmert sich um die Score Berechnung und erstellt ein Javascript Object, dass den [Job](https://github.com/chronark/atlas/blob/4bbedb2babc6759e6c99d0451464aa4a75c0a6fa/src/types/customTypes.ts#L44) Typ implementiert.
 
 ### Charon
