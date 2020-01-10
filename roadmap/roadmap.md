@@ -9,6 +9,17 @@ Mapbox bietet zwar auch diese Möglichkeit an nur für einen map load zu zahlen,
 
 ### Vergleich
 
+| Current requests | per month |# Kostenabschätzung
+
+## google vs mapbox
+
+Google bietet keine Möglichkeit an einzelne Tiles zu laden, sondern rechnet lediglich mit map loads.
+Interaktionen wie Zoomen, Bewegen der Karte oder andere Arten neue Tiles zu laden werden nicht berücksichtigt. Daher gibt es auch keine Preisdaten die wir gut vergleichen könnten.
+
+Mapbox bietet zwar auch diese Möglichkeit an nur für einen map load zu zahlen, jedoch nur wenn man deren eigene - auf [leaflet.js](https://leafletjs.com/) basierende - [Bibliothek](https://docs.mapbox.com/mapbox-gl-js/api/) benutzt.
+
+### Vergleich
+
 | Current requests | per month |
 | ---------------- | --------- |
 | mapload          | 40.000    |
@@ -30,7 +41,8 @@ Bei 40.000 Usern sind das dann 8 Tiles pro User.
 
 Für eine detailierte Suche ist das sicherlich nicht ausreichend, aber gleichzeitig gibt es vermutlich auch viele, die einfach nur auf die Seite gehen und nicht mit der Karte interagieren.
 
-Meine Vermutung ist, dass wir mehr für die Tiles zahlen, jedoch die Kosten für Forward und Reverse Geocoding gegen 0 gehen werden.
+Meine Vermutung ist, dass wir mehr für die Tiles zahlen, jedoch die Kosten für Forward und Reverse Geocoding gegen
+0 gehen werden.
 
 Um genau herauszufinden wie viele Tiles der durchschnittliche User benötigt, sollten wir das ganze am besten einfach austesten. [>Tests](#Tests)
 
@@ -38,9 +50,11 @@ Um genau herauszufinden wie viele Tiles der durchschnittliche User benötigt, so
 
 Für die Beschaffung der geojson Polygone für z.B. Länderumrisse werden wir sowieso weiterhin [Nominatim](https://nominatim.openstreetmap.org/) verwenden. Diese Anfragen müssen allerdings gecached werden, da Nominatim ein Ratelimit von 1 req/s angibt. [>Server](#ProxyServer)
 
-Hier kann man sich dann überlegen ob es nicht sinnvoller wäre alle Geocoding Anfragen über Nominatim zu erledigen. Solange die Anfragen gecached werden, sehe ich hier keine Nachteile.
+Hier kann man sich dann überlegen ob es nicht sinnvoller wäre alle Geocoding Anfragen über Nominatim zu erledigen.
+Solange die Anfragen gecached werden, sehe ich hier keine Nachteile.
 
-Matrix oder Isochrone Anfragen zu einem späteren Zeitpunkt müssten dann allerdings trotzdem über Mapbox oder einen anderen Anbieter gehen.
+Matrix oder Isochrone Anfragen zu einem späteren Zeitpunkt müssten dann allerdings trotzdem über Mapbox oder einen
+anderen Anbieter gehen.
 
 # Tests
 
@@ -58,7 +72,7 @@ Hierfür wäre natürlich wichtig zu definieren, was wir alles wissen wollen.
 
 [github.com/chronark/charon](https://github.com/chronark/charon)
 
-Ich habe vor 1-2 Monaten aus Spaß zu Hause an einer Cache-Implementation in [go](https://golang.org/) gebastelt, weil ich dachte, dass man sich damit eigentlich sämtliche Kosten sparen könnte, da die Anfragen immer weniger sind als das Gratis-Limit.  
+Ich habe vor 1-2 Monaten aus Spaß zu Hause an einer Cache-Implementation in [go](https://golang.org/) gebastelt, weil ich dachte, dass man sich damit eigentlich sämtliche Kosten sparen könnte, da die Anfragen immer weniger sind als das Gratis-Limit.
 Der server ist derzeit unter [jbs-osm.informatik.fh-nuernberg](jbs-osm.informatik.fh-nuernberg.de) zu finden.
 
 Leider verstößt das gegen die [TOS](https://www.mapbox.com/legal/tos) (2.8) von Mapbox.
@@ -72,13 +86,13 @@ Auch wenn wir Tiles und Geocoding von mapbox nicht cachen dürfen, gibt es trotz
 
 ### Datenschutz
 
-Durch einen Proxyserver gelangen die IP-Adresse und sonstige Daten der Endnutzer nicht an den Karten-Provider.
+Durch einen Proxyserver gelangen die IP-Adresse und sonstige Daten der Endnutzer nicht an den Karten-Provider.  
 Zwar behaupten diese, dass sie nichts mit den Daten anfangen, aber sicher ist sicher.
 
 ### Statistik
 
 Durch den Server können außerdem einige nützliche Daten erhoben werden um genauer heraus zu finden,
-wie der Kartenservice genutzt wird.  
+wie der Kartenservice genutzt wird.
 Wie suchen nutzer nach jobs?
 
 - Durch Karten scrollen
@@ -88,3 +102,22 @@ Wie suchen nutzer nach jobs?
 ## Karte
 
 # Roadmap to 1.0
+
+### Geocoding/Tile Request
+
+```mermaid
+sequenceDiagram
+    Atlas->>AtlasCache: Request
+    alt hit
+        AtlasCache->>Atlas: CacheResult
+    else miss
+        Atlas->>CharonAPI: Request
+        CharonAPI->>CharonCache: Request
+        alt miss
+            CharonCache->>3rdPartyAPI: Request
+            3rdPartyAPI->>CharonCache: Result
+        end
+    end
+    CharonCache->>CharonAPI: CacheResult
+    CharonAPI->>Atlas: CacheResult
+```
