@@ -1,6 +1,6 @@
 # Kostenabschätzung
 
-## google vs mapbox
+## Google vs Mapbox
 
 Google bietet keine Möglichkeit an einzelne Tiles zu laden, sondern rechnet lediglich mit map loads.
 Interaktionen wie Zoomen, Bewegen der Karte oder andere Arten neue Tiles zu laden werden nicht berücksichtigt. Daher gibt es auch keine Preisdaten die wir gut vergleichen könnten.
@@ -61,7 +61,7 @@ anderen Anbieter gehen.
 
 # Tests
 
-Wie mit Birgit kurz besprochen werde ich dem Server noch ein paar Logging Funktionen hinzufügen,sodass wir nach dem Test abschätzen können, wie die Karte genutzt wird.
+Wie mit Birgit kurz besprochen werde ich dem Server noch ein paar Logging Funktionen hinzufügen, sodass wir nach dem Test abschätzen können, wie die Karte genutzt wird.
 
 Hierfür wäre natürlich wichtig zu definieren, was wir alles wissen wollen.
 
@@ -80,7 +80,9 @@ Die Darstellung der Karte selbst benutzt [openlayers](https://openlayers.org/) u
 
 ### Einbau
 
-Der 1.0 Einbau soll möglichst reibungslos verlaufen, daher wird Atlas zu diesem Zeitpunkt noch keine Jobsuchen selbst durchführen. Eine Liste an aktuellen Jobs muss daher von außen mit `map.setJobs(jobs: []Job)` gesetzt werden. Diese Funktion sorgt dafür, dass alle Jobs aktualisiert werden.
+Der 1.0 Einbau soll möglichst reibungslos verlaufen, daher wird Atlas zu diesem Zeitpunkt noch keine Jobsuchen selbst durchführen. Eine Liste an aktuellen Jobs muss daher von außen mit `map.setJobs(jobs)` gesetzt werden. Diese Funktion sorgt dafür, dass alle Jobs aktualisiert werden.
+
+<div style="page-break-after: always;"></div>
 
 #### API
 
@@ -141,6 +143,9 @@ interface Job {
 
 Wie von Heiko gewünscht, ermöglich dies auch die Darstellung von Jobs, die mehrere Orte angegeben haben ohne, dass mehrer Job-Objekte erstellt werden müssen.
 
+
+
+
 ## Charon
 
 [github.com/chronark/charon](https://github.com/chronark/charon)
@@ -183,7 +188,7 @@ Die einzelnen Services laufen innerhalb von Docker-Containern. Individuelles upg
 
 #### Geocoding/Tile Request Cycle
 
-![requestSequenceDiagram](https://raw.githubusercontent.com/chronark/charon/master/roadmap/requestSequenceDiagram.svg)
+![requestSequenceDiagram](https://raw.githubusercontent.com/chronark/atlas/master/roadmap/requestSequenceDiagram.svg?sanitize=true)
 
 <!--
 ```mermaid
@@ -215,4 +220,34 @@ sequenceDiagram
     end
 ``` -->
 
+<div style="page-break-after: always;"></div>
+
 # Roadmap to 1.0
+
+## TODO Client
+
+## TODO Backend
+
+Die [Job API](https://jobboerse.th-nuernberg.de/srv.php/Suche/offers) der Jobbörse gibt derzeit sowohl Orte als auch Jobs zurück.
+Atlas führt ein neues [Format](#api) ein, dass beides vereint. das wird aber nicht mehr gebraucht. Entweder die API kann geändert werden, oder die Daten werden Clientseitig geändert.
+
+### API Änderung
+Entweder sollte es einen neuen Endpunkt geben, der den Score bereits hinzufügt und wie [hier](#API) formattiert zurück gibt:
+
+```json
+HTTP/2 200 
+content-type: application/json
+{
+    "jobs": [
+        {
+          ...
+        },
+        ...
+    ]
+}
+```
+
+### Frontend
+Oder existierende Code kümmert sich um die Score Berechnung und erstellt ein Javascript Object, dass den [Job](https://github.com/chronark/atlas/blob/4bbedb2babc6759e6c99d0451464aa4a75c0a6fa/src/types/customTypes.ts#L44) Typ implementiert.
+
+
