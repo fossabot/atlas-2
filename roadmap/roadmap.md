@@ -80,11 +80,13 @@ Hierfür wäre natürlich wichtig zu definieren, was wir alles wissen wollen.
 Frontend Applikation zur Visualisierung der Jobs.
 Die Darstellung der Karte selbst benutzt [openlayers](https://openlayers.org/) und das Clientseitige Statemanagement wird realisiert mit [redux](https://redux.js.org/).
 
-### Integration
+### Verwendung
 
-Der 1.0 Einbau soll möglichst reibungslos verlaufen, daher wird Atlas zu diesem Zeitpunkt noch keine Jobsuche selbst durchführen. Eine Liste an aktuellen Jobs muss daher von außen mit `map.setJobs(jobs)` gesetzt werden. Diese Funktion sorgt dafür, dass alle Jobs aktualisiert werden.
+Die Integration soll möglichst reibungslos verlaufen, daher wird Atlas zu diesem Zeitpunkt noch keine Jobsuche selbst durchführen. Eine Liste an aktuellen Jobs muss daher von außen mit `map.setJobs(jobs)` gesetzt werden. Diese Funktion sorgt dafür, dass alle Jobs aktualisiert werden.
 
-#### API
+Mehr zum Einbau [hier](#integration).
+
+### API
 
 Auszug aus [customTypes.ts](https://github.com/chronark/atlas/blob/master/src/types/customTypes.ts):
 
@@ -235,11 +237,11 @@ Im Prinzip könnte man die Karte jetzt bereits einbauen, jedoch sind einige Ding
 
 ## TODO
 
-### Map
+### Atlas
 
-#### React
+#### React entfernen
 
-Um schneller einen funktionierenden Prototypen zu erstellen, habe ich [react](https://reactjs.org/) benutzt. Das ist jedoch für eine einzelne Karte definitiv nicht nötig. Außerdem werden Frameworks hier ja nicht so gerne gesehen.
+Um schneller einen funktionierenden Prototypen zu erstellen, hatte ich [react](https://reactjs.org/) benutzt. Das ist jedoch für eine einzelne Karte definitiv nicht nötig. Außerdem werden Frameworks hier ja nicht so gerne gesehen.
 
 Der react Anteil ist allerdings sehr gering und kann wieder entfernt werden.
 
@@ -304,3 +306,7 @@ content-type: application/json
 Oder der existierende Code kümmert sich um die Score Berechnung und erstellt ein Javascript Object, dass den [Job](https://github.com/chronark/atlas/blob/4bbedb2babc6759e6c99d0451464aa4a75c0a6fa/src/types/customTypes.ts#L44) Typ implementiert.
 
 ### Charon
+
+Charon hat derzeit noch keine Implementation für OSM oder Nominatim und Dokumentation habe ich auch noch nicht angefangen zu schreiben.
+
+Für den Logger Service ist außerdem noch wichtig sich Gedanken zu machen, welche Daten gelogged werden soll. Personenbezogene Daten sowieso nicht, aber ich bin sicher man könnte einiges lernen aus dem Such- und Bedienungsverhalten der Nutzer.
