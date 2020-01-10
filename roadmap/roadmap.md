@@ -62,18 +62,19 @@ Wie mit Birgit kurz besprochen werde ich dem Server noch ein paar Logging Funkti
 
 Hierfür wäre natürlich wichtig zu definieren, was wir alles wissen wollen.
 
-- Requested Tiles pro User
+- Requested Tiles
 - Suchanfragen
 - ???
 
 # Aufwandsabschätzung
 
+## Karte
+
 ## ProxyServer
 
 [github.com/chronark/charon](https://github.com/chronark/charon)
 
-Ich habe vor 1-2 Monaten aus Spaß zu Hause an einer Cache-Implementation in [go](https://golang.org/) gebastelt, weil ich dachte, dass man sich damit eigentlich sämtliche Kosten sparen könnte, da die Anfragen immer weniger sind als das Gratis-Limit.
-Der server ist derzeit unter [jbs-osm.informatik.fh-nuernberg](jbs-osm.informatik.fh-nuernberg.de) zu finden.
+Ich habe vor 1-2 Monaten aus Spaß zu Hause an einer Cache-Implementation in [go](https://golang.org/) gebastelt, weil ich dachte, dass man sich damit eigentlich sämtliche Kosten sparen könnte, da die Anfragen immer unterhalb des Gratis-Limits der Provider liegen.
 
 Leider verstößt das gegen die [TOS](https://www.mapbox.com/legal/tos) (2.8) von Mapbox.
 
@@ -95,29 +96,49 @@ Durch den Server können außerdem einige nützliche Daten erhoben werden um gen
 wie der Kartenservice genutzt wird.
 Wie suchen nutzer nach jobs?
 
-- Durch Karten scrollen
-- Direkte Suchfragen
-- Werden verschiedene Orte verglichen?
+Alle Requests an Charon werden automatisch anonym(!) protokolliert und können somit später zur Preisabschätzung und Forschung genutzt werden.
 
-## Karte
+### Aufbau
 
-# Roadmap to 1.0
+Charon ist eine kleine Gruppe an Microservices zum Cachen und Protokollieren von Tiles und GeoJSON Daten.
 
-### Geocoding/Tile Request
+Veröffentlicht werden Endpoints für Tiles und Geocoding Anfragen über http. Die interne Kommunikation läuft über [gRPC](https://grpc.io/).
+
+Die einzelnen Services laufen innerhalb von Docker-Containern. Individuelles upgraden, skalieren und auch hot-reloads sind möglich.
+
+#### Architektur
+
+![Architecture](https://raw.githubusercontent.com/chronark/charon/master/architecture.jpeg)
+
+#### Geocoding/Tile Request Cycle
 
 ```mermaid
 sequenceDiagram
+    participant Atlas
+    participant AtlasCache
+    participant CharonAPI
+    participant CharonCache
+    participant 3rdPartyAPI
+    participant CharonLogger
+
     Atlas->>AtlasCache: Request
     alt hit
         AtlasCache->>Atlas: CacheResult
     else miss
-        Atlas->>CharonAPI: Request
-        CharonAPI->>CharonCache: Request
-        alt miss
-            CharonCache->>3rdPartyAPI: Request
-            3rdPartyAPI->>CharonCache: Result
+        Atlas->>CharonAPI:  Request [http]
+        CharonAPI->>CharonLogger: Logs [gRPC]
+        CharonAPI->>CharonCache: Request [gRPC]
+        alt hit
+            CharonCache->>CharonAPI: CacheResult [gRPC]
+        else miss
+            CharonCache->>3rdPartyAPI: Add Token & Request [http]
+            3rdPartyAPI->>CharonCache: Result [http]
+            CharonCache->>CharonAPI: Result [gRPC]
+            CharonCache->>CharonCache: Cache Result
         end
+    CharonAPI->>Atlas: CacheResult [http]
+    Atlas->>AtlasCache: Write to Cache
     end
-    CharonCache->>CharonAPI: CacheResult
-    CharonAPI->>Atlas: CacheResult
 ```
+
+# Roadmap to 1.0
