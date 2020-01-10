@@ -218,20 +218,63 @@ sequenceDiagram
     CharonAPI->>Atlas: CacheResult [http]
     Atlas->>AtlasCache: Write to Cache
     end
-``` -->
+``` 
+-->
 
 <div style="page-break-after: always;"></div>
 
 # Roadmap to 1.0
 
-## TODO Client
+## TODO
 
-## TODO Backend
+### Map
+
+#### React
+
+Um schneller einen funktionierenden Prototypen zu erstellen, habe ich [react](https://reactjs.org/) benutzt. Das ist jedoch für eine einzelne Karte definitiv nicht nötig. Außerdem werden Frameworks hier ja nicht so gerne gesehen.
+
+Der react Anteil ist allerdings sehr gering und kann wieder entfernt werden.
+
+#### Vector-/Rastertiles
+
+Da Vectortiles und Rastertiles ein bisschen unterschiedlich verarbeitet werden wollen und wir zumindest im Rahmen der Tests auch Rastertiles darstellen und cachen müssen, muss ein bisschen Code umgeschrieben werden, sodass man einfach wechseln kann.
+
+#### Clickverhalten bei Clustern
+
+Die Funktionalität zu entscheiden ob gezoomed wird oder ein Popup geöffnet wird, muss noch implementiert werden.
+
+#### Popup integration
+
+Wie werden diese integriert und dargestellt?
+Gibt es ein Design?
+Heiko wollte im Hintergrund eine Karte und vorne drauf die Kacheln mit Jobs, soll das komplett von Atlas gerendert werden oder sollen die Daten nach außen geschickt werden und die Webseite selbst rendert das ganze dann?
+
+
+### Integration
+
+Die Integration für 1.0 ist möglichst einfach gehalten.
+
+Atlas benutzt [webpack](https://webpack.js.org/) als Bundler und erzeugt damit eine einzelne `.js` Datei "atlas.js", sowie 2 .css Dateien, die von openlayers stammen.  
+`atlas.js` kann dann auf der bestehenden Seite geladen und verwendet werden.
+Lediglich ein `<div id="xyz">` ist erforderlich.
+```html
+<script src="atlas.js"></script>
+...
+
+<div id="map-container"></div>
+```
+Die Karte wird dann so initialisiert:
+```javascript
+jobs = // create Job[] object
+map = new atlas.Map("map-container")
+map.setJobs(jobs)
+```
+
 
 Die [Job API](https://jobboerse.th-nuernberg.de/srv.php/Suche/offers) der Jobbörse gibt derzeit sowohl Orte als auch Jobs zurück.
-Atlas führt ein neues [Format](#api) ein, dass beides vereint. das wird aber nicht mehr gebraucht. Entweder die API kann geändert werden, oder die Daten werden Clientseitig geändert.
+Atlas führt ein neues [Format](#api) ein, dass beides vereint. das wird aber nicht mehr gebraucht. Entweder die API kann geändert werden, oder die Daten werden Clientseitig umgeformt und durch `map.setJobs()` geladen.
 
-### API Änderung
+#### API Änderung
 Entweder sollte es einen neuen Endpunkt geben, der den Score bereits hinzufügt und wie [hier](#API) formattiert zurück gibt:
 
 ```json
@@ -247,7 +290,7 @@ content-type: application/json
 }
 ```
 
-### Frontend
-Oder existierende Code kümmert sich um die Score Berechnung und erstellt ein Javascript Object, dass den [Job](https://github.com/chronark/atlas/blob/4bbedb2babc6759e6c99d0451464aa4a75c0a6fa/src/types/customTypes.ts#L44) Typ implementiert.
+#### Frontend
+Oder der existierende Code kümmert sich um die Score Berechnung und erstellt ein Javascript Object, dass den [Job](https://github.com/chronark/atlas/blob/4bbedb2babc6759e6c99d0451464aa4a75c0a6fa/src/types/customTypes.ts#L44) Typ implementiert.
 
-
+### Charon
