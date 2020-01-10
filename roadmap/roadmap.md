@@ -9,7 +9,10 @@ Mapbox bietet zwar auch diese Möglichkeit an nur für einen map load zu zahlen,
 
 ### Vergleich
 
-| Current requests | per month |# Kostenabschätzung
+| Current requests | per month |
+| ---------------- | --------- |
+| Map Loads        | 55.000    |
+| Geocoding        | 40.000    |
 
 ## google vs mapbox
 
@@ -22,8 +25,8 @@ Mapbox bietet zwar auch diese Möglichkeit an nur für einen map load zu zahlen,
 
 | Current requests | per month |
 | ---------------- | --------- |
-| mapload          | 40.000    |
-| geocoding        | 55.000    |
+| Mapload          | 40.000    |
+| Geocoding        | 55.000    |
 
 ![Geocoding](https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9t676f9uY6NktXtffQfe2WpzRjW7UsmaNxiS427Ej2SLTbmYqBIu2RqKppTpH9FvdssKJSDzg5f3L/pubchart?oid=107232545&format=image)
 
@@ -48,7 +51,7 @@ Um genau herauszufinden wie viele Tiles der durchschnittliche User benötigt, so
 
 ## Free
 
-Für die Beschaffung der geojson Polygone für z.B. Länderumrisse werden wir sowieso weiterhin [Nominatim](https://nominatim.openstreetmap.org/) verwenden. Diese Anfragen müssen allerdings gecached werden, da Nominatim ein Ratelimit von 1 req/s angibt. [>Server](#ProxyServer)
+Für die Beschaffung der geojson Polygone für z.B. Länderumrisse werden wir sowieso weiterhin [Nominatim](https://nominatim.openstreetmap.org/) verwenden. Diese Anfragen müssen allerdings gecached werden, da Nominatim ein Ratelimit von 1 req/s angibt. [>Charon](#Charon)
 
 Hier kann man sich dann überlegen ob es nicht sinnvoller wäre alle Geocoding Anfragen über Nominatim zu erledigen.
 Solange die Anfragen gecached werden, sehe ich hier keine Nachteile.
@@ -66,21 +69,89 @@ Hierfür wäre natürlich wichtig zu definieren, was wir alles wissen wollen.
 - Suchanfragen
 - ???
 
-# Aufwandsabschätzung
+# Projekte
 
-## Karte
+## Atlas
 
-## ProxyServer
+[github.com/chronark/atlas](https://github.com/chronark/atlas)
+
+Frontend Applikation zur Visualisierung der Jobs.
+Die Darstellung der Karte selbst benutzt [openlayers](https://openlayers.org/) und das Clientseitige Statemanagement wird realisiert mit [redux](https://redux.js.org/).
+
+### Einbau
+
+Der 1.0 Einbau soll möglichst reibungslos verlaufen, daher wird Atlas zu diesem Zeitpunkt noch keine Jobsuchen selbst durchführen. Eine Liste an aktuellen Jobs muss daher von außen mit `map.setJobs(jobs: []Job)` gesetzt werden. Diese Funktion sorgt dafür, dass alle Jobs aktualisiert werden.
+
+#### API
+
+Auszug aus [customTypes.ts](https://github.com/chronark/atlas/blob/master/src/types/customTypes.ts):
+
+```typescript
+interface Location {
+  /**
+   * Latitude of the location.
+   */
+  lat: number
+  /**
+   * Longitude of the location.
+   */
+  lon: number
+}
+
+interface Job {
+  /**
+   * Name of the corporation offering the job.
+   */
+  corp: string
+  /**
+   * An array of locations where the job is offered.
+   */
+  locations: Location[]
+  /**
+   * The entrydate for the job.
+   */
+  date: string
+  /**
+   * Internal id for each job.
+   */
+  id: number
+  /**
+   * URL to the job's or company's logo.
+   */
+  logo: string
+  /**
+   * Calculated matching score for the user and job.
+   * Must be between 0.0 and 1.0 included
+   */
+  score: number
+  /**
+   * Job title description.
+   */
+  title: string
+  /**
+   * Job classification.
+   */
+  type: string
+  /**
+   * URL for more information about this job or company's page.
+   */
+  url: string
+}
+```
+
+Wie von Heiko gewünscht, ermöglich dies auch die Darstellung von Jobs, die mehrere Orte angegeben haben ohne, dass mehrer Job-Objekte erstellt werden müssen.
+
+## Charon
 
 [github.com/chronark/charon](https://github.com/chronark/charon)
 
-Ich habe vor 1-2 Monaten aus Spaß zu Hause an einer Cache-Implementation in [go](https://golang.org/) gebastelt, weil ich dachte, dass man sich damit eigentlich sämtliche Kosten sparen könnte, da die Anfragen immer unterhalb des Gratis-Limits der Provider liegen.
+Ich habe vor 1-2 Monaten aus Spaß zu Hause an einem File-cache in [go](https://golang.org/) gebastelt, weil ich dachte, dass man sich damit eigentlich sämtliche Kosten sparen könnte, da die Anfragen immer unterhalb des Gratis-Limits der Provider liegen.
 
 Leider verstößt das gegen die [TOS](https://www.mapbox.com/legal/tos) (2.8) von Mapbox.
 
-Auch wenn wir Tiles und Geocoding von mapbox nicht cachen dürfen, gibt es trotzdem einige Vorteile:
+Auch wenn wir Tiles und Geocoding von Mapbox nicht cachen dürfen, gibt es trotzdem einige Vorteile:
 
-- Secrets für diverse APIs erst beim Server hinzugefügt, damit diese nicht im javascript code an den Endnutzer weiter gegeben werden.
+- Secrets für diverse APIs werden erst beim Server hinzugefügt, damit diese nicht im javascript code an den Endnutzer weiter gegeben werden.
 - Nominatim's Ratelimit Problem wird gelöst
 - Datenschutz der Endnutzer [>Dateschutz](#datenschutz)
 - Möglichkeit selbst aus dem Verhalten der Nutzer zu lernen [>Statistik](#Statistik)
@@ -112,6 +183,9 @@ Die einzelnen Services laufen innerhalb von Docker-Containern. Individuelles upg
 
 #### Geocoding/Tile Request Cycle
 
+![requestSequenceDiagram](https://raw.githubusercontent.com/chronark/charon/master/roadmap/requestSequenceDiagram.svg)
+
+<!--
 ```mermaid
 sequenceDiagram
     participant Atlas
@@ -139,6 +213,6 @@ sequenceDiagram
     CharonAPI->>Atlas: CacheResult [http]
     Atlas->>AtlasCache: Write to Cache
     end
-```
+``` -->
 
 # Roadmap to 1.0
