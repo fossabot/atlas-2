@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>JSDoc: styles/cluster.ts</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css" />
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css" />
+  </head>
+
+  <body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+      <div class="container">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <h1 class="navbar-item">Atlas</h1>
+
+            <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <div class="navbar-menu">
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <a href="https://github.com/chronark/atlas" target="_blank">
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="container">
+      <div class="columns">
+        <div class="column is-3" id="sidebarNav">
+          <div class="sidebar">
+            <nav>
+              <h2><a href="index.html">Home</a></h2>
+              <div class="category">
+                <h3>Classes</h3>
+                <ul>
+                  <li><a href="ClusterStyle.html">ClusterStyle</a></li>
+                  <li><a href="ClusterStyle.module.exports.html">module.exports</a></li>
+                  <li><a href="Logger.html">Logger</a></li>
+                  <li><a href="Logger.Logger.html">Logger</a></li>
+                  <li><a href="Map.module.exports.html">module.exports</a></li>
+                  <li><a href="module.exports.html">module.exports</a></li>
+                  <li><a href="Nominatim.html">Nominatim</a></li>
+                  <li><a href="Nominatim.module.exports.html">module.exports</a></li>
+                </ul>
+                <h3>Global</h3>
+                <ul>
+                  <li><a href="global.html#addJobs">addJobs</a></li>
+                  <li><a href="global.html#bound">bound</a></li>
+                  <li><a href="global.html#clear">clear</a></li>
+                  <li><a href="global.html#polygonStyle">polygonStyle</a></li>
+                  <li><a href="global.html#removeFrom">removeFrom</a></li>
+                  <li><a href="global.html#removeListFromList">removeListFromList</a></li>
+                  <li><a href="global.html#strip">strip</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <div class="column is-9-desktop">
+          <div class="content" id="main-content-wrapper">
+            <header class="page-title">
+              <p>Source</p>
+              <h1>styles/cluster.ts</h1>
+            </header>
+
+            <section>
+              <article>
+                <pre class="prettyprint source linenums"><code>// @flow
+
+import { Stroke, Style, Text } from "ol/style.js"
+import Fill from "ol/style/Fill"
+import RegularShape from "ol/style/RegularShape"
+
+import { log } from "../lib/logger"
+import { bound } from "../lib/util"
+import { Job } from "../types/customTypes"
+import { OLFeature, OLStyle } from "../types/olTypes"
+
+/**
+ * Handles definition of a style for clusters.
+ * @description some description
+ * @export
+ * @class ClusterStyle
+ */
+export default class ClusterStyle {
+  private colorGradient: string[]
+  /**
+   *Creates an instance of ClusterStyle.
+   * @param {string[]} [colorGradient=[
+   *       "#ffffcc",
+   *       "#fed976",
+   *       "#fd8d3c",
+   *       "#e31a1c",
+   *       "#800026",
+   *     ]]
+   * @memberof ClusterStyle
+   */
+  public constructor(
+    colorGradient: string[] = [
+      "rgb(112,148,194)",
+      "rgb(103,142,191)",
+      "rgb(93,135,188)",
+      "rgb(84,129,186)",
+      "rgb(47,103,174)",
+      "rgb(75,122,183)",
+      "rgb(65,116,180)",
+      "rgb(56,109,177)",
+      "rgb(37,96,171)",
+      "rgb(28,90,168)",
+      "rgb(19,83,166)",
+      "rgb(9,77,163)",
+      "rgb(0,70,160)",
+    ],
+  ) {
+    this.colorGradient = colorGradient
+  }
+
+  /**
+   * Calculates a color depending on a given score.
+   *
+   * The interval between `minScore` and `1` gets populated with colors
+   * and the right colour will be returned.
+   *
+   * @param score Must be between `[0.0 - 1.0]`.
+   * @returns Returns a color in hexadezimal format
+   * @memberof ClusterStyle
+   *
+   * @example
+   * colorByScore(0.75)
+   * // returns '#881AC1'
+   */
+  private colorByScore(score: number, minScore = 0.5): string {
+    log.debug("Calculating color by score")
+    if (score &lt; 0 || score > 1) {
+      throw new RangeError("score must be between 0 and 1, including 0 and 1.")
+    }
+    if (minScore &lt; 0 || minScore > 1) {
+      throw new RangeError("minScore must be between 0 and 1, including 0 and 1.")
+    }
+    if (minScore >= score) {
+      return this.colorGradient[0]
+    }
+    const step = (1 - minScore) / this.colorGradient.length
+    const index = Math.floor((score - minScore) / step)
+
+    return this.colorGradient[index]
+  }
+
+  /**
+   * Calculate the maximum score of a list of features.
+   *
+   * @param  features
+   * @param  features.score - The individual score of a location between `0` and `1`
+   * @returns  The maximum score of a list of locations between `0` and `1`
+   * @memberof ClusterStyle
+   * @example
+   * const f = [
+   *  {
+   *    location: {
+   *      score: 0.45
+   *    }
+   *  },
+   * ]
+   * maxScore(f)
+   * // returns 0.45
+   */
+  private maxScore(features: OLFeature[]): number {
+    let maxScore = 0
+    for (const feature of features) {
+      const job: Job = feature.get("job")
+      const score: number = job.score
+      maxScore = Math.max(maxScore, score)
+    }
+    return maxScore
+  }
+
+  /**
+   * @description Create a style for clusters.
+   * @param {Number} score
+   * @param {Number} scale
+   * @param {number} size
+   * @returns {OLSytyle}
+   * @memberof ClusterStyle
+   */
+  private polygonStyle(score: number, scale: number, size: number): OLStyle {
+    const radius = bound(15, size, 25)
+    return new Style({
+      image: new RegularShape({
+        points: 4,
+        angle: Math.PI,
+        radius: radius,
+        stroke: new Stroke({
+          color: this.colorByScore(score, 0.5),
+          width: bound(1, radius / 4, radius),
+          lineCap: "square",
+          lineJoin: "miter",
+        }),
+        fill: new Fill({
+          color: "rgba(255,255,255,0.8)",
+        }),
+      }),
+      text: new Text({
+        text: size.toString(),
+        scale: 1,
+        fill: new Fill({
+          color: "#000",
+        }),
+      }),
+    })
+  }
+
+  /**
+   * Return a ol.Style for clusters
+   *
+   * @param cluster
+   * @returns An array with a single `OLStyle` element.
+   * This is necessary because OL expects an array.
+   * @memberof ClusterStyle
+   */
+  public style(cluster: OLFeature): OLStyle[] {
+    const features: OLFeature[] = cluster.get("features")
+    const size = features.length
+    if (size === 1) {
+      return this.selectedStyle(cluster)
+    } else {
+      const score = this.maxScore(features)
+      const scale = bound(0.2, size, 0.4)
+      const style = this.polygonStyle(score, scale, size)
+
+      return [style]
+    }
+  }
+
+  /**
+   * Extract the score from a single feature.
+   *
+   * @param  feature
+   * @returns
+   * @memberof ClusterStyle
+   */
+  private getScore(feature: OLFeature): number {
+    /*
+     * We need to unpack the feature by taking the `features` value.
+     * This returns an array of features and we can take the first element
+     * to get the `location` value of that element.
+     */
+    const subfeatures: OLFeature[] = feature.get("features")
+
+    if (subfeatures &amp;&amp; subfeatures.length === 1) {
+      const job: Job = subfeatures[0].get("job")
+      return job.score
+    }
+
+    return 0
+  }
+
+  /**
+   * Return a style for a cluster that is currently selected
+   *
+   * @param  cluster
+   * @returns
+   * @memberof ClusterStyle
+   */
+  private selectedStyle(cluster: OLFeature): OLStyle[] {
+    const size = 1
+    const score = this.getScore(cluster)
+    // Scale is within [0.2, 0.4]
+    const scale = Math.min(0.4, Math.max(size * 0.03, 0.2))
+    const style = this.polygonStyle(score, scale, size)
+    return [style]
+  }
+}
+</code></pre>
+              </article>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Dec 16 2019
+          17:13:36 GMT+0100 (GMT+01:00)
+        </p>
+        <p class="sidebar-created-by">
+          <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with
+          <i class="fas fa-heart"></i> by
+          <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="scripts/app.min.js"></script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>JSDoc: lib/nominatim.ts</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css" />
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css" />
+  </head>
+
+  <body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+      <div class="container">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <h1 class="navbar-item">Atlas</h1>
+
+            <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <div class="navbar-menu">
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <a href="https://github.com/chronark/atlas" target="_blank">
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="container">
+      <div class="columns">
+        <div class="column is-3" id="sidebarNav">
+          <div class="sidebar">
+            <nav>
+              <h2><a href="index.html">Home</a></h2>
+              <div class="category">
+                <h3>Classes</h3>
+                <ul>
+                  <li><a href="Logger.html">Logger</a></li>
+                  <li><a href="Logger.Logger.html">Logger</a></li>
+                  <li><a href="Map.module.exports.html">module.exports</a></li>
+                  <li><a href="module.exports.html">module.exports</a></li>
+                  <li><a href="Nominatim.html">Nominatim</a></li>
+                  <li><a href="Nominatim.module.exports.html">module.exports</a></li>
+                </ul>
+                <h3>Global</h3>
+                <ul>
+                  <li><a href="global.html#addJobs">addJobs</a></li>
+                  <li><a href="global.html#bound">bound</a></li>
+                  <li><a href="global.html#clear">clear</a></li>
+                  <li><a href="global.html#polygonStyle">polygonStyle</a></li>
+                  <li><a href="global.html#removeFrom">removeFrom</a></li>
+                  <li><a href="global.html#removeListFromList">removeListFromList</a></li>
+                  <li><a href="global.html#strip">strip</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <div class="column is-9-desktop">
+          <div class="content" id="main-content-wrapper">
+            <header class="page-title">
+              <p>Source</p>
+              <h1>lib/nominatim.ts</h1>
+            </header>
+
+            <section>
+              <article>
+                <pre class="prettyprint source linenums"><code>import axios from "axios"
+import { log } from "./logger"
+import { GeoJSON } from "geojson"
+import { Geocoder } from "../types/customInterfaces"
+interface ForwardResult {
+  geojson: Record&lt;string, any>
+  lat: number
+  lon: number
+}
+
+/**
+ * @description Nominatim API
+ * @export
+ * @class Nominatim
+ */
+export default class Nominatim implements Geocoder {
+  private apiURLBase: string
+  private apiURLQueryParameters: string[]
+  /**
+   *Creates an instance of Nominatim.
+   * @memberof Nominatim
+   */
+  public constructor() {
+    this.apiURLBase = "https://nominatim.openstreetmap.org/search?q="
+    this.apiURLQueryParameters = ["format=jsonv2", "polygon_geojson=1", "limit=1"]
+  }
+
+  /**
+   * @description Constructs an url from a search address and other paramters.
+   * @param {string} address
+   * @returns {string}
+   * @memberof Nominatim
+   */
+  private buildURL(address: string): string {
+    const url = "".concat(this.apiURLBase, address, "&amp;", this.flattenParameters())
+    return encodeURI(url)
+  }
+
+  /**
+   * @description Extracts the needed information.
+   * @param {({
+   *     [key: string]: string | number,
+   *   })} jsonData
+   * @returns {({ [key: string]: string | number })}
+   * @memberof Nominatim
+   */
+  private cleanJson(jsonData: Record&lt;string, any>): ForwardResult {
+    if (jsonData.length >= 1) {
+      return {
+        lat: Number(jsonData[0].lat),
+        lon: Number(jsonData[0].lon),
+        geojson: jsonData[0].geojson,
+      }
+    } else {
+      throw new RangeError("Json data did not have enough enough elements, expecting at least 1.")
+    }
+  }
+
+  /**
+   * @description Transforms the parameters object into a string.
+   * @param {{ [key: string]: string }} [parameters=this.apiURLQueryParameters]
+   * @returns
+   * @memberof Nominatim
+   */
+  private flattenParameters(parameters: string[] = this.apiURLQueryParameters): string {
+    return parameters.join("&amp;")
+  }
+
+  public reverse(lon: number, lat: number): Promise&lt;GeoJSON | undefined> {
+    const parameters = ["format=geojson", `lon=${lon}`, `lat=${lat}`, "zoom=3", "polygon_geojson=1", "limit=1"]
+    const url = "https://nominatim.openstreetmap.org/reverse?" + parameters.join("&amp;")
+
+    return axios
+      .get(url)
+      .then(response => response.data)
+      .then(data => {
+        if (data.error) {
+          return
+        }
+        return data
+      })
+      .catch(error => {
+        log.error(error, { url })
+      })
+  }
+
+  /**
+   * @description Performs a forward search.
+   * @param {string} address
+   * @returns
+   * @memberof Nominatim
+   */
+  public forward(address: string): Promise&lt;{ result: ForwardResult | undefined; success: boolean }> {
+    const url = this.buildURL(address)
+    return axios.get(url).then(response => {
+      try {
+        return {
+          result: this.cleanJson(response.data),
+          success: true,
+        }
+      } catch {
+        return {
+          result: undefined,
+          success: false,
+        }
+      }
+    })
+  }
+}
+</code></pre>
+              </article>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Dec 16 2019
+          17:14:21 GMT+0100 (GMT+01:00)
+        </p>
+        <p class="sidebar-created-by">
+          <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with
+          <i class="fas fa-heart"></i> by
+          <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="scripts/app.min.js"></script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: Logger</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -56,15 +56,15 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Interfaces</h3><ul><li><a href="Location.html">Location</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bound">bound</a></li><li><a href="global.html#createNotification">createNotification</a></li><li><a href="global.html#createSelectOptions">createSelectOptions</a></li><li><a href="global.html#getJobsInGeometry">getJobsInGeometry</a></li><li><a href="global.html#removeFrom">removeFrom</a></li><li><a href="global.html#removeListFromList">removeListFromList</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="Logger.html">Logger</a></li><li><a href="Logger.Logger.html">Logger</a></li></ul><h3>Interfaces</h3><ul><li><a href="Location.html">Location</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bound">bound</a></li><li><a href="global.html#removeFrom">removeFrom</a></li><li><a href="global.html#removeListFromList">removeListFromList</a></li><li><a href="global.html#strip">strip</a></li></ul></div>
                     </nav>
                 </div>
             </div>
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Title</p>
-                        <h1>Global</h1>
+                        <p>Class</p>
+                        <h1>Logger</h1>
                     </header>
                     
                     
@@ -76,7 +76,7 @@
 
 <header>
     
-        <h2></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Logger<span class="signature">()</span><span class="type-signature"></span></h2>
         
     
 </header>
@@ -85,8 +85,41 @@
     <div class="container-overview">
     
         
+            <div class='vertical-section'>
+                <h3 class="title"><span>Constructor</span></h3>
+                <div class="members">
+                    <div class="member">
 
+
+    
+    <h4 class="name" id="Logger">
+        <a class="href-link" href="#Logger">#</a>
         
+        <span class="code-name">
+            
+                new Logger<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Custom logger</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
 
 
 <dl class="details">
@@ -121,9 +154,38 @@
     
 
     
+        <p class="tag-source">
+            <a href="lib_logger.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_logger.ts.html">lib/logger.ts</a>, <a href="lib_logger.ts.html#line2">line 2</a>
+            </span>
+        </p>
+    
 </dl>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+                </div>
+            </div>
         
     
     </div>
@@ -132,6 +194,13 @@
 
     
 
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="Logger.Logger.html">Logger</a></dt>
+            <dd></dd>
+        </dl>
     
 
     
@@ -151,762 +220,12 @@
 
 
     
-    <h4 class="name" id="bound">
-        <a class="href-link" href="#bound">#</a>
+    <h4 class="name" id="buildPayload">
+        <a class="href-link" href="#buildPayload">#</a>
         
         <span class="code-name">
             
-                bound<span class="signature">(lower, value, upper)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>lower</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"></td>
-</tr>
-
-
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>value</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"></td>
-</tr>
-
-
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>upper</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"></td>
-</tr>
-
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_util.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_util.ts.html">lib/util.ts</a>, <a href="lib_util.ts.html#line40">line 40</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="createNotification">
-        <a class="href-link" href="#createNotification">#</a>
-        
-        <span class="code-name">
-            
-                createNotification<span class="signature">(options)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>options</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"></td>
-</tr>
-
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="redux_notifications_factory.ts.html" class="button">View Source</a>
-            <span>
-                <a href="redux_notifications_factory.ts.html">redux/notifications/factory.ts</a>, <a href="redux_notifications_factory.ts.html#line6">line 6</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="createSelectOptions">
-        <a class="href-link" href="#createSelectOptions">#</a>
-        
-        <span class="code-name">
-            
-                createSelectOptions<span class="signature">(options)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>options</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"></td>
-</tr>
-
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="components_Dropdown.tsx.html" class="button">View Source</a>
-            <span>
-                <a href="components_Dropdown.tsx.html">components/Dropdown.tsx</a>, <a href="components_Dropdown.tsx.html#line6">line 6</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="createSelectOptions">
-        <a class="href-link" href="#createSelectOptions">#</a>
-        
-        <span class="code-name">
-            
-                createSelectOptions<span class="signature">(options)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>options</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"></td>
-</tr>
-
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="components_Form.tsx.html" class="button">View Source</a>
-            <span>
-                <a href="components_Form.tsx.html">components/Form.tsx</a>, <a href="components_Form.tsx.html#line167">line 167</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="getJobsInGeometry">
-        <a class="href-link" href="#getJobsInGeometry">#</a>
-        
-        <span class="code-name">
-            
-                getJobsInGeometry<span class="signature">(jobs, geometry)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>jobs</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"></td>
-</tr>
-
-
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>geometry</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"></td>
-</tr>
-
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_jobFilter.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_jobFilter.ts.html">lib/jobFilter.ts</a>, <a href="lib_jobFilter.ts.html#line7">line 7</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="removeFrom">
-        <a class="href-link" href="#removeFrom">#</a>
-        
-        <span class="code-name">
-            
-                removeFrom<span class="signature">(list, entry)</span><span class="type-signature"></span>
+                buildPayload<span class="signature">(level<span class="signature-attributes">opt</span>, text, payload)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -915,7 +234,7 @@
     
     
     <div class="description">
-        Remove an item from a list.
+        <p>Basic console.log call with additional parameters</p>
     </div>
     
 
@@ -940,7 +259,11 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -953,18 +276,39 @@
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>list</code></td>
+      <td class="name"><code>level</code></td>
   
 
   <td class="type">
   
+      
+<span class="param-type">string</span>
+
+
+  
   </td>
 
   
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
 
+      
+
+      
+      </td>
   
 
-  <td class="description last">A list of items.</td>
+  
+      <td class="default">
+      
+          "info"
+      
+      </td>
+  
+
+  <td class="description last"></td>
 </tr>
 
 
@@ -973,18 +317,72 @@
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>entry</code></td>
+      <td class="name"><code>text</code></td>
   
 
   <td class="type">
   
+      
+<span class="param-type">String</span>
+
+
+  
   </td>
 
   
+      <td class="attributes">
+      
 
+      
+
+      
+      </td>
   
 
-  <td class="description last">A single item.</td>
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>payload</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"></td>
 </tr>
 
 
@@ -1029,9 +427,9 @@
 
     
         <p class="tag-source">
-            <a href="lib_util.ts.html" class="button">View Source</a>
+            <a href="lib_logger.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_util.ts.html">lib/util.ts</a>, <a href="lib_util.ts.html#line9">line 9</a>
+                <a href="lib_logger.ts.html">lib/logger.ts</a>, <a href="lib_logger.ts.html#line46">line 46</a>
             </span>
         </p>
     
@@ -1053,23 +451,6 @@
 
 
 
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'>List without entry.</div>
-    
-    
-</div>
-
-                
-        </div>
-    </div>
 
 
 
@@ -1080,12 +461,12 @@
 
 
     
-    <h4 class="name" id="removeListFromList">
-        <a class="href-link" href="#removeListFromList">#</a>
+    <h4 class="name" id="debug">
+        <a class="href-link" href="#debug">#</a>
         
         <span class="code-name">
             
-                removeListFromList<span class="signature">(list1, list2)</span><span class="type-signature"></span>
+                debug<span class="signature">(text, payload)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -1094,7 +475,7 @@
     
     
     <div class="description">
-        Remove every item in list1 from list2.
+        <p>Debug logging</p>
     </div>
     
 
@@ -1132,10 +513,15 @@
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>list1</code></td>
+      <td class="name"><code>text</code></td>
   
 
   <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
   
   </td>
 
@@ -1143,7 +529,7 @@
 
   
 
-  <td class="description last">A subset of list2.</td>
+  <td class="description last"></td>
 </tr>
 
 
@@ -1152,10 +538,15 @@
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>list2</code></td>
+      <td class="name"><code>payload</code></td>
   
 
   <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
   
   </td>
 
@@ -1163,7 +554,7 @@
 
   
 
-  <td class="description last">A list of items.</td>
+  <td class="description last"></td>
 </tr>
 
 
@@ -1208,9 +599,9 @@
 
     
         <p class="tag-source">
-            <a href="lib_util.ts.html" class="button">View Source</a>
+            <a href="lib_logger.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_util.ts.html">lib/util.ts</a>, <a href="lib_util.ts.html#line21">line 21</a>
+                <a href="lib_logger.ts.html">lib/logger.ts</a>, <a href="lib_logger.ts.html#line60">line 60</a>
             </span>
         </p>
     
@@ -1233,22 +624,521 @@
 
 
 
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
 
-<div class="columns">
-    
-    <div class='param-desc column is-7'>List2 without all items present in list1.</div>
-    
-    
+
+
 </div>
+            
+                <div class="member">
 
-                
-        </div>
+
+    
+    <h4 class="name" id="error">
+        <a class="href-link" href="#error">#</a>
+        
+        <span class="code-name">
+            
+                error<span class="signature">(text, payload)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Error logging</p>
     </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>text</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>payload</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_logger.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_logger.ts.html">lib/logger.ts</a>, <a href="lib_logger.ts.html#line90">line 90</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="info">
+        <a class="href-link" href="#info">#</a>
+        
+        <span class="code-name">
+            
+                info<span class="signature">(text, payload)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Info logging</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>text</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>payload</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_logger.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_logger.ts.html">lib/logger.ts</a>, <a href="lib_logger.ts.html#line70">line 70</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="warn">
+        <a class="href-link" href="#warn">#</a>
+        
+        <span class="code-name">
+            
+                warn<span class="signature">(text, payload)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Warning logging</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>text</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>payload</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_logger.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_logger.ts.html">lib/logger.ts</a>, <a href="lib_logger.ts.html#line80">line 80</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1277,7 +1167,7 @@
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Fri Jan 10 2020 15:37:32 GMT+0100 (GMT+01:00)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Dec 16 2019 18:06:56 GMT+0100 (GMT+01:00)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>

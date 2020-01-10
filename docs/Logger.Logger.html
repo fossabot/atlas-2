@@ -1,11 +1,9 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: lib/util.ts</title>
+    <title>JSDoc: Logger</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -58,71 +56,163 @@
             <div class="column is-3" id="sidebarNav">
                 <div class="sidebar">
                     <nav>
-                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Interfaces</h3><ul><li><a href="Location.html">Location</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bound">bound</a></li><li><a href="global.html#createNotification">createNotification</a></li><li><a href="global.html#createSelectOptions">createSelectOptions</a></li><li><a href="global.html#getJobsInGeometry">getJobsInGeometry</a></li><li><a href="global.html#removeFrom">removeFrom</a></li><li><a href="global.html#removeListFromList">removeListFromList</a></li></ul></div>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="Logger.html">Logger</a></li><li><a href="Logger.Logger.html">Logger</a></li></ul><h3>Interfaces</h3><ul><li><a href="Location.html">Location</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bound">bound</a></li><li><a href="global.html#removeFrom">removeFrom</a></li><li><a href="global.html#removeListFromList">removeListFromList</a></li><li><a href="global.html#strip">strip</a></li></ul></div>
                     </nav>
                 </div>
             </div>
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Source</p>
-                        <h1>lib/util.ts</h1>
+                        <p>Class</p>
+                        <h1>Logger</h1>
                     </header>
                     
                     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Remove an item from a list.
- *
- * @param list - A list of items.
- * @param entry - A single item.
- * @returns List without entry.
- */
-export function removeFrom(list: any[], entry: any): any[] {
-  return list.filter(value => {
-    return value !== entry
-  })
-}
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="Logger.html">Logger</a>.</span>Logger<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+    
+</header>
 
-/**
- * Remove every item in list1 from list2.
- *
- * @param list1 - A subset of list2.
- * @param list2 - A list of items.
- * @returns List2 without all items present in list1.
- */
-export function removeListFromList(list1: any[], list2: any[]): any[] {
-  const unique = [...new Set(list1)]
-  return list2.filter(value => {
-    return !unique.includes(value)
-  })
-}
+<article>
+    <div class="container-overview">
+    
+        
+            <div class='vertical-section'>
+                <h3 class="title"><span>Constructor</span></h3>
+                <div class="members">
+                    <div class="member">
 
-/**
- * Return value if it is between lower and upper, otherwise return the boundary value.
- *
- * @param  lower - The lower end of the boundary.
- * @param  value - Any value.
- * @param  upper - The upper end of the boundary.
- * @returns A number that is within lower and upper.
- */
 
-/**
- * @param lower
- * @param value
- * @param upper
- */
-export function bound(lower: number, value: number, upper: number): number {
-  return Math.max(lower, Math.min(value, upper))
-}
-</code></pre>
-        </article>
-    </section>
+    
+    <h4 class="name" id="Logger">
+        <a class="href-link" href="#Logger">#</a>
+        
+        <span class="code-name">
+            
+                new Logger<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Creates an instance of Logger.</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_logger.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_logger.ts.html">lib/logger.ts</a>, <a href="lib_logger.ts.html#line12">line 12</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+                </div>
+            </div>
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
@@ -135,7 +225,7 @@ export function bound(lower: number, value: number, upper: number): number {
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Fri Jan 10 2020 15:37:32 GMT+0100 (GMT+01:00)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Mon Dec 16 2019 18:06:56 GMT+0100 (GMT+01:00)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
