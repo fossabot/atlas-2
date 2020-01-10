@@ -5,7 +5,6 @@ const HtmlPlugin = require("html-webpack-plugin")
 const path = require("path")
 const PurgecssPlugin = require("purgecss-webpack-plugin")
 const glob = require("glob")
-const Dotenv = require("dotenv-webpack")
 
 module.exports = {
   node: { fs: "empty" },
@@ -75,12 +74,6 @@ module.exports = {
       paths: glob.sync(`${path.join(__dirname, "static/css")}/**/*`, {
         nodir: true,
       }),
-    }),
-    /*
-        Mapbox requres an access token that we are loading from a local .env file.
-      */
-    new Dotenv({
-      path: "./.env",
     }),
   ],
 }

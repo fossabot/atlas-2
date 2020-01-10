@@ -1,3 +1,6 @@
+/**
+ *
+ */
 import { GeocodingResponseObject } from "../types/customTypes"
 export default class Charon {
   private serverURL: string

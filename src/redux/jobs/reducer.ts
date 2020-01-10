@@ -1,3 +1,6 @@
+/*
+ * @module redux
+ */
 import { SET_ALL_JOBS, SET_SHOWN_JOBS, JobActionTypes, JobState } from "./types"
 
 const initialState: JobState = {

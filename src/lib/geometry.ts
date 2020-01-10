@@ -1,3 +1,6 @@
+/**
+ *
+ */
 import { fromLonLat } from "ol/proj"
 import { containsXY } from "ol/extent"
 

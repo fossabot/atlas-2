@@ -1,3 +1,6 @@
+/**
+ *
+ */
 import Map from "./map"
 import { toLonLat } from "ol/proj"
 import Nominatim from "./nominatim"

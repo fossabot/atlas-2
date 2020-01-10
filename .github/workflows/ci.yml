@@ -6,7 +6,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: ["10", "12"]
+        node: ["12"]
     runs-on: ${{ matrix.os }}
     name: ${{matrix.os }} - node_${{matrix.node}}
     steps:
@@ -24,9 +24,9 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ matrix.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ matrix.os }}-${{ matrix.node }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ matrix.os }}-yarn-
+            ${{ matrix.os }}-${{ matrix.node }}-yarn-
 
       - name: Install dependencies
         run: yarn install
@@ -34,8 +34,8 @@ jobs:
       - name: Lint
         run: yarn format
 
-      - name: Typecheck
-        run: yarn tsc
+      # - name: Typecheck
+      #   run: yarn tsc
 
       - name: Build
         run: yarn build

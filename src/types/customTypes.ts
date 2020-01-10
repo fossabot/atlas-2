@@ -42,14 +42,42 @@ export interface Location {
 }
 
 export interface Job {
+  /**
+   * Name of the corporation offering the job.
+   */
   corp: string
+  /**
+   * An array of locations where the job is offered.
+   */
   locations: Location[]
+  /**
+   * The entrydate for the job.
+   */
   date: string
+  /**
+   * Internal id for each job.
+   */
   id: number
+  /**
+   * URL to the job's or company's logo.
+   */
   logo: string
+  /**
+   * Calculated matching score for the user and job.
+   * Must be between 0.0 and 1.0 included.
+   */
   score: number
+  /**
+   * Job title description.
+   */
   title: string
+  /**
+   * Job classification.
+   */
   type: string
+  /**
+   * URL for more information about this job or company's page.
+   */
   url: string
 }
 

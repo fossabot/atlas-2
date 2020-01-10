@@ -1,3 +1,6 @@
+/*
+ * @module redux
+ */
 export interface CountriesState {
   allCountries: Record<string, any>[]
   selectedCountries: Record<string, any>[]

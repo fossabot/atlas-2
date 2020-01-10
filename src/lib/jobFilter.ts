@@ -1,6 +1,12 @@
+/**
+ *
+ */
 import { Job } from "../types/customTypes"
 import { areCoordinatesInGeometry } from "./geometry"
-
+/**
+ * @param jobs
+ * @param geometry
+ */
 const getJobsInGeometry = (jobs: Job[], geometry: Record<string, any>[]): Job[] => {
   let newShownJobs: Job[] = []
   geometry.forEach(geometryFeature => {

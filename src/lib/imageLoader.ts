@@ -1,3 +1,6 @@
+/**
+ *
+ */
 // This file is just here to clean up image imports in other modules.
 // Import multiple images here and export them as array for easier handling and cleaner code.
 

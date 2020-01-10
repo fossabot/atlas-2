@@ -1,0 +1,8 @@
+{
+  "hideGenerator": true,
+  "mode": "modules",
+  "name": "Atlas documentaion",
+  "out": "./docs",
+  "readme": "./README.md",
+  "theme": "default"
+}

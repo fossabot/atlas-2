@@ -1,3 +1,7 @@
+/*
+ * @module redux
+ */
+
 import {
   AddSelectedCountriesAction,
   ADD_SELECTED_COUNTRIES,

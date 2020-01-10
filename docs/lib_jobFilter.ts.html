@@ -5,7 +5,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: lib/util.ts</title>
+    <title>JSDoc: lib/jobFilter.ts</title>
 
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -66,7 +66,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Source</p>
-                        <h1>lib/util.ts</h1>
+                        <h1>lib/jobFilter.ts</h1>
                     </header>
                     
                     
@@ -77,48 +77,52 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * Remove an item from a list.
  *
- * @param list - A list of items.
- * @param entry - A single item.
- * @returns List without entry.
  */
-export function removeFrom(list: any[], entry: any): any[] {
-  return list.filter(value => {
-    return value !== entry
+import { Job } from "../types/customTypes"
+import { areCoordinatesInGeometry } from "./geometry"
+/**
+ * @param jobs
+ * @param geometry
+ */
+const getJobsInGeometry = (jobs: Job[], geometry: Record&lt;string, any>[]): Job[] => {
+  let newShownJobs: Job[] = []
+  geometry.forEach(geometryFeature => {
+    if (geometryFeature) {
+      const newJobs = jobs.filter(job => {
+        const locationsInsideGeometry = job.locations.filter(location => {
+          return areCoordinatesInGeometry([location.lon, location.lat], geometryFeature)
+        })
+        if (locationsInsideGeometry.length > 0) {
+          job.locations = locationsInsideGeometry
+          return true
+        }
+        return false
+      })
+      newShownJobs = newShownJobs.concat(newJobs)
+    }
   })
+  return newShownJobs
 }
 
-/**
- * Remove every item in list1 from list2.
- *
- * @param list1 - A subset of list2.
- * @param list2 - A list of items.
- * @returns List2 without all items present in list1.
- */
-export function removeListFromList(list1: any[], list2: any[]): any[] {
-  const unique = [...new Set(list1)]
-  return list2.filter(value => {
-    return !unique.includes(value)
-  })
+const filterJobsByGeometry = (jobs: Job[], geometry: Record&lt;string, any>[]): Job[] => {
+  if (geometry.length === 0) {
+    return jobs
+  } else {
+    return getJobsInGeometry(jobs, geometry)
+  }
 }
-
-/**
- * Return value if it is between lower and upper, otherwise return the boundary value.
- *
- * @param  lower - The lower end of the boundary.
- * @param  value - Any value.
- * @param  upper - The upper end of the boundary.
- * @returns A number that is within lower and upper.
- */
-
-/**
- * @param lower
- * @param value
- * @param upper
- */
-export function bound(lower: number, value: number, upper: number): number {
-  return Math.max(lower, Math.min(value, upper))
+export const filterJobs = (
+  jobs: Job[],
+  filter: { countries?: Record&lt;string, any>[]; circle?: Record&lt;string, any> },
+): Job[] => {
+  if (filter.circle) {
+    jobs = filterJobsByGeometry(jobs, [filter.circle])
+  }
+  if (filter.countries) {
+    jobs = filterJobsByGeometry(jobs, filter.countries)
+  }
+  return jobs
 }
 </code></pre>
         </article>
