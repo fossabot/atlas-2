@@ -235,31 +235,29 @@ sequenceDiagram
 
 Im Prinzip könnte man die Karte jetzt bereits einbauen, jedoch sind einige Dinge noch nicht ganz ausgereift.
 
-## TODO
+## TODO: Atlas
 
-### Atlas
-
-#### React entfernen
+### React entfernen
 
 Um schneller einen funktionierenden Prototypen zu erstellen, hatte ich [react](https://reactjs.org/) benutzt. Das ist jedoch für eine einzelne Karte definitiv nicht nötig. Außerdem werden Frameworks hier ja nicht so gerne gesehen.
 
 Der react Anteil ist allerdings sehr gering und kann wieder entfernt werden.
 
-#### Vector-/Rastertiles
+### Vector-/Rastertiles
 
 Da Vectortiles und Rastertiles ein bisschen unterschiedlich verarbeitet werden wollen und wir zumindest im Rahmen der Tests auch Rastertiles darstellen und cachen müssen, muss ein bisschen Code umgeschrieben werden, sodass man einfach wechseln kann.
 
-#### Clickverhalten bei Clustern
+### Clickverhalten bei Clustern
 
 Die Funktionalität zu entscheiden ob gezoomed wird oder ein Popup geöffnet wird, muss noch implementiert werden.
 
-#### Popup integration
+### Popup integration
 
 Wie werden diese integriert und dargestellt?
 Gibt es ein Design?
 Heiko wollte im Hintergrund eine Karte und vorne drauf die Kacheln mit Jobs, soll das komplett von Atlas gerendert werden oder sollen die Daten nach außen geschickt werden und die Webseite selbst rendert das ganze dann?
 
-### Integration
+## Integration
 
 Die Integration für 1.0 ist möglichst einfach gehalten.
 
@@ -284,7 +282,7 @@ map.setJobs(jobs)
 Die [Job API](https://jobboerse.th-nuernberg.de/srv.php/Suche/offers) der Jobbörse gibt derzeit sowohl Orte als auch Jobs zurück.
 Atlas führt ein neues [Format](#api) ein, dass beides vereint. das wird aber nicht mehr gebraucht. Entweder die API kann geändert werden, oder die Daten werden Clientseitig umgeformt und durch `map.setJobs()` geladen.
 
-#### Option 1: API Änderung
+### Option 1: API Änderung
 
 Entweder sollte es einen neuen Endpunkt geben, der den Score bereits hinzufügt und wie [hier](#API) formattiert zurück gibt:
 
@@ -301,13 +299,13 @@ content-type: application/json
 }
 ```
 
-#### Option 2: Frontend
+### Option 2: Frontend
 
 Entweder der existierende Code kümmert sich um die Score Berechnung und erstellt ein Javascript Object, dass den [Job](https://github.com/chronark/atlas/blob/4bbedb2babc6759e6c99d0451464aa4a75c0a6fa/src/types/customTypes.ts#L44) Typ implementiert.
 
 Auf lange Sicht sollte das Anfragen und Filtern der Jobs auch durch Atlas erledigt werden, aber für den Anfang ist es sicherlich einfacher wenn es von Außen gemacht wird und das Format lediglich umgeformt wird.
 
-### Charon
+## TODO: Charon
 
 Charon hat derzeit noch keine Implementation für OSM oder Nominatim und Dokumentation habe ich auch noch nicht angefangen zu schreiben.
 
