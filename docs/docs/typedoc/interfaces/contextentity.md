@@ -25,7 +25,7 @@ sidebar_label: "ContextEntity"
 
 • **id**: *string*
 
-*Defined in [src/types/customTypes.ts:119](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customTypes.ts#L119)*
+*Defined in [src/types/customTypes.ts:119](https://github.com/chronark/atlas/blob/128c355/src/types/customTypes.ts#L119)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **short_code**? : *undefined | string*
 
-*Defined in [src/types/customTypes.ts:122](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customTypes.ts#L122)*
+*Defined in [src/types/customTypes.ts:122](https://github.com/chronark/atlas/blob/128c355/src/types/customTypes.ts#L122)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 • **text**: *string*
 
-*Defined in [src/types/customTypes.ts:121](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customTypes.ts#L121)*
+*Defined in [src/types/customTypes.ts:121](https://github.com/chronark/atlas/blob/128c355/src/types/customTypes.ts#L121)*
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 • **wikidata**? : *undefined | string*
 
-*Defined in [src/types/customTypes.ts:120](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customTypes.ts#L120)*
+*Defined in [src/types/customTypes.ts:120](https://github.com/chronark/atlas/blob/128c355/src/types/customTypes.ts#L120)*

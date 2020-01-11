@@ -23,7 +23,7 @@ sidebar_label: "TextInputProps"
 
 • **label**: *string*
 
-*Defined in [src/components/TextInput.tsx:4](https://github.com/chronark/atlas/blob/e6cc89d/src/components/TextInput.tsx#L4)*
+*Defined in [src/components/TextInput.tsx:4](https://github.com/chronark/atlas/blob/128c355/src/components/TextInput.tsx#L4)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **placeholder**? : *undefined | string*
 
-*Defined in [src/components/TextInput.tsx:5](https://github.com/chronark/atlas/blob/e6cc89d/src/components/TextInput.tsx#L5)*
+*Defined in [src/components/TextInput.tsx:5](https://github.com/chronark/atlas/blob/128c355/src/components/TextInput.tsx#L5)*

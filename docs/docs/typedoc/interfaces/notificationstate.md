@@ -22,4 +22,4 @@ sidebar_label: "NotificationState"
 
 • **notifications**: *[Notification](notification.md)[]*
 
-*Defined in [src/redux/notifications/types.ts:21](https://github.com/chronark/atlas/blob/e6cc89d/src/redux/notifications/types.ts#L21)*
+*Defined in [src/redux/notifications/types.ts:21](https://github.com/chronark/atlas/blob/128c355/src/redux/notifications/types.ts#L21)*

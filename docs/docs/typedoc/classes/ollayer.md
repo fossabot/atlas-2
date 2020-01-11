@@ -131,7 +131,7 @@ ___
 
 ▸ **addFilter**(`mask`: any): *void*
 
-*Defined in [src/types/olTypes.ts:39](https://github.com/chronark/atlas/blob/e6cc89d/src/types/olTypes.ts#L39)*
+*Defined in [src/types/olTypes.ts:39](https://github.com/chronark/atlas/blob/128c355/src/types/olTypes.ts#L39)*
 
 **Parameters:**
 
