@@ -22,4 +22,4 @@ sidebar_label: "SearchState"
 
 • **query**: *string*
 
-*Defined in [src/redux/search/types.ts:2](https://github.com/chronark/atlas/blob/0dc33cd/src/redux/search/types.ts#L2)*
+*Defined in [src/redux/search/types.ts:2](https://github.com/chronark/atlas/blob/0e3b309/src/redux/search/types.ts#L2)*

@@ -68,7 +68,7 @@ module.exports = {
     "jsdoc/check-param-names": "warn", // Recommended
     "jsdoc/check-syntax": 1,
     "jsdoc/check-tag-names": 1, // Recommended
-    "jsdoc/check-types": 1, // Recommended
+    "jsdoc/check-types": "off", // Recommended
     "jsdoc/implements-on-classes": 1, // Recommended
     "jsdoc/match-description": 1,
     "jsdoc/newline-after-description": 1, // Recommended
@@ -82,7 +82,7 @@ module.exports = {
     "jsdoc/require-param": "warn", // Recommended
     "jsdoc/require-param-description": 1, // Recommended
     "jsdoc/require-param-name": 1, // Recommended
-    "jsdoc/require-param-type": "warn", // Recommended
+    "jsdoc/require-param-type": "off", // Recommended
     "jsdoc/require-returns": 1, // Recommended
     "jsdoc/require-returns-check": 1, // Recommended
     "jsdoc/require-returns-description": 1, // Recommended

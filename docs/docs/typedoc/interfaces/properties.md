@@ -26,7 +26,7 @@ sidebar_label: "Properties"
 
 • **accuracy**? : *undefined | string*
 
-*Defined in [src/types/customTypes.ts:109](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L109)*
+*Defined in [src/types/customTypes.ts:109](https://github.com/chronark/atlas/blob/0e3b309/src/types/customTypes.ts#L109)*
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 • **address**? : *undefined | string*
 
-*Defined in [src/types/customTypes.ts:110](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L110)*
+*Defined in [src/types/customTypes.ts:110](https://github.com/chronark/atlas/blob/0e3b309/src/types/customTypes.ts#L110)*
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 • **category**? : *undefined | string*
 
-*Defined in [src/types/customTypes.ts:112](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L112)*
+*Defined in [src/types/customTypes.ts:112](https://github.com/chronark/atlas/blob/0e3b309/src/types/customTypes.ts#L112)*
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 • **landmark**? : *undefined | false | true*
 
-*Defined in [src/types/customTypes.ts:111](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L111)*
+*Defined in [src/types/customTypes.ts:111](https://github.com/chronark/atlas/blob/0e3b309/src/types/customTypes.ts#L111)*
 
 ___
 
@@ -58,4 +58,4 @@ ___
 
 • **wikidata**? : *undefined | string*
 
-*Defined in [src/types/customTypes.ts:108](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L108)*
+*Defined in [src/types/customTypes.ts:108](https://github.com/chronark/atlas/blob/0e3b309/src/types/customTypes.ts#L108)*

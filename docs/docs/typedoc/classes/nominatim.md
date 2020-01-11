@@ -39,7 +39,7 @@ sidebar_label: "Nominatim"
 
 \+ **new Nominatim**(): *[Nominatim](nominatim.md)*
 
-*Defined in [src/lib/nominatim.ts:17](https://github.com/chronark/atlas/blob/0dc33cd/src/lib/nominatim.ts#L17)*
+*Defined in [src/lib/nominatim.ts:17](https://github.com/chronark/atlas/blob/0e3b309/src/lib/nominatim.ts#L17)*
 
 **Returns:** *[Nominatim](nominatim.md)*
 
@@ -49,7 +49,7 @@ sidebar_label: "Nominatim"
 
 • **apiURLBase**: *string*
 
-*Defined in [src/lib/nominatim.ts:16](https://github.com/chronark/atlas/blob/0dc33cd/src/lib/nominatim.ts#L16)*
+*Defined in [src/lib/nominatim.ts:16](https://github.com/chronark/atlas/blob/0e3b309/src/lib/nominatim.ts#L16)*
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 • **apiURLQueryParameters**: *string[]*
 
-*Defined in [src/lib/nominatim.ts:17](https://github.com/chronark/atlas/blob/0dc33cd/src/lib/nominatim.ts#L17)*
+*Defined in [src/lib/nominatim.ts:17](https://github.com/chronark/atlas/blob/0e3b309/src/lib/nominatim.ts#L17)*
 
 ## Methods
 
@@ -65,7 +65,7 @@ ___
 
 ▸ **buildURL**(`address`: string): *string*
 
-*Defined in [src/lib/nominatim.ts:24](https://github.com/chronark/atlas/blob/0dc33cd/src/lib/nominatim.ts#L24)*
+*Defined in [src/lib/nominatim.ts:24](https://github.com/chronark/atlas/blob/0e3b309/src/lib/nominatim.ts#L24)*
 
 **Parameters:**
 
@@ -81,7 +81,7 @@ ___
 
 ▸ **cleanJson**(`jsonData`: Record‹string, any›): *[ForwardResult](../interfaces/forwardresult.md)*
 
-*Defined in [src/lib/nominatim.ts:29](https://github.com/chronark/atlas/blob/0dc33cd/src/lib/nominatim.ts#L29)*
+*Defined in [src/lib/nominatim.ts:29](https://github.com/chronark/atlas/blob/0e3b309/src/lib/nominatim.ts#L29)*
 
 **Parameters:**
 
@@ -97,7 +97,7 @@ ___
 
 ▸ **flattenParameters**(`parameters`: string[]): *string*
 
-*Defined in [src/lib/nominatim.ts:41](https://github.com/chronark/atlas/blob/0dc33cd/src/lib/nominatim.ts#L41)*
+*Defined in [src/lib/nominatim.ts:41](https://github.com/chronark/atlas/blob/0e3b309/src/lib/nominatim.ts#L41)*
 
 **Parameters:**
 
@@ -115,7 +115,7 @@ ___
 
 *Implementation of [Geocoder](../interfaces/geocoder.md)*
 
-*Defined in [src/lib/nominatim.ts:63](https://github.com/chronark/atlas/blob/0dc33cd/src/lib/nominatim.ts#L63)*
+*Defined in [src/lib/nominatim.ts:63](https://github.com/chronark/atlas/blob/0e3b309/src/lib/nominatim.ts#L63)*
 
 **Parameters:**
 
@@ -133,7 +133,7 @@ ___
 
 *Implementation of [Geocoder](../interfaces/geocoder.md)*
 
-*Defined in [src/lib/nominatim.ts:45](https://github.com/chronark/atlas/blob/0dc33cd/src/lib/nominatim.ts#L45)*
+*Defined in [src/lib/nominatim.ts:45](https://github.com/chronark/atlas/blob/0e3b309/src/lib/nominatim.ts#L45)*
 
 **Parameters:**
 

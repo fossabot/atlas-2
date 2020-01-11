@@ -27,7 +27,7 @@ sidebar_label: "MenuProps"
 
 • **isFullscreen**: *boolean*
 
-*Defined in [src/components/Menu.tsx:6](https://github.com/chronark/atlas/blob/0dc33cd/src/components/Menu.tsx#L6)*
+*Defined in [src/components/Menu.tsx:6](https://github.com/chronark/atlas/blob/0e3b309/src/components/Menu.tsx#L6)*
 
 ## Methods
 
@@ -35,7 +35,7 @@ sidebar_label: "MenuProps"
 
 ▸ **toggleFullscreen**(): *void*
 
-*Defined in [src/components/Menu.tsx:8](https://github.com/chronark/atlas/blob/0dc33cd/src/components/Menu.tsx#L8)*
+*Defined in [src/components/Menu.tsx:8](https://github.com/chronark/atlas/blob/0e3b309/src/components/Menu.tsx#L8)*
 
 **Returns:** *void*
 
@@ -45,6 +45,6 @@ ___
 
 ▸ **toggleModal**(): *void*
 
-*Defined in [src/components/Menu.tsx:7](https://github.com/chronark/atlas/blob/0dc33cd/src/components/Menu.tsx#L7)*
+*Defined in [src/components/Menu.tsx:7](https://github.com/chronark/atlas/blob/0e3b309/src/components/Menu.tsx#L7)*
 
 **Returns:** *void*
