@@ -23,7 +23,7 @@ sidebar_label: "CountriesState"
 
 • **allCountries**: *Record‹string, any›[]*
 
-*Defined in [src/redux/countries/types.ts:5](https://github.com/chronark/atlas/blob/2109f67/src/redux/countries/types.ts#L5)*
+*Defined in [src/redux/countries/types.ts:5](https://github.com/chronark/atlas/blob/157126a/src/redux/countries/types.ts#L5)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **selectedCountries**: *Record‹string, any›[]*
 
-*Defined in [src/redux/countries/types.ts:6](https://github.com/chronark/atlas/blob/2109f67/src/redux/countries/types.ts#L6)*
+*Defined in [src/redux/countries/types.ts:6](https://github.com/chronark/atlas/blob/157126a/src/redux/countries/types.ts#L6)*

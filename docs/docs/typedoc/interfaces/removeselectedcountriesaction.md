@@ -23,7 +23,7 @@ sidebar_label: "RemoveSelectedCountriesAction"
 
 • **payload**: *Record‹string, any›[]*
 
-*Defined in [src/redux/countries/types.ts:23](https://github.com/chronark/atlas/blob/2109f67/src/redux/countries/types.ts#L23)*
+*Defined in [src/redux/countries/types.ts:23](https://github.com/chronark/atlas/blob/157126a/src/redux/countries/types.ts#L23)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **type**: *"REMOVE_SELECTED_COUNTRIES"*
 
-*Defined in [src/redux/countries/types.ts:22](https://github.com/chronark/atlas/blob/2109f67/src/redux/countries/types.ts#L22)*
+*Defined in [src/redux/countries/types.ts:22](https://github.com/chronark/atlas/blob/157126a/src/redux/countries/types.ts#L22)*

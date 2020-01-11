@@ -23,7 +23,7 @@ sidebar_label: "JobState"
 
 • **allJobs**: *[Job](job.md)[]*
 
-*Defined in [src/redux/jobs/types.ts:7](https://github.com/chronark/atlas/blob/2109f67/src/redux/jobs/types.ts#L7)*
+*Defined in [src/redux/jobs/types.ts:7](https://github.com/chronark/atlas/blob/157126a/src/redux/jobs/types.ts#L7)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **shownJobs**: *[Job](job.md)[]*
 
-*Defined in [src/redux/jobs/types.ts:8](https://github.com/chronark/atlas/blob/2109f67/src/redux/jobs/types.ts#L8)*
+*Defined in [src/redux/jobs/types.ts:8](https://github.com/chronark/atlas/blob/157126a/src/redux/jobs/types.ts#L8)*
