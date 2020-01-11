@@ -22,7 +22,7 @@ sidebar_label: "OLFeature"
 
 ▸ **get**(`key`: string): *any*
 
-*Defined in [src/types/olTypes.ts:23](https://github.com/chronark/atlas/blob/aa952e2/src/types/olTypes.ts#L23)*
+*Defined in [src/types/olTypes.ts:23](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/olTypes.ts#L23)*
 
 **Parameters:**
 

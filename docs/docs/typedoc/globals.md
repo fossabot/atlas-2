@@ -147,7 +147,7 @@ sidebar_label: "Globals"
 
 Ƭ **CountriesActionTypes**: *[AddSelectedCountriesAction](interfaces/addselectedcountriesaction.md) | [AddCountryAction](interfaces/addcountryaction.md) | [RemoveSelectedCountriesAction](interfaces/removeselectedcountriesaction.md)*
 
-*Defined in [src/redux/countries/types.ts:26](https://github.com/chronark/atlas/blob/aa952e2/src/redux/countries/types.ts#L26)*
+*Defined in [src/redux/countries/types.ts:26](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/countries/types.ts#L26)*
 
 ___
 
@@ -155,7 +155,7 @@ ___
 
 Ƭ **JobActionTypes**: *[SetAllJobsAction](interfaces/setalljobsaction.md) | [SetShowJobsAction](interfaces/setshowjobsaction.md)*
 
-*Defined in [src/redux/jobs/types.ts:24](https://github.com/chronark/atlas/blob/aa952e2/src/redux/jobs/types.ts#L24)*
+*Defined in [src/redux/jobs/types.ts:24](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/jobs/types.ts#L24)*
 
 ___
 
@@ -163,7 +163,7 @@ ___
 
 Ƭ **LogObject**: *Record‹string, any› | number*
 
-*Defined in [src/types/customTypes.ts:84](https://github.com/chronark/atlas/blob/aa952e2/src/types/customTypes.ts#L84)*
+*Defined in [src/types/customTypes.ts:84](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L84)*
 
 ___
 
@@ -171,7 +171,7 @@ ___
 
 Ƭ **NotificationActionTypes**: *[AddNotificationAction](interfaces/addnotificationaction.md) | [RemoveNotificationAction](interfaces/removenotificationaction.md)*
 
-*Defined in [src/redux/notifications/types.ts:24](https://github.com/chronark/atlas/blob/aa952e2/src/redux/notifications/types.ts#L24)*
+*Defined in [src/redux/notifications/types.ts:24](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/notifications/types.ts#L24)*
 
 ___
 
@@ -179,7 +179,7 @@ ___
 
 Ƭ **NotificationProps**: *StateProps & DispatchProps*
 
-*Defined in [src/components/Notification.tsx:14](https://github.com/chronark/atlas/blob/aa952e2/src/components/Notification.tsx#L14)*
+*Defined in [src/components/Notification.tsx:14](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Notification.tsx#L14)*
 
 ___
 
@@ -187,7 +187,7 @@ ___
 
 Ƭ **NotificationsProps**: *StateProps*
 
-*Defined in [src/components/Notifications.tsx:13](https://github.com/chronark/atlas/blob/aa952e2/src/components/Notifications.tsx#L13)*
+*Defined in [src/components/Notifications.tsx:13](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Notifications.tsx#L13)*
 
 ___
 
@@ -195,21 +195,21 @@ ___
 
 Ƭ **Props**: *DispatchProps & StateProps*
 
-*Defined in [src/components/Map.tsx:28](https://github.com/chronark/atlas/blob/aa952e2/src/components/Map.tsx#L28)*
+*Defined in [src/components/Map.tsx:28](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Map.tsx#L28)*
 
-*Defined in [src/components/SearchBar.tsx:15](https://github.com/chronark/atlas/blob/aa952e2/src/components/SearchBar.tsx#L15)*
+*Defined in [src/components/SearchBar.tsx:15](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/SearchBar.tsx#L15)*
 
-*Defined in [src/components/Statistics.tsx:13](https://github.com/chronark/atlas/blob/aa952e2/src/components/Statistics.tsx#L13)*
+*Defined in [src/components/Statistics.tsx:13](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Statistics.tsx#L13)*
 
-*Defined in [src/components/App.tsx:27](https://github.com/chronark/atlas/blob/aa952e2/src/components/App.tsx#L27)*
+*Defined in [src/components/App.tsx:27](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/App.tsx#L27)*
 
-*Defined in [src/components/JobDetail.tsx:5](https://github.com/chronark/atlas/blob/aa952e2/src/components/JobDetail.tsx#L5)*
+*Defined in [src/components/JobDetail.tsx:5](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/JobDetail.tsx#L5)*
 
 ###  job
 
 • **job**: *[Job](interfaces/job.md)*
 
-*Defined in [src/components/JobDetail.tsx:6](https://github.com/chronark/atlas/blob/aa952e2/src/components/JobDetail.tsx#L6)*
+*Defined in [src/components/JobDetail.tsx:6](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/JobDetail.tsx#L6)*
 
 ___
 
@@ -217,7 +217,7 @@ ___
 
 Ƭ **SearchActionTypes**: *[SetSearchAction](interfaces/setsearchaction.md)*
 
-*Defined in [src/redux/search/types.ts:12](https://github.com/chronark/atlas/blob/aa952e2/src/redux/search/types.ts#L12)*
+*Defined in [src/redux/search/types.ts:12](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/search/types.ts#L12)*
 
 ___
 
@@ -225,21 +225,21 @@ ___
 
 Ƭ **State**: *ReturnType‹function›*
 
-*Defined in [src/redux/index.ts:14](https://github.com/chronark/atlas/blob/aa952e2/src/redux/index.ts#L14)*
+*Defined in [src/redux/index.ts:14](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/index.ts#L14)*
 
-*Defined in [src/components/App.tsx:15](https://github.com/chronark/atlas/blob/aa952e2/src/components/App.tsx#L15)*
+*Defined in [src/components/App.tsx:15](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/App.tsx#L15)*
 
 ###  isFullsceen
 
 • **isFullsceen**: *boolean*
 
-*Defined in [src/components/App.tsx:17](https://github.com/chronark/atlas/blob/aa952e2/src/components/App.tsx#L17)*
+*Defined in [src/components/App.tsx:17](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/App.tsx#L17)*
 
 ###  modal
 
 • **modal**: *object*
 
-*Defined in [src/components/App.tsx:16](https://github.com/chronark/atlas/blob/aa952e2/src/components/App.tsx#L16)*
+*Defined in [src/components/App.tsx:16](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/App.tsx#L16)*
 
 #### Type declaration:
 
@@ -251,7 +251,7 @@ ___
 
 • **ADD_COUNTRY**: *"ADD_COUNTRY"* = "ADD_COUNTRY"
 
-*Defined in [src/redux/countries/types.ts:9](https://github.com/chronark/atlas/blob/aa952e2/src/redux/countries/types.ts#L9)*
+*Defined in [src/redux/countries/types.ts:9](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/countries/types.ts#L9)*
 
 ___
 
@@ -259,7 +259,7 @@ ___
 
 • **ADD_NOTIFICATION**: *"ADD_NOTIFICACTION"* = "ADD_NOTIFICACTION"
 
-*Defined in [src/redux/notifications/types.ts:1](https://github.com/chronark/atlas/blob/aa952e2/src/redux/notifications/types.ts#L1)*
+*Defined in [src/redux/notifications/types.ts:1](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/notifications/types.ts#L1)*
 
 ___
 
@@ -267,7 +267,7 @@ ___
 
 • **ADD_SELECTED_COUNTRIES**: *"ADD_SELECTED_COUNTRIES"* = "ADD_SELECTED_COUNTRIES"
 
-*Defined in [src/redux/countries/types.ts:10](https://github.com/chronark/atlas/blob/aa952e2/src/redux/countries/types.ts#L10)*
+*Defined in [src/redux/countries/types.ts:10](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/countries/types.ts#L10)*
 
 ___
 
@@ -275,7 +275,7 @@ ___
 
 • **REMOVE_NOTIFICATION**: *"REMOVE_NOTIFICATION"* = "REMOVE_NOTIFICATION"
 
-*Defined in [src/redux/notifications/types.ts:2](https://github.com/chronark/atlas/blob/aa952e2/src/redux/notifications/types.ts#L2)*
+*Defined in [src/redux/notifications/types.ts:2](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/notifications/types.ts#L2)*
 
 ___
 
@@ -283,7 +283,7 @@ ___
 
 • **REMOVE_SELECTED_COUNTRIES**: *"REMOVE_SELECTED_COUNTRIES"* = "REMOVE_SELECTED_COUNTRIES"
 
-*Defined in [src/redux/countries/types.ts:11](https://github.com/chronark/atlas/blob/aa952e2/src/redux/countries/types.ts#L11)*
+*Defined in [src/redux/countries/types.ts:11](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/countries/types.ts#L11)*
 
 ___
 
@@ -291,7 +291,7 @@ ___
 
 • **SET_ALL_JOBS**: *"SET_ALL_JOBS"* = "SET_ALL_JOBS"
 
-*Defined in [src/redux/jobs/types.ts:11](https://github.com/chronark/atlas/blob/aa952e2/src/redux/jobs/types.ts#L11)*
+*Defined in [src/redux/jobs/types.ts:11](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/jobs/types.ts#L11)*
 
 ___
 
@@ -299,7 +299,7 @@ ___
 
 • **SET_SEARCH**: *"SET_SEARCH"* = "SET_SEARCH"
 
-*Defined in [src/redux/search/types.ts:5](https://github.com/chronark/atlas/blob/aa952e2/src/redux/search/types.ts#L5)*
+*Defined in [src/redux/search/types.ts:5](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/search/types.ts#L5)*
 
 ___
 
@@ -307,7 +307,7 @@ ___
 
 • **SET_SHOWN_JOBS**: *"SET_SHOWN_JOBS"* = "SET_SHOWN_JOBS"
 
-*Defined in [src/redux/jobs/types.ts:12](https://github.com/chronark/atlas/blob/aa952e2/src/redux/jobs/types.ts#L12)*
+*Defined in [src/redux/jobs/types.ts:12](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/jobs/types.ts#L12)*
 
 ___
 
@@ -363,7 +363,7 @@ ___
   "Wissenschaft, Forschung &amp; Entwicklung",
 ]
 
-*Defined in [src/components/Form.tsx:32](https://github.com/chronark/atlas/blob/aa952e2/src/components/Form.tsx#L32)*
+*Defined in [src/components/Form.tsx:32](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Form.tsx#L32)*
 
 ___
 
@@ -371,7 +371,7 @@ ___
 
 • **contractOptions**: *string[]* =  ["Befristet", "Festanstellung", "Freie Mitarbeit", "Projektarbeit", "Teilzeit", "Vollzeit"]
 
-*Defined in [src/components/Form.tsx:81](https://github.com/chronark/atlas/blob/aa952e2/src/components/Form.tsx#L81)*
+*Defined in [src/components/Form.tsx:81](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Form.tsx#L81)*
 
 ___
 
@@ -392,7 +392,7 @@ ___
   "Werkstofftechnik",
 ]
 
-*Defined in [src/components/Form.tsx:18](https://github.com/chronark/atlas/blob/aa952e2/src/components/Form.tsx#L18)*
+*Defined in [src/components/Form.tsx:18](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Form.tsx#L18)*
 
 ___
 
@@ -482,7 +482,7 @@ ___
   "Yoruba (Westafrika)",
 ]
 
-*Defined in [src/components/Form.tsx:82](https://github.com/chronark/atlas/blob/aa952e2/src/components/Form.tsx#L82)*
+*Defined in [src/components/Form.tsx:82](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Form.tsx#L82)*
 
 ___
 
@@ -490,7 +490,7 @@ ___
 
 • **log**: *[Logger](classes/logger.md)‹›* =  new Logger()
 
-*Defined in [src/lib/logger.ts:59](https://github.com/chronark/atlas/blob/aa952e2/src/lib/logger.ts#L59)*
+*Defined in [src/lib/logger.ts:59](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/logger.ts#L59)*
 
 ___
 
@@ -498,7 +498,7 @@ ___
 
 • **notificationID**: *number* = 0
 
-*Defined in [src/redux/notifications/factory.ts:3](https://github.com/chronark/atlas/blob/aa952e2/src/redux/notifications/factory.ts#L3)*
+*Defined in [src/redux/notifications/factory.ts:3](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/notifications/factory.ts#L3)*
 
 ___
 
@@ -511,7 +511,7 @@ ___
   countries: countriesReducer,
 })
 
-*Defined in [src/redux/index.ts:7](https://github.com/chronark/atlas/blob/aa952e2/src/redux/index.ts#L7)*
+*Defined in [src/redux/index.ts:7](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/index.ts#L7)*
 
 #### Type declaration:
 
@@ -530,7 +530,7 @@ ___
 
 • **scoreImages**: *"*.png"[]* =  [score1, score2, score3, score4, score5]
 
-*Defined in [src/lib/imageLoader.ts:13](https://github.com/chronark/atlas/blob/aa952e2/src/lib/imageLoader.ts#L13)*
+*Defined in [src/lib/imageLoader.ts:13](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/imageLoader.ts#L13)*
 
 ___
 
@@ -538,7 +538,7 @@ ___
 
 • **store**: *Store‹object & object, [SetAllJobsAction](interfaces/setalljobsaction.md) | [SetShowJobsAction](interfaces/setshowjobsaction.md) | [AddNotificationAction](interfaces/addnotificationaction.md) | [RemoveNotificationAction](interfaces/removenotificationaction.md) | [SetSearchAction](interfaces/setsearchaction.md) | [AddSelectedCountriesAction](interfaces/addselectedcountriesaction.md) | [AddCountryAction](interfaces/addcountryaction.md) | [RemoveSelectedCountriesAction](interfaces/removeselectedcountriesaction.md)› & object* =  createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(thunk)))
 
-*Defined in [src/redux/store.ts:9](https://github.com/chronark/atlas/blob/aa952e2/src/redux/store.ts#L9)*
+*Defined in [src/redux/store.ts:9](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/store.ts#L9)*
 
 ___
 
@@ -557,7 +557,7 @@ ___
   "Stellen f&uuml;r Studienabbrecher",
 ]
 
-*Defined in [src/components/Form.tsx:6](https://github.com/chronark/atlas/blob/aa952e2/src/components/Form.tsx#L6)*
+*Defined in [src/components/Form.tsx:6](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Form.tsx#L6)*
 
 ## Functions
 
@@ -565,7 +565,7 @@ ___
 
 ▸ **App**(`props`: DispatchProps & StateProps & object): *Element‹›*
 
-*Defined in [src/components/App.tsx:29](https://github.com/chronark/atlas/blob/aa952e2/src/components/App.tsx#L29)*
+*Defined in [src/components/App.tsx:29](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/App.tsx#L29)*
 
 **Parameters:**
 
@@ -581,7 +581,7 @@ ___
 
 ▸ **Dropdown**(`props`: [DropdownProps](interfaces/dropdownprops.md) & object): *Element‹›*
 
-*Defined in [src/components/Dropdown.tsx:19](https://github.com/chronark/atlas/blob/aa952e2/src/components/Dropdown.tsx#L19)*
+*Defined in [src/components/Dropdown.tsx:19](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Dropdown.tsx#L19)*
 
 **Parameters:**
 
@@ -597,7 +597,7 @@ ___
 
 ▸ **Form**(): *Element‹›*
 
-*Defined in [src/components/Form.tsx:177](https://github.com/chronark/atlas/blob/aa952e2/src/components/Form.tsx#L177)*
+*Defined in [src/components/Form.tsx:177](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Form.tsx#L177)*
 
 **Returns:** *Element‹›*
 
@@ -607,7 +607,7 @@ ___
 
 ▸ **JobDetail**(`props`: Props & object): *Element‹›*
 
-*Defined in [src/components/JobDetail.tsx:9](https://github.com/chronark/atlas/blob/aa952e2/src/components/JobDetail.tsx#L9)*
+*Defined in [src/components/JobDetail.tsx:9](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/JobDetail.tsx#L9)*
 
 **Parameters:**
 
@@ -623,7 +623,7 @@ ___
 
 ▸ **Map**(`props`: [StateProps](interfaces/stateprops.md) & [DispatchProps](interfaces/dispatchprops.md) & object): *Element‹›*
 
-*Defined in [src/components/Map.tsx:29](https://github.com/chronark/atlas/blob/aa952e2/src/components/Map.tsx#L29)*
+*Defined in [src/components/Map.tsx:29](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Map.tsx#L29)*
 
 **Parameters:**
 
@@ -637,7 +637,7 @@ Name | Type |
 
 \+ **new Map**(`mapID`: string): *[Map](globals.md#const-map)*
 
-*Defined in [src/lib/map.ts:43](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L43)*
+*Defined in [src/lib/map.ts:43](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L43)*
 
 **Parameters:**
 
@@ -651,37 +651,37 @@ Name | Type |
 
 • **clusterLayer**: *[ClusterLayer](classes/clusterlayer.md)*
 
-*Defined in [src/lib/map.ts:42](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L42)*
+*Defined in [src/lib/map.ts:42](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L42)*
 
 ###  jobs
 
 • **jobs**: *[Job](interfaces/job.md)[]*
 
-*Defined in [src/lib/map.ts:39](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L39)*
+*Defined in [src/lib/map.ts:39](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L39)*
 
 ### `Private` mapID
 
 • **mapID**: *string*
 
-*Defined in [src/lib/map.ts:40](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L40)*
+*Defined in [src/lib/map.ts:40](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L40)*
 
 ###  olmap
 
 • **olmap**: *[OLMap](classes/olmap.md)*
 
-*Defined in [src/lib/map.ts:41](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L41)*
+*Defined in [src/lib/map.ts:41](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L41)*
 
 ### `Private` zIndices
 
 • **zIndices**: *Record‹string, number›*
 
-*Defined in [src/lib/map.ts:43](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L43)*
+*Defined in [src/lib/map.ts:43](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L43)*
 
 ### `Private` addCircleSelect
 
 ▸ **addCircleSelect**(): *void*
 
-*Defined in [src/lib/map.ts:165](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L165)*
+*Defined in [src/lib/map.ts:165](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L165)*
 
 **Returns:** *void*
 
@@ -689,7 +689,7 @@ Name | Type |
 
 ▸ **addControls**(): *any*
 
-*Defined in [src/lib/map.ts:127](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L127)*
+*Defined in [src/lib/map.ts:127](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L127)*
 
 **Returns:** *any*
 
@@ -697,7 +697,7 @@ Name | Type |
 
 ▸ **addCountryLayer**(): *void*
 
-*Defined in [src/lib/map.ts:76](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L76)*
+*Defined in [src/lib/map.ts:76](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L76)*
 
 **Returns:** *void*
 
@@ -705,7 +705,7 @@ Name | Type |
 
 ▸ **addVectorLayer**(`name`: string, `layer`: VectorLayer, `map`: Map‹›): *VectorLayer*
 
-*Defined in [src/lib/map.ts:70](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L70)*
+*Defined in [src/lib/map.ts:70](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L70)*
 
 **Parameters:**
 
@@ -721,7 +721,7 @@ Name | Type | Default |
 
 ▸ **applyMapboxStyle**(`mapboxLayer`: VectorTileLayer): *Promise‹void›*
 
-*Defined in [src/lib/map.ts:331](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L331)*
+*Defined in [src/lib/map.ts:331](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L331)*
 
 **Parameters:**
 
@@ -735,7 +735,7 @@ Name | Type |
 
 ▸ **buildClusterLayer**(): *void*
 
-*Defined in [src/lib/map.ts:343](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L343)*
+*Defined in [src/lib/map.ts:343](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L343)*
 
 **Returns:** *void*
 
@@ -743,7 +743,7 @@ Name | Type |
 
 ▸ **buildMap**(): *[OLMap](classes/olmap.md)*
 
-*Defined in [src/lib/map.ts:288](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L288)*
+*Defined in [src/lib/map.ts:288](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L288)*
 
 **Returns:** *[OLMap](classes/olmap.md)*
 
@@ -751,7 +751,7 @@ Name | Type |
 
 ▸ **circleSelectRemoveButton**(): *void*
 
-*Defined in [src/lib/map.ts:137](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L137)*
+*Defined in [src/lib/map.ts:137](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L137)*
 
 **Returns:** *void*
 
@@ -759,7 +759,7 @@ Name | Type |
 
 ▸ **clearSource**(`layer`: VectorLayer): *VectorLayer*
 
-*Defined in [src/lib/map.ts:231](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L231)*
+*Defined in [src/lib/map.ts:231](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L231)*
 
 **Parameters:**
 
@@ -773,7 +773,7 @@ Name | Type |
 
 ▸ **countryLayerFromGeometry**(`geometry`: Record‹string, any›[]): *VectorLayer*
 
-*Defined in [src/lib/map.ts:80](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L80)*
+*Defined in [src/lib/map.ts:80](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L80)*
 
 **Parameters:**
 
@@ -787,7 +787,7 @@ Name | Type |
 
 ▸ **featureLayerFromGeoJson**(`geojson`: [GeocodingResponseObject](interfaces/geocodingresponseobject.md)): *VectorLayer*
 
-*Defined in [src/lib/map.ts:103](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L103)*
+*Defined in [src/lib/map.ts:103](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L103)*
 
 **Parameters:**
 
@@ -801,7 +801,7 @@ Name | Type |
 
 ▸ **getDrawLayer**(`__namedParameters`: object): *VectorLayer*
 
-*Defined in [src/lib/map.ts:217](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L217)*
+*Defined in [src/lib/map.ts:217](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L217)*
 
 **Parameters:**
 
@@ -817,7 +817,7 @@ Name | Type | Default |
 
 ▸ **getLayersByNames**(`names`: string[]): *BaseLayer[]*
 
-*Defined in [src/lib/map.ts:258](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L258)*
+*Defined in [src/lib/map.ts:258](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L258)*
 
 **Parameters:**
 
@@ -831,7 +831,7 @@ Name | Type |
 
 ▸ **getOrCreateLayer**(`name`: string, `opts`: Record‹string, any›): *[VectorLayer, boolean]*
 
-*Defined in [src/lib/map.ts:269](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L269)*
+*Defined in [src/lib/map.ts:269](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L269)*
 
 **Parameters:**
 
@@ -846,7 +846,7 @@ Name | Type |
 
 ▸ **getRadius**(`circle`: Feature): *number*
 
-*Defined in [src/lib/map.ts:238](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L238)*
+*Defined in [src/lib/map.ts:238](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L238)*
 
 **Parameters:**
 
@@ -860,7 +860,7 @@ Name | Type |
 
 ▸ **handleCircleSelectEvents**(`draw`: Draw, `modify`: Modify): *void*
 
-*Defined in [src/lib/map.ts:186](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L186)*
+*Defined in [src/lib/map.ts:186](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L186)*
 
 **Parameters:**
 
@@ -875,7 +875,7 @@ Name | Type |
 
 ▸ **loadJobs**(): *void*
 
-*Defined in [src/lib/map.ts:64](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L64)*
+*Defined in [src/lib/map.ts:64](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L64)*
 
 **Returns:** *void*
 
@@ -883,7 +883,7 @@ Name | Type |
 
 ▸ **makeFeatureFromCircle**(`circleFeature`: Feature): *Feature*
 
-*Defined in [src/lib/map.ts:242](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L242)*
+*Defined in [src/lib/map.ts:242](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L242)*
 
 **Parameters:**
 
@@ -897,7 +897,7 @@ Name | Type |
 
 ▸ **removeLayersByNames**(`names`: string[]): *void*
 
-*Defined in [src/lib/map.ts:148](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L148)*
+*Defined in [src/lib/map.ts:148](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L148)*
 
 **Parameters:**
 
@@ -911,7 +911,7 @@ Name | Type |
 
 ▸ **setJobs**(`jobs`: [Job](interfaces/job.md)[]): *void*
 
-*Defined in [src/lib/map.ts:349](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L349)*
+*Defined in [src/lib/map.ts:349](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L349)*
 
 **Parameters:**
 
@@ -925,7 +925,7 @@ Name | Type |
 
 ▸ **setView**(`lon`: number, `lat`: number, `zoom`: number): *void*
 
-*Defined in [src/lib/map.ts:355](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L355)*
+*Defined in [src/lib/map.ts:355](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L355)*
 
 **Parameters:**
 
@@ -941,7 +941,7 @@ Name | Type |
 
 ▸ **zoomTo**(`center`: number[], `zoom`: number): *void*
 
-*Defined in [src/lib/map.ts:157](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L157)*
+*Defined in [src/lib/map.ts:157](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L157)*
 
 **Parameters:**
 
@@ -956,7 +956,7 @@ Name | Type | Default |
 
 ▸ **zoomToBBox**(`bbox`: [number, number, number, number]): *void*
 
-*Defined in [src/lib/map.ts:365](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L365)*
+*Defined in [src/lib/map.ts:365](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L365)*
 
 **Parameters:**
 
@@ -970,7 +970,7 @@ Name | Type |
 
 ▸ **zoomToLayer**(`layer`: VectorLayer): *void*
 
-*Defined in [src/lib/map.ts:360](https://github.com/chronark/atlas/blob/aa952e2/src/lib/map.ts#L360)*
+*Defined in [src/lib/map.ts:360](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/map.ts#L360)*
 
 **Parameters:**
 
@@ -986,7 +986,7 @@ ___
 
 ▸ **Menu**(`props`: [MenuProps](interfaces/menuprops.md) & object): *Element‹›*
 
-*Defined in [src/components/Menu.tsx:11](https://github.com/chronark/atlas/blob/aa952e2/src/components/Menu.tsx#L11)*
+*Defined in [src/components/Menu.tsx:11](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Menu.tsx#L11)*
 
 **Parameters:**
 
@@ -1002,7 +1002,7 @@ ___
 
 ▸ **Modal**(`props`: [ModalProps](interfaces/modalprops.md) & object): *null | Element‹›*
 
-*Defined in [src/components/Modal.tsx:9](https://github.com/chronark/atlas/blob/aa952e2/src/components/Modal.tsx#L9)*
+*Defined in [src/components/Modal.tsx:9](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Modal.tsx#L9)*
 
 **Parameters:**
 
@@ -1018,7 +1018,7 @@ ___
 
 ▸ **Notification**(`props`: StateProps & DispatchProps & object): *Element‹›*
 
-*Defined in [src/components/Notification.tsx:16](https://github.com/chronark/atlas/blob/aa952e2/src/components/Notification.tsx#L16)*
+*Defined in [src/components/Notification.tsx:16](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Notification.tsx#L16)*
 
 **Parameters:**
 
@@ -1034,7 +1034,7 @@ ___
 
 ▸ **Notifications**(`props`: StateProps & object): *Element‹›*
 
-*Defined in [src/components/Notifications.tsx:15](https://github.com/chronark/atlas/blob/aa952e2/src/components/Notifications.tsx#L15)*
+*Defined in [src/components/Notifications.tsx:15](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Notifications.tsx#L15)*
 
 **Parameters:**
 
@@ -1050,7 +1050,7 @@ ___
 
 ▸ **Popup**(): *Element‹›*
 
-*Defined in [src/components/Popup.tsx:3](https://github.com/chronark/atlas/blob/aa952e2/src/components/Popup.tsx#L3)*
+*Defined in [src/components/Popup.tsx:3](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Popup.tsx#L3)*
 
 **Returns:** *Element‹›*
 
@@ -1060,7 +1060,7 @@ ___
 
 ▸ **SearchBar**(`props`: StateProps & DispatchProps & [OwnProps](interfaces/ownprops.md) & object): *Element‹›*
 
-*Defined in [src/components/SearchBar.tsx:17](https://github.com/chronark/atlas/blob/aa952e2/src/components/SearchBar.tsx#L17)*
+*Defined in [src/components/SearchBar.tsx:17](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/SearchBar.tsx#L17)*
 
 **Parameters:**
 
@@ -1076,7 +1076,7 @@ ___
 
 ▸ **Statistics**(`props`: StateProps & object): *Element‹›*
 
-*Defined in [src/components/Statistics.tsx:15](https://github.com/chronark/atlas/blob/aa952e2/src/components/Statistics.tsx#L15)*
+*Defined in [src/components/Statistics.tsx:15](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Statistics.tsx#L15)*
 
 **Parameters:**
 
@@ -1092,7 +1092,7 @@ ___
 
 ▸ **TextInput**(`props`: [TextInputProps](interfaces/textinputprops.md) & object): *Element‹›*
 
-*Defined in [src/components/TextInput.tsx:8](https://github.com/chronark/atlas/blob/aa952e2/src/components/TextInput.tsx#L8)*
+*Defined in [src/components/TextInput.tsx:8](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/TextInput.tsx#L8)*
 
 **Parameters:**
 
@@ -1108,7 +1108,7 @@ ___
 
 ▸ **addCountry**(`country`: Record‹string, any›): *[AddCountryAction](interfaces/addcountryaction.md)*
 
-*Defined in [src/redux/countries/actions.ts:17](https://github.com/chronark/atlas/blob/aa952e2/src/redux/countries/actions.ts#L17)*
+*Defined in [src/redux/countries/actions.ts:17](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/countries/actions.ts#L17)*
 
 **Parameters:**
 
@@ -1124,7 +1124,7 @@ ___
 
 ▸ **addNotification**(`level`: string, `content`: string): *[AddNotificationAction](interfaces/addnotificationaction.md)*
 
-*Defined in [src/redux/notifications/actions.ts:4](https://github.com/chronark/atlas/blob/aa952e2/src/redux/notifications/actions.ts#L4)*
+*Defined in [src/redux/notifications/actions.ts:4](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/notifications/actions.ts#L4)*
 
 **Parameters:**
 
@@ -1141,7 +1141,7 @@ ___
 
 ▸ **addSelectedCountries**(`countries`: Record‹string, any›[]): *[AddSelectedCountriesAction](interfaces/addselectedcountriesaction.md)*
 
-*Defined in [src/redux/countries/actions.ts:14](https://github.com/chronark/atlas/blob/aa952e2/src/redux/countries/actions.ts#L14)*
+*Defined in [src/redux/countries/actions.ts:14](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/countries/actions.ts#L14)*
 
 **Parameters:**
 
@@ -1157,7 +1157,7 @@ ___
 
 ▸ **areCoordinatesInGeometry**(`lonLat`: [number, number], `geometry`: Record‹string, any›, `checkExtentFirst`: boolean): *boolean*
 
-*Defined in [src/lib/geometry.ts:7](https://github.com/chronark/atlas/blob/aa952e2/src/lib/geometry.ts#L7)*
+*Defined in [src/lib/geometry.ts:7](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/geometry.ts#L7)*
 
 **Parameters:**
 
@@ -1175,7 +1175,7 @@ ___
 
 ▸ **bound**(`lower`: number, `value`: number, `upper`: number): *number*
 
-*Defined in [src/lib/util.ts:42](https://github.com/chronark/atlas/blob/aa952e2/src/lib/util.ts#L42)*
+*Defined in [src/lib/util.ts:42](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/util.ts#L42)*
 
 **Parameters:**
 
@@ -1193,7 +1193,7 @@ ___
 
 ▸ **convertGeoJsonToGeometries**(`geojson`: Record‹string, any›): *undefined | object[]*
 
-*Defined in [src/lib/countryLayer.ts:12](https://github.com/chronark/atlas/blob/aa952e2/src/lib/countryLayer.ts#L12)*
+*Defined in [src/lib/countryLayer.ts:12](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/countryLayer.ts#L12)*
 
 **Parameters:**
 
@@ -1209,7 +1209,7 @@ ___
 
 ▸ **countryLayer**(`map`: [Map](globals.md#const-map)): *void*
 
-*Defined in [src/lib/countryLayer.ts:26](https://github.com/chronark/atlas/blob/aa952e2/src/lib/countryLayer.ts#L26)*
+*Defined in [src/lib/countryLayer.ts:26](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/countryLayer.ts#L26)*
 
 **Parameters:**
 
@@ -1225,7 +1225,7 @@ ___
 
 ▸ **countryLayerStyle**(`__namedParameters`: object): *Style*
 
-*Defined in [src/styles/countryStyle.ts:5](https://github.com/chronark/atlas/blob/aa952e2/src/styles/countryStyle.ts#L5)*
+*Defined in [src/styles/countryStyle.ts:5](https://github.com/chronark/atlas/blob/4c0c2ce/src/styles/countryStyle.ts#L5)*
 
 **Parameters:**
 
@@ -1243,7 +1243,7 @@ ___
 
 ▸ **createNotification**(`options`: object): *[Notification](interfaces/notification.md)*
 
-*Defined in [src/redux/notifications/factory.ts:7](https://github.com/chronark/atlas/blob/aa952e2/src/redux/notifications/factory.ts#L7)*
+*Defined in [src/redux/notifications/factory.ts:7](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/notifications/factory.ts#L7)*
 
 **Parameters:**
 
@@ -1262,7 +1262,7 @@ ___
 
 ▸ **createSelectOptions**(`options`: string[]): *Element[]*
 
-*Defined in [src/components/Dropdown.tsx:6](https://github.com/chronark/atlas/blob/aa952e2/src/components/Dropdown.tsx#L6)*
+*Defined in [src/components/Dropdown.tsx:6](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Dropdown.tsx#L6)*
 
 **Parameters:**
 
@@ -1278,7 +1278,7 @@ ___
 
 ▸ **default**(`state`: [JobState](interfaces/jobstate.md), `action`: [JobActionTypes](globals.md#jobactiontypes)): *[JobState](interfaces/jobstate.md)*
 
-*Defined in [src/redux/jobs/reducer.ts:9](https://github.com/chronark/atlas/blob/aa952e2/src/redux/jobs/reducer.ts#L9)*
+*Defined in [src/redux/jobs/reducer.ts:9](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/jobs/reducer.ts#L9)*
 
 **Parameters:**
 
@@ -1295,7 +1295,7 @@ ___
 
 ▸ **filterJobs**(`jobs`: [Job](interfaces/job.md)[], `filter`: object): *[Job](interfaces/job.md)[]*
 
-*Defined in [src/lib/jobFilter.ts:37](https://github.com/chronark/atlas/blob/aa952e2/src/lib/jobFilter.ts#L37)*
+*Defined in [src/lib/jobFilter.ts:37](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/jobFilter.ts#L37)*
 
 **Parameters:**
 
@@ -1316,7 +1316,7 @@ ___
 
 ▸ **filterJobsByGeometry**(`jobs`: [Job](interfaces/job.md)[], `geometry`: Record‹string, any›[]): *[Job](interfaces/job.md)[]*
 
-*Defined in [src/lib/jobFilter.ts:30](https://github.com/chronark/atlas/blob/aa952e2/src/lib/jobFilter.ts#L30)*
+*Defined in [src/lib/jobFilter.ts:30](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/jobFilter.ts#L30)*
 
 **Parameters:**
 
@@ -1333,7 +1333,7 @@ ___
 
 ▸ **getCachedGeometry**(`event`: any): *Record‹string, any›*
 
-*Defined in [src/lib/countryLayer.ts:18](https://github.com/chronark/atlas/blob/aa952e2/src/lib/countryLayer.ts#L18)*
+*Defined in [src/lib/countryLayer.ts:18](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/countryLayer.ts#L18)*
 
 **Parameters:**
 
@@ -1349,7 +1349,7 @@ ___
 
 ▸ **getJobsInGeometry**(`jobs`: [Job](interfaces/job.md)[], `geometry`: Record‹string, any›[]): *[Job](interfaces/job.md)[]*
 
-*Defined in [src/lib/jobFilter.ts:10](https://github.com/chronark/atlas/blob/aa952e2/src/lib/jobFilter.ts#L10)*
+*Defined in [src/lib/jobFilter.ts:10](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/jobFilter.ts#L10)*
 
 **Parameters:**
 
@@ -1366,7 +1366,7 @@ ___
 
 ▸ **mapDispatchToProps**(`dispatch`: ThunkDispatch‹__type, __type, any›): *[DispatchProps](interfaces/dispatchprops.md)*
 
-*Defined in [src/components/Map.tsx:105](https://github.com/chronark/atlas/blob/aa952e2/src/components/Map.tsx#L105)*
+*Defined in [src/components/Map.tsx:105](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Map.tsx#L105)*
 
 **Parameters:**
 
@@ -1378,7 +1378,7 @@ Name | Type |
 
 ▸ **mapDispatchToProps**(`dispatch`: any): *DispatchProps*
 
-*Defined in [src/components/SearchBar.tsx:88](https://github.com/chronark/atlas/blob/aa952e2/src/components/SearchBar.tsx#L88)*
+*Defined in [src/components/SearchBar.tsx:88](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/SearchBar.tsx#L88)*
 
 **Parameters:**
 
@@ -1390,7 +1390,7 @@ Name | Type |
 
 ▸ **mapDispatchToProps**(`dispatch`: any): *DispatchProps*
 
-*Defined in [src/components/Notification.tsx:56](https://github.com/chronark/atlas/blob/aa952e2/src/components/Notification.tsx#L56)*
+*Defined in [src/components/Notification.tsx:56](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Notification.tsx#L56)*
 
 **Parameters:**
 
@@ -1402,7 +1402,7 @@ Name | Type |
 
 ▸ **mapDispatchToProps**(`dispatch`: any): *DispatchProps*
 
-*Defined in [src/components/App.tsx:69](https://github.com/chronark/atlas/blob/aa952e2/src/components/App.tsx#L69)*
+*Defined in [src/components/App.tsx:69](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/App.tsx#L69)*
 
 **Parameters:**
 
@@ -1418,7 +1418,7 @@ ___
 
 ▸ **mapStateToProps**(`state`: [StateProps](interfaces/stateprops.md)): *[StateProps](interfaces/stateprops.md)*
 
-*Defined in [src/components/Map.tsx:99](https://github.com/chronark/atlas/blob/aa952e2/src/components/Map.tsx#L99)*
+*Defined in [src/components/Map.tsx:99](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Map.tsx#L99)*
 
 **Parameters:**
 
@@ -1430,7 +1430,7 @@ Name | Type |
 
 ▸ **mapStateToProps**(`state`: StateProps): *StateProps*
 
-*Defined in [src/components/SearchBar.tsx:84](https://github.com/chronark/atlas/blob/aa952e2/src/components/SearchBar.tsx#L84)*
+*Defined in [src/components/SearchBar.tsx:84](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/SearchBar.tsx#L84)*
 
 **Parameters:**
 
@@ -1442,7 +1442,7 @@ Name | Type |
 
 ▸ **mapStateToProps**(`state`: StateProps): *StateProps*
 
-*Defined in [src/components/Notifications.tsx:34](https://github.com/chronark/atlas/blob/aa952e2/src/components/Notifications.tsx#L34)*
+*Defined in [src/components/Notifications.tsx:34](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Notifications.tsx#L34)*
 
 **Parameters:**
 
@@ -1454,7 +1454,7 @@ Name | Type |
 
 ▸ **mapStateToProps**(`state`: StateProps): *StateProps*
 
-*Defined in [src/components/Statistics.tsx:30](https://github.com/chronark/atlas/blob/aa952e2/src/components/Statistics.tsx#L30)*
+*Defined in [src/components/Statistics.tsx:30](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/Statistics.tsx#L30)*
 
 **Parameters:**
 
@@ -1466,7 +1466,7 @@ Name | Type |
 
 ▸ **mapStateToProps**(`state`: StateProps): *StateProps*
 
-*Defined in [src/components/App.tsx:73](https://github.com/chronark/atlas/blob/aa952e2/src/components/App.tsx#L73)*
+*Defined in [src/components/App.tsx:73](https://github.com/chronark/atlas/blob/4c0c2ce/src/components/App.tsx#L73)*
 
 **Parameters:**
 
@@ -1482,7 +1482,7 @@ ___
 
 ▸ **polygonStyle**(`__namedParameters`: object): *Style*
 
-*Defined in [src/styles/polygon.ts:5](https://github.com/chronark/atlas/blob/aa952e2/src/styles/polygon.ts#L5)*
+*Defined in [src/styles/polygon.ts:5](https://github.com/chronark/atlas/blob/4c0c2ce/src/styles/polygon.ts#L5)*
 
 **Parameters:**
 
@@ -1500,7 +1500,7 @@ ___
 
 ▸ **removeFrom**(`list`: any[], `entry`: any): *any[]*
 
-*Defined in [src/lib/util.ts:8](https://github.com/chronark/atlas/blob/aa952e2/src/lib/util.ts#L8)*
+*Defined in [src/lib/util.ts:8](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/util.ts#L8)*
 
 Remove an item from a list.
 
@@ -1521,7 +1521,7 @@ ___
 
 ▸ **removeListFromList**(`list1`: any[], `list2`: any[]): *any[]*
 
-*Defined in [src/lib/util.ts:21](https://github.com/chronark/atlas/blob/aa952e2/src/lib/util.ts#L21)*
+*Defined in [src/lib/util.ts:21](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/util.ts#L21)*
 
 Remove every item in list1 from list2.
 
@@ -1542,7 +1542,7 @@ ___
 
 ▸ **removeNotification**(`id`: number): *[RemoveNotificationAction](interfaces/removenotificationaction.md)*
 
-*Defined in [src/redux/notifications/actions.ts:11](https://github.com/chronark/atlas/blob/aa952e2/src/redux/notifications/actions.ts#L11)*
+*Defined in [src/redux/notifications/actions.ts:11](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/notifications/actions.ts#L11)*
 
 **Parameters:**
 
@@ -1558,7 +1558,7 @@ ___
 
 ▸ **removeSelectedCountries**(`countries`: Record‹string, any›[]): *[RemoveSelectedCountriesAction](interfaces/removeselectedcountriesaction.md)*
 
-*Defined in [src/redux/countries/actions.ts:20](https://github.com/chronark/atlas/blob/aa952e2/src/redux/countries/actions.ts#L20)*
+*Defined in [src/redux/countries/actions.ts:20](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/countries/actions.ts#L20)*
 
 **Parameters:**
 
@@ -1574,7 +1574,7 @@ ___
 
 ▸ **setAllJobs**(`jobs`: [Job](interfaces/job.md)[]): *[SetAllJobsAction](interfaces/setalljobsaction.md)*
 
-*Defined in [src/redux/jobs/actions.ts:12](https://github.com/chronark/atlas/blob/aa952e2/src/redux/jobs/actions.ts#L12)*
+*Defined in [src/redux/jobs/actions.ts:12](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/jobs/actions.ts#L12)*
 
 **Parameters:**
 
@@ -1590,7 +1590,7 @@ ___
 
 ▸ **setSearch**(`search`: string): *[SetSearchAction](interfaces/setsearchaction.md)*
 
-*Defined in [src/redux/search/actions.ts:3](https://github.com/chronark/atlas/blob/aa952e2/src/redux/search/actions.ts#L3)*
+*Defined in [src/redux/search/actions.ts:3](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/search/actions.ts#L3)*
 
 **Parameters:**
 
@@ -1606,7 +1606,7 @@ ___
 
 ▸ **setShownJobs**(`jobs`: [Job](interfaces/job.md)[]): *[SetShowJobsAction](interfaces/setshowjobsaction.md)*
 
-*Defined in [src/redux/jobs/actions.ts:8](https://github.com/chronark/atlas/blob/aa952e2/src/redux/jobs/actions.ts#L8)*
+*Defined in [src/redux/jobs/actions.ts:8](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/jobs/actions.ts#L8)*
 
 **Parameters:**
 
@@ -1622,48 +1622,48 @@ Name | Type |
 
 ### ▪ **initialState**: *object*
 
-*Defined in [src/redux/jobs/reducer.ts:6](https://github.com/chronark/atlas/blob/aa952e2/src/redux/jobs/reducer.ts#L6)*
+*Defined in [src/redux/jobs/reducer.ts:6](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/jobs/reducer.ts#L6)*
 
-*Defined in [src/redux/notifications/reducer.ts:3](https://github.com/chronark/atlas/blob/aa952e2/src/redux/notifications/reducer.ts#L3)*
+*Defined in [src/redux/notifications/reducer.ts:3](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/notifications/reducer.ts#L3)*
 
-*Defined in [src/redux/search/reducer.ts:3](https://github.com/chronark/atlas/blob/aa952e2/src/redux/search/reducer.ts#L3)*
+*Defined in [src/redux/search/reducer.ts:3](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/search/reducer.ts#L3)*
 
-*Defined in [src/redux/countries/reducer.ts:13](https://github.com/chronark/atlas/blob/aa952e2/src/redux/countries/reducer.ts#L13)*
+*Defined in [src/redux/countries/reducer.ts:13](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/countries/reducer.ts#L13)*
 
-*Defined in [src/redux/store.ts:7](https://github.com/chronark/atlas/blob/aa952e2/src/redux/store.ts#L7)*
+*Defined in [src/redux/store.ts:7](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/store.ts#L7)*
 
 ###  allCountries
 
 • **allCountries**: *never[]* =  []
 
-*Defined in [src/redux/countries/reducer.ts:15](https://github.com/chronark/atlas/blob/aa952e2/src/redux/countries/reducer.ts#L15)*
+*Defined in [src/redux/countries/reducer.ts:15](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/countries/reducer.ts#L15)*
 
 ###  allJobs
 
 • **allJobs**: *never[]* =  []
 
-*Defined in [src/redux/jobs/reducer.ts:7](https://github.com/chronark/atlas/blob/aa952e2/src/redux/jobs/reducer.ts#L7)*
+*Defined in [src/redux/jobs/reducer.ts:7](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/jobs/reducer.ts#L7)*
 
 ###  notifications
 
 • **notifications**: *never[]* =  []
 
-*Defined in [src/redux/notifications/reducer.ts:3](https://github.com/chronark/atlas/blob/aa952e2/src/redux/notifications/reducer.ts#L3)*
+*Defined in [src/redux/notifications/reducer.ts:3](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/notifications/reducer.ts#L3)*
 
 ###  query
 
 • **query**: *string* = ""
 
-*Defined in [src/redux/search/reducer.ts:4](https://github.com/chronark/atlas/blob/aa952e2/src/redux/search/reducer.ts#L4)*
+*Defined in [src/redux/search/reducer.ts:4](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/search/reducer.ts#L4)*
 
 ###  selectedCountries
 
 • **selectedCountries**: *never[]* =  []
 
-*Defined in [src/redux/countries/reducer.ts:14](https://github.com/chronark/atlas/blob/aa952e2/src/redux/countries/reducer.ts#L14)*
+*Defined in [src/redux/countries/reducer.ts:14](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/countries/reducer.ts#L14)*
 
 ###  shownJobs
 
 • **shownJobs**: *never[]* =  []
 
-*Defined in [src/redux/jobs/reducer.ts:8](https://github.com/chronark/atlas/blob/aa952e2/src/redux/jobs/reducer.ts#L8)*
+*Defined in [src/redux/jobs/reducer.ts:8](https://github.com/chronark/atlas/blob/4c0c2ce/src/redux/jobs/reducer.ts#L8)*

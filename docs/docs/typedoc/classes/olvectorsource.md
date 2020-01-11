@@ -23,7 +23,7 @@ sidebar_label: "OLVectorSource"
 
 ▸ **addFeatures**(`features`: [OLFeature](olfeature.md)[]): *void*
 
-*Defined in [src/types/olTypes.ts:28](https://github.com/chronark/atlas/blob/aa952e2/src/types/olTypes.ts#L28)*
+*Defined in [src/types/olTypes.ts:28](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/olTypes.ts#L28)*
 
 **Parameters:**
 
@@ -39,6 +39,6 @@ ___
 
 ▸ **clear**(): *void*
 
-*Defined in [src/types/olTypes.ts:29](https://github.com/chronark/atlas/blob/aa952e2/src/types/olTypes.ts#L29)*
+*Defined in [src/types/olTypes.ts:29](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/olTypes.ts#L29)*
 
 **Returns:** *void*

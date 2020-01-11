@@ -39,7 +39,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "yarn docs:typedoc && git add ./docs && lint-staged",
-      "pre-push": "yarn test",
+      "pre-push": "yarn test:unit",
       "post-push": "yarn docs:deploy yarn docs:deploy"
     }
   },
