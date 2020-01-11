@@ -32,7 +32,8 @@
     "docker:build": "docker build -t atlas .",
     "docker:run": "docker run -it --rm -p 5000:5000 --name atlas atlas",
     "docker": "yarn docker:build && yarn docker:run",
-    "docs": "yarn jsdoc -c jsdoc.js"
+    "docs": "yarn typedoc",
+    "docs:show": "cd docs && yarn start"
   },
   "husky": {
     "hooks": {
@@ -48,6 +49,7 @@
     "ol-mapbox-style": "^5.0.2"
   },
   "devDependencies": {
+    "typedoc": "^0.15.8",
     "@babel/cli": "^7.7.0",
     "@babel/core": "^7.7.2",
     "@babel/plugin-transform-for-of": "^7.4.4",
@@ -69,7 +71,6 @@
     "@typescript-eslint/parser": "^2.7.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-macros": "^2.8.0",
-    "better-docs": "^1.4.7",
     "copy-webpack-plugin": "^5.0.5",
     "core-js": "3.4.1",
     "css-loader": "^3.2.0",
@@ -94,7 +95,6 @@
     "husky": "^3.1.0",
     "jest": "^24.7.0",
     "jest-canvas-mock": "^2.2.0",
-    "jsdoc": "^3.6.3",
     "lint-staged": "^9.4.3",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
@@ -118,6 +118,7 @@
     "testcafe-react-selectors": "^3.3.0",
     "ts-jest": "^24.1.0",
     "ts-loader": "^6.2.1",
+    "typedoc-plugin-markdown": "^2.2.16",
     "typescript": "^3.7.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",

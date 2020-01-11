@@ -1,0 +1,28 @@
+module.exports = {
+  docs: {
+    Modules: ["modules/_lib_charon_", "modules/_types_customtypes_"],
+    Classes: ["classes/_lib_charon_.charon", "classes/_lib_charon_.charon"],
+    Interfaces: [
+      "interfaces/_types_customtypes_.contextentity",
+      "interfaces/_types_customtypes_.featuresentity",
+      "interfaces/_types_customtypes_.geocodingresponseobject",
+      "interfaces/_types_customtypes_.geometry",
+      "interfaces/_types_customtypes_.job",
+      "interfaces/_types_customtypes_.location",
+      "interfaces/_types_customtypes_.properties",
+      "interfaces/_types_customtypes_.rawjob",
+      "interfaces/_types_customtypes_.rawlocation",
+      "interfaces/_types_customtypes_.rawsearch",
+      "interfaces/_types_customtypes_.contextentity",
+      "interfaces/_types_customtypes_.featuresentity",
+      "interfaces/_types_customtypes_.geocodingresponseobject",
+      "interfaces/_types_customtypes_.geometry",
+      "interfaces/_types_customtypes_.job",
+      "interfaces/_types_customtypes_.location",
+      "interfaces/_types_customtypes_.properties",
+      "interfaces/_types_customtypes_.rawjob",
+      "interfaces/_types_customtypes_.rawlocation",
+      "interfaces/_types_customtypes_.rawsearch",
+    ],
+  },
+}

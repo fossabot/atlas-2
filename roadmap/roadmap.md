@@ -307,6 +307,6 @@ Auf lange Sicht sollte das Anfragen und Filtern der Jobs auch durch Atlas erledi
 
 ## TODO: Charon
 
-Charon hat derzeit noch keine Implementation für OSM oder Nominatim und Dokumentation habe ich auch noch nicht angefangen zu schreiben.
+Charon hat derzeit noch keine Implementierung für OSM oder Nominatim und eine Dokumentation habe ich auch noch nicht angefangen zu schreiben.
 
 Für den Logger Service ist außerdem noch wichtig sich Gedanken zu machen, welche Daten gelogged werden soll. Personenbezogene Daten sowieso nicht, aber ich bin sicher man könnte einiges lernen aus dem Such- und Bedienungsverhalten der Nutzer.
