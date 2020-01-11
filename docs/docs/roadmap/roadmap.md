@@ -1,4 +1,9 @@
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+---
+id: roadmap
+title: Roadmap
+sidebar_label: Roadmap
+---
+
 
 # Kostenabschätzung
 
@@ -103,7 +108,6 @@ interface Location {
 }
 ```
 
-<div style="page-break-after: always;"></div>
 
 ```typescript
 interface Job {
@@ -229,7 +233,6 @@ sequenceDiagram
 ```
 -->
 
-<div style="page-break-after: always;"></div>
 
 # Roadmap to 1.0
 

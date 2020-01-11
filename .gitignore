@@ -7,3 +7,5 @@
 yarn-error.log
 __tests__/e2e/reports
 /.vscode
+docs/build
+docs/docs/typedoc
