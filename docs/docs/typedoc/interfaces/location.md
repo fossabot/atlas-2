@@ -25,7 +25,7 @@ sidebar_label: "Location"
 
 • **lat**: *number*
 
-*Defined in [src/types/customTypes.ts:37](https://github.com/chronark/atlas/blob/157126a/src/types/customTypes.ts#L37)*
+*Defined in [src/types/customTypes.ts:37](https://github.com/chronark/atlas/blob/25d5919/src/types/customTypes.ts#L37)*
 
 Latitude of the location.
 
@@ -35,6 +35,6 @@ ___
 
 • **lon**: *number*
 
-*Defined in [src/types/customTypes.ts:41](https://github.com/chronark/atlas/blob/157126a/src/types/customTypes.ts#L41)*
+*Defined in [src/types/customTypes.ts:41](https://github.com/chronark/atlas/blob/25d5919/src/types/customTypes.ts#L41)*
 
 Longitude of the location.

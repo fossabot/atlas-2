@@ -24,7 +24,7 @@ sidebar_label: "ForwardResult"
 
 • **geojson**: *Record‹string, any›*
 
-*Defined in [src/lib/nominatim.ts:10](https://github.com/chronark/atlas/blob/157126a/src/lib/nominatim.ts#L10)*
+*Defined in [src/lib/nominatim.ts:10](https://github.com/chronark/atlas/blob/25d5919/src/lib/nominatim.ts#L10)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **lat**: *number*
 
-*Defined in [src/lib/nominatim.ts:11](https://github.com/chronark/atlas/blob/157126a/src/lib/nominatim.ts#L11)*
+*Defined in [src/lib/nominatim.ts:11](https://github.com/chronark/atlas/blob/25d5919/src/lib/nominatim.ts#L11)*
 
 ___
 
@@ -40,4 +40,4 @@ ___
 
 • **lon**: *number*
 
-*Defined in [src/lib/nominatim.ts:12](https://github.com/chronark/atlas/blob/157126a/src/lib/nominatim.ts#L12)*
+*Defined in [src/lib/nominatim.ts:12](https://github.com/chronark/atlas/blob/25d5919/src/lib/nominatim.ts#L12)*

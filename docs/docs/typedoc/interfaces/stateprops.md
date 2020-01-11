@@ -26,7 +26,7 @@ sidebar_label: "StateProps"
 
 • **countries**: *object*
 
-*Defined in [src/components/Map.tsx:22](https://github.com/chronark/atlas/blob/157126a/src/components/Map.tsx#L22)*
+*Defined in [src/components/Map.tsx:22](https://github.com/chronark/atlas/blob/25d5919/src/components/Map.tsx#L22)*
 
 #### Type declaration:
 
@@ -38,11 +38,11 @@ ___
 
 • **jobs**: *[Job](job.md)[]*
 
-*Defined in [src/components/Map.tsx:15](https://github.com/chronark/atlas/blob/157126a/src/components/Map.tsx#L15)*
+*Defined in [src/components/Map.tsx:15](https://github.com/chronark/atlas/blob/25d5919/src/components/Map.tsx#L15)*
 
-*Defined in [src/components/Statistics.tsx:7](https://github.com/chronark/atlas/blob/157126a/src/components/Statistics.tsx#L7)*
+*Defined in [src/components/Statistics.tsx:7](https://github.com/chronark/atlas/blob/25d5919/src/components/Statistics.tsx#L7)*
 
-*Defined in [src/components/App.tsx:24](https://github.com/chronark/atlas/blob/157126a/src/components/App.tsx#L24)*
+*Defined in [src/components/App.tsx:24](https://github.com/chronark/atlas/blob/25d5919/src/components/App.tsx#L24)*
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 • **notification**: *NotificationInterface*
 
-*Defined in [src/components/Notification.tsx:12](https://github.com/chronark/atlas/blob/157126a/src/components/Notification.tsx#L12)*
+*Defined in [src/components/Notification.tsx:12](https://github.com/chronark/atlas/blob/25d5919/src/components/Notification.tsx#L12)*
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 • **notifications**: *object*
 
-*Defined in [src/components/Notifications.tsx:8](https://github.com/chronark/atlas/blob/157126a/src/components/Notifications.tsx#L8)*
+*Defined in [src/components/Notifications.tsx:8](https://github.com/chronark/atlas/blob/25d5919/src/components/Notifications.tsx#L8)*
 
 #### Type declaration:
 
@@ -70,6 +70,6 @@ ___
 
 • **search**: *string*
 
-*Defined in [src/components/Map.tsx:19](https://github.com/chronark/atlas/blob/157126a/src/components/Map.tsx#L19)*
+*Defined in [src/components/Map.tsx:19](https://github.com/chronark/atlas/blob/25d5919/src/components/Map.tsx#L19)*
 
-*Defined in [src/components/SearchBar.tsx:10](https://github.com/chronark/atlas/blob/157126a/src/components/SearchBar.tsx#L10)*
+*Defined in [src/components/SearchBar.tsx:10](https://github.com/chronark/atlas/blob/25d5919/src/components/SearchBar.tsx#L10)*

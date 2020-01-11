@@ -32,14 +32,14 @@
     "docker:build": "docker build -t atlas .",
     "docker:run": "docker run -it --rm -p 5000:5000 --name atlas atlas",
     "docker": "yarn docker:build && yarn docker:run",
-    "docs:typedoc": "yarn typedoc",
-    "docs:show": "cd docs && yarn start",
-    "docs:deploy": "cd docs && yarn deploy"
+    "docs:buildTypes": "yarn typedoc",
+    "docs:show": "yarn docs:buildTypes && cd docs && yarn start",
+    "docs:build": "yarn docs:buildTypes && cd docs && yarn build"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn docs:typedoc && git add ./docs && lint-staged",
-      "pre-push": "yarn test:unit && yarn docs:deploy yarn docs:deploy"
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn test:unit"
     }
   },
   "dependencies": {

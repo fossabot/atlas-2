@@ -22,6 +22,8 @@ module.exports = {
           position: 'right',
         },
         {to: 'docs/typedoc/globals', label: 'API', position: 'left'},
+        {to: 'docs/roadmap/roadmap', label: 'Roadmap', position: 'left'},
+      
       ],
     },
     footer: {

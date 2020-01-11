@@ -35,7 +35,7 @@ sidebar_label: "ClusterStyle"
 
 \+ **new ClusterStyle**(`colorGradient`: string[]): *[ClusterStyle](clusterstyle.md)*
 
-*Defined in [src/styles/cluster.ts:13](https://github.com/chronark/atlas/blob/157126a/src/styles/cluster.ts#L13)*
+*Defined in [src/styles/cluster.ts:13](https://github.com/chronark/atlas/blob/25d5919/src/styles/cluster.ts#L13)*
 
 **Parameters:**
 
@@ -65,7 +65,7 @@ Name | Type | Default |
 
 • **colorGradient**: *string[]*
 
-*Defined in [src/styles/cluster.ts:13](https://github.com/chronark/atlas/blob/157126a/src/styles/cluster.ts#L13)*
+*Defined in [src/styles/cluster.ts:13](https://github.com/chronark/atlas/blob/25d5919/src/styles/cluster.ts#L13)*
 
 ## Methods
 
@@ -73,7 +73,7 @@ Name | Type | Default |
 
 ▸ **colorByScore**(`score`: number, `minScore`: number): *string*
 
-*Defined in [src/styles/cluster.ts:35](https://github.com/chronark/atlas/blob/157126a/src/styles/cluster.ts#L35)*
+*Defined in [src/styles/cluster.ts:35](https://github.com/chronark/atlas/blob/25d5919/src/styles/cluster.ts#L35)*
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ ___
 
 ▸ **getScore**(`feature`: [OLFeature](olfeature.md)): *number*
 
-*Defined in [src/styles/cluster.ts:103](https://github.com/chronark/atlas/blob/157126a/src/styles/cluster.ts#L103)*
+*Defined in [src/styles/cluster.ts:103](https://github.com/chronark/atlas/blob/25d5919/src/styles/cluster.ts#L103)*
 
 **Parameters:**
 
@@ -106,7 +106,7 @@ ___
 
 ▸ **maxScore**(`features`: [OLFeature](olfeature.md)[]): *number*
 
-*Defined in [src/styles/cluster.ts:52](https://github.com/chronark/atlas/blob/157126a/src/styles/cluster.ts#L52)*
+*Defined in [src/styles/cluster.ts:52](https://github.com/chronark/atlas/blob/25d5919/src/styles/cluster.ts#L52)*
 
 **Parameters:**
 
@@ -122,7 +122,7 @@ ___
 
 ▸ **polygonStyle**(`score`: number, `scale`: number, `size`: number): *[OLStyle](olstyle.md)*
 
-*Defined in [src/styles/cluster.ts:62](https://github.com/chronark/atlas/blob/157126a/src/styles/cluster.ts#L62)*
+*Defined in [src/styles/cluster.ts:62](https://github.com/chronark/atlas/blob/25d5919/src/styles/cluster.ts#L62)*
 
 **Parameters:**
 
@@ -140,7 +140,7 @@ ___
 
 ▸ **selectedStyle**(`cluster`: [OLFeature](olfeature.md)): *[OLStyle](olstyle.md)[]*
 
-*Defined in [src/styles/cluster.ts:114](https://github.com/chronark/atlas/blob/157126a/src/styles/cluster.ts#L114)*
+*Defined in [src/styles/cluster.ts:114](https://github.com/chronark/atlas/blob/25d5919/src/styles/cluster.ts#L114)*
 
 **Parameters:**
 
@@ -156,7 +156,7 @@ ___
 
 ▸ **style**(`cluster`: [OLFeature](olfeature.md)): *[OLStyle](olstyle.md)[]*
 
-*Defined in [src/styles/cluster.ts:89](https://github.com/chronark/atlas/blob/157126a/src/styles/cluster.ts#L89)*
+*Defined in [src/styles/cluster.ts:89](https://github.com/chronark/atlas/blob/25d5919/src/styles/cluster.ts#L89)*
 
 **Parameters:**
 

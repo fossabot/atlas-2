@@ -25,7 +25,7 @@ sidebar_label: "GeocodingResponseObject"
 
 • **attribution**: *string*
 
-*Defined in [src/types/customTypes.ts:90](https://github.com/chronark/atlas/blob/157126a/src/types/customTypes.ts#L90)*
+*Defined in [src/types/customTypes.ts:90](https://github.com/chronark/atlas/blob/25d5919/src/types/customTypes.ts#L90)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **features**: *[FeaturesEntity](featuresentity.md)[]*
 
-*Defined in [src/types/customTypes.ts:89](https://github.com/chronark/atlas/blob/157126a/src/types/customTypes.ts#L89)*
+*Defined in [src/types/customTypes.ts:89](https://github.com/chronark/atlas/blob/25d5919/src/types/customTypes.ts#L89)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 • **query**: *string*
 
-*Defined in [src/types/customTypes.ts:88](https://github.com/chronark/atlas/blob/157126a/src/types/customTypes.ts#L88)*
+*Defined in [src/types/customTypes.ts:88](https://github.com/chronark/atlas/blob/25d5919/src/types/customTypes.ts#L88)*
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 • **type**: *string*
 
-*Defined in [src/types/customTypes.ts:87](https://github.com/chronark/atlas/blob/157126a/src/types/customTypes.ts#L87)*
+*Defined in [src/types/customTypes.ts:87](https://github.com/chronark/atlas/blob/25d5919/src/types/customTypes.ts#L87)*

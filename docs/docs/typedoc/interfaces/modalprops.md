@@ -27,7 +27,7 @@ sidebar_label: "ModalProps"
 
 • **children**? : *React.ReactNode*
 
-*Defined in [src/components/Modal.tsx:6](https://github.com/chronark/atlas/blob/157126a/src/components/Modal.tsx#L6)*
+*Defined in [src/components/Modal.tsx:6](https://github.com/chronark/atlas/blob/25d5919/src/components/Modal.tsx#L6)*
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 • **show**: *boolean*
 
-*Defined in [src/components/Modal.tsx:4](https://github.com/chronark/atlas/blob/157126a/src/components/Modal.tsx#L4)*
+*Defined in [src/components/Modal.tsx:4](https://github.com/chronark/atlas/blob/25d5919/src/components/Modal.tsx#L4)*
 
 ## Methods
 
@@ -43,6 +43,6 @@ ___
 
 ▸ **toggle**(): *void*
 
-*Defined in [src/components/Modal.tsx:5](https://github.com/chronark/atlas/blob/157126a/src/components/Modal.tsx#L5)*
+*Defined in [src/components/Modal.tsx:5](https://github.com/chronark/atlas/blob/25d5919/src/components/Modal.tsx#L5)*
 
 **Returns:** *void*
