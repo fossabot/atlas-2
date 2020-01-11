@@ -31,7 +31,7 @@ sidebar_label: "Logger"
 
 \+ **new Logger**(): *[Logger](logger.md)*
 
-*Defined in [src/lib/logger.ts:5](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/logger.ts#L5)*
+*Defined in [src/lib/logger.ts:5](https://github.com/chronark/atlas/blob/2109f67/src/lib/logger.ts#L5)*
 
 **Returns:** *[Logger](logger.md)*
 
@@ -41,7 +41,7 @@ sidebar_label: "Logger"
 
 ▸ **buildPayload**(`level`: string, `payload`: [LogObject](../globals.md#logobject)): *[LogObject](../globals.md#logobject)*
 
-*Defined in [src/lib/logger.ts:29](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/logger.ts#L29)*
+*Defined in [src/lib/logger.ts:29](https://github.com/chronark/atlas/blob/2109f67/src/lib/logger.ts#L29)*
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ ___
 
 ▸ **debug**(`text`: string, `payload`: [LogObject](../globals.md#logobject)): *void*
 
-*Defined in [src/lib/logger.ts:38](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/logger.ts#L38)*
+*Defined in [src/lib/logger.ts:38](https://github.com/chronark/atlas/blob/2109f67/src/lib/logger.ts#L38)*
 
 **Parameters:**
 
@@ -75,7 +75,7 @@ ___
 
 ▸ **disableConsole**(): *void*
 
-*Defined in [src/lib/logger.ts:20](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/logger.ts#L20)*
+*Defined in [src/lib/logger.ts:20](https://github.com/chronark/atlas/blob/2109f67/src/lib/logger.ts#L20)*
 
 **Returns:** *void*
 
@@ -85,7 +85,7 @@ ___
 
 ▸ **error**(`text`: string, `payload`: [LogObject](../globals.md#logobject)): *void*
 
-*Defined in [src/lib/logger.ts:53](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/logger.ts#L53)*
+*Defined in [src/lib/logger.ts:53](https://github.com/chronark/atlas/blob/2109f67/src/lib/logger.ts#L53)*
 
 **Parameters:**
 
@@ -102,7 +102,7 @@ ___
 
 ▸ **info**(`text`: string, `payload`: [LogObject](../globals.md#logobject)): *void*
 
-*Defined in [src/lib/logger.ts:43](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/logger.ts#L43)*
+*Defined in [src/lib/logger.ts:43](https://github.com/chronark/atlas/blob/2109f67/src/lib/logger.ts#L43)*
 
 **Parameters:**
 
@@ -119,7 +119,7 @@ ___
 
 ▸ **warn**(`text`: string, `payload`: [LogObject](../globals.md#logobject)): *void*
 
-*Defined in [src/lib/logger.ts:48](https://github.com/chronark/atlas/blob/4c0c2ce/src/lib/logger.ts#L48)*
+*Defined in [src/lib/logger.ts:48](https://github.com/chronark/atlas/blob/2109f67/src/lib/logger.ts#L48)*
 
 **Parameters:**
 

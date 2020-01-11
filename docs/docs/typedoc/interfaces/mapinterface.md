@@ -28,7 +28,7 @@ sidebar_label: "MapInterface"
 
 • **jobs**: *[Job](job.md)[]*
 
-*Defined in [src/types/customInterfaces.ts:9](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customInterfaces.ts#L9)*
+*Defined in [src/types/customInterfaces.ts:9](https://github.com/chronark/atlas/blob/2109f67/src/types/customInterfaces.ts#L9)*
 
 ___
 
@@ -36,7 +36,7 @@ ___
 
 • **olmap**: *[OLMap](../classes/olmap.md)*
 
-*Defined in [src/types/customInterfaces.ts:10](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customInterfaces.ts#L10)*
+*Defined in [src/types/customInterfaces.ts:10](https://github.com/chronark/atlas/blob/2109f67/src/types/customInterfaces.ts#L10)*
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 • **setJobs**: *function*
 
-*Defined in [src/types/customInterfaces.ts:11](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customInterfaces.ts#L11)*
+*Defined in [src/types/customInterfaces.ts:11](https://github.com/chronark/atlas/blob/2109f67/src/types/customInterfaces.ts#L11)*
 
 #### Type declaration:
 
@@ -62,7 +62,7 @@ Name | Type |
 
 ▸ **zoomToLayer**(`layer`: VectorLayer): *void*
 
-*Defined in [src/types/customInterfaces.ts:12](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customInterfaces.ts#L12)*
+*Defined in [src/types/customInterfaces.ts:12](https://github.com/chronark/atlas/blob/2109f67/src/types/customInterfaces.ts#L12)*
 
 **Parameters:**
 

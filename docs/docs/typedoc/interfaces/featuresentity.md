@@ -34,7 +34,7 @@ sidebar_label: "FeaturesEntity"
 
 • **bbox**? : *number[]*
 
-*Defined in [src/types/customTypes.ts:100](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L100)*
+*Defined in [src/types/customTypes.ts:100](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L100)*
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 • **center**? : *number[]*
 
-*Defined in [src/types/customTypes.ts:101](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L101)*
+*Defined in [src/types/customTypes.ts:101](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L101)*
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 • **context**? : *[ContextEntity](contextentity.md)[]*
 
-*Defined in [src/types/customTypes.ts:103](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L103)*
+*Defined in [src/types/customTypes.ts:103](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L103)*
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 • **geometry**: *[Geometry](geometry.md)*
 
-*Defined in [src/types/customTypes.ts:102](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L102)*
+*Defined in [src/types/customTypes.ts:102](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L102)*
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 • **id**: *string*
 
-*Defined in [src/types/customTypes.ts:93](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L93)*
+*Defined in [src/types/customTypes.ts:93](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L93)*
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 • **matching_place_name**? : *undefined | string*
 
-*Defined in [src/types/customTypes.ts:105](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L105)*
+*Defined in [src/types/customTypes.ts:105](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L105)*
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 • **matching_text**? : *undefined | string*
 
-*Defined in [src/types/customTypes.ts:104](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L104)*
+*Defined in [src/types/customTypes.ts:104](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L104)*
 
 ___
 
@@ -90,7 +90,7 @@ ___
 
 • **place_name**: *string*
 
-*Defined in [src/types/customTypes.ts:99](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L99)*
+*Defined in [src/types/customTypes.ts:99](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L99)*
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 • **place_type**? : *string[]*
 
-*Defined in [src/types/customTypes.ts:95](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L95)*
+*Defined in [src/types/customTypes.ts:95](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L95)*
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 • **properties**: *[Properties](properties.md)*
 
-*Defined in [src/types/customTypes.ts:97](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L97)*
+*Defined in [src/types/customTypes.ts:97](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L97)*
 
 ___
 
@@ -114,7 +114,7 @@ ___
 
 • **relevance**: *number*
 
-*Defined in [src/types/customTypes.ts:96](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L96)*
+*Defined in [src/types/customTypes.ts:96](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L96)*
 
 ___
 
@@ -122,7 +122,7 @@ ___
 
 • **text**: *string*
 
-*Defined in [src/types/customTypes.ts:98](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L98)*
+*Defined in [src/types/customTypes.ts:98](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L98)*
 
 ___
 
@@ -130,4 +130,4 @@ ___
 
 • **type**: *string*
 
-*Defined in [src/types/customTypes.ts:94](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L94)*
+*Defined in [src/types/customTypes.ts:94](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L94)*

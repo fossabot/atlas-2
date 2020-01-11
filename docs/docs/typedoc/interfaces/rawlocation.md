@@ -27,7 +27,7 @@ sidebar_label: "RawLocation"
 
 • **IDs**: *string*
 
-*Defined in [src/types/customTypes.ts:15](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L15)*
+*Defined in [src/types/customTypes.ts:15](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L15)*
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 • **jobs**: *number[]*
 
-*Defined in [src/types/customTypes.ts:16](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L16)*
+*Defined in [src/types/customTypes.ts:16](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L16)*
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 • **lat**: *string*
 
-*Defined in [src/types/customTypes.ts:17](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L17)*
+*Defined in [src/types/customTypes.ts:17](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L17)*
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 • **lng**: *string*
 
-*Defined in [src/types/customTypes.ts:18](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L18)*
+*Defined in [src/types/customTypes.ts:18](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L18)*
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 • **titel**: *string*
 
-*Defined in [src/types/customTypes.ts:19](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L19)*
+*Defined in [src/types/customTypes.ts:19](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L19)*
 
 ___
 
@@ -67,4 +67,4 @@ ___
 
 • **weight**: *number*
 
-*Defined in [src/types/customTypes.ts:20](https://github.com/chronark/atlas/blob/4c0c2ce/src/types/customTypes.ts#L20)*
+*Defined in [src/types/customTypes.ts:20](https://github.com/chronark/atlas/blob/2109f67/src/types/customTypes.ts#L20)*
