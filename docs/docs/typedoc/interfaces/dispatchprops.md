@@ -25,7 +25,7 @@ sidebar_label: "DispatchProps"
 
 • **addNotification**: *function*
 
-*Defined in [src/components/App.tsx:21](https://github.com/chronark/atlas/blob/d2ce11f/src/components/App.tsx#L21)*
+*Defined in [src/components/App.tsx:21](https://github.com/chronark/atlas/blob/3be8226/src/components/App.tsx#L21)*
 
 #### Type declaration:
 
@@ -44,7 +44,7 @@ ___
 
 • **remove**: *function*
 
-*Defined in [src/components/Notification.tsx:8](https://github.com/chronark/atlas/blob/d2ce11f/src/components/Notification.tsx#L8)*
+*Defined in [src/components/Notification.tsx:8](https://github.com/chronark/atlas/blob/3be8226/src/components/Notification.tsx#L8)*
 
 #### Type declaration:
 
@@ -62,7 +62,7 @@ ___
 
 • **search**: *function*
 
-*Defined in [src/components/SearchBar.tsx:7](https://github.com/chronark/atlas/blob/d2ce11f/src/components/SearchBar.tsx#L7)*
+*Defined in [src/components/SearchBar.tsx:7](https://github.com/chronark/atlas/blob/3be8226/src/components/SearchBar.tsx#L7)*
 
 #### Type declaration:
 
@@ -80,7 +80,7 @@ ___
 
 • **setShownJobs**: *function*
 
-*Defined in [src/components/Map.tsx:11](https://github.com/chronark/atlas/blob/d2ce11f/src/components/Map.tsx#L11)*
+*Defined in [src/components/Map.tsx:11](https://github.com/chronark/atlas/blob/3be8226/src/components/Map.tsx#L11)*
 
 #### Type declaration:
 

@@ -23,7 +23,7 @@ sidebar_label: "RawSearch"
 
 • **jobs**: *[RawJob](rawjob.md)[]*
 
-*Defined in [src/types/customTypes.ts:24](https://github.com/chronark/atlas/blob/d2ce11f/src/types/customTypes.ts#L24)*
+*Defined in [src/types/customTypes.ts:24](https://github.com/chronark/atlas/blob/3be8226/src/types/customTypes.ts#L24)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **orte**: *[RawLocation](rawlocation.md)[]*
 
-*Defined in [src/types/customTypes.ts:25](https://github.com/chronark/atlas/blob/d2ce11f/src/types/customTypes.ts#L25)*
+*Defined in [src/types/customTypes.ts:25](https://github.com/chronark/atlas/blob/3be8226/src/types/customTypes.ts#L25)*

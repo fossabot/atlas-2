@@ -23,7 +23,7 @@ sidebar_label: "DropdownProps"
 
 • **label**: *string*
 
-*Defined in [src/components/Dropdown.tsx:15](https://github.com/chronark/atlas/blob/d2ce11f/src/components/Dropdown.tsx#L15)*
+*Defined in [src/components/Dropdown.tsx:15](https://github.com/chronark/atlas/blob/3be8226/src/components/Dropdown.tsx#L15)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **options**: *string[]*
 
-*Defined in [src/components/Dropdown.tsx:16](https://github.com/chronark/atlas/blob/d2ce11f/src/components/Dropdown.tsx#L16)*
+*Defined in [src/components/Dropdown.tsx:16](https://github.com/chronark/atlas/blob/3be8226/src/components/Dropdown.tsx#L16)*

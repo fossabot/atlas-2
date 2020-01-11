@@ -28,7 +28,7 @@ sidebar_label: "OLMap"
 
 ▸ **addControl**(`control`: [OLControl](olcontrol.md) | [OLNotification](olnotification.md)): *void*
 
-*Defined in [src/types/olTypes.ts:13](https://github.com/chronark/atlas/blob/d2ce11f/src/types/olTypes.ts#L13)*
+*Defined in [src/types/olTypes.ts:13](https://github.com/chronark/atlas/blob/3be8226/src/types/olTypes.ts#L13)*
 
 **Parameters:**
 
@@ -44,7 +44,7 @@ ___
 
 ▸ **addInteraction**(`interaction`: any): *void*
 
-*Defined in [src/types/olTypes.ts:14](https://github.com/chronark/atlas/blob/d2ce11f/src/types/olTypes.ts#L14)*
+*Defined in [src/types/olTypes.ts:14](https://github.com/chronark/atlas/blob/3be8226/src/types/olTypes.ts#L14)*
 
 **Parameters:**
 
@@ -60,7 +60,7 @@ ___
 
 ▸ **addLayer**(`layer`: BaseLayer): *void*
 
-*Defined in [src/types/olTypes.ts:16](https://github.com/chronark/atlas/blob/d2ce11f/src/types/olTypes.ts#L16)*
+*Defined in [src/types/olTypes.ts:16](https://github.com/chronark/atlas/blob/3be8226/src/types/olTypes.ts#L16)*
 
 **Parameters:**
 
@@ -76,7 +76,7 @@ ___
 
 ▸ **getLayers**(): *object*
 
-*Defined in [src/types/olTypes.ts:18](https://github.com/chronark/atlas/blob/d2ce11f/src/types/olTypes.ts#L18)*
+*Defined in [src/types/olTypes.ts:18](https://github.com/chronark/atlas/blob/3be8226/src/types/olTypes.ts#L18)*
 
 **Returns:** *object*
 
@@ -88,7 +88,7 @@ ___
 
 ▸ **getSize**(): *number[]*
 
-*Defined in [src/types/olTypes.ts:19](https://github.com/chronark/atlas/blob/d2ce11f/src/types/olTypes.ts#L19)*
+*Defined in [src/types/olTypes.ts:19](https://github.com/chronark/atlas/blob/3be8226/src/types/olTypes.ts#L19)*
 
 **Returns:** *number[]*
 
@@ -98,7 +98,7 @@ ___
 
 ▸ **getView**(): *any*
 
-*Defined in [src/types/olTypes.ts:15](https://github.com/chronark/atlas/blob/d2ce11f/src/types/olTypes.ts#L15)*
+*Defined in [src/types/olTypes.ts:15](https://github.com/chronark/atlas/blob/3be8226/src/types/olTypes.ts#L15)*
 
 **Returns:** *any*
 
@@ -108,7 +108,7 @@ ___
 
 ▸ **removeLayer**(`layer`: BaseLayer): *void*
 
-*Defined in [src/types/olTypes.ts:17](https://github.com/chronark/atlas/blob/d2ce11f/src/types/olTypes.ts#L17)*
+*Defined in [src/types/olTypes.ts:17](https://github.com/chronark/atlas/blob/3be8226/src/types/olTypes.ts#L17)*
 
 **Parameters:**
 

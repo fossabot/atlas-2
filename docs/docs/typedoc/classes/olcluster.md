@@ -22,6 +22,6 @@ sidebar_label: "OLCluster"
 
 ▸ **getSource**(): *[OLVectorSource](olvectorsource.md)*
 
-*Defined in [src/types/olTypes.ts:33](https://github.com/chronark/atlas/blob/d2ce11f/src/types/olTypes.ts#L33)*
+*Defined in [src/types/olTypes.ts:33](https://github.com/chronark/atlas/blob/3be8226/src/types/olTypes.ts#L33)*
 
 **Returns:** *[OLVectorSource](olvectorsource.md)*
