@@ -23,7 +23,7 @@ sidebar_label: "AddNotificationAction"
 
 • **payload**: *[Notification](notification.md)*
 
-*Defined in [src/redux/notifications/types.ts:12](https://github.com/chronark/atlas/blob/4bbedb2/src/redux/notifications/types.ts#L12)*
+*Defined in [src/redux/notifications/types.ts:12](https://github.com/chronark/atlas/blob/0dc33cd/src/redux/notifications/types.ts#L12)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **type**: *"ADD_NOTIFICACTION"*
 
-*Defined in [src/redux/notifications/types.ts:11](https://github.com/chronark/atlas/blob/4bbedb2/src/redux/notifications/types.ts#L11)*
+*Defined in [src/redux/notifications/types.ts:11](https://github.com/chronark/atlas/blob/0dc33cd/src/redux/notifications/types.ts#L11)*

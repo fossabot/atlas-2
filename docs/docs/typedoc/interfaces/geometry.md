@@ -23,7 +23,7 @@ sidebar_label: "Geometry"
 
 • **coordinates**? : *number[]*
 
-*Defined in [src/types/customTypes.ts:116](https://github.com/chronark/atlas/blob/4bbedb2/src/types/customTypes.ts#L116)*
+*Defined in [src/types/customTypes.ts:116](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L116)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **type**: *string*
 
-*Defined in [src/types/customTypes.ts:115](https://github.com/chronark/atlas/blob/4bbedb2/src/types/customTypes.ts#L115)*
+*Defined in [src/types/customTypes.ts:115](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L115)*

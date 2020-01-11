@@ -23,7 +23,7 @@ sidebar_label: "RemoveNotificationAction"
 
 • **payload**: *number*
 
-*Defined in [src/redux/notifications/types.ts:17](https://github.com/chronark/atlas/blob/4bbedb2/src/redux/notifications/types.ts#L17)*
+*Defined in [src/redux/notifications/types.ts:17](https://github.com/chronark/atlas/blob/0dc33cd/src/redux/notifications/types.ts#L17)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **type**: *"REMOVE_NOTIFICATION"*
 
-*Defined in [src/redux/notifications/types.ts:16](https://github.com/chronark/atlas/blob/4bbedb2/src/redux/notifications/types.ts#L16)*
+*Defined in [src/redux/notifications/types.ts:16](https://github.com/chronark/atlas/blob/0dc33cd/src/redux/notifications/types.ts#L16)*
