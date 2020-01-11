@@ -1,6 +1,8 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 # Kostenabschätzung
 
-## google vs mapbox
+## Google vs Mapbox
 
 Google bietet keine Möglichkeit an einzelne Tiles zu laden, sondern rechnet lediglich mit map loads.
 Interaktionen wie Zoomen, Bewegen der Karte oder andere Arten neue Tiles zu laden werden nicht berücksichtigt. Daher gibt es auch keine Preisdaten die wir gut vergleichen könnten.
@@ -61,7 +63,7 @@ anderen Anbieter gehen.
 
 # Tests
 
-Wie mit Birgit kurz besprochen werde ich dem Server noch ein paar Logging Funktionen hinzufügen,sodass wir nach dem Test abschätzen können, wie die Karte genutzt wird.
+Wie mit Birgit kurz besprochen werde ich dem Server noch ein paar Logging Funktionen hinzufügen, sodass wir nach dem Test abschätzen können, wie die Karte genutzt wird.
 
 Hierfür wäre natürlich wichtig zu definieren, was wir alles wissen wollen.
 
@@ -78,11 +80,13 @@ Hierfür wäre natürlich wichtig zu definieren, was wir alles wissen wollen.
 Frontend Applikation zur Visualisierung der Jobs.
 Die Darstellung der Karte selbst benutzt [openlayers](https://openlayers.org/) und das Clientseitige Statemanagement wird realisiert mit [redux](https://redux.js.org/).
 
-### Einbau
+### Verwendung
 
-Der 1.0 Einbau soll möglichst reibungslos verlaufen, daher wird Atlas zu diesem Zeitpunkt noch keine Jobsuchen selbst durchführen. Eine Liste an aktuellen Jobs muss daher von außen mit `map.setJobs(jobs: []Job)` gesetzt werden. Diese Funktion sorgt dafür, dass alle Jobs aktualisiert werden.
+Die Integration soll möglichst reibungslos verlaufen, daher wird Atlas zu diesem Zeitpunkt noch keine Jobsuche selbst durchführen. Eine Liste an aktuellen Jobs muss daher von außen mit `map.setJobs(jobs)` gesetzt werden. Diese Funktion sorgt dafür, dass alle Jobs aktualisiert werden.
 
-#### API
+Mehr zum Einbau [hier](#integration).
+
+### API
 
 Auszug aus [customTypes.ts](https://github.com/chronark/atlas/blob/master/src/types/customTypes.ts):
 
@@ -97,7 +101,11 @@ interface Location {
    */
   lon: number
 }
+```
 
+<div style="page-break-after: always;"></div>
+
+```typescript
 interface Job {
   /**
    * Name of the corporation offering the job.
@@ -183,7 +191,12 @@ Die einzelnen Services laufen innerhalb von Docker-Containern. Individuelles upg
 
 #### Geocoding/Tile Request Cycle
 
-![requestSequenceDiagram](https://raw.githubusercontent.com/chronark/charon/master/roadmap/requestSequenceDiagram.svg)
+Tiles werden automatisch von Openlayers gecached und die GeoJson Daten in redux gespeichert. Allerdings sine die gecachte Tiles nur innerhalb einer Karteninstanz und GeoJson Daten nur innerhalb einer Atlas Instanz gespeichert.
+
+Deswegen wird Charon zwischen Atlas und mögliche 3rd Party Services gestellt und cached automatisch alle Anfragen.
+
+Der Ablauf ist hier grob dargestellt:
+![requestSequenceDiagram](https://raw.githubusercontent.com/chronark/atlas/master/roadmap/requestSequenceDiagram.svg?sanitize=true)
 
 <!--
 ```mermaid
@@ -213,6 +226,87 @@ sequenceDiagram
     CharonAPI->>Atlas: CacheResult [http]
     Atlas->>AtlasCache: Write to Cache
     end
-``` -->
+```
+-->
+
+<div style="page-break-after: always;"></div>
 
 # Roadmap to 1.0
+
+Im Prinzip könnte man die Karte jetzt bereits einbauen, jedoch sind einige Dinge noch nicht ganz ausgereift.
+
+## TODO: Atlas
+
+### React entfernen
+
+Um schneller einen funktionierenden Prototypen zu erstellen, hatte ich [react](https://reactjs.org/) benutzt. Das ist jedoch für eine einzelne Karte definitiv nicht nötig. Außerdem werden Frameworks hier ja nicht so gerne gesehen.
+
+Der react Anteil ist allerdings sehr gering und kann wieder entfernt werden.
+
+### Vector-/Rastertiles
+
+Da Vectortiles und Rastertiles ein bisschen unterschiedlich verarbeitet werden wollen und wir zumindest im Rahmen der Tests auch Rastertiles darstellen und cachen müssen, muss ein bisschen Code umgeschrieben werden, sodass man einfach wechseln kann.
+
+### Clickverhalten bei Clustern
+
+Die Funktionalität zu entscheiden ob gezoomed wird oder ein Popup geöffnet wird, muss noch implementiert werden.
+
+### Popup integration
+
+Wie werden diese integriert und dargestellt?
+Gibt es ein Design?
+Heiko wollte im Hintergrund eine Karte und vorne drauf die Kacheln mit Jobs, soll das komplett von Atlas gerendert werden oder sollen die Daten nach außen geschickt werden und die Webseite selbst rendert das ganze dann?
+
+## Integration
+
+Die Integration für 1.0 ist möglichst einfach gehalten.
+
+Atlas benutzt [webpack](https://webpack.js.org/) als Bundler und erzeugt damit eine einzelne `.js` Datei "atlas.js", sowie 2 .css Dateien, die von openlayers stammen.  
+`atlas.js` kann dann auf der bestehenden Seite geladen und verwendet werden.
+Lediglich ein `<div id="xyz">` ist erforderlich.
+
+```html
+<script src="atlas.js"></script>
+...
+
+<div id="map-container"></div>
+```
+
+Die Karte wird dann so initialisiert:
+
+```javascript
+jobs = map = new atlas.Map("map-container") // create Job[] object
+map.setJobs(jobs)
+```
+
+Die [Job API](https://jobboerse.th-nuernberg.de/srv.php/Suche/offers) der Jobbörse gibt derzeit sowohl Orte als auch Jobs zurück.
+Atlas führt ein neues [Format](#api) ein, dass beides vereint. das wird aber nicht mehr gebraucht. Entweder die API kann geändert werden, oder die Daten werden Clientseitig umgeformt und durch `map.setJobs()` geladen.
+
+### Option 1: API Änderung
+
+Entweder sollte es einen neuen Endpunkt geben, der den Score bereits hinzufügt und wie [hier](#API) formattiert zurück gibt:
+
+```json
+HTTP/2 200
+content-type: application/json
+{
+    "jobs": [
+        {
+          ...
+        },
+        ...
+    ]
+}
+```
+
+### Option 2: Frontend
+
+Entweder der existierende Code kümmert sich um die Score Berechnung und erstellt ein Javascript Object, dass den [Job](https://github.com/chronark/atlas/blob/4bbedb2babc6759e6c99d0451464aa4a75c0a6fa/src/types/customTypes.ts#L44) Typ implementiert.
+
+Auf lange Sicht sollte das Anfragen und Filtern der Jobs auch durch Atlas erledigt werden, aber für den Anfang ist es sicherlich einfacher wenn es von Außen gemacht wird und das Format lediglich umgeformt wird.
+
+## TODO: Charon
+
+Charon hat derzeit noch keine Implementierung für OSM oder Nominatim und eine Dokumentation habe ich auch noch nicht angefangen zu schreiben.
+
+Für den Logger Service ist außerdem noch wichtig sich Gedanken zu machen, welche Daten gelogged werden soll. Personenbezogene Daten sowieso nicht, aber ich bin sicher man könnte einiges lernen aus dem Such- und Bedienungsverhalten der Nutzer.
