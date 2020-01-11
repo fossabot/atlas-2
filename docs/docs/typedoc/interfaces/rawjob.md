@@ -31,7 +31,7 @@ sidebar_label: "RawJob"
 
 • **ID**: *string*
 
-*Defined in [src/types/customTypes.ts:5](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L5)*
+*Defined in [src/types/customTypes.ts:5](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customTypes.ts#L5)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **datum**: *string*
 
-*Defined in [src/types/customTypes.ts:2](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L2)*
+*Defined in [src/types/customTypes.ts:2](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customTypes.ts#L2)*
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 • **extern**: *string*
 
-*Defined in [src/types/customTypes.ts:3](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L3)*
+*Defined in [src/types/customTypes.ts:3](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customTypes.ts#L3)*
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 • **firma**: *string*
 
-*Defined in [src/types/customTypes.ts:4](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L4)*
+*Defined in [src/types/customTypes.ts:4](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customTypes.ts#L4)*
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 • **lat**: *string*
 
-*Defined in [src/types/customTypes.ts:6](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L6)*
+*Defined in [src/types/customTypes.ts:6](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customTypes.ts#L6)*
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 • **lng**: *string*
 
-*Defined in [src/types/customTypes.ts:7](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L7)*
+*Defined in [src/types/customTypes.ts:7](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customTypes.ts#L7)*
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 • **logo**: *string*
 
-*Defined in [src/types/customTypes.ts:8](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L8)*
+*Defined in [src/types/customTypes.ts:8](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customTypes.ts#L8)*
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 • **titel**: *string*
 
-*Defined in [src/types/customTypes.ts:9](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L9)*
+*Defined in [src/types/customTypes.ts:9](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customTypes.ts#L9)*
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 • **typ**: *string*
 
-*Defined in [src/types/customTypes.ts:10](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L10)*
+*Defined in [src/types/customTypes.ts:10](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customTypes.ts#L10)*
 
 ___
 
@@ -103,4 +103,4 @@ ___
 
 • **url**: *string*
 
-*Defined in [src/types/customTypes.ts:11](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customTypes.ts#L11)*
+*Defined in [src/types/customTypes.ts:11](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customTypes.ts#L11)*

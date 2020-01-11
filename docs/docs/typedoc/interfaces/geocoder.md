@@ -27,7 +27,7 @@ sidebar_label: "Geocoder"
 
 ▸ **forward**(`search`: string): *Record‹string, any›*
 
-*Defined in [src/types/customInterfaces.ts:29](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customInterfaces.ts#L29)*
+*Defined in [src/types/customInterfaces.ts:29](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customInterfaces.ts#L29)*
 
 **Parameters:**
 
@@ -43,7 +43,7 @@ ___
 
 ▸ **reverse**(`lat`: number, `lon`: number): *Record‹string, any›*
 
-*Defined in [src/types/customInterfaces.ts:30](https://github.com/chronark/atlas/blob/0dc33cd/src/types/customInterfaces.ts#L30)*
+*Defined in [src/types/customInterfaces.ts:30](https://github.com/chronark/atlas/blob/e6cc89d/src/types/customInterfaces.ts#L30)*
 
 **Parameters:**
 

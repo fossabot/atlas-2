@@ -23,7 +23,7 @@ sidebar_label: "AddCountryAction"
 
 • **payload**: *Record‹string, any›*
 
-*Defined in [src/redux/countries/types.ts:15](https://github.com/chronark/atlas/blob/0dc33cd/src/redux/countries/types.ts#L15)*
+*Defined in [src/redux/countries/types.ts:15](https://github.com/chronark/atlas/blob/e6cc89d/src/redux/countries/types.ts#L15)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **type**: *"ADD_COUNTRY"*
 
-*Defined in [src/redux/countries/types.ts:14](https://github.com/chronark/atlas/blob/0dc33cd/src/redux/countries/types.ts#L14)*
+*Defined in [src/redux/countries/types.ts:14](https://github.com/chronark/atlas/blob/e6cc89d/src/redux/countries/types.ts#L14)*

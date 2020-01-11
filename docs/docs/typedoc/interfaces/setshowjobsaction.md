@@ -23,7 +23,7 @@ sidebar_label: "SetShowJobsAction"
 
 • **payload**: *[Job](job.md)[]*
 
-*Defined in [src/redux/jobs/types.ts:21](https://github.com/chronark/atlas/blob/0dc33cd/src/redux/jobs/types.ts#L21)*
+*Defined in [src/redux/jobs/types.ts:21](https://github.com/chronark/atlas/blob/e6cc89d/src/redux/jobs/types.ts#L21)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **type**: *"SET_SHOWN_JOBS"*
 
-*Defined in [src/redux/jobs/types.ts:20](https://github.com/chronark/atlas/blob/0dc33cd/src/redux/jobs/types.ts#L20)*
+*Defined in [src/redux/jobs/types.ts:20](https://github.com/chronark/atlas/blob/e6cc89d/src/redux/jobs/types.ts#L20)*
