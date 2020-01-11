@@ -24,7 +24,7 @@ sidebar_label: "Notification"
 
 • **content**: *string*
 
-*Defined in [src/redux/notifications/types.ts:7](https://github.com/chronark/atlas/blob/3be8226/src/redux/notifications/types.ts#L7)*
+*Defined in [src/redux/notifications/types.ts:7](https://github.com/chronark/atlas/blob/0e3b309/src/redux/notifications/types.ts#L7)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **id**: *number*
 
-*Defined in [src/redux/notifications/types.ts:5](https://github.com/chronark/atlas/blob/3be8226/src/redux/notifications/types.ts#L5)*
+*Defined in [src/redux/notifications/types.ts:5](https://github.com/chronark/atlas/blob/0e3b309/src/redux/notifications/types.ts#L5)*
 
 ___
 
@@ -40,4 +40,4 @@ ___
 
 • **level**: *string*
 
-*Defined in [src/redux/notifications/types.ts:6](https://github.com/chronark/atlas/blob/3be8226/src/redux/notifications/types.ts#L6)*
+*Defined in [src/redux/notifications/types.ts:6](https://github.com/chronark/atlas/blob/0e3b309/src/redux/notifications/types.ts#L6)*

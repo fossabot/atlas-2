@@ -537,7 +537,7 @@ ___
 
 ▸ **show**(`text`: string): *void*
 
-*Defined in [src/types/olTypes.ts:6](https://github.com/chronark/atlas/blob/3be8226/src/types/olTypes.ts#L6)*
+*Defined in [src/types/olTypes.ts:6](https://github.com/chronark/atlas/blob/0e3b309/src/types/olTypes.ts#L6)*
 
 **Parameters:**
 

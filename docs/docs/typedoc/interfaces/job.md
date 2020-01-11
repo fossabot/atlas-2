@@ -30,7 +30,7 @@ sidebar_label: "Job"
 
 • **corp**: *string*
 
-*Defined in [src/types/customTypes.ts:48](https://github.com/chronark/atlas/blob/3be8226/src/types/customTypes.ts#L48)*
+*Defined in [src/types/customTypes.ts:48](https://github.com/chronark/atlas/blob/0e3b309/src/types/customTypes.ts#L48)*
 
 Name of the corporation offering the job.
 
@@ -40,7 +40,7 @@ ___
 
 • **date**: *string*
 
-*Defined in [src/types/customTypes.ts:56](https://github.com/chronark/atlas/blob/3be8226/src/types/customTypes.ts#L56)*
+*Defined in [src/types/customTypes.ts:56](https://github.com/chronark/atlas/blob/0e3b309/src/types/customTypes.ts#L56)*
 
 The entrydate for the job.
 
@@ -50,7 +50,7 @@ ___
 
 • **id**: *number*
 
-*Defined in [src/types/customTypes.ts:60](https://github.com/chronark/atlas/blob/3be8226/src/types/customTypes.ts#L60)*
+*Defined in [src/types/customTypes.ts:60](https://github.com/chronark/atlas/blob/0e3b309/src/types/customTypes.ts#L60)*
 
 Internal id for each job.
 
@@ -60,7 +60,7 @@ ___
 
 • **locations**: *[Location](location.md)[]*
 
-*Defined in [src/types/customTypes.ts:52](https://github.com/chronark/atlas/blob/3be8226/src/types/customTypes.ts#L52)*
+*Defined in [src/types/customTypes.ts:52](https://github.com/chronark/atlas/blob/0e3b309/src/types/customTypes.ts#L52)*
 
 An array of locations where the job is offered.
 
@@ -70,7 +70,7 @@ ___
 
 • **logo**: *string*
 
-*Defined in [src/types/customTypes.ts:64](https://github.com/chronark/atlas/blob/3be8226/src/types/customTypes.ts#L64)*
+*Defined in [src/types/customTypes.ts:64](https://github.com/chronark/atlas/blob/0e3b309/src/types/customTypes.ts#L64)*
 
 URL to the job's or company's logo.
 
@@ -80,7 +80,7 @@ ___
 
 • **score**: *number*
 
-*Defined in [src/types/customTypes.ts:69](https://github.com/chronark/atlas/blob/3be8226/src/types/customTypes.ts#L69)*
+*Defined in [src/types/customTypes.ts:69](https://github.com/chronark/atlas/blob/0e3b309/src/types/customTypes.ts#L69)*
 
 Calculated matching score for the user and job.
 Must be between 0.0 and 1.0 included.
@@ -91,7 +91,7 @@ ___
 
 • **title**: *string*
 
-*Defined in [src/types/customTypes.ts:73](https://github.com/chronark/atlas/blob/3be8226/src/types/customTypes.ts#L73)*
+*Defined in [src/types/customTypes.ts:73](https://github.com/chronark/atlas/blob/0e3b309/src/types/customTypes.ts#L73)*
 
 Job title description.
 
@@ -101,7 +101,7 @@ ___
 
 • **type**: *string*
 
-*Defined in [src/types/customTypes.ts:77](https://github.com/chronark/atlas/blob/3be8226/src/types/customTypes.ts#L77)*
+*Defined in [src/types/customTypes.ts:77](https://github.com/chronark/atlas/blob/0e3b309/src/types/customTypes.ts#L77)*
 
 Job classification.
 
@@ -111,6 +111,6 @@ ___
 
 • **url**: *string*
 
-*Defined in [src/types/customTypes.ts:81](https://github.com/chronark/atlas/blob/3be8226/src/types/customTypes.ts#L81)*
+*Defined in [src/types/customTypes.ts:81](https://github.com/chronark/atlas/blob/0e3b309/src/types/customTypes.ts#L81)*
 
 URL for more information about this job or company's page.

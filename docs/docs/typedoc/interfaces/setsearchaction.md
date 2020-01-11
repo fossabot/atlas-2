@@ -23,7 +23,7 @@ sidebar_label: "SetSearchAction"
 
 • **payload**: *string*
 
-*Defined in [src/redux/search/types.ts:9](https://github.com/chronark/atlas/blob/3be8226/src/redux/search/types.ts#L9)*
+*Defined in [src/redux/search/types.ts:9](https://github.com/chronark/atlas/blob/0e3b309/src/redux/search/types.ts#L9)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **type**: *"SET_SEARCH"*
 
-*Defined in [src/redux/search/types.ts:8](https://github.com/chronark/atlas/blob/3be8226/src/redux/search/types.ts#L8)*
+*Defined in [src/redux/search/types.ts:8](https://github.com/chronark/atlas/blob/0e3b309/src/redux/search/types.ts#L8)*
