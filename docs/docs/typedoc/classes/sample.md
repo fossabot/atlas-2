@@ -24,7 +24,7 @@ sidebar_label: "Sample"
 
 ▸ **generateString**(`length`: number): *string*
 
-*Defined in [src/lib/sample.ts:50](https://github.com/chronark/atlas/blob/128c355/src/lib/sample.ts#L50)*
+*Defined in [src/lib/sample.ts:50](https://github.com/chronark/atlas/blob/d2ce11f/src/lib/sample.ts#L50)*
 
 **Parameters:**
 
@@ -40,7 +40,7 @@ ___
 
 ▸ **getLocations**(`cities`: Record‹string, any›[], `locationCount`: number): *object[]*
 
-*Defined in [src/lib/sample.ts:11](https://github.com/chronark/atlas/blob/128c355/src/lib/sample.ts#L11)*
+*Defined in [src/lib/sample.ts:11](https://github.com/chronark/atlas/blob/d2ce11f/src/lib/sample.ts#L11)*
 
 **Parameters:**
 
@@ -57,6 +57,6 @@ ___
 
 ▸ **jobs**(): *Promise‹[Job](../interfaces/job.md)[]›*
 
-*Defined in [src/types/customInterfaces.ts:16](https://github.com/chronark/atlas/blob/128c355/src/types/customInterfaces.ts#L16)*
+*Defined in [src/types/customInterfaces.ts:16](https://github.com/chronark/atlas/blob/d2ce11f/src/types/customInterfaces.ts#L16)*
 
 **Returns:** *Promise‹[Job](../interfaces/job.md)[]›*

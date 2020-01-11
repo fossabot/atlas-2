@@ -22,4 +22,4 @@ sidebar_label: "OwnProps"
 
 • **defaultValue**: *string*
 
-*Defined in [src/components/SearchBar.tsx:13](https://github.com/chronark/atlas/blob/128c355/src/components/SearchBar.tsx#L13)*
+*Defined in [src/components/SearchBar.tsx:13](https://github.com/chronark/atlas/blob/d2ce11f/src/components/SearchBar.tsx#L13)*

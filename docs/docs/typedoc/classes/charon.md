@@ -32,7 +32,7 @@ sidebar_label: "Charon"
 
 \+ **new Charon**(): *[Charon](charon.md)*
 
-*Defined in [src/lib/charon.ts:6](https://github.com/chronark/atlas/blob/128c355/src/lib/charon.ts#L6)*
+*Defined in [src/lib/charon.ts:6](https://github.com/chronark/atlas/blob/d2ce11f/src/lib/charon.ts#L6)*
 
 **Returns:** *[Charon](charon.md)*
 
@@ -42,7 +42,7 @@ sidebar_label: "Charon"
 
 • **serverURL**: *string*
 
-*Defined in [src/lib/charon.ts:6](https://github.com/chronark/atlas/blob/128c355/src/lib/charon.ts#L6)*
+*Defined in [src/lib/charon.ts:6](https://github.com/chronark/atlas/blob/d2ce11f/src/lib/charon.ts#L6)*
 
 ## Methods
 
@@ -50,7 +50,7 @@ sidebar_label: "Charon"
 
 ▸ **forwardGeocoding**(`search`: string, `types`: string[]): *Promise‹[GeocodingResponseObject](../interfaces/geocodingresponseobject.md) | undefined›*
 
-*Defined in [src/lib/charon.ts:19](https://github.com/chronark/atlas/blob/128c355/src/lib/charon.ts#L19)*
+*Defined in [src/lib/charon.ts:19](https://github.com/chronark/atlas/blob/d2ce11f/src/lib/charon.ts#L19)*
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ ___
 
 ▸ **getStyle**(): *Promise‹Record‹string, any››*
 
-*Defined in [src/lib/charon.ts:15](https://github.com/chronark/atlas/blob/128c355/src/lib/charon.ts#L15)*
+*Defined in [src/lib/charon.ts:15](https://github.com/chronark/atlas/blob/d2ce11f/src/lib/charon.ts#L15)*
 
 **Returns:** *Promise‹Record‹string, any››*
 
@@ -77,6 +77,6 @@ ___
 
 ▸ **getTileURL**(): *string*
 
-*Defined in [src/lib/charon.ts:11](https://github.com/chronark/atlas/blob/128c355/src/lib/charon.ts#L11)*
+*Defined in [src/lib/charon.ts:11](https://github.com/chronark/atlas/blob/d2ce11f/src/lib/charon.ts#L11)*
 
 **Returns:** *string*
