@@ -1,7 +1,7 @@
 module.exports = {
   title: 'Atlas Documentation',
   tagline: 'Mapping library for jobs.',
-  url: 'https://yatlas-documentation.netlify.com',
+  url: 'https://chronark.github.ui/atlas',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'chronark', // Usually your GitHub org/user name.
