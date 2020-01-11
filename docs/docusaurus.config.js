@@ -15,14 +15,13 @@ module.exports = {
       },
       links: [
         {to: 'docs/doc1', label: 'Docs', position: 'left'},
-        {to: 'blog', label: 'Blog', position: 'left'},
-        {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right',
-        },
         {to: 'docs/typedoc/globals', label: 'API', position: 'left'},
         {to: 'docs/roadmap/roadmap', label: 'Roadmap', position: 'left'},
+            {
+              href: 'https://github.com/chronark/atlas',
+              label: 'GitHub',
+              position: 'right',
+            },
       
       ],
     },
