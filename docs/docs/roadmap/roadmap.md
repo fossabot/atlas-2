@@ -200,7 +200,7 @@ Tiles werden automatisch von Openlayers gecached und die GeoJson Daten in redux 
 Deswegen wird Charon zwischen Atlas und mögliche 3rd Party Services gestellt und cached automatisch alle Anfragen.
 
 Der Ablauf ist hier grob dargestellt:
-![requestSequenceDiagram](https://raw.githubusercontent.com/chronark/atlas/master/roadmap/requestSequenceDiagram.svg?sanitize=true)
+![requestSequenceDiagram](https://raw.githubusercontent.com/chronark/atlas/master/docs/docs/roadmap/requestSequenceDiagram.svg?sanitize=true)
 
 <!--
 ```mermaid
