@@ -4,27 +4,21 @@ import React, { useState } from "react"
 import { connect } from "react-redux"
 
 import { Job } from "../types/customTypes"
-import { addNotification } from "../redux/notifications/actions"
-import { NotificationActionTypes } from "../redux/notifications/types"
 import Form from "./Form"
 import Map from "./Map"
 import Menu from "./Menu"
 import Modal from "./Modal"
-import Notifications from "./Notifications"
 import Statistics from "./Statistics"
 interface State {
   modal: { isShowing: boolean }
   isFullsceen: boolean
 }
 
-interface DispatchProps {
-  addNotification: (level: string, content: string) => NotificationActionTypes
-}
 interface StateProps {
   jobs: Job[]
 }
 
-type Props = DispatchProps & StateProps
+type Props = StateProps
 
 const App: React.FunctionComponent<Props> = props => {
   const [state, setState] = useState({
@@ -52,7 +46,6 @@ const App: React.FunctionComponent<Props> = props => {
       }
     >
       <div>
-        <Notifications></Notifications>
         <Menu isFullscreen={state.isFullscreen} toggleModal={toggleModal} toggleFullscreen={toggleFullscreen}></Menu>
         <Statistics></Statistics>
         <Map></Map>
@@ -66,12 +59,8 @@ const App: React.FunctionComponent<Props> = props => {
   )
 }
 
-const mapDispatchToProps = (dispatch: any): DispatchProps => ({
-  addNotification: (level: string, content: string) => dispatch(addNotification(level, content)),
-})
-
 const mapStateToProps = (state: StateProps): StateProps => ({
   jobs: state.jobs,
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, {})(App)
