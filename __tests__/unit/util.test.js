@@ -1,4 +1,4 @@
-import { bound, removeFrom, strip, removeListFromList } from "../../src/lib/util"
+import { bound, removeFrom, removeListFromList } from "../../src/lib/util"
 
 describe("removeFrom()", () => {
   describe("when there are no duplicates", () => {

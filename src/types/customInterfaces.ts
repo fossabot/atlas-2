@@ -3,7 +3,7 @@ import BaseLayer from "ol/layer/Base"
 import VectorLayer from "ol/layer/Vector"
 
 import { Job, Location } from "./customTypes"
-import { OLCluster } from "./olTypes"
+import Source from "ol/source/Source"
 
 export declare interface MapInterface {
   jobs: Job[]
@@ -16,12 +16,12 @@ export declare interface Sample {
   jobs(): Promise<Job[]>
 }
 
-export declare interface ClusterLayer {
+export declare interface JobLayer {
   addLocations(locations: Location[], draw?: boolean): void
   drawLocations(): void
   displayedLocations: Location[]
   distance: number
-  clusterSource: OLCluster
+  clusterSource: Source
   animatedCluster: BaseLayer
 }
 

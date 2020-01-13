@@ -31,63 +31,50 @@ module.exports = {
     "@typescript-eslint/no-empty-function": "warn",
     "@typescript-eslint/no-explicit-any": "off",
     "prettier/prettier": "error",
-    // Too restrictive, writing ugly code to defend against a very unlikely scenario: https://eslint.org/docs/rules/no-prototype-builtins
     "no-prototype-builtins": "off",
-    // https://basarat.gitbooks.io/typescript/docs/tips/defaultIsBad.html
-    // Use function hoisting to improve code readability
     "no-use-before-define": ["error", { functions: false, classes: true, variables: true }],
-    // Makes no sense to allow type inferrence for expression parameters, but require typing the response
     "@typescript-eslint/explicit-function-return-type": [
       "error",
       { allowExpressions: true, allowTypedFunctionExpressions: true },
     ],
+    "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/no-use-before-define": [
       "error",
       { functions: false, classes: true, variables: true, typedefs: true },
     ],
     "react/prop-types": "off",
     "no-console": "warn",
-    "require-jsdoc": [
-      "off",
-      {
-        require: {
-          FunctionDeclaration: true,
-          MethodDefinition: true,
-          ClassDeclaration: true,
-          ArrowFunctionExpression: false,
-          FunctionExpression: false,
-        },
-      },
-    ],
-    /**
-     * jsdoc
-     */
-    "jsdoc/check-alignment": 1, // Recommended
+
+    // jsdoc
+    "jsdoc/check-access": "warn",
+    "jsdoc/check-values": "warn",
+    "jsdoc/newline-after-description": "warn",
+    "jsdoc/check-alignment": "warn",
     "jsdoc/check-examples": "off",
-    "jsdoc/check-indentation": 1,
-    "jsdoc/check-param-names": "warn", // Recommended
-    "jsdoc/check-syntax": 1,
-    "jsdoc/check-tag-names": 1, // Recommended
-    "jsdoc/check-types": "off", // Recommended
-    "jsdoc/implements-on-classes": 1, // Recommended
-    "jsdoc/match-description": 1,
-    "jsdoc/newline-after-description": 1, // Recommended
-    "jsdoc/no-types": 2,
-    "jsdoc/no-undefined-types": "off", // Recommended
-    "jsdoc/require-description": 1,
-    "jsdoc/require-description-complete-sentence": 1,
+    "jsdoc/check-indentation": "warn",
+    "jsdoc/check-param-names": "warn",
+    "jsdoc/check-syntax": "warn",
+    "jsdoc/check-tag-names": "warn",
+    "jsdoc/check-types": "off",
+    "jsdoc/implements-on-classes": "warn",
+    "jsdoc/match-description": "warn",
+    "jsdoc/newline-after-description": "warn",
+    "jsdoc/no-types": "error",
+    "jsdoc/no-undefined-types": "off",
+    "jsdoc/require-description-complete-sentence": "warn",
+    "jsdoc/require-description": "warn",
     "jsdoc/require-example": "off",
-    "jsdoc/require-hyphen-before-param-description": 1,
-    "jsdoc/require-jsdoc": 1, // Recommended
-    "jsdoc/require-param": "warn", // Recommended
-    "jsdoc/require-param-description": 1, // Recommended
-    "jsdoc/require-param-name": 1, // Recommended
-    "jsdoc/require-param-type": "off", // Recommended
-    "jsdoc/require-returns": 1, // Recommended
-    "jsdoc/require-returns-check": 1, // Recommended
-    "jsdoc/require-returns-description": 1, // Recommended
-    "jsdoc/require-returns-type": "off", // Recommended
-    "jsdoc/valid-types": 1, // Recommended
+    "jsdoc/require-hyphen-before-param-description": "warn",
+    "jsdoc/require-jsdoc": "error",
+    "jsdoc/require-param-description": "warn",
+    "jsdoc/require-param-name": "warn",
+    "jsdoc/require-param-type": "off",
+    "jsdoc/require-param": "warn",
+    "jsdoc/require-returns-check": "warn",
+    "jsdoc/require-returns-description": "warn",
+    "jsdoc/require-returns-type": "off",
+    "jsdoc/require-returns": "warn",
+    "jsdoc/valid-types": "warn",
   },
   overrides: [
     {

@@ -1,23 +1,20 @@
-/**
- *
- */
 import AnimatedCluster from "ol-ext/layer/AnimatedCluster"
 import Feature from "ol/Feature"
 import Point from "ol/geom/Point"
 import { fromLonLat } from "ol/proj.js"
 import Cluster from "ol/source/Cluster"
 import VectorSource from "ol/source/Vector"
-
+import Layer from "ol/layer/Layer"
 import ClusterStyle from "../styles/cluster"
 import { Job } from "../types/customTypes"
 import VectorLayer from "ol/layer/Vector"
-import { OLFeature } from "../types/olTypes"
 
-export default class ClusterLayer implements ClusterLayer {
+export default class JobLayer extends Layer {
   private distance: number
   public clusterSource: Cluster
   public animatedCluster: VectorLayer
   public constructor(distance = 40) {
+    super({})
     // sets up an empty cluster layer
     this.distance = distance
     this.clusterSource = new Cluster({
@@ -27,7 +24,7 @@ export default class ClusterLayer implements ClusterLayer {
     this.animatedCluster = new AnimatedCluster({
       name: "Jobs",
       source: this.clusterSource,
-      style(cluster: Cluster) {
+      style(cluster: Feature) {
         return new ClusterStyle().style(cluster)
       },
     })
