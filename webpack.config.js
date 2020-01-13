@@ -3,8 +3,6 @@
 const CopyPlugin = require("copy-webpack-plugin")
 const HtmlPlugin = require("html-webpack-plugin")
 const path = require("path")
-const PurgecssPlugin = require("purgecss-webpack-plugin")
-const glob = require("glob")
 
 module.exports = {
   node: { fs: "empty" },
@@ -36,32 +34,22 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        // exclude: /node_modules/,
-        // include: /node_modules\/ol-mapbox-style/,
         use: {
           loader: "babel-loader",
           options: {
             cacheDirectory: true,
-            exclude: /node_modules/, // \/(?!ol-mapbox-style\/).*/,
+            exclude: /node_modules/,
           },
         },
       },
       {
         test: /\.css$/,
-        use: [
-          "style-loader",
-          "css-loader",
-          {
-            loader: "postcss-loader",
-            options: {
-              ident: "postcss",
-              plugins: [require("tailwindcss"), require("autoprefixer")],
-            },
-          },
-        ],
+        use: ["style-loader", "css-loader"],
       },
-      { test: /\.tsx?$/, loader: "babel-loader" },
-      { test: /\.tsx?$/, loader: "ts-loader" },
+      {
+        test: /\.tsx?$/,
+        use: ["babel-loader", "ts-loader"],
+      },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
     ],
   },
@@ -69,11 +57,6 @@ module.exports = {
     new CopyPlugin([{ from: "static", to: "static" }]),
     new HtmlPlugin({
       template: "./src/lib/index.html",
-    }),
-    new PurgecssPlugin({
-      paths: glob.sync(`${path.join(__dirname, "static/css")}/**/*`, {
-        nodir: true,
-      }),
     }),
   ],
 }

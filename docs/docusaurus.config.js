@@ -52,7 +52,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/chrnark/atlas/edit/master/docs/',
+            'https://github.com/chronark/atlas/edit/master/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

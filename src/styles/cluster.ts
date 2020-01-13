@@ -1,5 +1,3 @@
-// @flow
-
 import { Stroke, Style, Text } from "ol/style.js"
 import Fill from "ol/style/Fill"
 import RegularShape from "ol/style/RegularShape"
@@ -7,7 +5,7 @@ import RegularShape from "ol/style/RegularShape"
 import { log } from "../lib/logger"
 import { bound } from "../lib/util"
 import { Job } from "../types/customTypes"
-import { OLFeature, OLStyle } from "../types/olTypes"
+import { Feature } from "ol"
 
 export default class ClusterStyle {
   private colorGradient: string[]
@@ -49,7 +47,7 @@ export default class ClusterStyle {
     return this.colorGradient[index]
   }
 
-  private maxScore(features: OLFeature[]): number {
+  private maxScore(features: Feature[]): number {
     let maxScore = 0
     for (const feature of features) {
       const job: Job = feature.get("job")
@@ -59,7 +57,7 @@ export default class ClusterStyle {
     return maxScore
   }
 
-  private polygonStyle(score: number, scale: number, size: number): OLStyle {
+  private polygonStyle(score: number, scale: number, size: number): Style {
     const radius = bound(15, size, 25)
     return new Style({
       image: new RegularShape({
@@ -86,8 +84,8 @@ export default class ClusterStyle {
     })
   }
 
-  public style(cluster: OLFeature): OLStyle[] {
-    const features: OLFeature[] = cluster.get("features")
+  public style(cluster: Feature): Style[] {
+    const features: Feature[] = cluster.get("features")
     const size = features.length
     if (size === 1) {
       return this.selectedStyle(cluster)
@@ -100,8 +98,8 @@ export default class ClusterStyle {
     }
   }
 
-  private getScore(feature: OLFeature): number {
-    const subfeatures: OLFeature[] = feature.get("features")
+  private getScore(feature: Feature): number {
+    const subfeatures: Feature[] = feature.get("features")
 
     if (subfeatures && subfeatures.length === 1) {
       const job: Job = subfeatures[0].get("job")
@@ -111,7 +109,7 @@ export default class ClusterStyle {
     return 0
   }
 
-  private selectedStyle(cluster: OLFeature): OLStyle[] {
+  private selectedStyle(cluster: Feature): Style[] {
     const size = 1
     const score = this.getScore(cluster)
     // Scale is within [0.2, 0.4]

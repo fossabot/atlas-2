@@ -1,4 +1,4 @@
-import ol, { Map as OLMap } from "ol"
+import { Map as OLMap } from "ol"
 import Bar from "ol-ext/control/Bar"
 import Button from "ol-ext/control/Button"
 import View from "ol/View"
@@ -6,40 +6,32 @@ import LayerPopup from "ol-ext/control/LayerPopup"
 import { Attribution, Zoom, OverviewMap } from "ol/control"
 import FullScreen from "ol/control/FullScreen"
 import { shiftKeyOnly } from "ol/events/condition"
-import VectorTileLayer from "ol/layer/VectorTile"
-import VectorTileSource from "ol/source/VectorTile"
 import GeoJSON from "ol/format/GeoJSON"
 import polygonStyle from "../styles/polygon"
 import Feature from "ol/Feature"
 import { fromCircle } from "ol/geom/Polygon"
-import { Draw, Modify, Extent } from "ol/interaction"
-import { Fill, Icon, Stroke, Style, Text } from "ol/style"
-import stylefunction from "ol-mapbox-style/stylefunction"
+import { Draw, Modify } from "ol/interaction"
+import { Fill, Stroke, Style } from "ol/style"
+import { OSMLayer, MapboxLayer } from "./apis/tileLayers"
 import VectorLayer from "ol/layer/Vector"
 import { fromLonLat, transformExtent } from "ol/proj"
 import VectorSource from "ol/source/Vector"
-import { MapInterface } from "../types/customInterfaces"
 import { Job, GeocodingResponseObject } from "../types/customTypes"
-import ClusterLayer from "./clusterLayer"
+import JobLayer from "./jobLayer"
 import { log } from "./logger"
 import { countryLayer } from "./countryLayer"
 import BaseLayer from "ol/layer/Base"
 import Geometry from "ol/geom/Geometry"
 import store from "../redux/store"
 import { setAllJobs, setShownJobs } from "../redux/jobs/actions"
-import Sample from "./sample"
-import { filterJobs } from "./jobFilter"
-import { MVT } from "ol/format"
-import { apply as applyMapboxStyle, applyStyle } from "ol-mapbox-style"
-import Charon from "./charon"
+import Sample from "./apis/sample"
+import { filterJobs } from "./geometryFilter"
 
-import { string } from "prop-types"
-
-export default class Map implements MapInterface {
+export default class Map {
   public jobs: Job[]
   private mapID: string
   public olmap: OLMap
-  private clusterLayer: ClusterLayer
+  private JobLayer: JobLayer
   private zIndices: Record<string, number>
 
   public constructor(mapID: string) {
@@ -58,7 +50,7 @@ export default class Map implements MapInterface {
     this.addControls()
     this.addCircleSelect()
     this.addCountryLayer()
-    this.buildClusterLayer()
+    this.buildJobLayer()
   }
 
   loadJobs(): void {
@@ -67,9 +59,27 @@ export default class Map implements MapInterface {
     })
   }
 
-  addVectorLayer(name: string, layer: VectorLayer, map = this.olmap): VectorLayer {
-    layer.set("name", name)
-    map.addLayer(layer)
+  /**
+   * Creates a named layer and adds it to the existing openlayers map.
+   * By default a layer is not overwritten.
+   *
+   * @param name - The name for the layer. You can later reference the layer by this name.
+   * @param layer - The layer you want to add.
+   * @param map - The openlayers map. This.olmap by default.
+   * @param overwrite - By default the layer does not overwrite itself.
+   * @returns Number.
+   */
+  private addlayer(name: string, layer: BaseLayer, map = this.olmap, overwrite = false): BaseLayer {
+    if (
+      map
+        .getLayers()
+        .getArray()
+        .indexOf(layer) === -1 ||
+      overwrite
+    ) {
+      layer.set("name", name)
+      map.addLayer(layer)
+    }
     return layer
   }
 
@@ -94,7 +104,7 @@ export default class Map implements MapInterface {
     source.addFeatures(features)
     layer.setSource(source)
     if (wasCreated) {
-      this.addVectorLayer(layerName, layer)
+      this.addlayer(layerName, layer)
     }
     layer.setZIndex(this.zIndices.countries)
     return layer
@@ -119,7 +129,7 @@ export default class Map implements MapInterface {
     source.addFeatures(features)
     layer.setSource(source)
     if (wasCreated) {
-      this.addVectorLayer(layerName, layer)
+      this.addlayer(layerName, layer)
     }
     return layer
   }
@@ -286,23 +296,16 @@ export default class Map implements MapInterface {
   }
 
   private buildMap(): OLMap {
-    const mapboxLayer = new VectorTileLayer({
-      declutter: true,
-      source: new VectorTileSource({
-        format: new MVT(),
-        url: new Charon().getTileURL(),
-        attributions:
-          '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
-      }),
-    })
+    const rasterLayer = new OSMLayer().getLayer()
+    const vectorLayer = new MapboxLayer().getLayer()
 
     const controls = [
       new Attribution({
         collapsible: true,
       }),
-      new LayerPopup([mapboxLayer]),
+      new LayerPopup([rasterLayer]),
       new OverviewMap({
-        layers: [mapboxLayer],
+        layers: [rasterLayer],
       }),
       new Zoom(),
     ]
@@ -315,41 +318,22 @@ export default class Map implements MapInterface {
         zoom: 2,
       }),
     })
-    if (
-      olmap
-        .getLayers()
-        .getArray()
-        .indexOf(mapboxLayer) === -1
-    ) {
-      this.addVectorLayer("tiles", mapboxLayer, olmap)
-    }
+    this.addlayer("rasterTiles", rasterLayer, olmap)
+    this.addlayer("vectorTiles", vectorLayer, olmap)
 
-    this.applyMapboxStyle(mapboxLayer)
     return olmap
   }
 
-  private async applyMapboxStyle(mapboxLayer: VectorTileLayer): Promise<void> {
-    const glStyle = await new Charon().getStyle()
-
-    const styleLayers: string[] = glStyle.layers
-      .filter((layer: Record<string, any>) => {
-        return layer.hasOwnProperty("source")
-      })
-      .map((layer: Record<string, any>) => layer.id)
-
-    stylefunction(mapboxLayer, glStyle, styleLayers)
-  }
-
-  private buildClusterLayer(): void {
-    this.clusterLayer = new ClusterLayer(60)
-    this.clusterLayer.animatedCluster.setZIndex(this.zIndices.jobs)
-    this.addVectorLayer("cluster", this.clusterLayer.animatedCluster)
+  private buildJobLayer(): void {
+    this.JobLayer = new JobLayer(60)
+    this.JobLayer.animatedCluster.setZIndex(this.zIndices.jobs)
+    this.addlayer("cluster", this.JobLayer.animatedCluster)
   }
 
   public setJobs(jobs: Job[]): void {
     log.debug("Setting jobs", jobs)
-    this.clusterLayer.clear()
-    this.clusterLayer.addJobs(jobs)
+    this.JobLayer.clear()
+    this.JobLayer.addJobs(jobs)
   }
 
   private setView(lon: number, lat: number, zoom: number): void {

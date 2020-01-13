@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { ThunkDispatch } from "redux-thunk"
 import MapClass from "../lib/map"
-import Nominatim from "../lib/nominatim"
+import Nominatim from "../lib/apis/nominatim"
 import { setShownJobs } from "../redux/jobs/actions"
 import { Job } from "../types/customTypes"
-import { filterJobs } from "../lib/jobFilter"
-import Charon from "../lib/charon"
+import { filterJobs } from "../lib/geometryFilter"
+import Charon from "../lib/apis/charon"
 interface DispatchProps {
   setShownJobs: (jobs: Job[]) => void
 }
