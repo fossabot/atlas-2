@@ -4,13 +4,12 @@ title: Roadmap
 sidebar_label: Roadmap
 ---
 
-
 # Kostenabschätzung
 
-## Google vs Mapbox
+## Google vs. Mapbox
 
 Google bietet keine Möglichkeit an einzelne Tiles zu laden, sondern rechnet lediglich mit map loads.
-Interaktionen wie Zoomen, Bewegen der Karte oder andere Arten neue Tiles zu laden werden nicht berücksichtigt. Daher gibt es auch keine Preisdaten die wir gut vergleichen könnten.
+Interaktionen wie Zoomen, Bewegen der Karte oder andere Arten neue Tiles zu laden werden nicht berücksichtigt. Daher gibt es auch keine Preisdaten, die wir gut vergleichen könnten.
 
 Mapbox bietet zwar auch diese Möglichkeit an nur für einen map load zu zahlen, jedoch nur wenn man deren eigene - auf [leaflet.js](https://leafletjs.com/) basierende - [Bibliothek](https://docs.mapbox.com/mapbox-gl-js/api/) benutzt.
 
@@ -20,20 +19,6 @@ Mapbox bietet zwar auch diese Möglichkeit an nur für einen map load zu zahlen,
 | ---------------- | --------- |
 | Map Loads        | 55.000    |
 | Geocoding        | 40.000    |
-
-## google vs mapbox
-
-Google bietet keine Möglichkeit an einzelne Tiles zu laden, sondern rechnet lediglich mit map loads.
-Interaktionen wie Zoomen, Bewegen der Karte oder andere Arten neue Tiles zu laden werden nicht berücksichtigt. Daher gibt es auch keine Preisdaten die wir gut vergleichen könnten.
-
-Mapbox bietet zwar auch diese Möglichkeit an nur für einen map load zu zahlen, jedoch nur wenn man deren eigene - auf [leaflet.js](https://leafletjs.com/) basierende - [Bibliothek](https://docs.mapbox.com/mapbox-gl-js/api/) benutzt.
-
-### Vergleich
-
-| Current requests | per month |
-| ---------------- | --------- |
-| Mapload          | 40.000    |
-| Geocoding        | 55.000    |
 
 ![Geocoding](https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9t676f9uY6NktXtffQfe2WpzRjW7UsmaNxiS427Ej2SLTbmYqBIu2RqKppTpH9FvdssKJSDzg5f3L/pubchart?oid=107232545&format=image)
 
@@ -46,15 +31,15 @@ Mapbox bietet zwar auch diese Möglichkeit an nur für einen map load zu zahlen,
 Ich habe leider nirgendwo einen guten Vergleich gefunden, auch keine Erfahrungsberichte von Leuten die gewechselt und ihre Zahlen veröffentlicht haben.
 
 Derzeit erreichen wir ca. 40.000 Maploads pro Monat, also ca \$80.
-Für den selben Preis erhalten wir bei Mapbox 320.000 Tile requests.
+Für denselben Preis erhalten wir bei Mapbox 320.000 Tile requests.
 Bei 40.000 Usern sind das dann 8 Tiles pro User.
 
-Für eine detailierte Suche ist das sicherlich nicht ausreichend, aber gleichzeitig gibt es vermutlich auch viele, die einfach nur auf die Seite gehen und nicht mit der Karte interagieren.
+Für eine detaillierte Suche ist das sicherlich nicht ausreichend, aber gleichzeitig gibt es vermutlich auch viele, die einfach nur auf die Seite gehen und nicht mit der Karte interagieren.
 
 Meine Vermutung ist, dass wir mehr für die Tiles zahlen, jedoch die Kosten für Forward und Reverse Geocoding gegen
 0 gehen werden.
 
-Um genau herauszufinden wie viele Tiles der durchschnittliche User benötigt, sollten wir das ganze am besten einfach austesten. [>Tests](#Tests)
+Um genau herauszufinden wie viele Tiles der durchschnittliche User benötigt, sollten wir das Ganze am besten einfach austesten. [>Tests](#Tests)
 
 ## Free
 
@@ -87,7 +72,7 @@ Die Darstellung der Karte selbst benutzt [openlayers](https://openlayers.org/) u
 
 ### Verwendung
 
-Die Integration soll möglichst reibungslos verlaufen, daher wird Atlas zu diesem Zeitpunkt noch keine Jobsuche selbst durchführen. Eine Liste an aktuellen Jobs muss daher von außen mit `map.setJobs(jobs)` gesetzt werden. Diese Funktion sorgt dafür, dass alle Jobs aktualisiert werden.
+Die Integration soll möglichst reibungslos verlaufen, daher wird Atlas zu diesem Zeitpunkt noch keine Jobsuche selbst durchführen. Eine Liste an aktuellen Jobs muss daher von außen mit 'map.setJobs(jobs)' gesetzt werden. Diese Funktion sorgt dafür, dass alle Jobs aktualisiert werden.
 
 Mehr zum Einbau [hier](#integration).
 
@@ -97,61 +82,60 @@ Auszug aus [customTypes.ts](https://github.com/chronark/atlas/blob/master/src/ty
 
 ```typescript
 interface Location {
-  /**
-   * Latitude of the location.
-   */
-  lat: number
-  /**
-   * Longitude of the location.
-   */
-  lon: number
+    /**
+    * Latitude of the location.
+    */
+    lat: number
+    /**
+    * Longitude of the location.
+    */
+    lon: number
 }
 ```
-
 
 ```typescript
 interface Job {
-  /**
-   * Name of the corporation offering the job.
-   */
-  corp: string
-  /**
-   * An array of locations where the job is offered.
-   */
-  locations: Location[]
-  /**
-   * The entrydate for the job.
-   */
-  date: string
-  /**
-   * Internal id for each job.
-   */
-  id: number
-  /**
-   * URL to the job's or company's logo.
-   */
-  logo: string
-  /**
-   * Calculated matching score for the user and job.
-   * Must be between 0.0 and 1.0 included
-   */
-  score: number
-  /**
-   * Job title description.
-   */
-  title: string
-  /**
-   * Job classification.
-   */
-  type: string
-  /**
-   * URL for more information about this job or company's page.
-   */
-  url: string
+    /**
+    * Name of the corporation offering the job.
+    */
+    corp: string
+    /**
+    * An array of locations where the job is offered.
+    */
+    locations: Location[]
+    /**
+    * The entrydate for the job.
+    */
+    date: string
+    /**
+    * Internal id for each job.
+    */
+    id: number
+    /**
+    * URL to the job's or company's logo.
+    */
+    logo: string
+    /**
+    * Calculated matching score for the user and job.
+    * Must be between 0.0 and 1.0 included
+    */
+    score: number
+    /**
+    * Job title description.
+    */
+    title: string
+    /**
+    * Job classification.
+    */
+    type: string
+    /**
+    * URL for more information about this job or company's page.
+    */
+    url: string
 }
 ```
 
-Wie von Heiko gewünscht, ermöglich dies auch die Darstellung von Jobs, die mehrere Orte angegeben haben ohne, dass mehrer Job-Objekte erstellt werden müssen.
+Wie von Heiko gewünscht, ermöglicht dies auch die Darstellung von Jobs, die mehrere Orte angegeben haben ohne, dass mehrere Job-Objekte erstellt werden müssen.
 
 ## Charon
 
@@ -165,19 +149,19 @@ Auch wenn wir Tiles und Geocoding von Mapbox nicht cachen dürfen, gibt es trotz
 
 - Secrets für diverse APIs werden erst beim Server hinzugefügt, damit diese nicht im javascript code an den Endnutzer weiter gegeben werden.
 - Nominatim's Ratelimit Problem wird gelöst
-- Datenschutz der Endnutzer [>Dateschutz](#datenschutz)
+- Datenschutz der Endnutzer [>Datenschutz](#datenschutz)
 - Möglichkeit selbst aus dem Verhalten der Nutzer zu lernen [>Statistik](#Statistik)
 
 ### Datenschutz
 
-Durch einen Proxyserver gelangen die IP-Adresse und sonstige Daten der Endnutzer nicht an den Karten-Provider.  
+Durch einen Proxyserver gelangen die IP-Adresse und sonstige Daten der Endnutzer nicht an den Karten-Provider.
 Zwar behaupten diese, dass sie nichts mit den Daten anfangen, aber sicher ist sicher.
 
 ### Statistik
 
-Durch den Server können außerdem einige nützliche Daten erhoben werden um genauer heraus zu finden,
+Durch den Server können außerdem einige nützliche Daten erhoben werden, um genauer herauszufinden,
 wie der Kartenservice genutzt wird.
-Wie suchen nutzer nach jobs?
+Wie suchen Nutzer nach Jobs?
 
 Alle Requests an Charon werden automatisch anonym(!) protokolliert und können somit später zur Preisabschätzung und Forschung genutzt werden.
 
@@ -195,7 +179,7 @@ Die einzelnen Services laufen innerhalb von Docker-Containern. Individuelles upg
 
 #### Geocoding/Tile Request Cycle
 
-Tiles werden automatisch von Openlayers gecached und die GeoJson Daten in redux gespeichert. Allerdings sine die gecachte Tiles nur innerhalb einer Karteninstanz und GeoJson Daten nur innerhalb einer Atlas Instanz gespeichert.
+Tiles werden automatisch von Openlayers gecached und die GeoJson Daten in redux gespeichert. Allerdings sine die gecachte Tiles nur innerhalb einer Karteninstanz und GeoJson Daten nur innerhalb einer Atlas-Instanz gespeichert.
 
 Deswegen wird Charon zwischen Atlas und mögliche 3rd Party Services gestellt und cached automatisch alle Anfragen.
 
@@ -205,34 +189,33 @@ Der Ablauf ist hier grob dargestellt:
 <!--
 ```mermaid
 sequenceDiagram
-    participant Atlas
-    participant AtlasCache
-    participant CharonAPI
-    participant CharonCache
-    participant 3rdPartyAPI
-    participant CharonLogger
+participant Atlas
+participant AtlasCache
+participant CharonAPI
+participant CharonCache
+participant 3rdPartyAPI
+participant CharonLogger
 
-    Atlas->>AtlasCache: Request
-    alt hit
-        AtlasCache->>Atlas: CacheResult
-    else miss
-        Atlas->>CharonAPI:  Request [http]
-        CharonAPI->>CharonLogger: Logs [gRPC]
-        CharonAPI->>CharonCache: Request [gRPC]
-        alt hit
-            CharonCache->>CharonAPI: CacheResult [gRPC]
-        else miss
-            CharonCache->>3rdPartyAPI: Add Token & Request [http]
-            3rdPartyAPI->>CharonCache: Result [http]
-            CharonCache->>CharonAPI: Result [gRPC]
-            CharonCache->>CharonCache: Cache Result
-        end
-    CharonAPI->>Atlas: CacheResult [http]
-    Atlas->>AtlasCache: Write to Cache
-    end
+Atlas->>AtlasCache: Request
+alt hit
+AtlasCache->>Atlas: CacheResult
+else miss
+Atlas->>CharonAPI: Request [http]
+CharonAPI->>CharonLogger: Logs [gRPC]
+CharonAPI->>CharonCache: Request [gRPC]
+alt hit
+CharonCache->>CharonAPI: CacheResult [gRPC]
+else miss
+CharonCache->>3rdPartyAPI: Add Token & Request [http]
+3rdPartyAPI->>CharonCache: Result [http]
+CharonCache->>CharonAPI: Result [gRPC]
+CharonCache->>CharonCache: Cache Result
+end
+CharonAPI->>Atlas: CacheResult [http]
+Atlas->>AtlasCache: Write to Cache
+end
 ```
 -->
-
 
 # Roadmap to 1.0
 
@@ -258,15 +241,15 @@ Die Funktionalität zu entscheiden ob gezoomed wird oder ein Popup geöffnet wir
 
 Wie werden diese integriert und dargestellt?
 Gibt es ein Design?
-Heiko wollte im Hintergrund eine Karte und vorne drauf die Kacheln mit Jobs, soll das komplett von Atlas gerendert werden oder sollen die Daten nach außen geschickt werden und die Webseite selbst rendert das ganze dann?
+Heiko wollte im Hintergrund eine Karte und vorne darauf die Kacheln mit Jobs, soll das komplett von Atlas gerendert werden oder sollen die Daten nach außen geschickt werden und die Webseite selbst rendert das ganze dann?
 
 ## Integration
 
 Die Integration für 1.0 ist möglichst einfach gehalten.
 
-Atlas benutzt [webpack](https://webpack.js.org/) als Bundler und erzeugt damit eine einzelne `.js` Datei "atlas.js", sowie 2 .css Dateien, die von openlayers stammen.  
-`atlas.js` kann dann auf der bestehenden Seite geladen und verwendet werden.
-Lediglich ein `<div id="xyz">` ist erforderlich.
+Atlas benutzt [webpack](https://webpack.js.org/) als Bundler und erzeugt damit eine einzelne '.js' Datei "atlas.js", sowie 2 .css Dateien, die von openlayers stammen.
+'atlas.js' kann dann auf der bestehenden Seite geladen und verwendet werden.
+Lediglich ein '<div id="xyz">' ist erforderlich.
 
 ```html
 <script src="atlas.js"></script>
@@ -283,11 +266,11 @@ map.setJobs(jobs)
 ```
 
 Die [Job API](https://jobboerse.th-nuernberg.de/srv.php/Suche/offers) der Jobbörse gibt derzeit sowohl Orte als auch Jobs zurück.
-Atlas führt ein neues [Format](#api) ein, dass beides vereint. das wird aber nicht mehr gebraucht. Entweder die API kann geändert werden, oder die Daten werden Clientseitig umgeformt und durch `map.setJobs()` geladen.
+Atlas führt ein neues [Format](#api) ein, dass beides vereint. das wird aber nicht mehr gebraucht. Entweder die API kann geändert werden, oder die Daten werden Clientseitig umgeformt und durch 'map.setJobs()' geladen.
 
 ### Option 1: API Änderung
 
-Entweder sollte es einen neuen Endpunkt geben, der den Score bereits hinzufügt und wie [hier](#API) formattiert zurück gibt:
+Entweder sollte es einen neuen Endpunkt geben, der den Score bereits hinzufügt und wie [hier](#API) formatiert zurückgibt:
 
 ```json
 HTTP/2 200
@@ -295,7 +278,7 @@ content-type: application/json
 {
     "jobs": [
         {
-          ...
+            ...
         },
         ...
     ]
@@ -306,10 +289,20 @@ content-type: application/json
 
 Entweder der existierende Code kümmert sich um die Score Berechnung und erstellt ein Javascript Object, dass den [Job](https://github.com/chronark/atlas/blob/4bbedb2babc6759e6c99d0451464aa4a75c0a6fa/src/types/customTypes.ts#L44) Typ implementiert.
 
-Auf lange Sicht sollte das Anfragen und Filtern der Jobs auch durch Atlas erledigt werden, aber für den Anfang ist es sicherlich einfacher wenn es von Außen gemacht wird und das Format lediglich umgeformt wird.
+Auf lange Sicht sollte das Anfragen und Filtern der Jobs auch durch Atlas erledigt werden, aber für den Anfang ist es sicherlich einfacher, wenn es von Außen gemacht wird und das Format lediglich umgeformt wird.
 
 ## TODO: Charon
 
 Charon hat derzeit noch keine Implementierung für OSM oder Nominatim und eine Dokumentation habe ich auch noch nicht angefangen zu schreiben.
 
 Für den Logger Service ist außerdem noch wichtig sich Gedanken zu machen, welche Daten gelogged werden soll. Personenbezogene Daten sowieso nicht, aber ich bin sicher man könnte einiges lernen aus dem Such- und Bedienungsverhalten der Nutzer.
+
+# Zeitaufwand
+
+Essenziell zum Einbau ist die Unterstützung von Raster und Vector Tiles, die Popups und das onClick Verhalten der Cluster.
+
+Das sollte ich bis ende Januar noch eingebaut bekommen.
+
+Beim Cacheserver fehlt auch nicht mehr besonders viel, aber weil ich im Februar Prüfungen schreibe, werde ich von Anfang Februar bis zum 20.02 nicht hier sein. Anschließend bin ich wieder ein bisschen hier, habe aber Anfang April noch 3 Prüfungen und kann daher auch im März nicht besonders viel arbeiten.
+
+Trotzdem denke ich, dass ich im März alles soweit fertigstellen kann, dass die Karte eingebaut werden kann.
