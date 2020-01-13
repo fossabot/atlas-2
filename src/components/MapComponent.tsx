@@ -26,7 +26,7 @@ interface StateProps {
 
 // interface OwnProps {}
 type Props = StateProps & DispatchProps
-const Map: React.FunctionComponent<Props> = props => {
+const MapComponent: React.FunctionComponent<Props> = props => {
   const MAP_ID = "map"
   const [isRendered, setIsRendered] = useState<boolean>(false)
   const [map, setMap] = useState()
@@ -106,4 +106,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>): DispatchProps
   setShownJobs: (jobs: Job[]) => dispatch(setShownJobs(jobs)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Map)
+export default connect(mapStateToProps, mapDispatchToProps)(MapComponent)
