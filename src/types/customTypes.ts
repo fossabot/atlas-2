@@ -26,9 +26,8 @@ export interface RawSearch {
 }
 
 /**
- *
- *
- * @interface Location
+ * The location for a job.
+ * Address has to be added later on.
  */
 export interface Location {
   /**
@@ -40,7 +39,9 @@ export interface Location {
    */
   lon: number
 }
-
+/**
+ * A Job listing with all relevant data.
+ */
 export interface Job {
   /**
    * Name of the corporation offering the job.
