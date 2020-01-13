@@ -260,8 +260,8 @@ Lediglich ein `<div id="xyz">` ist erforderlich.
 Die Karte wird dann so initialisiert:
 
 ```javascript
-jobs = map = new atlas.Map("map-container") // create Job[] object
-map.setJobs(jobs)
+map = new atlas.Map("map-container") 
+map.setJobs(jobs) // jobs defined elsewhere
 ```
 
 Die [Job API](https://jobboerse.th-nuernberg.de/srv.php/Suche/offers) der Jobbörse gibt derzeit sowohl Orte als auch Jobs zurück.

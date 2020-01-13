@@ -2,8 +2,8 @@
  * @module map
  */
 
-import { Job } from "../types/customTypes"
-import { log } from "./logger"
+import { Job } from "../../types/customTypes"
+import { log } from "../logger"
 import axios from "axios"
 import CircleStyle from "ol/style/Circle"
 

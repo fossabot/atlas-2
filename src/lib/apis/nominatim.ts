@@ -3,16 +3,15 @@
  */
 
 import axios from "axios"
-import { log } from "./logger"
+import { log } from "../logger"
 import { GeoJSON } from "geojson"
-import { Geocoder } from "../types/customInterfaces"
 interface ForwardResult {
   geojson: Record<string, any>
   lat: number
   lon: number
 }
 
-export default class Nominatim implements Geocoder {
+export default class Nominatim {
   private apiURLBase: string
   private apiURLQueryParameters: string[]
 
