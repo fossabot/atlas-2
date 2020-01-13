@@ -2,24 +2,20 @@ import { Map as OLMap } from "ol"
 import Bar from "ol-ext/control/Bar"
 import Button from "ol-ext/control/Button"
 import View from "ol/View"
-import { OSMLayer } from "./tileLayerGenerator"
 import LayerPopup from "ol-ext/control/LayerPopup"
 import { Attribution, Zoom, OverviewMap } from "ol/control"
 import FullScreen from "ol/control/FullScreen"
 import { shiftKeyOnly } from "ol/events/condition"
-import VectorTileLayer from "ol/layer/VectorTile"
-import VectorTileSource from "ol/source/VectorTile"
 import GeoJSON from "ol/format/GeoJSON"
 import polygonStyle from "../styles/polygon"
 import Feature from "ol/Feature"
 import { fromCircle } from "ol/geom/Polygon"
 import { Draw, Modify } from "ol/interaction"
 import { Fill, Stroke, Style } from "ol/style"
-import stylefunction from "ol-mapbox-style/stylefunction"
+import { OSMLayer, MapboxLayer } from "./tileLayers"
 import VectorLayer from "ol/layer/Vector"
 import { fromLonLat, transformExtent } from "ol/proj"
 import VectorSource from "ol/source/Vector"
-import { MapInterface } from "../types/customInterfaces"
 import { Job, GeocodingResponseObject } from "../types/customTypes"
 import JobLayer from "./jobLayer"
 import { log } from "./logger"
@@ -30,10 +26,8 @@ import store from "../redux/store"
 import { setAllJobs, setShownJobs } from "../redux/jobs/actions"
 import Sample from "./sample"
 import { filterJobs } from "./jobFilter"
-import { MVT } from "ol/format"
-import Charon from "./charon"
 
-export default class Map implements MapInterface {
+export default class Map {
   public jobs: Job[]
   private mapID: string
   public olmap: OLMap
@@ -302,23 +296,16 @@ export default class Map implements MapInterface {
   }
 
   private buildMap(): OLMap {
-    const mapboxLayer = new VectorTileLayer({
-      declutter: true,
-      source: new VectorTileSource({
-        format: new MVT(),
-        url: new Charon().getTileURL(),
-        attributions:
-          '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
-      }),
-    })
+    const rasterLayer = new OSMLayer().getLayer()
+    const vectorLayer = new MapboxLayer().getLayer()
 
     const controls = [
       new Attribution({
         collapsible: true,
       }),
-      new LayerPopup([mapboxLayer]),
+      new LayerPopup([rasterLayer]),
       new OverviewMap({
-        layers: [mapboxLayer],
+        layers: [rasterLayer],
       }),
       new Zoom(),
     ]
@@ -331,40 +318,10 @@ export default class Map implements MapInterface {
         zoom: 2,
       }),
     })
+    this.addlayer("rasterTiles", rasterLayer, olmap)
+    this.addlayer("vectorTiles", vectorLayer, olmap)
 
-    const osmLayer = new OSMLayer().getLayer()
-    if (
-      olmap
-        .getLayers()
-        .getArray()
-        .indexOf(osmLayer) === -1
-    ) {
-      this.addlayer("rasterTiles", osmLayer, olmap)
-    }
-
-    if (
-      olmap
-        .getLayers()
-        .getArray()
-        .indexOf(mapboxLayer) === -1
-    ) {
-      this.addlayer("tiles", mapboxLayer, olmap)
-    }
-
-    this.applyMapboxStyle(mapboxLayer)
     return olmap
-  }
-
-  private async applyMapboxStyle(mapboxLayer: VectorTileLayer): Promise<void> {
-    const glStyle = await new Charon().getStyle()
-
-    const styleLayers: string[] = glStyle.layers
-      .filter((layer: Record<string, any>) => {
-        return layer.hasOwnProperty("source")
-      })
-      .map((layer: Record<string, any>) => layer.id)
-
-    stylefunction(mapboxLayer, glStyle, styleLayers)
   }
 
   private buildJobLayer(): void {
