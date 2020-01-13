@@ -60,8 +60,10 @@ module.exports = {
           },
         ],
       },
-      { test: /\.tsx?$/, loader: "babel-loader" },
-      { test: /\.tsx?$/, loader: "ts-loader" },
+      {
+        test: /\.tsx?$/,
+        use: ["babel-loader", "ts-loader"],
+      },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
     ],
   },

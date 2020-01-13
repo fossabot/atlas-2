@@ -2,142 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Hochschuljobbörse</title>
+    <title>Atlas</title>
   </head>
 
-  <body class="bg-gray-100">
-    <nav class="max-w-6xl w-full mx-auto p-6">
-      <div class="w-full flex items-center justify-between">
-        <a href="#">
-          <img src="static/img/TH_Nuernberg.jpg" />
-        </a>
-
-        <div class="flex w-1/2 justify-end content-center">
-          <a class="inline-bloc mx-4" href="#">
-            zur Hochschule
-          </a>
-          <a class="inline-block mx-4" href="#">
-            DE
-          </a>
-        </div>
-      </div>
-    </nav>
-    <div class="w-full h-8 bg-jb-primary"></div>
-    <div class="w-full h-32 bg-jb-gray flex justify-center items-center"></div>
-    <div class="max-w-6xl flex mx-auto">
-      <div class="-mt-24">
-        <div class="text-white bg-jb-secondary opacity-40 rounded">
-          <div class="px-4 py-1 flex justify-center">
-            <p>Duales Studium</p>
-          </div>
-          <div class="border-white border-t p-4">
-            <img class="flex justify-center" src="static/img/hs-dual-logo_white.png" />
-            <span class="flex justify-center mt-2">Aus Bayern in die Welt</span>
-          </div>
-          <div class="border-white border-t flex justify-center p-4">
-            <img src="static/img/logo-study_white.png" />
-          </div>
-        </div>
-      </div>
-      <div class="w-3/4 px-8">
-        <h1 class="absolute -mt-20 text-jb-primary text-4xl">
-          Hochschuljobbörse
-        </h1>
-        <div>
-          <img src="static/img/Header_TH_Nuernberg_big.jpg" />
-          <div class="bg-black flex justify-between px-16 text-thin h-10">
-            <div class="flex items-center">
-              <div>
-                <span class="bg-white border border-gray-500 tracking-widest text-lg">8</span>
-                <span class="bg-white border border-gray-500 tracking-widest text-lg -ml-1">3</span>
-                <span class="bg-white border border-gray-500 tracking-widest text-lg -ml-1">7</span>
-              </div>
-              <span class="uppercase text-white ml-2">Unternehmen</span>
-            </div>
-            <div class="flex items-center">
-              <div>
-                <span class="bg-white border border-gray-500 tracking-widest text-lg">5</span>
-                <span class="text-white font-bold text-xl">.</span>
-                <span class="bg-white border border-gray-500 tracking-widest text-lg -ml-1">6</span>
-                <span class="bg-white border border-gray-500 tracking-widest text-lg -ml-1">8</span>
-                <span class="bg-white border border-gray-500 tracking-widest text-lg -ml-1">8</span>
-              </div>
-              <span class="uppercase text-white ml-2">Stellenanzeigen</span>
-            </div>
-            <div class="flex items-center">
-              <div>
-                <span class="bg-white border border-gray-500 tracking-widest text-lg">4</span>
-                <span class="bg-white border border-gray-500 tracking-widest text-lg -ml-1">8</span>
-                <span class="bg-white border border-gray-500 tracking-widest text-lg -ml-1">8</span>
-              </div>
-              <span class="uppercase text-white ml-2">Neue Stellen</span>
-            </div>
-          </div>
-          <h1 class="text-jb-primary text-2xl py-4">
-            Finde hier Deinen neuen Job!
-          </h1>
-          <div id="map-container" class="shadow-xl border border-gray-100 rounded overflow-hidden"></div>
-
-          <div class="flex  border rounded border-jb-primary text-jb-primary mt-8">
-            <div class="w-1/4">
-              <div class="text-xl px-2 py-3 justify-center">
-                Career Service
-              </div>
-              <img src="static/img/career_service.jpg" />
-              <p class="font-thin p-2">
-                Alle Infos rund um Berwerbung, Vorstellungsgespräch und Assessmentcenter.
-              </p>
-            </div>
-            <div class="w-1/4 border-l border-jb-primary">
-              <div class="text-xl px-2 py-3 justify-center">
-                Recruiting Events
-              </div>
-              <img class="-p-2" src="static/img/events.jpg" />
-              <p class="font-thin p-2">
-                Hier finden Sie Veranstaltungen, um mit Arbeitgebern in Kontakt zu treten.
-              </p>
-            </div>
-            <div class="w-1/4 border-l border-jb-primary">
-              <div class="text-xl px-2 py-3 justify-center">
-                Unsere Partner
-              </div>
-              <img class="-p-2" src="static/img/partner.jpg" />
-              <p class="font-thin p-2">
-                Das Kooperationsmodell für Hochschulen und Universitäten.
-              </p>
-            </div>
-            <div class="w-1/4 border-l border-jb-primary">
-              <div class="text-xl px-2 py-3 justify-center">
-                Für Unternehmen
-              </div>
-              <img class="-p-2" src="static/img/unternehmen.jpg" />
-              <p class="font-thin p-2">
-                Veröffentlichen Sie Ihre Stellenanzeigen und erreichen Sie so Ihre Zielgruppe.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <footer class="bg-jb-primary pt-2 pb-12 mt-2">
-      <div class="max-w-6xl w-full mx-auto p-6">
-        <div class="w-full flex items-center justify-between font-thin text-sm">
-          <a href="#">
-            <img class="h-12" src="static/img/TH_Nuernberg_negativ.png" />
-          </a>
-          <div class="flex w-1/2 justify-end content-center text-white">
-            <a class="inline-bloc mx-4" href="#">
-              Über uns
-            </a>
-            <a class="inline-bloc mx-4" href="#">
-              Impressum
-            </a>
-            <a class="inline-bloc mx-4" href="#">
-              Datenschutz
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
+  <body style="background-color: #e9e9e9;">
+    <div
+      id="map-container"
+      style="overflow: hidden;
+          border-radius: 5px;
+          margin: 25px;"
+    ></div>
   </body>
 </html>
