@@ -296,8 +296,6 @@ Charon hat derzeit noch keine Implementierung für OSM oder Nominatim und eine D
 
 Für den Logger Service ist außerdem noch wichtig sich Gedanken zu machen, welche Daten gelogged werden soll. Personenbezogene Daten sowieso nicht, aber ich bin sicher man könnte einiges lernen aus dem Such- und Bedienungsverhalten der Nutzer.
 
-<div style="page-break-after: always;"></div>
-
 # Zeitaufwand
 
 Essenziell zum Einbau ist die Unterstützung von Raster und Vector Tiles, die Popups und das onClick Verhalten der Cluster.
