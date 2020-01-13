@@ -36,8 +36,7 @@ Bei 40.000 Usern sind das dann 8 Tiles pro User.
 
 Für eine detaillierte Suche ist das sicherlich nicht ausreichend, aber gleichzeitig gibt es vermutlich auch viele, die einfach nur auf die Seite gehen und nicht mit der Karte interagieren.
 
-Meine Vermutung ist, dass wir mehr für die Tiles zahlen, jedoch die Kosten für Forward und Reverse Geocoding gegen
-0 gehen werden.
+Meine Vermutung ist, dass wir mehr für die Tiles zahlen, jedoch die Kosten für Forward und Reverse Geocoding gegen 0 gehen werden.
 
 Um genau herauszufinden wie viele Tiles der durchschnittliche User benötigt, sollten wir das Ganze am besten einfach austesten. [>Tests](#Tests)
 
@@ -296,6 +295,8 @@ Auf lange Sicht sollte das Anfragen und Filtern der Jobs auch durch Atlas erledi
 Charon hat derzeit noch keine Implementierung für OSM oder Nominatim und eine Dokumentation habe ich auch noch nicht angefangen zu schreiben.
 
 Für den Logger Service ist außerdem noch wichtig sich Gedanken zu machen, welche Daten gelogged werden soll. Personenbezogene Daten sowieso nicht, aber ich bin sicher man könnte einiges lernen aus dem Such- und Bedienungsverhalten der Nutzer.
+
+<div style="page-break-after: always;"></div>
 
 # Zeitaufwand
 
