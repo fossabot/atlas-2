@@ -21,4 +21,4 @@ export interface SetShowJobsAction {
   payload: Job[]
 }
 
-export type JobActionTypes = SetAllJobsAction & SetShowJobsAction
+export type JobActionTypes = SetAllJobsAction | SetShowJobsAction
