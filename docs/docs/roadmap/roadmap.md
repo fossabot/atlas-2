@@ -17,8 +17,8 @@ Mapbox bietet zwar auch diese Möglichkeit an nur für einen map load zu zahlen,
 
 | Current requests | per month |
 | ---------------- | --------- |
-| Map Loads        | 55.000    |
-| Geocoding        | 40.000    |
+| Map Loads        | 40.000    |
+| Geocoding        | 55.000    |
 
 ![Geocoding](https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9t676f9uY6NktXtffQfe2WpzRjW7UsmaNxiS427Ej2SLTbmYqBIu2RqKppTpH9FvdssKJSDzg5f3L/pubchart?oid=107232545&format=image)
 
