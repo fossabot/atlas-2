@@ -3,11 +3,11 @@
  */
 import Map from "./map"
 import { toLonLat } from "ol/proj"
-import Nominatim from "./nominatim"
+import Nominatim from "./apis/nominatim"
 import store from "../redux/store"
 import { addSelectedCountries, addCountry, removeSelectedCountries } from "../redux/countries/actions"
 import { GeoJSON } from "ol/format"
-import { areCoordinatesInGeometry } from "./geometry"
+import { areCoordinatesInGeometry } from "./geometryFilter"
 
 const convertGeoJsonToGeometries = (geojson: Record<string, any>): (Record<string, any> | undefined)[] => {
   const features = new GeoJSON({

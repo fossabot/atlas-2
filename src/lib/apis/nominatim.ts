@@ -3,7 +3,7 @@
  */
 
 import axios from "axios"
-import { log } from "./logger"
+import { log } from "../logger"
 import { GeoJSON } from "geojson"
 interface ForwardResult {
   geojson: Record<string, any>
