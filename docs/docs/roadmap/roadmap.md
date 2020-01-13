@@ -248,7 +248,7 @@ Die Integration für 1.0 ist möglichst einfach gehalten.
 
 Atlas benutzt [webpack](https://webpack.js.org/) als Bundler und erzeugt damit eine einzelne '.js' Datei "atlas.js", sowie 2 .css Dateien, die von openlayers stammen.
 'atlas.js' kann dann auf der bestehenden Seite geladen und verwendet werden.
-Lediglich ein '<div id="xyz">' ist erforderlich.
+Lediglich ein `<div id="xyz">` ist erforderlich.
 
 ```html
 <script src="atlas.js"></script>
