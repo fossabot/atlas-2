@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 
 import { Job } from "../types/customTypes"
 import Form from "./Form"
-import Map from "./Map"
+import MapComponent from "./MapComponent"
 import Menu from "./Menu"
 import Modal from "./Modal"
 import Statistics from "./Statistics"
@@ -48,7 +48,7 @@ const App: React.FunctionComponent<Props> = props => {
       <div>
         <Menu isFullscreen={state.isFullscreen} toggleModal={toggleModal} toggleFullscreen={toggleFullscreen}></Menu>
         <Statistics></Statistics>
-        <Map></Map>
+        <MapComponent></MapComponent>
         {state.modal.isShowing ? (
           <Modal show={state.modal.isShowing} toggle={toggleModal}>
             <Form></Form>

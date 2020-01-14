@@ -63,24 +63,27 @@ export default class Map {
    * Creates a named layer and adds it to the existing openlayers map.
    * By default a layer is not overwritten.
    *
-   * @param name - The name for the layer. You can later reference the layer by this name.
+   * @private
    * @param layer - The layer you want to add.
-   * @param map - The openlayers map. This.olmap by default.
-   * @param overwrite - By default the layer does not overwrite itself.
-   * @returns Number.
+   * @param opts - Configuration options.
+   * @param opts.name - The name for the layer. You can later reference the layer by this name.
+   * @param opts.overwrite - By default the layer does not overwrite itself.
    */
-  private addlayer(name: string, layer: BaseLayer, map = this.olmap, overwrite = false): BaseLayer {
+  private addLayer(layer: BaseLayer, opts: { name?: string; overwrite?: boolean } = {}): void {
+    const { name = "", overwrite = false } = opts
+
     if (
-      map
+      this.olmap
         .getLayers()
         .getArray()
         .indexOf(layer) === -1 ||
       overwrite
     ) {
-      layer.set("name", name)
-      map.addLayer(layer)
+      if (name !== "") {
+        layer.set("name", name)
+      }
+      this.olmap.addLayer(layer)
     }
-    return layer
   }
 
   addCountryLayer(): void {
@@ -104,7 +107,7 @@ export default class Map {
     source.addFeatures(features)
     layer.setSource(source)
     if (wasCreated) {
-      this.addlayer(layerName, layer)
+      this.addLayer(layer, { name: layerName })
     }
     layer.setZIndex(this.zIndices.countries)
     return layer
@@ -129,7 +132,7 @@ export default class Map {
     source.addFeatures(features)
     layer.setSource(source)
     if (wasCreated) {
-      this.addlayer(layerName, layer)
+      this.addLayer(layer, { name: layerName })
     }
     return layer
   }
@@ -318,8 +321,8 @@ export default class Map {
         zoom: 2,
       }),
     })
-    this.addlayer("rasterTiles", rasterLayer, olmap)
-    this.addlayer("vectorTiles", vectorLayer, olmap)
+    this.addLayer(rasterLayer, { name: "rasterTiles" })
+    this.addLayer(vectorLayer, { name: "vectorTiles" })
 
     return olmap
   }
@@ -327,7 +330,7 @@ export default class Map {
   private buildJobLayer(): void {
     this.JobLayer = new JobLayer(60)
     this.JobLayer.animatedCluster.setZIndex(this.zIndices.jobs)
-    this.addlayer("cluster", this.JobLayer.animatedCluster)
+    this.addLayer(this.JobLayer.animatedCluster, { name: "cluster" })
   }
 
   public setJobs(jobs: Job[]): void {
