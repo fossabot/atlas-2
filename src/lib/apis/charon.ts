@@ -16,7 +16,7 @@ export default class Charon {
 
   public getStyle(): Promise<Record<string, any>> {
     return fetch(
-      "https://api.mapbox.com/styles/v1/chronark/ck5wrmbg40j661inpnffxn3ip?access_token=" + this.token,
+      "https://api.mapbox.com/styles/v1/chronark/ck3resq750c111co05d682ths?access_token=" + this.token,
     ).then(r => r.json())
   }
 

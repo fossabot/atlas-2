@@ -1,6 +1,11 @@
 import { Map as OLMap } from "ol"
 import Bar from "ol-ext/control/Bar"
 import Button from "ol-ext/control/Button"
+import Overlay from "ol/Overlay"
+import Point from "ol/geom/Point"
+import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer"
+import TileJSON from "ol/source/TileJSON"
+import { Icon, Fill, Stroke, Style } from "ol/style"
 import View from "ol/View"
 import LayerPopup from "ol-ext/control/LayerPopup"
 import { Attribution, Zoom, OverviewMap } from "ol/control"
@@ -11,9 +16,8 @@ import polygonStyle from "../styles/polygon"
 import Feature from "ol/Feature"
 import { fromCircle } from "ol/geom/Polygon"
 import { Draw, Modify } from "ol/interaction"
-import { Fill, Stroke, Style } from "ol/style"
+
 import { OSMLayer, MapboxLayer } from "./apis/tileLayers"
-import VectorLayer from "ol/layer/Vector"
 import { fromLonLat, transformExtent } from "ol/proj"
 import VectorSource from "ol/source/Vector"
 import { Job, GeocodingResponseObject } from "../types/customTypes"
@@ -321,15 +325,32 @@ export default class Map {
       target: this.mapID,
       controls: controls,
       view: new View({
-        center: fromLonLat([0, 45]),
-        zoom: 2,
+        center: fromLonLat([11.077298, 49.453872]),
+        zoom: 8,
       }),
     })
     this.olmap = olmap
-    rasterLayer.setVisible(false)
     this.addLayer(rasterLayer, { name: "rasterTiles" })
     this.addLayer(vectorLayer, { name: "vectorTiles" })
 
+    const thLayer = new VectorLayer({
+      source: new VectorSource({
+        features: [
+          new Feature({
+            geometry: new Point(fromLonLat([11.102327039821592, 49.45840525])),
+            name: "TH OHM",
+          }),
+        ],
+      }),
+      style: new Style({
+        image: new Icon({
+          scale: 0.2,
+          src: "static/ohm.png",
+        }),
+      }),
+    })
+
+    this.addLayer(thLayer, { name: "th" })
     return olmap
   }
 
