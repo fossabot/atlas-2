@@ -326,10 +326,11 @@ export default class Map {
       controls: controls,
       view: new View({
         center: fromLonLat([11.077298, 49.453872]),
-        zoom: 8,
+        zoom: 10,
       }),
     })
     this.olmap = olmap
+    rasterLayer.setVisible(false)
     this.addLayer(rasterLayer, { name: "rasterTiles" })
     this.addLayer(vectorLayer, { name: "vectorTiles" })
 
