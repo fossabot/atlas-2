@@ -321,6 +321,7 @@ export default class Map {
         zoom: 2,
       }),
     })
+    this.olmap = olmap
     this.addLayer(rasterLayer, { name: "rasterTiles" })
     this.addLayer(vectorLayer, { name: "vectorTiles" })
 

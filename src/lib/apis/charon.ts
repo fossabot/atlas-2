@@ -4,16 +4,23 @@
 import { GeocodingResponseObject } from "../../types/customTypes"
 export default class Charon {
   private serverURL: string
+  private token: string
   public constructor() {
-    this.serverURL = "http://jbs-osm.informatik.fh-nuernberg.de:52000"
+    this.token = "pk.eyJ1IjoiY2hyb25hcmsiLCJhIjoiY2syeDdsN28yMDkyMTNqcG1nOTg1b2R2ZSJ9.FcG7FQhEkuBgB656DzLbCg"
+    this.serverURL = ""
   }
 
   public getTileURL(): string {
-    return this.serverURL + "/tile?x={x}&y={y}&z={z}"
+    return (
+      "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8/{z}/{x}/{y}.mvt?style=mapbox://styles/chronark/ck3resq750c111co05d682ths@00&access_token=" +
+      this.token
+    )
   }
 
   public getStyle(): Promise<Record<string, any>> {
-    return fetch(this.serverURL + "/style").then(r => r.json())
+    return fetch(
+      "https://api.mapbox.com/styles/v1/chronark/ck3resq750c111co05d682ths?access_token=" + this.token,
+    ).then(r => r.json())
   }
 
   public async forwardGeocoding(search: string, types: string[]): Promise<GeocodingResponseObject | undefined> {
