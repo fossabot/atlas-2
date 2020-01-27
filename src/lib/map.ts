@@ -118,7 +118,11 @@ export default class Map {
     const [layer, wasCreated] = this.getOrCreateLayer(layerName, {
       style: new Style({
         fill: new Fill({
-          color: "rgba(1,1,1,1)",
+          color: "rgba(0,70,160,0.2)",
+        }),
+        stroke: new Stroke({
+          color: "rgba(0,70,160,0.6)",
+          width: 1,
         }),
       }),
     })
@@ -322,6 +326,7 @@ export default class Map {
       }),
     })
     this.olmap = olmap
+    rasterLayer.setVisible(false)
     this.addLayer(rasterLayer, { name: "rasterTiles" })
     this.addLayer(vectorLayer, { name: "vectorTiles" })
 

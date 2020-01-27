@@ -11,20 +11,19 @@ export default class Charon {
   }
 
   public getTileURL(): string {
-    return (
-      "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8/{z}/{x}/{y}.mvt?style=mapbox://styles/chronark/ck3resq750c111co05d682ths@00&access_token=" +
-      this.token
-    )
+    return "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8/{z}/{x}/{y}.mvt?access_token=" + this.token
   }
 
   public getStyle(): Promise<Record<string, any>> {
     return fetch(
-      "https://api.mapbox.com/styles/v1/chronark/ck3resq750c111co05d682ths?access_token=" + this.token,
+      "https://api.mapbox.com/styles/v1/chronark/ck5wrmbg40j661inpnffxn3ip?access_token=" + this.token,
     ).then(r => r.json())
   }
 
   public async forwardGeocoding(search: string, types: string[]): Promise<GeocodingResponseObject | undefined> {
-    let url = this.serverURL + `/geocoding/forward?search=${search}`
+    const parameters = ["q=" + search, "format=geojson", "polygon_geojson=1"]
+    let url = "https://nominatim.openstreetmap.org/search?" + parameters.join("&")
+    console.log(url)
     if (types.length > 0) {
       url += `&types=${types.join(",")}`
     }
