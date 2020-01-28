@@ -36,7 +36,7 @@ export class OSMLayer implements TileLayerGenerator {
 export class MapboxLayer implements TileLayerGenerator {
   public getLayer(): BaseLayer {
     const mapboxLayer = new VectorTileLayer({
-      declutter: true,
+      declutter: false,
       source: new VectorTileSource({
         format: new MVT(),
         url: new Charon().getTileURL(),

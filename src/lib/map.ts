@@ -1,4 +1,5 @@
 import { Map as OLMap } from "ol"
+import OSM from "ol/source/OSM"
 import Bar from "ol-ext/control/Bar"
 import Button from "ol-ext/control/Button"
 import Overlay from "ol/Overlay"
@@ -316,7 +317,12 @@ export default class Map {
       }),
       new LayerPopup([rasterLayer]),
       new OverviewMap({
-        layers: [rasterLayer],
+        layers: [
+          new TileLayer({
+            source:  new OSM()
+          })
+        ],
+        collapsed: false,
       }),
       new Zoom(),
     ]
@@ -326,11 +332,11 @@ export default class Map {
       controls: controls,
       view: new View({
         center: fromLonLat([11.077298, 49.453872]),
-        zoom: 10,
+        zoom: 6,
       }),
     })
+    vectorLayer.setVisible(false)
     this.olmap = olmap
-    rasterLayer.setVisible(false)
     this.addLayer(rasterLayer, { name: "rasterTiles" })
     this.addLayer(vectorLayer, { name: "vectorTiles" })
 
@@ -345,7 +351,7 @@ export default class Map {
       }),
       style: new Style({
         image: new Icon({
-          scale: 0.2,
+          scale: 0.05,
           src: "static/ohm.png",
         }),
       }),
