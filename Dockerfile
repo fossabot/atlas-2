@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:latest AS builder
 
 
 WORKDIR /atlas
@@ -15,5 +15,6 @@ COPY tsconfig.json .
 
 RUN yarn build
 
-EXPOSE 5000
-CMD ["yarn", "serve"]
+FROM nginx
+COPY --from=builder /atlas/dist /usr/share/nginx/html
+
