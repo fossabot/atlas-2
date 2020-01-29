@@ -3,7 +3,7 @@
  */
 import Map from "./map"
 import { toLonLat } from "ol/proj"
-import Nominatim from "./apis/nominatim"
+import Charon from "./apis/charon"
 import store from "../redux/store"
 import { addSelectedCountries, addCountry, removeSelectedCountries } from "../redux/countries/actions"
 import { GeoJSON } from "ol/format"
@@ -32,7 +32,7 @@ const countryLayer = (map: Map): void => {
         : store.dispatch(addSelectedCountries([cachedGeometry]))
     } else {
       const [lon, lat] = toLonLat(event.coordinate)
-      const geojson = await new Nominatim().reverse(lon, lat)
+      const geojson = await new Charon().reverseGeocoding(lat, lon)
       if (geojson) {
         const geometries = convertGeoJsonToGeometries(geojson)
         if (geometries) {

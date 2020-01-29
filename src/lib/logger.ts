@@ -6,10 +6,10 @@ class Logger {
   public constructor() {
     switch (process.env.NODE_ENV) {
       case "production":
-        this.disableConsole()
+        // this.disableConsole()
         break
       case "test":
-        this.disableConsole()
+        // this.disableConsole()
         break
       default:
         this.info("Development mode detected, verbose-logging enabled.")

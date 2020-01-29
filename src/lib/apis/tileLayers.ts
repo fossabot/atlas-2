@@ -1,11 +1,11 @@
 import BaseLayer from "ol/layer/Layer"
 import TileLayer from "ol/layer/Tile"
-import OSM from "ol/source/OSM"
 import VectorTileLayer from "ol/layer/VectorTile"
 import Charon from "./charon"
 import stylefunction from "ol-mapbox-style/stylefunction"
 import { MVT } from "ol/format"
 import VectorTileSource from "ol/source/VectorTile"
+import XYZ from "ol/source/XYZ"
 
 /**
  * Interface for both OSM and Mapbox layer generation.
@@ -27,8 +27,12 @@ export class OSMLayer implements TileLayerGenerator {
    */
   public getLayer(): BaseLayer {
     const layer = new TileLayer({
-      source: new OSM(),
+      source: new XYZ({
+        url: new Charon().getTileURL(),
+        attributions: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }),
     })
+
     return layer
   }
 }
