@@ -33,12 +33,6 @@ export function removeListFromList(list1: any[], list2: any[]): any[] {
  * @param  upper - The upper end of the boundary.
  * @returns A number that is within lower and upper.
  */
-
-/**
- * @param lower
- * @param value
- * @param upper
- */
 export function bound(lower: number, value: number, upper: number): number {
   return Math.max(lower, Math.min(value, upper))
 }
