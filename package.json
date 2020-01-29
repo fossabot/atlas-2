@@ -29,7 +29,7 @@
     "test:e2e:ie": "start-server-and-test serve http://localhost:5000 e2e:ie",
     "test:unit": "jest",
     "tsc": "./node_modules/.bin/tsc --noEmit",
-    "docker:build": "docker build -t atlas .",
+    "docker:build": "docker build -t chronark/atlas .",
     "docker:run": "docker run -it --rm -p 5000:5000 --name atlas atlas",
     "docker": "yarn docker:build && yarn docker:run",
     "docs:buildTypes": "yarn typedoc",
