@@ -1,6 +1,7 @@
 # atlas
 
 ![CI](https://github.com/chronark/atlas/workflows/CI/badge.svg)
+[![CodeFactor](https://www.codefactor.io/repository/github/chronark/atlas/badge)](https://www.codefactor.io/repository/github/chronark/atlas)
 
 > Mapping library for jobs
 
