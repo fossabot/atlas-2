@@ -300,7 +300,7 @@ export default class Map {
 
   private buildMap(): OLMap {
     const rasterLayer = new OSMLayer().getLayer()
-    const vectorLayer = new MapboxLayer().getLayer()
+    // const vectorLayer = new MapboxLayer().getLayer()
 
     const controls = [
       new Attribution({
@@ -321,8 +321,9 @@ export default class Map {
         zoom: 2,
       }),
     })
+    this.olmap = olmap
     this.addLayer(rasterLayer, { name: "rasterTiles" })
-    this.addLayer(vectorLayer, { name: "vectorTiles" })
+    // this.addLayer(vectorLayer, { name: "vectorTiles" })
 
     return olmap
   }
