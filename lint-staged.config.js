@@ -1,5 +1,5 @@
 module.exports = {
-  "**/*.{css,gql,graphql,html,json,less,md,mdx,scss,vue,yaml,yml}": ["prettier --write", "git add"],
+  "**/*.{css,gql,graphql,html,json,less,md,mdx,scss,vue,yaml,yml}": ["prettier --write"],
   "**/*.{js,jsx,ts,tsx}": [
     "prettier --write",
     "eslint --cache --ext '.js,.jsx,.ts,.tsx' --fix",

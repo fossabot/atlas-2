@@ -1,10 +1,13 @@
-FROM node:latest AS builder
+FROM node:13 AS builder
 
 
 WORKDIR /atlas
 
-COPY . .
+COPY package.json .
+COPY yarn.lock .
 RUN yarn install
+
+COPY . .
 RUN yarn build
 
 FROM nginx:1.17-alpine
