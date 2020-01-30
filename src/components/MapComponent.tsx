@@ -55,7 +55,6 @@ const MapComponent: React.FunctionComponent<Props> = props => {
         const geojson = await new Charon().forwardGeocoding(props.search.query)
         map.addFeatureFromGeojson(geojson)
         const layers = map.getLayersByNames(["featureLayer"])
-        console.log("Layers: ", layers)
         if (layers.length === 1) {
           map.zoomToLayer(layers[0])
         }

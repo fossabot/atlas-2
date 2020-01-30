@@ -131,9 +131,6 @@ export default class Map {
     })
     layer.setSource(source)
 
-    console.log("Layer: ", layer)
-    console.log("Source: ", layer.getSource())
-    console.log("Extent: ", layer.getSource().getExtent())
     if (wasCreated) {
       this.addLayer(layer, { name: layerName })
     }
@@ -350,11 +347,11 @@ export default class Map {
 
   public zoomToLayer(layer: VectorLayer): void {
     const extent = layer.getSource().getExtent()
-    this.olmap.getView().fit(extent, { duration: 1000 })
+    this.olmap.getView().fit(extent, { duration: 3000 })
   }
 
   public zoomToBBox(bbox: [number, number, number, number]): void {
     const extent = transformExtent(bbox, "EPSG:4326", "EPSG:3857")
-    this.olmap.getView().fit(extent, { duration: 1000 })
+    this.olmap.getView().fit(extent, { duration: 3000 })
   }
 }
