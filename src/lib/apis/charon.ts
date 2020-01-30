@@ -1,7 +1,5 @@
-/**
- *
- */
 import { GeocodingResponseObject } from "../../types/customTypes"
+import Axios from "axios"
 export default class Charon {
   private serverURL: string
   public constructor() {
@@ -9,21 +7,25 @@ export default class Charon {
   }
 
   public getTileURL(): string {
-    return this.serverURL + "/tile?x={x}&y={y}&z={z}"
+    return this.serverURL + "/tile/?x={x}&y={y}&z={z}"
   }
 
   public getStyle(): Promise<Record<string, any>> {
     return fetch(this.serverURL + "/style").then(r => r.json())
   }
 
-  public async forwardGeocoding(search: string, types: string[]): Promise<GeocodingResponseObject | undefined> {
-    let url = this.serverURL + `/geocoding/forward?search=${search}`
-    if (types.length > 0) {
-      url += `&types=${types.join(",")}`
-    }
-    const response = await fetch(url)
+  public async forwardGeocoding(query: string): Promise<Record<string, any> | undefined> {
+    const response = await Axios.get(this.serverURL + `/geocoding/forward/?query=${query}`)
     if (response.status === 200) {
-      const json = await response.json()
+      return response.data
+    }
+  }
+
+  public async reverseGeocoding(lat: number, lon: number): Promise<GeocodingResponseObject | undefined> {
+    const url = this.serverURL + `/geocoding/reverse/?lat=${lat}&lon=${lon}`
+    const response = await Axios.get(url)
+    if (response.status === 200) {
+      const json = response.data
       return json
     }
     return undefined
