@@ -26,6 +26,8 @@ import store from "../redux/store"
 import { setAllJobs, setShownJobs } from "../redux/jobs/actions"
 import Sample from "./apis/sample"
 import { filterJobs } from "./geometryFilter"
+import Charon from "./apis/charon"
+import { countryLayerStyle } from "../styles/countryStyle"
 
 export default class Map {
   public jobs: Job[]
@@ -113,24 +115,25 @@ export default class Map {
     return layer
   }
 
-  public featureLayerFromGeoJson(geojson: GeocodingResponseObject): VectorLayer {
+  public addFeatureFromGeojson(geojson: any): VectorLayer {
     const layerName = "featureLayer"
     const [layer, wasCreated] = this.getOrCreateLayer(layerName, {
-      style: new Style({
-        fill: new Fill({
-          color: "rgba(1,1,1,1)",
-        }),
-      }),
+      style: countryLayerStyle({ isSelected: true }),
     })
     if (!wasCreated) {
       layer.getSource().clear()
     }
-    const source = new VectorSource()
-    const features = new GeoJSON({
-      featureProjection: "EPSG:3857",
-    }).readFeatures(geojson.features[0])
-    source.addFeatures(features)
+    const source = new VectorSource({
+      features: new GeoJSON({ featureProjection: "EPSG:3857" }).readFeatures(geojson),
+
+      // url: new Charon().forwardGeocodingURL(search),
+      // format: new GeoJSON(),
+    })
     layer.setSource(source)
+
+    console.log("Layer: ", layer)
+    console.log("Source: ", layer.getSource())
+    console.log("Extent: ", layer.getSource().getExtent())
     if (wasCreated) {
       this.addLayer(layer, { name: layerName })
     }
