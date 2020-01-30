@@ -347,11 +347,11 @@ export default class Map {
 
   public zoomToLayer(layer: VectorLayer): void {
     const extent = layer.getSource().getExtent()
-    this.olmap.getView().fit(extent, { duration: 3000 })
+    this.olmap.getView().fit(extent, { duration: 1500 })
   }
 
   public zoomToBBox(bbox: [number, number, number, number]): void {
     const extent = transformExtent(bbox, "EPSG:4326", "EPSG:3857")
-    this.olmap.getView().fit(extent, { duration: 3000 })
+    this.olmap.getView().fit(extent, { duration: 1500 })
   }
 }
