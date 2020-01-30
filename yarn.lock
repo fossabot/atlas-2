@@ -2067,7 +2067,7 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.9.0.tgz#24390e6ad61386b0a747265754d2a17219de862c"
   integrity sha512-Uvq6hVe90D0B2WEnUqtdgY1bATGz3mw33nH9Y+dmA+w5DHvUmBgkr5rM/KCHpCsiFNRUfokW/szpPPgMK2hm4A==
 
-axios@^0.19.2:
+axios@0.19.2:
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
@@ -7542,7 +7542,7 @@ loglevel@^1.6.6:
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.6.6.tgz#0ee6300cc058db6b3551fa1c4bf73b83bb771312"
   integrity sha512-Sgr5lbboAUBo3eXCSPL4/KoVz3ROKquOjcctxmHIt+vol2DrqTQe3SwkKKuYhEiWB5kYa13YyopJ69deJ1irzQ==
 
-logrocket@^1.0.6:
+logrocket@1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/logrocket/-/logrocket-1.0.6.tgz#6f12511ad69ba3ca2032295f278ef350230e2902"
   integrity sha512-uIi0F+s44AtuJocUAW019SYKsPnnV/IB3IRsL0LFYY4fAfjGQjpcpxXt80yPpkBQkoHW1h5wHYoixs8ZU1MPZg==
@@ -8268,14 +8268,14 @@ obuf@^1.0.0, obuf@^1.1.2:
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
   integrity sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==
 
-ol-ext@^3.1.6:
+ol-ext@3.1.8:
   version "3.1.8"
   resolved "https://registry.yarnpkg.com/ol-ext/-/ol-ext-3.1.8.tgz#1e5b5fb2a9be4e33709e14034d2f9e9d113c6c88"
   integrity sha512-LVSzXS3tyzjhWfJD4azxyhSgTO02pgP8I8n2cl6Ll/ag/hMAPWpL4SVaDWRPL1Nzze2y4aA5TbpYXQrijkx27Q==
   dependencies:
     gulp-jsdoc3 "^2.0.0"
 
-ol-mapbox-style@^5.0.2:
+ol-mapbox-style@5.0.2:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/ol-mapbox-style/-/ol-mapbox-style-5.0.2.tgz#5fe656e14d99feff16bd7cf687ebc7083eef4787"
   integrity sha512-uXerYhr1FIs+pVtDgPu2oiAFtBULBIXgKcZo4AorSTXoHDyu0tv+IVmPTU0UoMS44pbJQJS8tvEJVf36mteyng==
@@ -8284,7 +8284,7 @@ ol-mapbox-style@^5.0.2:
     mapbox-to-css-font "^2.4.0"
     webfont-matcher "^1.1.0"
 
-ol@^6.1.1:
+ol@6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/ol/-/ol-6.1.1.tgz#7f8ada284344a5872d552205de558ed4a904cd27"
   integrity sha512-0dL3i3eJqgOpqIjDKEY3grkeQnjAYfV5L/JCxhOu4SxiaizRwFrFgeas6LILRoxKa03jhQFbut2r2bbgcLGQeA==
