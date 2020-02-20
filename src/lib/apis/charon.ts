@@ -3,6 +3,7 @@ import Axios from "axios"
 export default class Charon {
   private serverURL: string
   public constructor() {
+    console.log(window.location.hostname)
     this.serverURL = window.location.hostname + ":52000"
   }
 
