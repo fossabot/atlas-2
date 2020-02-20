@@ -3,7 +3,7 @@ import Axios from "axios"
 export default class Charon {
   private serverURL: string
   public constructor() {
-    this.serverURL = "localhost:52000"
+    this.serverURL = window.location.hostname + ":52000"
   }
 
   public getTileURL(): string {
